@@ -1,0 +1,711 @@
+{
+  "version": "2.14",
+  "variables": {
+    "color.violet": { "type": "color", "value": "#6C4BF0" },
+    "color.violetDeep": { "type": "color", "value": "#4F2DC8" },
+    "color.violetDeepBtn": { "type": "color", "value": "#2E1065" },
+    "color.lavender": { "type": "color", "value": "#A399FD" },
+    "color.ink": { "type": "color", "value": "#15172C" },
+    "color.dark": { "type": "color", "value": "#0E1023" },
+    "color.black": { "type": "color", "value": "#000000" },
+    "color.muted": { "type": "color", "value": "#585B6E" },
+    "color.soft": { "type": "color", "value": "#9094A6" },
+    "color.gray": { "type": "color", "value": "#F1F1F5" },
+    "color.dim": { "type": "color", "value": "#262051" },
+    "color.dimStrong": { "type": "color", "value": "#322A68" },
+    "font.display": { "type": "string", "value": "Nexa" },
+    "font.body": { "type": "string", "value": "Inter" },
+    "font.mono": { "type": "string", "value": "Geist Mono" }
+  },
+  "children": [
+    {
+      "id": "y4s-original",
+      "type": "frame",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "layout": "vertical",
+      "gap": 0,
+      "fill": "#FFFFFF",
+      "height": "fit_content",
+      "children": [
+        {
+          "id": "o-nav",
+          "type": "frame",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "gap": 36,
+          "padding": [24, 100, 24, 100],
+          "width": "fill_container",
+          "children": [
+            { "id": "o-nav-logo", "type": "rectangle", "width": 200, "height": 30, "fill": { "type": "image", "url": "./assets/logo.svg", "mode": "fit" } },
+            {
+              "id": "o-nav-menu",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 26,
+              "alignItems": "center",
+              "width": "fill_container",
+              "children": [
+                { "id": "o-nav-lbl", "type": "text", "content": "Usługi :", "fontFamily": "$font.body", "fontWeight": "bold", "fontSize": 16, "fill": "$color.ink" },
+                { "id": "o-nav-l1", "type": "text", "content": "Badania UX", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.ink" },
+                { "id": "o-nav-l2", "type": "text", "content": "Segmentacja klientów", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.ink" },
+                { "id": "o-nav-l3", "type": "text", "content": "Audyt UX", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.ink" },
+                { "id": "o-nav-l4", "type": "text", "content": "Konsultacje", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.ink" },
+                { "id": "o-nav-l5", "type": "text", "content": "Wystąpienia", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.ink" }
+              ]
+            },
+            {
+              "id": "o-nav-cta",
+              "type": "frame",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "gap": 12,
+              "padding": [15, 22, 15, 22],
+              "fill": "$color.gray",
+              "children": [
+                { "id": "o-nav-cta-t", "type": "text", "content": "Umów rozmowę", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.ink" },
+                { "id": "o-nav-cta-i", "type": "icon", "library": "lucide", "icon": "calendar-plus", "width": 22, "height": 22, "fill": "$color.ink" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-hero",
+          "type": "frame",
+          "layout": "horizontal",
+          "gap": 40,
+          "padding": [90, 100, 120, 100],
+          "alignItems": "center",
+          "width": "fill_container",
+          "children": [
+            {
+              "id": "o-hero-left",
+              "type": "frame",
+              "layout": "vertical",
+              "gap": 26,
+              "width": 700,
+              "children": [
+                { "id": "o-hero-h1", "type": "text", "content": "Zamieniam wiedzę o klientach\nw wzrost Twojego biznesu.", "fontFamily": "$font.display", "fontSize": 56, "lineHeight": 64, "letterSpacing": -1, "fill": "$color.ink", "textGrowth": "fixed-width", "width": 700 },
+                { "id": "o-hero-sub", "type": "text", "content": "Wykorzystuję wiedzę o użytkownikach\nw wartość dla biznesu.", "fontFamily": "$font.body", "fontSize": 24, "lineHeight": 35, "fill": "$color.muted" },
+                {
+                  "id": "o-hero-clients",
+                  "type": "frame",
+                  "layout": "horizontal",
+                  "gap": 26,
+                  "alignItems": "center",
+                  "padding": [64, 0, 0, 0],
+                  "children": [
+                    { "id": "o-hc-lbl", "type": "text", "content": "PRACOWAŁEM Z:", "fontFamily": "$font.mono", "fontSize": 15, "letterSpacing": 1.5, "fill": "$color.ink" },
+                    { "id": "o-hc-1", "type": "text", "content": "PayU", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-hc-2", "type": "text", "content": "BLIK", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-hc-3", "type": "text", "content": "OLX", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-hc-4", "type": "text", "content": "mObywatel", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-hc-5", "type": "text", "content": "mBank", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-hc-6", "type": "text", "content": "OtoMoto", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" }
+                  ]
+                },
+                {
+                  "id": "o-hero-btn",
+                  "type": "frame",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "id": "o-hero-btn-main",
+                      "type": "frame",
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "gap": 12,
+                      "padding": [17, 26, 17, 26],
+                      "fill": "$color.violet",
+                      "children": [
+                        { "id": "o-hb-i", "type": "icon", "library": "lucide", "icon": "calendar-plus", "width": 20, "height": 20, "fill": "#FFFFFF" },
+                        { "id": "o-hb-t", "type": "text", "content": "Umów się na rozmowę online!", "fontFamily": "$font.body", "fontSize": 17, "fill": "#FFFFFF" }
+                      ]
+                    },
+                    {
+                      "id": "o-hero-btn-arrow",
+                      "type": "frame",
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "padding": [17, 15, 17, 15],
+                      "fill": "$color.violetDeep",
+                      "children": [
+                        { "id": "o-hb-a", "type": "icon", "library": "lucide", "icon": "arrow-right", "width": 20, "height": 20, "fill": "#FFFFFF" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "o-hero-collage",
+              "type": "frame",
+              "layout": "none",
+              "width": 520,
+              "height": 560,
+              "children": [
+                { "id": "o-col-p3", "type": "rectangle", "x": 395, "y": 90, "width": 125, "height": 400, "opacity": 0.85, "fill": { "type": "image", "url": "./assets/img/duo-panel.jpg", "mode": "fill" } },
+                { "id": "o-col-p2", "type": "rectangle", "x": 310, "y": 40, "width": 165, "height": 460, "fill": { "type": "image", "url": "./assets/img/duo-warsztaty.jpg", "mode": "fill" } },
+                { "id": "o-col-p1", "type": "rectangle", "x": 0, "y": 0, "width": 375, "height": 537, "fill": { "type": "image", "url": "./assets/img/duo-hero-dark.jpg", "mode": "fill" } },
+                {
+                  "id": "o-col-sticker",
+                  "type": "frame",
+                  "x": -10,
+                  "y": 500,
+                  "layout": "horizontal",
+                  "padding": [9, 16, 9, 16],
+                  "fill": "#1C1145",
+                  "rotation": -3,
+                  "children": [
+                    { "id": "o-col-sticker-t", "type": "text", "content": "DECISION GUY W QUALE UX", "fontFamily": "$font.mono", "fontSize": 13, "letterSpacing": 1.8, "fill": "#FFFFFF" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-services",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 56,
+          "padding": [100, 100, 110, 100],
+          "width": "fill_container",
+          "fill": { "type": "gradient", "gradientType": "linear", "rotation": 135, "colors": [ { "color": "#170A33", "position": 0 }, { "color": "#2A0D71", "position": 0.45 }, { "color": "#4316C9", "position": 1 } ] },
+          "children": [
+            {
+              "id": "o-svc-head",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 40,
+              "justifyContent": "space_between",
+              "width": "fill_container",
+              "children": [
+                { "id": "o-svc-h2", "type": "text", "content": "Usługi, które łączą UX\nz wynikiem biznesowym", "fontFamily": "$font.display", "fontSize": 44, "lineHeight": 52, "fill": "#FFFFFF" },
+                {
+                  "id": "o-svc-intro",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "width": 560,
+                  "children": [
+                    { "id": "o-svc-p1", "type": "text", "content": "Od pojedynczych badań po stałe wsparcie strategiczne. Wybierz format dopasowany do etapu, na którym jest Twój produkt.", "fontFamily": "$font.body", "fontSize": 18, "lineHeight": 27, "fill": "#FFFFFF", "textGrowth": "fixed-width", "width": 560 },
+                    { "id": "o-svc-p2", "type": "text", "content": "[Kliknij na wybraną usługę, aby przeczytać przykładowe wdrożenie i przeczytać moje przemyślenia (artykuły) na ten temat.]", "fontFamily": "$font.body", "fontSize": 15, "lineHeight": 22, "fill": "#FFFFFFB8", "textGrowth": "fixed-width", "width": 560 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "o-svc-panel",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 60,
+              "padding": [64, 72, 64, 72],
+              "fill": "#FFFFFF0D",
+              "width": "fill_container",
+              "children": [
+                {
+                  "id": "o-svc-col1",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 44,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-s1", "type": "frame", "layout": "horizontal", "gap": 20, "alignItems": "center", "children": [ { "id": "o-s1-i", "type": "icon", "library": "lucide", "icon": "search", "width": 26, "height": 26, "fill": "#FFFFFF" }, { "id": "o-s1-t", "type": "text", "content": "Badania UX", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" } ] },
+                    { "id": "o-s2", "type": "frame", "layout": "horizontal", "gap": 20, "alignItems": "center", "children": [ { "id": "o-s2-i", "type": "icon", "library": "lucide", "icon": "pie-chart", "width": 26, "height": 26, "fill": "#FFFFFF" }, { "id": "o-s2-t", "type": "text", "content": "Segmentacja klientów", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" } ] },
+                    { "id": "o-s3", "type": "frame", "layout": "horizontal", "gap": 20, "alignItems": "center", "children": [ { "id": "o-s3-i", "type": "icon", "library": "lucide", "icon": "file-check", "width": 26, "height": 26, "fill": "#FFFFFF" }, { "id": "o-s3-t", "type": "text", "content": "Audyt UX", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" } ] }
+                  ]
+                },
+                {
+                  "id": "o-svc-col2",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 44,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-s4", "type": "frame", "layout": "horizontal", "gap": 20, "alignItems": "center", "children": [ { "id": "o-s4-i", "type": "icon", "library": "lucide", "icon": "users", "width": 26, "height": 26, "fill": "#FFFFFF" }, { "id": "o-s4-t", "type": "text", "content": "Konsultacje i mentoring", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" } ] },
+                    { "id": "o-s5", "type": "frame", "layout": "horizontal", "gap": 20, "alignItems": "center", "children": [ { "id": "o-s5-i", "type": "icon", "library": "lucide", "icon": "wand", "width": 26, "height": 26, "fill": "#FFFFFF" }, { "id": "o-s5-t", "type": "text", "content": "Dyrektor UX", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" } ] },
+                    {
+                      "id": "o-s6",
+                      "type": "frame",
+                      "layout": "horizontal",
+                      "gap": 20,
+                      "children": [
+                        { "id": "o-s6-i", "type": "icon", "library": "lucide", "icon": "megaphone", "width": 26, "height": 26, "fill": "#FFFFFF" },
+                        {
+                          "id": "o-s6-col",
+                          "type": "frame",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "children": [
+                            { "id": "o-s6-t", "type": "text", "content": "Wystąpienia i szkolenia", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" },
+                            { "id": "o-s6-d", "type": "text", "content": "Zaproś mnie na konferencję lub podnieś\nkompetencje swojego zespołu.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "#FFFFFFD9" }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                { "id": "o-svc-photo", "type": "rectangle", "width": 135, "height": 130, "fill": { "type": "image", "url": "./assets/img/krzysztof-prelekcja.jpg", "mode": "fill" } }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-method",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [90, 100, 110, 100],
+          "width": "fill_container",
+          "fill": "$color.black",
+          "children": [
+            { "id": "o-m-h2", "type": "text", "content": "Od pytania biznesowego do decyzji\nz moim wsparciem", "fontFamily": "$font.display", "fontSize": 44, "lineHeight": 57, "fill": "$color.dimStrong" },
+            {
+              "id": "o-m-stats",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 20,
+              "padding": [24, 0, 0, 0],
+              "width": "fill_container",
+              "children": [
+                { "id": "o-st1", "type": "frame", "layout": "vertical", "gap": 8, "padding": [26, 28, 34, 28], "fill": "#FFFFFF", "width": "fill_container", "children": [ { "id": "o-st1-n", "type": "text", "content": "2500+", "fontFamily": "$font.display", "fontWeight": "bold", "fontSize": 46, "fill": "#6D28D9" }, { "id": "o-st1-t", "type": "text", "content": "sesji badawczych\nw kilkudziesięciu firmach.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.muted" } ] },
+                { "id": "o-st2", "type": "frame", "layout": "vertical", "gap": 8, "padding": [26, 28, 34, 28], "fill": "#FFFFFF", "width": "fill_container", "children": [ { "id": "o-st2-n", "type": "text", "content": "#1", "fontFamily": "$font.display", "fontWeight": "bold", "fontSize": 46, "fill": "#6D28D9" }, { "id": "o-st2-t", "type": "text", "content": "jedyny kierownik studiów UX research\nw Polsce.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.muted" } ] },
+                { "id": "o-st3", "type": "frame", "layout": "vertical", "gap": 8, "padding": [26, 28, 34, 28], "fill": "#FFFFFF", "width": "fill_container", "children": [ { "id": "o-st3-n", "type": "text", "content": "2017", "fontFamily": "$font.display", "fontWeight": "bold", "fontSize": 46, "fill": "#6D28D9" }, { "id": "o-st3-t", "type": "text", "content": "od tego roku wykładam i uczę UX.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.muted" } ] },
+                { "id": "o-st4", "type": "frame", "layout": "vertical", "gap": 8, "padding": [26, 28, 34, 28], "fill": "#FFFFFF", "width": "fill_container", "children": [ { "id": "o-st4-n", "type": "text", "content": "50–100", "fontFamily": "$font.display", "fontWeight": "bold", "fontSize": 46, "fill": "#6D28D9" }, { "id": "o-st4-t", "type": "text", "content": "badaczy rocznie korzysta z mojego know-how.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.muted" } ] }
+              ]
+            },
+            {
+              "id": "o-m-banner",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 26,
+              "alignItems": "center",
+              "padding": [28, 34, 28, 34],
+              "width": "fill_container",
+              "fill": { "type": "gradient", "gradientType": "linear", "rotation": 120, "colors": [ { "color": "#3B0F8E", "position": 0 }, { "color": "#4C1D95", "position": 0.45 }, { "color": "#2A0D71", "position": 1 } ] },
+              "children": [
+                { "id": "o-mb-i", "type": "icon", "library": "lucide", "icon": "target", "width": 34, "height": 34, "fill": "#FFFFFF" },
+                { "id": "o-mb-t", "type": "text", "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz\npieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.", "fontFamily": "$font.body", "fontSize": 19, "lineHeight": 28, "fill": "#FFFFFF" }
+              ]
+            },
+            {
+              "id": "o-m-checks",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 34,
+              "padding": [32, 0, 0, 0],
+              "width": "fill_container",
+              "children": [
+                { "id": "o-ck1", "type": "frame", "layout": "horizontal", "gap": 12, "width": "fill_container", "children": [ { "id": "o-ck1-i", "type": "icon", "library": "lucide", "icon": "check", "width": 20, "height": 20, "fill": "$color.dim" }, { "id": "o-ck1-t", "type": "text", "content": "Widziałem dziesiątki produktów od środka. Łączę badania jakościowe i ilościowe z twardą analityką.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.dim", "textGrowth": "fixed-width", "width": 250 } ] },
+                { "id": "o-ck2", "type": "frame", "layout": "horizontal", "gap": 12, "width": "fill_container", "children": [ { "id": "o-ck2-i", "type": "icon", "library": "lucide", "icon": "check", "width": 20, "height": 20, "fill": "$color.dim" }, { "id": "o-ck2-t", "type": "text", "content": "Każdą rekomendację wiążę z metryką biznesową: konwersją, LTV, retencją.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.dim", "textGrowth": "fixed-width", "width": 250 } ] },
+                { "id": "o-ck3", "type": "frame", "layout": "horizontal", "gap": 12, "width": "fill_container", "children": [ { "id": "o-ck3-i", "type": "icon", "library": "lucide", "icon": "check", "width": 20, "height": 20, "fill": "$color.dim" }, { "id": "o-ck3-t", "type": "text", "content": "Jako jedyny kierownik studiów UX research w Polsce uczę tego, co sam praktykuję.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.dim", "textGrowth": "fixed-width", "width": 250 } ] },
+                { "id": "o-ck4", "type": "frame", "layout": "horizontal", "gap": 12, "width": "fill_container", "children": [ { "id": "o-ck4-i", "type": "icon", "library": "lucide", "icon": "check", "width": 20, "height": 20, "fill": "$color.dim" }, { "id": "o-ck4-t", "type": "text", "content": "Zespoły, z którymi pracuję, po współpracy potrafią działać samodzielnie.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.dim", "textGrowth": "fixed-width", "width": 250 } ] }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-process",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 70,
+          "padding": [90, 100, 80, 100],
+          "width": "fill_container",
+          "fill": { "type": "gradient", "gradientType": "linear", "rotation": 140, "colors": [ { "color": "#1D0B52", "position": 0 }, { "color": "#33107E", "position": 0.5 }, { "color": "#4C16C9", "position": 1 } ] },
+          "children": [
+            { "id": "o-p-h2", "type": "text", "content": "Jak wygląda współpraca?", "fontFamily": "$font.display", "fontSize": 44, "fill": "#FFFFFF" },
+            {
+              "id": "o-p-grid",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 40,
+              "width": "fill_container",
+              "children": [
+                { "id": "o-p1", "type": "frame", "layout": "vertical", "gap": 14, "width": "fill_container", "children": [ { "id": "o-p1-i", "type": "icon", "library": "lucide", "icon": "message-square", "width": 30, "height": 30, "fill": "#FFFFFF" }, { "id": "o-p1-h", "type": "text", "content": "Zrozumienie celu", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" }, { "id": "o-p1-t", "type": "text", "content": "Zaczynam tam, gdzie boli biznes: od metryki, którą chcesz poprawić.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "#FFFFFFD9", "textGrowth": "fixed-width", "width": 250 } ] },
+                { "id": "o-p2", "type": "frame", "layout": "vertical", "gap": 14, "padding": [130, 0, 0, 0], "width": "fill_container", "children": [ { "id": "o-p2-i", "type": "icon", "library": "lucide", "icon": "search", "width": 30, "height": 30, "fill": "#FFFFFF" }, { "id": "o-p2-h", "type": "text", "content": "Badanie", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" }, { "id": "o-p2-t", "type": "text", "content": "Po 2500+ sesjach wiem, którą metodę dobrać.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "#FFFFFFD9", "textGrowth": "fixed-width", "width": 250 } ] },
+                { "id": "o-p3", "type": "frame", "layout": "vertical", "gap": 14, "width": "fill_container", "children": [ { "id": "o-p3-i", "type": "icon", "library": "lucide", "icon": "gem", "width": 30, "height": 30, "fill": "#FFFFFF" }, { "id": "o-p3-h", "type": "text", "content": "Synteza i decyzje", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" }, { "id": "o-p3-t", "type": "text", "content": "Nie zostawiam Cię z surowymi insightami. Zamieniam je w priorytety i rekomendacje.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "#FFFFFFD9", "textGrowth": "fixed-width", "width": 250 } ] },
+                { "id": "o-p4", "type": "frame", "layout": "vertical", "gap": 14, "padding": [130, 0, 0, 0], "opacity": 0.45, "width": "fill_container", "children": [ { "id": "o-p4-i", "type": "icon", "library": "lucide", "icon": "orbit", "width": 30, "height": 30, "fill": "#FFFFFF" }, { "id": "o-p4-h", "type": "text", "content": "Wdrożenie i efekt", "fontFamily": "$font.display", "fontSize": 28, "fill": "#FFFFFF" }, { "id": "o-p4-t", "type": "text", "content": "Zostaję na wdrożenie i mierzę wpływ na konwersję. Dla mnie badanie kończy się decyzją, nie raportem.", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "#FFFFFFD9", "textGrowth": "fixed-width", "width": 250 } ] }
+              ]
+            },
+            {
+              "id": "o-p-panel",
+              "type": "frame",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [32, 26, 32, 26],
+              "width": 570,
+              "fill": "#FFFFFF12",
+              "children": [
+                { "id": "o-pp-h", "type": "text", "content": "Porozmawiajmy o Twoim produkcie", "fontFamily": "$font.display", "fontSize": 24, "fill": "#FFFFFF" },
+                { "id": "o-pp-n", "type": "text", "content": "[Bezpłatna konsultacja 30 minut.]", "fontFamily": "$font.body", "fontSize": 13, "fill": "#FFFFFFA8" },
+                {
+                  "id": "o-pp-cta",
+                  "type": "frame",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "padding": [18, 0, 0, 0],
+                  "children": [
+                    { "id": "o-pp-cta-t", "type": "text", "content": "Umów rozmowę", "fontFamily": "$font.body", "fontSize": 18, "fill": "#FFFFFF" },
+                    { "id": "o-pp-cta-i", "type": "icon", "library": "lucide", "icon": "video", "width": 24, "height": 24, "fill": "#FFFFFF" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-reviews",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 60,
+          "padding": [100, 100, 100, 100],
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "children": [
+            { "id": "o-r-h2", "type": "text", "content": "Co mówią klienci", "fontFamily": "$font.display", "fontSize": 44, "fill": "$color.ink" },
+            { "id": "o-r1", "type": "frame", "layout": "horizontal", "gap": 42, "width": "fill_container", "children": [ { "id": "o-r1-a", "type": "rectangle", "width": 64, "height": 64, "fill": "#DCDCE1" }, { "id": "o-r1-b", "type": "frame", "layout": "vertical", "gap": 24, "children": [ { "id": "o-r1-q", "type": "text", "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"", "fontFamily": "$font.body", "fontStyle": "italic", "fontSize": 20, "lineHeight": 30, "fill": "#2B2D42", "textGrowth": "fixed-width", "width": 1090 }, { "id": "o-r1-c", "type": "text", "content": "Jarek Piotrowski ·\nProduct Manager @Traffit", "fontFamily": "$font.mono", "fontSize": 15, "lineHeight": 24, "fill": "$color.ink" } ] } ] },
+            { "id": "o-r2", "type": "frame", "layout": "horizontal", "gap": 42, "width": "fill_container", "children": [ { "id": "o-r2-a", "type": "rectangle", "width": 64, "height": 64, "fill": "#DCDCE1" }, { "id": "o-r2-b", "type": "frame", "layout": "vertical", "gap": 24, "children": [ { "id": "o-r2-q", "type": "text", "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"", "fontFamily": "$font.body", "fontStyle": "italic", "fontSize": 20, "lineHeight": 30, "fill": "#2B2D42", "textGrowth": "fixed-width", "width": 1090 }, { "id": "o-r2-c", "type": "text", "content": "Jarek Piotrowski ·\nProduct Manager @Traffit", "fontFamily": "$font.mono", "fontSize": 15, "lineHeight": 24, "fill": "$color.ink" } ] } ] },
+            { "id": "o-r3", "type": "frame", "layout": "horizontal", "gap": 42, "width": "fill_container", "children": [ { "id": "o-r3-a", "type": "rectangle", "width": 64, "height": 64, "fill": "#DCDCE1" }, { "id": "o-r3-b", "type": "frame", "layout": "vertical", "gap": 24, "children": [ { "id": "o-r3-q", "type": "text", "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"", "fontFamily": "$font.body", "fontStyle": "italic", "fontSize": 20, "lineHeight": 30, "fill": "#2B2D42", "textGrowth": "fixed-width", "width": 1090 }, { "id": "o-r3-c", "type": "text", "content": "Jarek Piotrowski ·\nProduct Manager @Traffit", "fontFamily": "$font.mono", "fontSize": 15, "lineHeight": 24, "fill": "$color.ink" } ] } ] },
+            {
+              "id": "o-r-more",
+              "type": "frame",
+              "layout": "vertical",
+              "gap": 22,
+              "alignItems": "end",
+              "width": "fill_container",
+              "children": [
+                { "id": "o-rm-h", "type": "text", "content": "Potrzebujesz referencji?", "fontFamily": "$font.display", "fontSize": 32, "fill": "$color.ink" },
+                { "id": "o-rm-btn", "type": "frame", "layout": "horizontal", "gap": 12, "alignItems": "center", "padding": [18, 26, 18, 26], "fill": "$color.gray", "children": [ { "id": "o-rm-i", "type": "icon", "library": "lucide", "icon": "rocket", "width": 20, "height": 20, "fill": "$color.ink" }, { "id": "o-rm-t", "type": "text", "content": "Napisz o referencje", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.ink" } ] }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-report",
+          "type": "frame",
+          "layout": "horizontal",
+          "gap": 60,
+          "alignItems": "center",
+          "padding": [90, 100, 90, 100],
+          "width": "fill_container",
+          "fill": "$color.gray",
+          "children": [
+            {
+              "id": "o-rep-left",
+              "type": "frame",
+              "layout": "vertical",
+              "gap": 24,
+              "width": 610,
+              "children": [
+                { "id": "o-rep-h2", "type": "text", "content": "Zobacz demo raportu!", "fontFamily": "$font.display", "fontSize": 44, "fill": "$color.ink" },
+                { "id": "o-rep-p", "type": "text", "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.", "fontFamily": "$font.body", "fontSize": 19, "lineHeight": 28, "fill": "#3F4254", "textGrowth": "fixed-width", "width": 610 },
+                { "id": "o-rep-lbl", "type": "text", "content": "PRACOWAŁEM MIĘDZY INNYMI Z:", "fontFamily": "$font.mono", "fontSize": 15, "letterSpacing": 1.5, "fill": "$color.ink" },
+                {
+                  "id": "o-rep-logos",
+                  "type": "frame",
+                  "layout": "horizontal",
+                  "gap": 30,
+                  "children": [
+                    { "id": "o-rl-1", "type": "text", "content": "PayU", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-rl-2", "type": "text", "content": "BLIK", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-rl-3", "type": "text", "content": "OLX", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-rl-4", "type": "text", "content": "mObywatel", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-rl-5", "type": "text", "content": "mBank", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" },
+                    { "id": "o-rl-6", "type": "text", "content": "OtoMoto", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.muted" }
+                  ]
+                },
+                { "id": "o-rep-btn", "type": "frame", "layout": "horizontal", "gap": 14, "alignItems": "center", "padding": [18, 28, 18, 28], "fill": "$color.violetDeepBtn", "children": [ { "id": "o-rb-t", "type": "text", "content": "Pobierz Demo Raportu", "fontFamily": "$font.body", "fontSize": 17, "fill": "#FFFFFF" }, { "id": "o-rb-i", "type": "icon", "library": "lucide", "icon": "arrow-down-circle", "width": 22, "height": 22, "fill": "#FFFFFF" } ] }
+              ]
+            },
+            { "id": "o-rep-img", "type": "rectangle", "width": 536, "height": 446, "fill": { "type": "image", "url": "./assets/img/raport-demo.png", "mode": "fit" } }
+          ]
+        },
+        {
+          "id": "o-quale",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 26,
+          "padding": [84, 100, 84, 100],
+          "width": "fill_container",
+          "fill": "$color.black",
+          "children": [
+            { "id": "o-q-p", "type": "text", "content": "Działam kompleksowo prowadząc agencję\nbadawczo-projektową", "fontFamily": "$font.body", "fontSize": 17, "lineHeight": 25, "fill": "$color.dimStrong" },
+            { "id": "o-q-a", "type": "text", "content": "Przejdź do strony", "fontFamily": "$font.body", "fontSize": 17, "underline": true, "fill": "#6D28D9" }
+          ]
+        },
+        {
+          "id": "o-newsletter",
+          "type": "frame",
+          "layout": "vertical",
+          "padding": [80, 100, 80, 100],
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "children": [
+            {
+              "id": "o-nl-panel",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 60,
+              "alignItems": "center",
+              "padding": [60, 64, 60, 64],
+              "width": "fill_container",
+              "fill": { "type": "gradient", "gradientType": "linear", "rotation": 115, "colors": [ { "color": "#2A0D71", "position": 0 }, { "color": "#4C16C9", "position": 1 } ] },
+              "children": [
+                {
+                  "id": "o-nl-left",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-nl-h2", "type": "text", "content": "Raporty i artykuły", "fontFamily": "$font.display", "fontSize": 38, "fill": "#FFFFFF" },
+                    { "id": "o-nl-p", "type": "text", "content": "Tylko treści merytoryczne. Zero spamu. Możesz wypisać się w każdej chwili. Zapisując się, otrzymasz darmowy e-book o strukturach zespołów produktowych.", "fontFamily": "$font.body", "fontSize": 18, "lineHeight": 27, "fill": "#FFFFFF", "textGrowth": "fixed-width", "width": 510 }
+                  ]
+                },
+                {
+                  "id": "o-nl-form",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-nl-lbl", "type": "text", "content": "Twój e-mail", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFF" },
+                    {
+                      "id": "o-nl-row",
+                      "type": "frame",
+                      "layout": "horizontal",
+                      "width": "fill_container",
+                      "children": [
+                        { "id": "o-nl-input", "type": "frame", "layout": "horizontal", "alignItems": "center", "padding": [16, 20, 16, 20], "width": "fill_container", "fill": "#FFFFFF", "children": [ { "id": "o-nl-ph", "type": "text", "content": "Wpisz swój adres e-mail", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.soft" } ] },
+                        { "id": "o-nl-btn", "type": "frame", "layout": "horizontal", "gap": 12, "alignItems": "center", "padding": [16, 26, 16, 26], "fill": "$color.violetDeepBtn", "children": [ { "id": "o-nl-bt", "type": "text", "content": "Zapisz się", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFF" }, { "id": "o-nl-bi", "type": "icon", "library": "lucide", "icon": "send", "width": 20, "height": 20, "fill": "#FFFFFF" } ] }
+                      ]
+                    },
+                    { "id": "o-nl-note", "type": "text", "content": "Zapisując się, akceptujesz politykę prywatności.", "fontFamily": "$font.body", "fontSize": 14, "fill": "#FFFFFFB3" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-cases",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [90, 100, 90, 100],
+          "width": "fill_container",
+          "fill": "$color.gray",
+          "children": [
+            { "id": "o-c-h2", "type": "text", "content": "Kilka historii moich klientów", "fontFamily": "$font.display", "fontSize": 44, "fill": "$color.ink" },
+            { "id": "o-c-lead", "type": "text", "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.", "fontFamily": "$font.body", "fontSize": 18, "lineHeight": 27, "fill": "#3F4254", "textGrowth": "fixed-width", "width": 620 },
+            {
+              "id": "o-c-card",
+              "type": "frame",
+              "layout": "horizontal",
+              "padding": [46, 0, 0, 0],
+              "width": "fill_container",
+              "children": [
+                {
+                  "id": "o-c-left",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 26,
+                  "padding": [48, 40, 48, 40],
+                  "width": 560,
+                  "fill": { "type": "gradient", "gradientType": "linear", "rotation": 130, "colors": [ { "color": "#4C16C9", "position": 0 }, { "color": "#2E0E7E", "position": 1 } ] },
+                  "children": [
+                    { "id": "o-cl-h", "type": "text", "content": "7 KONCEPCJI\n14 DNI.", "fontFamily": "$font.display", "fontSize": 40, "lineHeight": 48, "fill": "#FFFFFF" },
+                    { "id": "o-cl-d", "type": "text", "content": "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", "fontFamily": "$font.body", "fontSize": 15, "lineHeight": 23, "fill": "#FFFFFFD9", "textGrowth": "fixed-width", "width": 460 },
+                    { "id": "o-cl-tag", "type": "text", "content": "CASE / APTEKA GEMINI", "fontFamily": "$font.mono", "fontSize": 15, "letterSpacing": 1.8, "fill": "#FFFFFF" }
+                  ]
+                },
+                {
+                  "id": "o-c-right",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 40,
+                  "justifyContent": "space_between",
+                  "padding": [48, 56, 48, 56],
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "children": [
+                    { "id": "o-cr-p", "type": "text", "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.", "fontFamily": "$font.body", "fontSize": 19, "lineHeight": 28, "fill": "#2B2D42", "textGrowth": "fixed-width", "width": 580 },
+                    {
+                      "id": "o-cr-link",
+                      "type": "frame",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        { "id": "o-crl-t", "type": "text", "content": "Przeczytaj historię projektu", "fontFamily": "$font.body", "fontSize": 18, "fill": "$color.ink" },
+                        { "id": "o-crl-i", "type": "icon", "library": "lucide", "icon": "rocket", "width": 22, "height": 22, "fill": "$color.ink" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "o-c-bars",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 26,
+              "padding": [24, 0, 0, 0],
+              "width": "fill_container",
+              "children": [
+                { "id": "o-cb-1", "type": "rectangle", "width": 295, "height": 12, "fill": "#FFFFFF" },
+                { "id": "o-cb-2", "type": "rectangle", "width": 295, "height": 12, "fill": "$color.lavender" },
+                { "id": "o-cb-3", "type": "rectangle", "width": 295, "height": 12, "fill": "#FFFFFF" },
+                { "id": "o-cb-4", "type": "rectangle", "width": 295, "height": 12, "fill": "#FFFFFF" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-faq",
+          "type": "frame",
+          "layout": "horizontal",
+          "gap": 80,
+          "padding": [90, 100, 90, 100],
+          "width": "fill_container",
+          "fill": "$color.black",
+          "children": [
+            {
+              "id": "o-f-left",
+              "type": "frame",
+              "layout": "vertical",
+              "gap": 46,
+              "width": "fill_container",
+              "children": [
+                { "id": "o-f-h2", "type": "text", "content": "Co warto wziąć pod uwagę\nprzed współpracą", "fontFamily": "$font.display", "fontSize": 44, "lineHeight": 55, "fill": "$color.dimStrong" },
+                { "id": "o-f-q1", "type": "text", "content": "Temat o tym w jaki sposób ukradłem\nksiężyć", "fontFamily": "$font.display", "fontSize": 26, "lineHeight": 36, "letterSpacing": 1, "fill": "$color.dim" },
+                { "id": "o-f-q2", "type": "text", "content": "Temat o tym w jaki sposób ukradłem\nksiężyć", "fontFamily": "$font.display", "fontSize": 26, "lineHeight": 36, "letterSpacing": 1, "fill": "$color.dim" },
+                { "id": "o-f-q3", "type": "text", "content": "Temat o tym w jaki sposób ukradłem\nksiężyć", "fontFamily": "$font.display", "fontSize": 26, "lineHeight": 36, "letterSpacing": 1, "fill": "$color.dim" },
+                { "id": "o-f-ask", "type": "text", "content": "Masz pytanie, którego nie ma na\nliście?", "fontFamily": "$font.display", "fontSize": 30, "lineHeight": 39, "fill": "$color.dimStrong" },
+                { "id": "o-f-link", "type": "text", "content": "Napisz do mnie →", "fontFamily": "$font.body", "fontSize": 18, "fill": "#4C2BB0" }
+              ]
+            },
+            {
+              "id": "o-f-form",
+              "type": "frame",
+              "layout": "vertical",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "width": 600,
+              "height": 505,
+              "fill": "$color.gray",
+              "children": [
+                { "id": "o-ff-t", "type": "text", "content": "Formularz pod brief", "fontFamily": "$font.body", "fontSize": 16, "fill": "$color.muted" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "o-blog",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 46,
+          "padding": [80, 100, 90, 100],
+          "width": "fill_container",
+          "fill": "$color.black",
+          "children": [
+            { "id": "o-b-h2", "type": "text", "content": "O czym ostatnio pisałem?", "fontFamily": "$font.display", "fontSize": 44, "fill": "$color.dimStrong" },
+            { "id": "o-b1", "type": "frame", "layout": "horizontal", "justifyContent": "space_between", "width": "fill_container", "padding": [34, 0, 0, 0], "children": [ { "id": "o-b1-l", "type": "frame", "layout": "vertical", "gap": 6, "children": [ { "id": "o-b1-m", "type": "text", "content": "5 min", "fontFamily": "$font.body", "fontSize": 14, "fill": "$color.dim" }, { "id": "o-b1-t", "type": "text", "content": "Temat o tym w jaki sposób ukradłem księżyć", "fontFamily": "$font.display", "fontSize": 24, "letterSpacing": 1, "fill": "$color.dim" } ] }, { "id": "o-b1-d", "type": "text", "content": "25.03.2026", "fontFamily": "$font.body", "fontSize": 15, "fill": "#1A1535" } ] },
+            { "id": "o-b2", "type": "frame", "layout": "horizontal", "justifyContent": "space_between", "width": "fill_container", "children": [ { "id": "o-b2-l", "type": "frame", "layout": "vertical", "gap": 6, "children": [ { "id": "o-b2-m", "type": "text", "content": "5 min", "fontFamily": "$font.body", "fontSize": 14, "fill": "$color.dim" }, { "id": "o-b2-t", "type": "text", "content": "Temat o tym w jaki sposób ukradłem księżyć", "fontFamily": "$font.display", "fontSize": 24, "letterSpacing": 1, "fill": "$color.dim" } ] }, { "id": "o-b2-d", "type": "text", "content": "25.03.2026", "fontFamily": "$font.body", "fontSize": 15, "fill": "#1A1535" } ] },
+            { "id": "o-b3", "type": "frame", "layout": "horizontal", "justifyContent": "space_between", "width": "fill_container", "children": [ { "id": "o-b3-l", "type": "frame", "layout": "vertical", "gap": 6, "children": [ { "id": "o-b3-m", "type": "text", "content": "5 min", "fontFamily": "$font.body", "fontSize": 14, "fill": "$color.dim" }, { "id": "o-b3-t", "type": "text", "content": "Temat o tym w jaki sposób ukradłem księżyć", "fontFamily": "$font.display", "fontSize": 24, "letterSpacing": 1, "fill": "$color.dim" } ] }, { "id": "o-b3-d", "type": "text", "content": "25.03.2026", "fontFamily": "$font.body", "fontSize": 15, "fill": "#1A1535" } ] },
+            { "id": "o-b-all", "type": "text", "content": "Zobacz wszystkie artykuly [45]", "fontFamily": "$font.body", "fontSize": 17, "underline": true, "fill": "#4C2BB0" }
+          ]
+        },
+        {
+          "id": "o-cta",
+          "type": "frame",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [90, 100, 60, 100],
+          "width": "fill_container",
+          "fill": { "type": "gradient", "gradientType": "linear", "rotation": 140, "colors": [ { "color": "#23095E", "position": 0 }, { "color": "#33107E", "position": 0.55 }, { "color": "#4C16C9", "position": 1 } ] },
+          "children": [
+            { "id": "o-cta-h2", "type": "text", "content": "Porozmawiajmy o Twoim produkcie", "fontFamily": "$font.display", "fontSize": 46, "fill": "#FFFFFF" },
+            { "id": "o-cta-p", "type": "text", "content": "Umów bezpłatną konsultację i opowiedz mi o wyzwaniu,\na ja podpowiem, od czego zacząć, żeby badania realnie wsparły Twój biznes.", "fontFamily": "$font.body", "fontSize": 19, "lineHeight": 28, "fill": "#FFFFFFD9" },
+            { "id": "o-cta-btn", "type": "frame", "layout": "horizontal", "gap": 12, "alignItems": "center", "padding": [17, 26, 17, 26], "fill": "#FFFFFF", "children": [ { "id": "o-cta-bt", "type": "text", "content": "Umów videorozmowę", "fontFamily": "$font.body", "fontSize": 17, "fill": "$color.ink" }, { "id": "o-cta-bi", "type": "icon", "library": "lucide", "icon": "arrow-right", "width": 20, "height": 20, "fill": "$color.ink" } ] },
+            {
+              "id": "o-footer",
+              "type": "frame",
+              "layout": "horizontal",
+              "gap": 50,
+              "padding": [90, 0, 0, 0],
+              "width": "fill_container",
+              "children": [
+                {
+                  "id": "o-fo-brand",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 22,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-fb-p", "type": "text", "content": "UX Researcher i konsultant. Zamieniam wiedzę o użytkownikach w wartość dla biznesu. Decision Guy w Quale UX.", "fontFamily": "$font.body", "fontSize": 16, "lineHeight": 25, "fill": "#FFFFFFD9", "textGrowth": "fixed-width", "width": 320 },
+                    { "id": "o-fb-sm", "type": "text", "content": "SOCIAL MEDIA:", "fontFamily": "$font.mono", "fontSize": 16, "letterSpacing": 2, "fill": "#FFFFFF" },
+                    { "id": "o-fb-icons", "type": "frame", "layout": "horizontal", "gap": 26, "children": [ { "id": "o-fb-in", "type": "icon", "library": "lucide", "icon": "linkedin", "width": 26, "height": 26, "fill": "#FFFFFF" }, { "id": "o-fb-ig", "type": "icon", "library": "lucide", "icon": "instagram", "width": 26, "height": 26, "fill": "#FFFFFF" } ] }
+                  ]
+                },
+                {
+                  "id": "o-fo-uslugi",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 17,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-fu-h", "type": "text", "content": "USŁUGI", "fontFamily": "$font.mono", "fontSize": 16, "letterSpacing": 2, "fill": "#FFFFFF" },
+                    { "id": "o-fu-1", "type": "text", "content": "Badania UX", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fu-2", "type": "text", "content": "Zewnętrzny Dyrektor UX", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fu-3", "type": "text", "content": "Segmentacja klientów", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fu-4", "type": "text", "content": "Audyt UX", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fu-5", "type": "text", "content": "Konsultacje i mentoring", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fu-6", "type": "text", "content": "Wystąpienia i szkolenia", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" }
+                  ]
+                },
+                {
+                  "id": "o-fo-serwis",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 17,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-fs-h", "type": "text", "content": "SERWIS", "fontFamily": "$font.mono", "fontSize": 16, "letterSpacing": 2, "fill": "#FFFFFF" },
+                    { "id": "o-fs-1", "type": "text", "content": "Strona główna", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fs-2", "type": "text", "content": "Usługi", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fs-3", "type": "text", "content": "Kontakt", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" }
+                  ]
+                },
+                {
+                  "id": "o-fo-kontakt",
+                  "type": "frame",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "width": "fill_container",
+                  "children": [
+                    { "id": "o-fk-h", "type": "text", "content": "KONTAKT", "fontFamily": "$font.mono", "fontSize": 16, "letterSpacing": 2, "fill": "#FFFFFF" },
+                    { "id": "o-fk-btn", "type": "frame", "layout": "horizontal", "padding": [15, 24, 15, 24], "stroke": "#FFFFFF99", "strokeWidth": 1, "children": [ { "id": "o-fk-bt", "type": "text", "content": "krzysiek@quale.agency", "fontFamily": "$font.body", "fontWeight": "bold", "fontSize": 15, "fill": "#FFFFFF" } ] },
+                    { "id": "o-fk-1", "type": "text", "content": "Umów videorozmowę", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" },
+                    { "id": "o-fk-2", "type": "text", "content": "quale.agency", "fontFamily": "$font.body", "fontSize": 16, "fill": "#FFFFFFE0" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "y4s-poprawiona-info",
+      "type": "note",
+      "x": 1640,
+      "y": 0,
+      "width": 560,
+      "content": "Y4S — WERSJA POPRAWIONA: pełna implementacja HTML/CSS tej wersji jest w tym samym repozytorium (wersja-poprawiona.html + css/styles.css). Wdrożona: https://agalapinska.github.io/krzysztof-miotk-y4s/wersja-poprawiona.html — poprawki: kontrast na czarnych sekcjach, treści bez placeholderów i duplikatów, gramatyka (we wzrost), afordancje linków, numeracja kroków, realne FAQ i blog."
+    }
+  ]
+}
