@@ -106,6 +106,19 @@
     }
   });
 
+  /* --- 3b. Split buttony (primary): równe segmenty + drift + rolka strzałki --- */
+  document.querySelectorAll("div").forEach(function (el) {
+    if (el.children.length !== 2) return;
+    var main = el.children[0], arrow = el.children[1];
+    if (!(arrow.children.length === 1 && arrow.querySelector('svg[data-icon-name="arrow-right"], svg[data-icon-name="arrow_right_alt"]'))) return;
+    var mStyle = main.getAttribute("style") || "", aStyle = arrow.getAttribute("style") || "";
+    if (!/background-color/.test(mStyle) || !/background-color/.test(aStyle)) return;
+    if (!(main.textContent || "").trim()) return;
+    el.classList.add("km-splitbtn");
+    main.classList.add("km-split-main");
+    arrow.classList.add("km-split-arrow");
+  });
+
   /* --- 4b. Mega-menu „Usługi" (stan otwarty z projektu Pen) --- */
   (function () {
     var nav = document.querySelector('[data-pencil-name="Nav-top"]');

@@ -50,6 +50,20 @@
 .km-tape.km-tape-hidden { transform: scaleX(0); }
 .km-tape.km-tape-in { transform: scaleX(1); transition: transform .55s cubic-bezier(.22,.61,.36,1) .2s; }
 
+/* Split button (primary) — równe segmenty + gradient drift + rolka strzałki */
+.km-splitbtn { align-items: stretch !important; }
+.km-splitbtn > div { height: auto !important; align-items: center !important; }
+.km-splitbtn > .km-split-main {
+  background: linear-gradient(115deg, #5205E7 0%, #7A3BFF 45%, #5205E7 100%) !important;
+  background-size: 240% 100% !important;
+  background-position: 0% 50%;
+}
+.km-splitbtn:hover > .km-split-main { animation: km-btn-drift 2.4s ease-in-out infinite; }
+@keyframes km-btn-drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.km-splitbtn > .km-split-arrow { overflow: hidden; justify-content: center !important; }
+.km-splitbtn:hover > .km-split-arrow svg { animation: km-arrow-roll .85s linear infinite; }
+@keyframes km-arrow-roll { 0% { transform: translateX(-260%); } 100% { transform: translateX(260%); } }
+
 /* Mega-menu „Usługi" — stan otwarty z projektu Pen (Frame 684) */
 .km-nav-wrap { position: relative; z-index: 60; }
 .km-mega {
@@ -79,6 +93,7 @@
 @media (prefers-reduced-motion: reduce) {
   .km-drift, .km-glows::before, .km-glows::after { animation: none !important; }
   .km-mega { transition: none; }
+  .km-splitbtn:hover > .km-split-main, .km-splitbtn:hover > .km-split-arrow svg { animation: none !important; }
   .km-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .km-tape.km-tape-hidden { transform: none; }
   .km-card-fx, .km-btn-fx { transition: none; }
