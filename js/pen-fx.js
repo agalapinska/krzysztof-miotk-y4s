@@ -106,6 +106,59 @@
     }
   });
 
+  /* --- 4b. Mega-menu „Usługi" (stan otwarty z projektu Pen) --- */
+  (function () {
+    var nav = document.querySelector('[data-pencil-name="Nav-top"]');
+    if (!nav) return;
+    var wrap = document.createElement("div");
+    wrap.className = "km-nav-wrap";
+    wrap.style.width = "100%";
+    wrap.style.alignSelf = "stretch";
+    wrap.style.flexShrink = "0";
+    nav.parentNode.insertBefore(wrap, nav);
+    wrap.appendChild(nav);
+    var ITEMS = [
+      ["Badania UX", "Pozyskaj wiedzę o użytkownikach i przekuj je w biznes z moją pomocą."],
+      ["Zewnętrzny Dyrektor UX", "Oddeleguj zarządzanie doświadczeniami Twoich klientów bez kosztów etatu."],
+      ["Segmentacja klientów", "Zrozum, którzy klienci przynoszą największy zysk i jak o nich zadbać."],
+      ["Audyt UX", "Zacznij od przeglądu UX w Twoim produkcie na bazie mojej wiedzy i analityki."],
+      ["Konsultacje i mentoring", "Indywidualnie przedyskutuj rzeczy lub podnieś swoje kompetencje w UX."],
+      ["Wystąpienia i szkolenia", "Zaproś mnie na konferencję lub podnieś kompetencje swojego zespołu."]
+    ];
+    var rows = [ITEMS.slice(0, 3), ITEMS.slice(3)];
+    var mega = document.createElement("div");
+    mega.className = "km-mega";
+    mega.innerHTML =
+      '<div class="km-mega__inner">' +
+        '<div class="km-mega__left">' +
+          '<div class="km-mega__label">USŁUGI</div>' +
+          '<div class="km-mega__title">Wsparcie UX dopasowane do etapu Twojego produktu</div>' +
+          '<a class="km-mega__all" href="uslugi.html">Wszystkie usługi ' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>' +
+        '</div>' +
+        '<div class="km-mega__grid">' +
+          rows.map(function (row) {
+            return '<div class="km-mega__row">' + row.map(function (it) {
+              return '<a class="km-mega__item" href="uslugi.html"><strong>' + it[0] + '</strong><p>' + it[1] + '</p></a>';
+            }).join("") + '</div>';
+          }).join("") +
+        '</div>' +
+      '</div>';
+    wrap.appendChild(mega);
+    var trigger = null;
+    nav.querySelectorAll("div").forEach(function (el) {
+      if (!trigger && /Usługi\s*:/.test(el.textContent || "") && el.textContent.trim().length < 130) trigger = el;
+    });
+    trigger = trigger || nav;
+    var hideT;
+    function open() { clearTimeout(hideT); wrap.classList.add("is-open"); }
+    function close() { hideT = setTimeout(function () { wrap.classList.remove("is-open"); }, 160); }
+    [trigger, mega].forEach(function (el) {
+      el.addEventListener("mouseenter", open);
+      el.addEventListener("mouseleave", close);
+    });
+  })();
+
   /* --- 5. Reveal przy scrollu --- */
   var main = document.querySelector('[data-pencil-name="main"]') || document.body;
   var sections = Array.prototype.slice.call(main.children).filter(function (el) {

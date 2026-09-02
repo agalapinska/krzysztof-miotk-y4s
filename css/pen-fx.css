@@ -50,8 +50,35 @@
 .km-tape.km-tape-hidden { transform: scaleX(0); }
 .km-tape.km-tape-in { transform: scaleX(1); transition: transform .55s cubic-bezier(.22,.61,.36,1) .2s; }
 
+/* Mega-menu „Usługi" — stan otwarty z projektu Pen (Frame 684) */
+.km-nav-wrap { position: relative; z-index: 60; }
+.km-mega {
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: #ffffff; padding: 20px 0;
+  box-shadow: 0 28px 48px -24px rgba(21, 23, 44, .25), 0 1px 0 rgba(21, 23, 44, .06) inset;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+}
+.km-nav-wrap.is-open .km-mega { opacity: 1; visibility: visible; transform: none; }
+.km-mega__inner { width: 1180px; margin: 0 auto; display: flex; }
+.km-mega__left { width: 300px; padding: 40px 32px 0 0; box-sizing: border-box; }
+.km-mega__label { display: flex; align-items: center; gap: 6px; font-family: "Geist Mono", ui-monospace, monospace; font-weight: 500; font-size: 12.5px; letter-spacing: .08em; color: #665eee; }
+.km-mega__label::before { content: ""; width: 14px; height: 14px; background: #A399FD; }
+.km-mega__title { margin: 13px 0 19px; font-family: Nexa, system-ui, sans-serif; font-weight: 500; font-size: 20.8px; line-height: 1.35; color: #15172c; }
+.km-mega__all { display: inline-flex; align-items: center; gap: 6px; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 15.7px; color: #3a3d52; text-decoration: none; }
+.km-mega__all svg { transition: transform .2s; }
+.km-mega__all:hover { color: oklch(57.2% 0.21 280); }
+.km-mega__all:hover svg { transform: translateX(4px); }
+.km-mega__grid { flex: 1; padding: 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; }
+.km-mega__row { display: flex; gap: 48px; }
+.km-mega__item { width: 235px; padding-bottom: 17px; text-decoration: none; display: block; }
+.km-mega__item strong { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 16.3px; color: #15172c; margin-bottom: 5px; transition: color .2s; }
+.km-mega__item p { margin: 0; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 14.4px; line-height: 1.45; color: #585b6e; }
+.km-mega__item:hover strong { color: oklch(57.2% 0.21 280); }
+
 @media (prefers-reduced-motion: reduce) {
   .km-drift, .km-glows::before, .km-glows::after { animation: none !important; }
+  .km-mega { transition: none; }
   .km-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .km-tape.km-tape-hidden { transform: none; }
   .km-card-fx, .km-btn-fx { transition: none; }
