@@ -1,6 +1,7 @@
 /* Warstwa mikrointerakcji — animacje przeniesione 1:1 z krzysztof-miotk (styles.css) */
 
 ::selection { background: oklch(57.2% 0.21 280 / .25); }
+html { overflow-x: hidden; }
 
 @keyframes km-ripple { from { transform: scale(0); opacity: .4; } to { transform: scale(2.6); opacity: 0; } }
 @keyframes km-gradient-drift { 0%{background-position:0% 0%} 25%{background-position:80% 30%} 50%{background-position:100% 100%} 75%{background-position:20% 70%} 100%{background-position:0% 0%} }

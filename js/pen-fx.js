@@ -3,6 +3,35 @@
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* --- 0. Pełna szerokość ekranu: skala proporcjonalna + marginesy 140px ≥1480px --- */
+  (function () {
+    var root = document.body.firstElementChild;
+    if (!root) return;
+    var designW = root.offsetWidth || 1440;
+    var padEls = null;
+    function collectPads() {
+      padEls = [];
+      document.querySelectorAll("div").forEach(function (el) {
+        if (el.offsetWidth < designW - 200) return;
+        var cs = getComputedStyle(el);
+        if (cs.paddingLeft === "100px" && cs.paddingRight === "100px") padEls.push(el);
+      });
+    }
+    function fit() {
+      var w = document.documentElement.clientWidth;
+      if (padEls === null) collectPads();
+      var wide = w >= 1480;
+      padEls.forEach(function (el) {
+        el.style.paddingLeft = wide ? "140px" : "100px";
+        el.style.paddingRight = wide ? "140px" : "100px";
+      });
+      document.body.style.zoom = w / designW;
+    }
+    fit();
+    var t;
+    window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fit, 80); });
+  })();
+
   /* --- 1. Dryfujący gradient + poświaty na dużych sekcjach gradientowych --- */
   document.querySelectorAll('[style*="linear-gradient"], [style*="radial-gradient"]').forEach(function (el) {
     var r = el.getBoundingClientRect ? el.getBoundingClientRect() : null;
