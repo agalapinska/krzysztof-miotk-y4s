@@ -1,0 +1,58 @@
+/* Warstwa mikrointerakcji — animacje przeniesione 1:1 z krzysztof-miotk (styles.css) */
+
+::selection { background: oklch(57.2% 0.21 280 / .25); }
+
+@keyframes km-ripple { from { transform: scale(0); opacity: .4; } to { transform: scale(2.6); opacity: 0; } }
+@keyframes km-gradient-drift { 0%{background-position:0% 0%} 25%{background-position:80% 30%} 50%{background-position:100% 100%} 75%{background-position:20% 70%} 100%{background-position:0% 0%} }
+@keyframes km-glow-pulse { 0%,100%{opacity:.4;transform:scale(1) translate(0,0)} 33%{opacity:1;transform:scale(1.18) translate(-40px,30px)} 66%{opacity:.7;transform:scale(1.05) translate(30px,-20px)} }
+
+/* Dryfujący gradient — nakładany przez JS na duże sekcje gradientowe */
+.km-drift { background-size: 300% 300% !important; animation: km-gradient-drift 14s ease-in-out infinite; }
+
+/* Pulsujące poświaty na sekcjach gradientowych */
+.km-glows { position: relative; }
+.km-glows::before, .km-glows::after {
+  content: ""; position: absolute; pointer-events: none; border-radius: 50%;
+  filter: blur(70px); z-index: 0;
+}
+.km-glows::before {
+  width: 420px; height: 420px; left: -120px; top: -100px;
+  background: radial-gradient(circle, oklch(65% 0.23 285 / .5), transparent 70%);
+  animation: km-glow-pulse 9s ease-in-out infinite;
+}
+.km-glows::after {
+  width: 380px; height: 380px; right: -100px; bottom: -120px;
+  background: radial-gradient(circle, oklch(75% 0.16 300 / .4), transparent 70%);
+  animation: km-glow-pulse 11s ease-in-out 3s infinite;
+}
+
+/* Karty / wiersze usług — lift + glow podążający za kursorem */
+.km-card-fx { transition: transform .25s ease, box-shadow .25s ease; position: relative; }
+.km-card-fx:hover { transform: translateY(-4px); box-shadow: 0 14px 40px -18px oklch(57.2% 0.21 280 / .45); }
+.km-card-fx .card-glow { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 0; }
+.km-card-fx > *:not(.card-glow) { position: relative; z-index: 1; }
+
+/* Przyciski — lift + ripple */
+.km-btn-fx { transition: transform .2s ease, filter .2s ease; overflow: hidden; position: relative; cursor: pointer; }
+.km-btn-fx:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.km-btn-fx .km-ripple { position: absolute; border-radius: 50%; background: currentColor; pointer-events: none; opacity: .35; }
+
+/* Linki nawigacji */
+.km-link-fx { cursor: pointer; transition: color .2s ease, opacity .2s ease; }
+.km-link-fx:hover { color: oklch(57.2% 0.21 280) !important; opacity: 1 !important; }
+
+/* Reveal przy scrollu */
+.km-reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.km-reveal.is-in { opacity: 1; transform: none; }
+
+/* Taśma / marker (lawendowe wyróżnienia) — wjazd scaleX */
+.km-tape { transform-origin: left center; }
+.km-tape.km-tape-hidden { transform: scaleX(0); }
+.km-tape.km-tape-in { transform: scaleX(1); transition: transform .55s cubic-bezier(.22,.61,.36,1) .2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .km-drift, .km-glows::before, .km-glows::after { animation: none !important; }
+  .km-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .km-tape.km-tape-hidden { transform: none; }
+  .km-card-fx, .km-btn-fx { transition: none; }
+}
