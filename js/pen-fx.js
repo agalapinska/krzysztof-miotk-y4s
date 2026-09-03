@@ -264,6 +264,53 @@
     });
   })();
 
+  /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
+  (function () {
+    if (/kontakt\.html$/.test(location.pathname)) return;
+    var float = document.querySelector('[data-pencil-name="div - float"]');
+    if (!float) {
+      float = document.createElement("div");
+      float.setAttribute("data-pencil-name", "div - float");
+      float.style.cssText = "align-items:flex-start;backdrop-filter:blur(6px);background-color:#ffffff80;border:1px solid #E9E9F7;box-sizing:border-box;display:flex;flex-direction:column;gap:0;height:fit-content;padding:20px;width:fit-content;";
+      float.innerHTML =
+        '<div style="align-items:flex-start;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;height:fit-content;justify-content:flex-end;width:358px">' +
+          '<div style="align-items:center;background-color:#fafafa;box-sizing:border-box;display:flex;flex-direction:column;gap:22.4px;height:fit-content;padding:80px 24px;width:100%">' +
+            '<div style="box-sizing:border-box;color:#3a3d52;font-family:Inter,system-ui,sans-serif;font-size:17px;font-weight:400;line-height:27px;text-align:center;width:100%">Tu pojawi się widżet rezerwacji terminu. Wklej swój link Calendly lub Cal.com w pliku js/main.js (CONFIG.calendarUrl).</div>' +
+          '</div>' +
+          '<div style="box-sizing:border-box;color:#3a3d52;font-family:Nexa,system-ui,sans-serif;font-size:16px;font-weight:400;line-height:1.3;text-align:right;width:100%">Wystarczy kliknąć<br>w kalendarz :)</div>' +
+        '</div>';
+    }
+    document.body.appendChild(float);
+    float.classList.add("km-cal-float");
+    float.addEventListener("click", function () { window.location.href = CONTACT; });
+
+    var target = null;
+    document.querySelectorAll("div").forEach(function (el) {
+      if (!target && el.children.length === 0 && (el.textContent || "").trim() === "Co mówią klienci") target = el;
+    });
+    if (target) {
+      var sec = target;
+      for (var i = 0; i < 5 && sec.parentElement; i++) {
+        sec = sec.parentElement;
+        if ((sec.getAttribute("data-pencil-name") || "") === "section" || sec.offsetHeight > 600) break;
+      }
+      target = sec;
+    }
+    if (!target) {
+      var pool = document.querySelector('[data-pencil-name="main"]') || document.body.firstElementChild;
+      target = pool ? pool.lastElementChild : null;
+    }
+    function syncFloat() {
+      if (!target) return;
+      var r = target.getBoundingClientRect();
+      var f = float.getBoundingClientRect();
+      float.classList.toggle("is-hidden", r.top < f.bottom + 40);
+    }
+    window.addEventListener("scroll", syncFloat, { passive: true });
+    window.addEventListener("resize", syncFloat);
+    syncFloat();
+  })();
+
   /* --- 5. Reveal przy scrollu --- */
   var main = document.querySelector('[data-pencil-name="main"]') || document.body;
   var sections = Array.prototype.slice.call(main.children).filter(function (el) {
