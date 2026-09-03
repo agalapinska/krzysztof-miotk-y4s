@@ -91,6 +91,21 @@ html { overflow-x: hidden; }
 .km-mega__item p { margin: 0; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 14.4px; line-height: 1.45; color: #585b6e; }
 .km-mega__item:hover strong { color: oklch(57.2% 0.21 280); }
 
+/* Stany komponentów — hover/active z tablicy „Komponenty — stany" (Pen) */
+.km-btn-state { transition: background-color .18s ease, transform .2s ease; }
+.km-btn-state:hover { background-color: var(--km-hover) !important; filter: none !important; }
+.km-btn-state:active { background-color: var(--km-active) !important; transform: translateY(0) !important; }
+
+/* Link button („Napisz wiadomość" / „Kontakt"): hover violet-50 + obwódka violet-500 + poświata, active violet-100 */
+.km-linkbtn { transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .2s ease; }
+.km-linkbtn:hover { background-color: #F2F2F7 !important; border-color: #5205E7 !important; box-shadow: 0 0 6px rgba(80, 5, 232, .55); filter: none !important; }
+.km-linkbtn:active { background-color: #E9E9F7 !important; border-color: #3C00AB !important; box-shadow: none; transform: translateY(0) !important; }
+
+/* Card button („Zobacz usługę"): hover biały + obwódka violet-100, active violet-50 + violet-200 */
+.km-cardbtn { transition: background-color .18s ease, box-shadow .18s ease, transform .2s ease; }
+.km-cardbtn:hover { background-color: #FFFFFF !important; box-shadow: inset 0 0 0 1px #E9E9F7; filter: none !important; }
+.km-cardbtn:active { background-color: #F2F2F7 !important; box-shadow: inset 0 0 0 1px #D4D0F8; transform: translateY(0) !important; }
+
 @media (prefers-reduced-motion: reduce) {
   .km-drift, .km-glows::before, .km-glows::after { animation: none !important; }
   .km-mega { transition: none; }

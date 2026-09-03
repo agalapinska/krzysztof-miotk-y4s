@@ -75,6 +75,26 @@
 
   /* --- 3. Przyciski — ripple + lift + nawigacja --- */
   var CONTACT = "kontakt.html", SERVICES = "uslugi.html", HOME = "index.html";
+  var PAGES = {
+    "Badania UX": "badania-ux.html",
+    "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
+    "Segmentacja klientów": "segmentacja-klientow.html",
+    "Audyt UX": "audyt-ux.html",
+    "Konsultacje i mentoring": "konsultacje-i-mentoring.html",
+    "Wystąpienia i szkolenia": "wystapienia-i-szkolenia.html"
+  };
+  var PAGE_NAMES = Object.keys(PAGES);
+  function serviceCardTarget(el) {
+    var node = el.parentElement;
+    for (var i = 0; i < 6 && node; i++) {
+      var txt = node.textContent || "";
+      for (var j = 0; j < PAGE_NAMES.length; j++) {
+        if (txt.indexOf(PAGE_NAMES[j]) !== -1) return PAGES[PAGE_NAMES[j]];
+      }
+      node = node.parentElement;
+    }
+    return SERVICES;
+  }
   var btnRules = [
     [/umów|napisz wiadomość|wyślij|zapisz się|pobierz/i, CONTACT],
     [/zobacz usług|zobacz wszystkie usługi/i, SERVICES]
@@ -82,6 +102,7 @@
   function buttonTarget(el) {
     var t = (el.textContent || "").trim();
     if (t.length > 60) return null;
+    if (/zobacz usługę/i.test(t)) return serviceCardTarget(el);
     for (var i = 0; i < btnRules.length; i++) if (btnRules[i][0].test(t)) return btnRules[i][1];
     return null;
   }
@@ -114,9 +135,15 @@
   /* --- 4. Nawigacja tekstowa --- */
   var page = location.pathname.split("/").pop() || "index.html";
   var navMap = {
-    "Badania UX": SERVICES, "Segmentacja klientów": SERVICES, "Audyt UX": SERVICES,
-    "Konsultacje": SERVICES, "Wystąpienia": SERVICES,
-    "Usługi": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
+    "Badania UX": PAGES["Badania UX"],
+    "Segmentacja klientów": PAGES["Segmentacja klientów"],
+    "Audyt UX": PAGES["Audyt UX"],
+    "Konsultacje": PAGES["Konsultacje i mentoring"],
+    "Konsultacje i mentoring": PAGES["Konsultacje i mentoring"],
+    "Wystąpienia": PAGES["Wystąpienia i szkolenia"],
+    "Wystąpienia i szkolenia": PAGES["Wystąpienia i szkolenia"],
+    "Zewnętrzny Dyrektor UX": PAGES["Zewnętrzny Dyrektor UX"],
+    "Usługi": SERVICES, "Usługi/": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
     "Strona główna": HOME
   };
   document.querySelectorAll("div, span, p").forEach(function (el) {
@@ -146,6 +173,42 @@
     el.classList.add("km-splitbtn");
     main.classList.add("km-split-main");
     arrow.classList.add("km-split-arrow");
+  });
+
+  /* --- 3c. Przyciski kart „Zobacz usługę" bez dopasowanej nazwy --- */
+  document.querySelectorAll('[data-pencil-name*="Frame 707"], [data-pencil-name*="button-secondary"]').forEach(function (el) {
+    if (el.classList.contains("km-btn-fx")) return;
+    var t = (el.textContent || "").trim();
+    if (!/zobacz usługę/i.test(t) || t.length > 40) return;
+    el.classList.add("km-btn-fx");
+    el.style.cursor = "pointer";
+    var target = serviceCardTarget(el);
+    el.addEventListener("click", function () { window.location.href = target; });
+  });
+
+  /* --- 3d. Stany hover/active — z tablicy „Komponenty — stany" w projekcie Pen --- */
+  var STATE_MAP = {
+    "rgb(82, 5, 231)": ["#3C00AB", "#1D0055"],
+    "rgb(60, 0, 171)": ["#1D0055", "#0D0033"],
+    "rgb(46, 16, 101)": ["#1D0055", "#0D0033"],
+    "rgb(242, 242, 247)": ["#E9E9F7", "#D4D0F8"],
+    "rgb(233, 233, 247)": ["#D4D0F8", "#A399FD"]
+  };
+  document.querySelectorAll(".km-btn-fx").forEach(function (el) {
+    if (el.closest(".km-splitbtn") || el.classList.contains("km-splitbtn")) return;
+    var t = (el.textContent || "").trim();
+    if (/zobacz usługę/i.test(t)) { el.classList.add("km-cardbtn"); return; }
+    var cs = getComputedStyle(el);
+    if (/napisz wiadomość|^kontakt$/i.test(t) && cs.backgroundColor === "rgb(255, 255, 255)") {
+      el.classList.add("km-linkbtn");
+      return;
+    }
+    var m = STATE_MAP[cs.backgroundColor];
+    if (m) {
+      el.classList.add("km-btn-state");
+      el.style.setProperty("--km-hover", m[0]);
+      el.style.setProperty("--km-active", m[1]);
+    }
   });
 
   /* --- 4b. Mega-menu „Usługi" (stan otwarty z projektu Pen) --- */
@@ -181,7 +244,7 @@
         '<div class="km-mega__grid">' +
           rows.map(function (row) {
             return '<div class="km-mega__row">' + row.map(function (it) {
-              return '<a class="km-mega__item" href="uslugi.html"><strong>' + it[0] + '</strong><p>' + it[1] + '</p></a>';
+              return '<a class="km-mega__item" href="' + (PAGES[it[0]] || "uslugi.html") + '"><strong>' + it[0] + '</strong><p>' + it[1] + '</p></a>';
             }).join("") + '</div>';
           }).join("") +
         '</div>' +
