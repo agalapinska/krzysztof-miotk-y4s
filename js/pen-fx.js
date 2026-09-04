@@ -264,6 +264,89 @@
     });
   })();
 
+  /* --- 4d. Hero: rotacja zdjęć wg klatek „Animacja 1" (pasek 3.5s, spód → góra) --- */
+  (function () {
+    var f662 = document.querySelector('[data-pencil-name="Frame 662"]');
+    if (!f662 || reduced) return;
+    var photo = f662.firstElementChild;
+    if (!photo || !/url\(/.test(photo.style.backgroundImage || "")) return;
+    var container = f662.parentElement;
+    var absLayers = Array.prototype.filter.call(container.children, function (el) {
+      return el !== f662 && /url\(/.test(el.style.backgroundImage || "");
+    });
+    if (absLayers.length < 2) return;
+    var backEl = absLayers[0], midEl = absLayers[1];
+    if (backEl.offsetLeft < midEl.offsetLeft) { var tmp = backEl; backEl = midEl; midEl = tmp; }
+
+    var track = null, fill = null;
+    Array.prototype.forEach.call(f662.children, function (el) {
+      var cs = getComputedStyle(el);
+      if (cs.backgroundColor === "rgb(233, 233, 247)") track = el;
+      if (cs.backgroundColor === "rgb(82, 5, 231)" && cs.position === "absolute") fill = el;
+    });
+    if (track && fill) {
+      track.style.position = "relative";
+      track.appendChild(fill);
+      fill.style.left = ""; fill.style.top = ""; fill.style.width = ""; fill.style.height = "";
+      fill.classList.add("km-hero-fill");
+    }
+
+    function getUrl(el) {
+      var m = (el.style.backgroundImage || "").match(/url\(['"]?([^'")]+)['"]?\)/);
+      return m && m[1];
+    }
+    function setUrl(el, u) {
+      el.style.backgroundImage = el.style.backgroundImage.replace(/url\(['"]?[^'")]+['"]?\)/, "url('" + u + "')");
+    }
+
+    var slotM = { l: midEl.offsetLeft, t: midEl.offsetTop, w: midEl.offsetWidth, h: midEl.offsetHeight };
+    var slotF = { l: f662.offsetLeft + photo.offsetLeft, t: f662.offsetTop + photo.offsetTop, w: photo.offsetWidth, h: photo.offsetHeight };
+    var EASE = "cubic-bezier(.22,.61,.36,1)", DUR = 900;
+
+    function swap(done) {
+      var uF = getUrl(photo), uM = getUrl(midEl), uB = getUrl(backEl);
+      var clone = document.createElement("div");
+      clone.style.cssText = "position:absolute;z-index:4;background-image:url('" + uM + "');background-size:cover;background-position:center;" +
+        "left:" + slotM.l + "px;top:" + slotM.t + "px;width:" + slotM.w + "px;height:" + slotM.h + "px;" +
+        "transition:left " + DUR + "ms " + EASE + ",top " + DUR + "ms " + EASE + ",width " + DUR + "ms " + EASE + ",height " + DUR + "ms " + EASE + ";";
+      var veil = document.createElement("div");
+      veil.style.cssText = "position:absolute;inset:0;background:linear-gradient(#ffffff66,#ffffff66),linear-gradient(#49456e66,#49456e66);opacity:1;transition:opacity " + DUR + "ms " + EASE + ";";
+      clone.appendChild(veil);
+      container.appendChild(clone);
+      midEl.style.visibility = "hidden";
+      var backCss = backEl.style.cssText;
+      backEl.style.transition = "left " + DUR + "ms " + EASE + ",top " + DUR + "ms " + EASE + ",width " + DUR + "ms " + EASE + ",height " + DUR + "ms " + EASE;
+      photo.style.transition = "transform " + DUR + "ms " + EASE + ",opacity " + DUR + "ms " + EASE;
+      photo.style.transformOrigin = "bottom left";
+      void clone.offsetWidth;
+      clone.style.left = slotF.l + "px"; clone.style.top = slotF.t + "px";
+      clone.style.width = slotF.w + "px"; clone.style.height = slotF.h + "px";
+      veil.style.opacity = "0";
+      backEl.style.left = slotM.l + "px"; backEl.style.top = slotM.t + "px";
+      backEl.style.width = slotM.w + "px"; backEl.style.height = slotM.h + "px";
+      photo.style.transform = "rotate(2.5deg) translate(16px, 22px) scale(.955)";
+      photo.style.opacity = "0.35";
+      setTimeout(function () {
+        backEl.style.cssText = backCss;
+        setUrl(photo, uM); setUrl(midEl, uB); setUrl(backEl, uF);
+        photo.style.transition = "none"; photo.style.transform = ""; photo.style.opacity = "";
+        midEl.style.visibility = "";
+        clone.remove();
+        void photo.offsetWidth;
+        done();
+      }, DUR + 60);
+    }
+
+    function cycle() {
+      if (fill) { fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
+      setTimeout(function () {
+        if (document.hidden) { cycle(); return; }
+        swap(cycle);
+      }, 3500);
+    }
+    cycle();
+  })();
+
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
   (function () {
     if (/kontakt\.html$/.test(location.pathname)) return;

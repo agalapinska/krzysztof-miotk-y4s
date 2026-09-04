@@ -106,6 +106,20 @@ html { overflow-x: hidden; }
 .km-cardbtn:hover { background-color: #FFFFFF !important; box-shadow: inset 0 0 0 1px #E9E9F7; filter: none !important; }
 .km-cardbtn:active { background-color: #F2F2F7 !important; box-shadow: inset 0 0 0 1px #D4D0F8; transform: translateY(0) !important; }
 
+/* Hero: rotacja zdjęć — pasek ładowania (jasny → ciemny fiolet, 3.5s) */
+.km-hero-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+}
+.km-hero-fill.is-run { animation: km-hero-load 3.5s linear forwards; }
+@keyframes km-hero-load {
+  from { width: 0; background-color: #A399FD; }
+  to { width: 100%; background-color: #5205E7; }
+}
+
 /* Pływający widżet kalendarza — stały w tym samym miejscu do sekcji „Co mówią klienci" */
 .km-cal-float {
   position: fixed !important;
