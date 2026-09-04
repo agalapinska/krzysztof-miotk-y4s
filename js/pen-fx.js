@@ -277,20 +277,35 @@
     function lerpSlot(a, b, t, bl, bt) {
       return { l: a.l + (b.l - a.l) * t + (bl || 0), t: a.t + (b.t - a.t) * t + (bt || 0), w: a.w + (b.w - a.w) * t, h: a.h + (b.h - a.h) * t };
     }
-    function mkClone(container, url, slot, z, veilCss) {
+    var VEIL_BACK = 0.6, VEIL_MID = 0.4, BLUR_BACK = 1, BLUR_MID = 0.5;
+    function mkClone(container, url, slot, z) {
       var c = document.createElement("div");
       c.style.cssText = "position:absolute;z-index:" + z + ";background-image:url('" + url + "');background-size:cover;background-position:center;" +
         "left:" + slot.l + "px;top:" + slot.t + "px;width:" + slot.w + "px;height:" + slot.h + "px;";
-      if (veilCss) { var v = document.createElement("div"); v.style.cssText = "position:absolute;inset:0;" + veilCss; c.appendChild(v); c._veil = v; }
+      var v = document.createElement("div");
+      v.style.cssText = "position:absolute;inset:0;background:#ffffff;opacity:0;";
+      c.appendChild(v);
+      c._veil = v;
       return c;
+    }
+    function restyleLayer(el, whiteAlpha, blurPx) {
+      var u = null;
+      var m = (el.style.backgroundImage || "").match(/url\(['"]?([^'")]+)['"]?\)/);
+      if (m) u = m[1]; else return;
+      el.style.backgroundImage = "linear-gradient(rgba(255,255,255," + whiteAlpha + "), rgba(255,255,255," + whiteAlpha + ")), url('" + u + "')";
+      el.style.backgroundSize = "100% 100%, cover";
+      el.style.backgroundPosition = "0% 0%, center";
+      el.style.backgroundRepeat = "no-repeat, no-repeat";
+      el.style.filter = "blur(" + blurPx + "px)";
+      el.style.opacity = "1";
     }
 
     function deckSwap(cfg, done) {
       var uF = getUrl(cfg.front), uM = getUrl(cfg.mid), uB = getUrl(cfg.back);
       var F = cfg.F, M = cfg.M, B = cfg.B;
-      var cloneIn = mkClone(cfg.container, uM, M, 2, cfg.midVeil + "opacity:1;");
-      var cloneBack = mkClone(cfg.container, uB, B, 1, cfg.midVeil + "opacity:1;");
-      var cloneOut = mkClone(cfg.container, uF, F, 2, null);
+      var cloneIn = mkClone(cfg.container, uM, M, 2);
+      var cloneBack = mkClone(cfg.container, uB, B, 1);
+      var cloneOut = mkClone(cfg.container, uF, F, 2);
       cfg.container.appendChild(cloneBack);
       cfg.container.appendChild(cloneOut);
       cfg.container.appendChild(cloneIn);
@@ -298,19 +313,28 @@
       cfg.mid.style.visibility = "hidden";
       cfg.back.style.visibility = "hidden";
       var opts = { duration: DUR, easing: EASE, fill: "forwards" };
-      cloneIn.animate([geomKf(M), geomKf(F)], opts);
-      cloneIn._veil.animate([{ opacity: 1 }, { opacity: 0 }], opts);
-      cloneBack.animate([
-        Object.assign(geomKf(B), { opacity: String(cfg.backOpacity) }),
-        Object.assign(geomKf(M), { opacity: "1" })
+      cloneIn.animate([
+        Object.assign(geomKf(M), { filter: "blur(" + BLUR_MID + "px)" }),
+        Object.assign(geomKf(F), { filter: "blur(0px)" })
       ], opts);
+      cloneIn._veil.animate([{ opacity: VEIL_MID }, { opacity: 0 }], opts);
+      cloneBack.animate([
+        Object.assign(geomKf(B), { filter: "blur(" + BLUR_BACK + "px)" }),
+        Object.assign(geomKf(M), { filter: "blur(" + BLUR_MID + "px)" })
+      ], opts);
+      cloneBack._veil.animate([{ opacity: VEIL_BACK }, { opacity: VEIL_MID }], opts);
       var k45 = lerpSlot(F, B, 0.45, cfg.bulgeL, cfg.bulgeT);
       var k55 = lerpSlot(F, B, 0.55, (cfg.bulgeL || 0) * 0.85, (cfg.bulgeT || 0) * 0.85);
       cloneOut.animate([
-        Object.assign(geomKf(F), { zIndex: "2", opacity: "1" }),
-        Object.assign(geomKf(k45), { zIndex: "2", opacity: "0.95", offset: 0.45 }),
-        Object.assign(geomKf(k55), { zIndex: "0", opacity: "0.85", offset: 0.55 }),
-        Object.assign(geomKf(B), { zIndex: "0", opacity: String(cfg.backOpacity) })
+        Object.assign(geomKf(F), { zIndex: "2", filter: "blur(0px)" }),
+        Object.assign(geomKf(k45), { zIndex: "2", filter: "blur(" + (BLUR_BACK * 0.4) + "px)", offset: 0.45 }),
+        Object.assign(geomKf(k55), { zIndex: "0", filter: "blur(" + (BLUR_BACK * 0.6) + "px)", offset: 0.55 }),
+        Object.assign(geomKf(B), { zIndex: "0", filter: "blur(" + BLUR_BACK + "px)" })
+      ], opts);
+      cloneOut._veil.animate([
+        { opacity: 0 },
+        { opacity: VEIL_BACK * 0.5, offset: 0.5 },
+        { opacity: VEIL_BACK }
       ], opts);
       setTimeout(function () {
         setUrl(cfg.front, uM); setUrl(cfg.mid, uB); setUrl(cfg.back, uF);
@@ -361,11 +385,12 @@
       if (abs.length < 2) return;
       var backEl = abs[0], midEl = abs[1];
       if (backEl.offsetLeft < midEl.offsetLeft) { var t = backEl; backEl = midEl; midEl = t; }
+      restyleLayer(backEl, VEIL_BACK, BLUR_BACK);
+      restyleLayer(midEl, VEIL_MID, BLUR_MID);
       var cfg = {
         container: container, front: photo, mid: midEl, back: backEl,
         F: slotOf(photo, f662.offsetLeft, f662.offsetTop), M: slotOf(midEl), B: slotOf(backEl),
-        bulgeL: 130, bulgeT: 12, backOpacity: 0.6,
-        midVeil: "background:linear-gradient(#ffffff66,#ffffff66),linear-gradient(#49456e66,#49456e66);"
+        bulgeL: 130, bulgeT: 12
       };
       runDeck(cfg, armFill(f662));
     })();
@@ -379,11 +404,12 @@
       if (layers.length < 3) return;
       layers.sort(function (a, b) { return (parseInt(a.style.zIndex, 10) || 0) - (parseInt(b.style.zIndex, 10) || 0); });
       var backEl = layers[0], midEl = layers[1], frontEl = layers[2];
+      restyleLayer(backEl, VEIL_BACK, BLUR_BACK);
+      restyleLayer(midEl, VEIL_MID, BLUR_MID);
       var cfg = {
         container: container, front: frontEl, mid: midEl, back: backEl,
         F: slotOf(frontEl), M: slotOf(midEl), B: slotOf(backEl),
-        bulgeL: 0, bulgeT: 95, backOpacity: 1,
-        midVeil: "background:linear-gradient(#ffffff66,#ffffff66);"
+        bulgeL: 0, bulgeT: 95
       };
       var wrap = container.parentElement;
       runDeck(cfg, armFill(wrap));
