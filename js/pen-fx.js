@@ -250,109 +250,146 @@
         '</div>' +
       '</div>';
     wrap.appendChild(mega);
-    var trigger = null;
-    nav.querySelectorAll("div").forEach(function (el) {
-      if (!trigger && /Usługi\s*:/.test(el.textContent || "") && el.textContent.trim().length < 130) trigger = el;
-    });
-    trigger = trigger || nav;
     var hideT;
     function open() { clearTimeout(hideT); wrap.classList.add("is-open"); }
     function close() { hideT = setTimeout(function () { wrap.classList.remove("is-open"); }, 160); }
-    [trigger, mega].forEach(function (el) {
-      el.addEventListener("mouseenter", open);
-      el.addEventListener("mouseleave", close);
+    function overButton(t) {
+      return !!(t && t.closest && t.closest('.km-btn-fx, [data-pencil-name="Frame 710"]'));
+    }
+    nav.addEventListener("mouseover", function (e) {
+      if (overButton(e.target)) { close(); return; }
+      open();
     });
+    nav.addEventListener("mouseleave", close);
+    mega.addEventListener("mouseenter", open);
+    mega.addEventListener("mouseleave", close);
   })();
 
-  /* --- 4d. Hero: rotacja zdjęć wg klatek „Animacja 1" (pasek 3.5s, spód → góra) --- */
+  /* --- 4d. Animacje talii zdjęć (hero i demo raportu) wg klatek z Pen --- */
   (function () {
-    var f662 = document.querySelector('[data-pencil-name="Frame 662"]');
-    if (!f662 || reduced) return;
-    var photo = f662.firstElementChild;
-    if (!photo || !/url\(/.test(photo.style.backgroundImage || "")) return;
-    var container = f662.parentElement;
-    var absLayers = Array.prototype.filter.call(container.children, function (el) {
-      return el !== f662 && /url\(/.test(el.style.backgroundImage || "");
-    });
-    if (absLayers.length < 2) return;
-    var backEl = absLayers[0], midEl = absLayers[1];
-    if (backEl.offsetLeft < midEl.offsetLeft) { var tmp = backEl; backEl = midEl; midEl = tmp; }
+    if (reduced) return;
+    var EASE = "cubic-bezier(.45,.05,.18,1)", DUR = 1250, LOAD = 3500;
 
-    var track = null, fill = null;
-    Array.prototype.forEach.call(f662.children, function (el) {
-      var cs = getComputedStyle(el);
-      if (cs.backgroundColor === "rgb(233, 233, 247)") track = el;
-      if (cs.backgroundColor === "rgb(82, 5, 231)" && cs.position === "absolute") fill = el;
-    });
-    if (track && fill) {
-      track.style.position = "relative";
-      track.appendChild(fill);
-      fill.style.left = ""; fill.style.top = ""; fill.style.width = ""; fill.style.height = "";
-      fill.classList.add("km-hero-fill");
+    function getUrl(el) { var m = (el.style.backgroundImage || "").match(/url\(['"]?([^'")]+)['"]?\)/); return m && m[1]; }
+    function setUrl(el, u) { el.style.backgroundImage = el.style.backgroundImage.replace(/url\(['"]?[^'")]+['"]?\)/, "url('" + u + "')"); }
+    function slotOf(el, addL, addT) { return { l: (addL || 0) + el.offsetLeft, t: (addT || 0) + el.offsetTop, w: el.offsetWidth, h: el.offsetHeight }; }
+    function geomKf(s) { return { left: s.l + "px", top: s.t + "px", width: s.w + "px", height: s.h + "px" }; }
+    function lerpSlot(a, b, t, bl, bt) {
+      return { l: a.l + (b.l - a.l) * t + (bl || 0), t: a.t + (b.t - a.t) * t + (bt || 0), w: a.w + (b.w - a.w) * t, h: a.h + (b.h - a.h) * t };
+    }
+    function mkClone(container, url, slot, z, veilCss) {
+      var c = document.createElement("div");
+      c.style.cssText = "position:absolute;z-index:" + z + ";background-image:url('" + url + "');background-size:cover;background-position:center;" +
+        "left:" + slot.l + "px;top:" + slot.t + "px;width:" + slot.w + "px;height:" + slot.h + "px;";
+      if (veilCss) { var v = document.createElement("div"); v.style.cssText = "position:absolute;inset:0;" + veilCss; c.appendChild(v); c._veil = v; }
+      return c;
     }
 
-    function getUrl(el) {
-      var m = (el.style.backgroundImage || "").match(/url\(['"]?([^'")]+)['"]?\)/);
-      return m && m[1];
-    }
-    function setUrl(el, u) {
-      el.style.backgroundImage = el.style.backgroundImage.replace(/url\(['"]?[^'")]+['"]?\)/, "url('" + u + "')");
-    }
-
-    var slotB = { l: backEl.offsetLeft, t: backEl.offsetTop, w: backEl.offsetWidth, h: backEl.offsetHeight };
-    var slotM = { l: midEl.offsetLeft, t: midEl.offsetTop, w: midEl.offsetWidth, h: midEl.offsetHeight };
-    var slotF = { l: f662.offsetLeft + photo.offsetLeft, t: f662.offsetTop + photo.offsetTop, w: photo.offsetWidth, h: photo.offsetHeight };
-    var EASE = "cubic-bezier(.45,.05,.18,1)", DUR = 1250;
-
-    function swap(done) {
-      var uF = getUrl(photo), uM = getUrl(midEl), uB = getUrl(backEl);
-      var trans = "left " + DUR + "ms " + EASE + ",top " + DUR + "ms " + EASE + ",width " + DUR + "ms " + EASE + ",height " + DUR + "ms " + EASE;
-      var clone = document.createElement("div");
-      clone.style.cssText = "position:absolute;z-index:4;background-image:url('" + uM + "');background-size:cover;background-position:center;" +
-        "left:" + slotM.l + "px;top:" + slotM.t + "px;width:" + slotM.w + "px;height:" + slotM.h + "px;transition:" + trans + ";";
-      var veil = document.createElement("div");
-      veil.style.cssText = "position:absolute;inset:0;background:linear-gradient(#ffffff66,#ffffff66),linear-gradient(#49456e66,#49456e66);opacity:1;transition:opacity " + DUR + "ms " + EASE + ";";
-      clone.appendChild(veil);
-      container.appendChild(clone);
-      midEl.style.visibility = "hidden";
-      var backCss = backEl.style.cssText;
-      var f662Overflow = f662.style.overflow;
-      f662.style.overflow = "visible";
-      backEl.style.transition = trans;
-      var dx = slotB.l - slotF.l, dy = slotB.t - slotF.t;
-      var sx = slotB.w / slotF.w, sy = slotB.h / slotF.h;
-      photo.style.transition = "transform " + DUR + "ms " + EASE + ",opacity " + DUR + "ms " + EASE;
-      photo.style.transformOrigin = "top left";
-      photo.style.zIndex = "0";
-      void clone.offsetWidth;
-      clone.style.left = slotF.l + "px"; clone.style.top = slotF.t + "px";
-      clone.style.width = slotF.w + "px"; clone.style.height = slotF.h + "px";
-      veil.style.opacity = "0";
-      backEl.style.left = slotM.l + "px"; backEl.style.top = slotM.t + "px";
-      backEl.style.width = slotM.w + "px"; backEl.style.height = slotM.h + "px";
-      photo.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + sx.toFixed(3) + "," + sy.toFixed(3) + ")";
-      photo.style.opacity = "0.6";
+    function deckSwap(cfg, done) {
+      var uF = getUrl(cfg.front), uM = getUrl(cfg.mid), uB = getUrl(cfg.back);
+      var F = cfg.F, M = cfg.M, B = cfg.B;
+      var cloneIn = mkClone(cfg.container, uM, M, 2, cfg.midVeil + "opacity:1;");
+      var cloneBack = mkClone(cfg.container, uB, B, 1, cfg.midVeil + "opacity:1;");
+      var cloneOut = mkClone(cfg.container, uF, F, 2, null);
+      cfg.container.appendChild(cloneBack);
+      cfg.container.appendChild(cloneOut);
+      cfg.container.appendChild(cloneIn);
+      cfg.front.style.visibility = "hidden";
+      cfg.mid.style.visibility = "hidden";
+      cfg.back.style.visibility = "hidden";
+      var opts = { duration: DUR, easing: EASE, fill: "forwards" };
+      cloneIn.animate([geomKf(M), geomKf(F)], opts);
+      cloneIn._veil.animate([{ opacity: 1 }, { opacity: 0 }], opts);
+      cloneBack.animate([
+        Object.assign(geomKf(B), { opacity: String(cfg.backOpacity) }),
+        Object.assign(geomKf(M), { opacity: "1" })
+      ], opts);
+      var k45 = lerpSlot(F, B, 0.45, cfg.bulgeL, cfg.bulgeT);
+      var k55 = lerpSlot(F, B, 0.55, (cfg.bulgeL || 0) * 0.85, (cfg.bulgeT || 0) * 0.85);
+      cloneOut.animate([
+        Object.assign(geomKf(F), { zIndex: "2", opacity: "1" }),
+        Object.assign(geomKf(k45), { zIndex: "2", opacity: "0.95", offset: 0.45 }),
+        Object.assign(geomKf(k55), { zIndex: "0", opacity: "0.85", offset: 0.55 }),
+        Object.assign(geomKf(B), { zIndex: "0", opacity: String(cfg.backOpacity) })
+      ], opts);
       setTimeout(function () {
-        backEl.style.cssText = backCss;
-        setUrl(photo, uM); setUrl(midEl, uB); setUrl(backEl, uF);
-        photo.style.transition = "none"; photo.style.transform = ""; photo.style.opacity = ""; photo.style.zIndex = "";
-        f662.style.overflow = f662Overflow;
-        midEl.style.visibility = "";
-        clone.remove();
-        void photo.offsetWidth;
+        setUrl(cfg.front, uM); setUrl(cfg.mid, uB); setUrl(cfg.back, uF);
+        cfg.front.style.visibility = "";
+        cfg.mid.style.visibility = "";
+        cfg.back.style.visibility = "";
+        cloneIn.remove(); cloneBack.remove(); cloneOut.remove();
         done();
       }, DUR + 60);
     }
 
-    function cycle() {
-      if (fill) { fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
-      setTimeout(function () {
-        if (document.hidden) { cycle(); return; }
-        swap(cycle);
-      }, 3500);
+    function armFill(scope) {
+      var track = null, fill = null;
+      Array.prototype.forEach.call(scope.querySelectorAll("div"), function (el) {
+        var cs = getComputedStyle(el);
+        if (!track && cs.backgroundColor === "rgb(233, 233, 247)" && el.offsetHeight <= 16) track = el;
+        if (!fill && cs.backgroundColor === "rgb(82, 5, 231)" && el.offsetHeight <= 16) fill = el;
+      });
+      if (!track || !fill) return null;
+      var host = track.parentElement === fill.parentElement ? track : track;
+      host.style.position = "relative";
+      host.appendChild(fill);
+      fill.style.left = ""; fill.style.top = ""; fill.style.width = ""; fill.style.height = "";
+      fill.classList.add("km-hero-fill");
+      return fill;
     }
-    cycle();
+
+    function runDeck(cfg, fill) {
+      function cycle() {
+        if (fill) { fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
+        setTimeout(function () {
+          if (document.hidden) { cycle(); return; }
+          deckSwap(cfg, cycle);
+        }, LOAD);
+      }
+      cycle();
+    }
+
+    (function heroDeck() {
+      var f662 = document.querySelector('[data-pencil-name="Frame 662"]');
+      if (!f662) return;
+      var photo = f662.firstElementChild;
+      if (!photo || !/url\(/.test(photo.style.backgroundImage || "")) return;
+      var container = f662.parentElement;
+      var abs = Array.prototype.filter.call(container.children, function (el) {
+        return el !== f662 && /url\(/.test(el.style.backgroundImage || "");
+      });
+      if (abs.length < 2) return;
+      var backEl = abs[0], midEl = abs[1];
+      if (backEl.offsetLeft < midEl.offsetLeft) { var t = backEl; backEl = midEl; midEl = t; }
+      var cfg = {
+        container: container, front: photo, mid: midEl, back: backEl,
+        F: slotOf(photo, f662.offsetLeft, f662.offsetTop), M: slotOf(midEl), B: slotOf(backEl),
+        bulgeL: 130, bulgeT: 12, backOpacity: 0.6,
+        midVeil: "background:linear-gradient(#ffffff66,#ffffff66),linear-gradient(#49456e66,#49456e66);"
+      };
+      runDeck(cfg, armFill(f662));
+    })();
+
+    (function reportDeck() {
+      var container = document.querySelector('[data-pencil-name="animation"]');
+      if (!container) return;
+      var layers = Array.prototype.filter.call(container.children, function (el) {
+        return /url\(/.test(el.style.backgroundImage || "");
+      });
+      if (layers.length < 3) return;
+      layers.sort(function (a, b) { return (parseInt(a.style.zIndex, 10) || 0) - (parseInt(b.style.zIndex, 10) || 0); });
+      var backEl = layers[0], midEl = layers[1], frontEl = layers[2];
+      var cfg = {
+        container: container, front: frontEl, mid: midEl, back: backEl,
+        F: slotOf(frontEl), M: slotOf(midEl), B: slotOf(backEl),
+        bulgeL: 0, bulgeT: 95, backOpacity: 1,
+        midVeil: "background:linear-gradient(#ffffff66,#ffffff66);"
+      };
+      var wrap = container.parentElement;
+      runDeck(cfg, armFill(wrap));
+    })();
   })();
+
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
   (function () {
