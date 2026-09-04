@@ -299,37 +299,44 @@
       el.style.backgroundImage = el.style.backgroundImage.replace(/url\(['"]?[^'")]+['"]?\)/, "url('" + u + "')");
     }
 
+    var slotB = { l: backEl.offsetLeft, t: backEl.offsetTop, w: backEl.offsetWidth, h: backEl.offsetHeight };
     var slotM = { l: midEl.offsetLeft, t: midEl.offsetTop, w: midEl.offsetWidth, h: midEl.offsetHeight };
     var slotF = { l: f662.offsetLeft + photo.offsetLeft, t: f662.offsetTop + photo.offsetTop, w: photo.offsetWidth, h: photo.offsetHeight };
-    var EASE = "cubic-bezier(.22,.61,.36,1)", DUR = 900;
+    var EASE = "cubic-bezier(.45,.05,.18,1)", DUR = 1250;
 
     function swap(done) {
       var uF = getUrl(photo), uM = getUrl(midEl), uB = getUrl(backEl);
+      var trans = "left " + DUR + "ms " + EASE + ",top " + DUR + "ms " + EASE + ",width " + DUR + "ms " + EASE + ",height " + DUR + "ms " + EASE;
       var clone = document.createElement("div");
       clone.style.cssText = "position:absolute;z-index:4;background-image:url('" + uM + "');background-size:cover;background-position:center;" +
-        "left:" + slotM.l + "px;top:" + slotM.t + "px;width:" + slotM.w + "px;height:" + slotM.h + "px;" +
-        "transition:left " + DUR + "ms " + EASE + ",top " + DUR + "ms " + EASE + ",width " + DUR + "ms " + EASE + ",height " + DUR + "ms " + EASE + ";";
+        "left:" + slotM.l + "px;top:" + slotM.t + "px;width:" + slotM.w + "px;height:" + slotM.h + "px;transition:" + trans + ";";
       var veil = document.createElement("div");
       veil.style.cssText = "position:absolute;inset:0;background:linear-gradient(#ffffff66,#ffffff66),linear-gradient(#49456e66,#49456e66);opacity:1;transition:opacity " + DUR + "ms " + EASE + ";";
       clone.appendChild(veil);
       container.appendChild(clone);
       midEl.style.visibility = "hidden";
       var backCss = backEl.style.cssText;
-      backEl.style.transition = "left " + DUR + "ms " + EASE + ",top " + DUR + "ms " + EASE + ",width " + DUR + "ms " + EASE + ",height " + DUR + "ms " + EASE;
+      var f662Overflow = f662.style.overflow;
+      f662.style.overflow = "visible";
+      backEl.style.transition = trans;
+      var dx = slotB.l - slotF.l, dy = slotB.t - slotF.t;
+      var sx = slotB.w / slotF.w, sy = slotB.h / slotF.h;
       photo.style.transition = "transform " + DUR + "ms " + EASE + ",opacity " + DUR + "ms " + EASE;
-      photo.style.transformOrigin = "bottom left";
+      photo.style.transformOrigin = "top left";
+      photo.style.zIndex = "0";
       void clone.offsetWidth;
       clone.style.left = slotF.l + "px"; clone.style.top = slotF.t + "px";
       clone.style.width = slotF.w + "px"; clone.style.height = slotF.h + "px";
       veil.style.opacity = "0";
       backEl.style.left = slotM.l + "px"; backEl.style.top = slotM.t + "px";
       backEl.style.width = slotM.w + "px"; backEl.style.height = slotM.h + "px";
-      photo.style.transform = "rotate(2.5deg) translate(16px, 22px) scale(.955)";
-      photo.style.opacity = "0.35";
+      photo.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + sx.toFixed(3) + "," + sy.toFixed(3) + ")";
+      photo.style.opacity = "0.6";
       setTimeout(function () {
         backEl.style.cssText = backCss;
         setUrl(photo, uM); setUrl(midEl, uB); setUrl(backEl, uF);
-        photo.style.transition = "none"; photo.style.transform = ""; photo.style.opacity = "";
+        photo.style.transition = "none"; photo.style.transform = ""; photo.style.opacity = ""; photo.style.zIndex = "";
+        f662.style.overflow = f662Overflow;
         midEl.style.visibility = "";
         clone.remove();
         void photo.offsetWidth;
@@ -349,8 +356,13 @@
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
   (function () {
-    if (/kontakt\.html$/.test(location.pathname)) return;
-    var float = document.querySelector('[data-pencil-name="div - float"]');
+    var OFFER_PAGE = /(badania-ux|segmentacja-klientow|audyt-ux|konsultacje-i-mentoring|dyrektor-ux|wystapienia-i-szkolenia)\.html$/;
+    var existing = document.querySelector('[data-pencil-name="div - float"]');
+    if (!OFFER_PAGE.test(location.pathname)) {
+      if (existing) existing.style.display = "none";
+      return;
+    }
+    var float = existing;
     if (!float) {
       float = document.createElement("div");
       float.setAttribute("data-pencil-name", "div - float");
@@ -383,11 +395,15 @@
       var pool = document.querySelector('[data-pencil-name="main"]') || document.body.firstElementChild;
       target = pool ? pool.lastElementChild : null;
     }
+    var hero = document.querySelector('[data-pencil-name="section"]');
+    float.classList.add("is-hidden");
     function syncFloat() {
-      if (!target) return;
-      var r = target.getBoundingClientRect();
       var f = float.getBoundingClientRect();
-      float.classList.toggle("is-hidden", r.top < f.bottom + 40);
+      var afterHero = true;
+      if (hero) afterHero = hero.getBoundingClientRect().bottom < Math.max(f.top, 60);
+      var beforeEnd = true;
+      if (target) beforeEnd = target.getBoundingClientRect().top > f.bottom + 40;
+      float.classList.toggle("is-hidden", !(afterHero && beforeEnd));
     }
     window.addEventListener("scroll", syncFloat, { passive: true });
     window.addEventListener("resize", syncFloat);
