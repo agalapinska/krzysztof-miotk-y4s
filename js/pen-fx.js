@@ -474,12 +474,7 @@
       return "rgb(" + r + "," + g + "," + b + ")";
     }
     function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
-    var ticking = false;
-    function apply() {
-      ticking = false;
-      var r = section.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var p = ease((vh * 0.85 - r.top) / (r.height * 0.75 + vh * 0.35));
+    function setProgress(p) {
       var w = W0 + (W1 - W0) * p;
       var maskCss = "linear-gradient(90deg, #000 " + Math.max(0, w - FEATHER) + "px, rgba(0,0,0,0) " + w + "px)";
       wrap.style.webkitMaskImage = maskCss;
@@ -500,10 +495,28 @@
         Array.prototype.forEach.call(L.glyphs, function (g) { g.style.fill = gc; });
       });
     }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    apply();
+    function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
+    var played = false;
+    function playReveal() {
+      var t0 = performance.now(), D = 3600;
+      function frame(now) {
+        var t = Math.min(1, (now - t0) / D);
+        setProgress(easeOut(t));
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+    function check() {
+      if (played) return;
+      var r = section.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.62 && r.bottom > 0) {
+        played = true;
+        playReveal();
+      }
+    }
+    window.addEventListener("scroll", check, { passive: true });
+    setProgress(0);
+    check();
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
