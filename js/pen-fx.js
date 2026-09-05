@@ -452,9 +452,9 @@
     var RAMPS = {
       outer: [0, 0, 0.05, 0.25],
       r673: [0, 0, 0.30, 0.50],
-      r674: [0, 0.25, 0.50, 0.80],
+      r674: [0, 0.25, 0.35, 0.80],
       dot: [0, 0, 0.25, 0.90],
-      icon: [0.35, 0.55, 0.80, 1]
+      icon: [0.75, 1, 1, 1]
     };
     var ringLayers = Array.prototype.map.call(rings, function (ring) {
       return {
@@ -462,11 +462,17 @@
         r673: ring.querySelector('[data-pencil-name="Frame 673"]'),
         r674: ring.querySelector('[data-pencil-name="Frame 674"]'),
         dot: ring.querySelector('[data-pencil-name="Frame 672"]'),
-        icon: ring.querySelector("svg")
+        icon: ring.querySelector("svg"),
+        glyphs: ring.querySelectorAll("svg path, svg circle, svg rect, svg line, svg polyline")
       };
     });
     function rampVal(r, s) { var i = Math.min(2, Math.floor(s)); var f = s - i; return r[i] + (r[i + 1] - r[i]) * f; }
     function whiteA(a) { return "rgba(255,255,255," + a.toFixed(3) + ")"; }
+    function iconColor(s) {
+      var t = Math.max(0, Math.min(1, s - 2));
+      var r = Math.round(255 + (29 - 255) * t), g = Math.round(255 - 255 * t), b = Math.round(255 + (85 - 255) * t);
+      return "rgb(" + r + "," + g + "," + b + ")";
+    }
     function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
     var ticking = false;
     function apply() {
@@ -490,6 +496,8 @@
         if (L.r674) L.r674.style.borderColor = whiteA(rampVal(RAMPS.r674, s));
         if (L.dot) L.dot.style.backgroundColor = whiteA(rampVal(RAMPS.dot, s));
         if (L.icon) L.icon.style.opacity = String(rampVal(RAMPS.icon, s));
+        var gc = iconColor(s);
+        Array.prototype.forEach.call(L.glyphs, function (g) { g.style.fill = gc; });
       });
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }
