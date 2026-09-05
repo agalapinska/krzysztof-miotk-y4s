@@ -274,8 +274,8 @@
     function setUrl(el, u) { el.style.backgroundImage = el.style.backgroundImage.replace(/url\(['"]?[^'")]+['"]?\)/, "url('" + u + "')"); }
     function slotOf(el, addL, addT) { return { l: (addL || 0) + el.offsetLeft, t: (addT || 0) + el.offsetTop, w: el.offsetWidth, h: el.offsetHeight }; }
     function geomKf(s) { return { left: s.l + "px", top: s.t + "px", width: s.w + "px", height: s.h + "px" }; }
-    function lerpSlot(a, b, t, bl, bt) {
-      return { l: a.l + (b.l - a.l) * t + (bl || 0), t: a.t + (b.t - a.t) * t + (bt || 0), w: a.w + (b.w - a.w) * t, h: a.h + (b.h - a.h) * t };
+    function lerpSlot(a, b, t) {
+      return { l: a.l + (b.l - a.l) * t, t: a.t + (b.t - a.t) * t, w: a.w + (b.w - a.w) * t, h: a.h + (b.h - a.h) * t };
     }
     var VEIL_BACK = 0.6, VEIL_MID = 0.4, BLUR_BACK = 1, BLUR_MID = 0.5;
     function mkClone(container, url, slot, z) {
@@ -303,12 +303,14 @@
     function deckSwap(cfg, done) {
       var uF = getUrl(cfg.front), uM = getUrl(cfg.mid), uB = getUrl(cfg.back);
       var F = cfg.F, M = cfg.M, B = cfg.B;
-      var cloneIn = mkClone(cfg.container, uM, M, 2);
+      var cloneNew = mkClone(cfg.container, uF, B, 0);
       var cloneBack = mkClone(cfg.container, uB, B, 1);
+      var cloneIn = mkClone(cfg.container, uM, M, 2);
       var cloneOut = mkClone(cfg.container, uF, F, 2);
+      cfg.container.appendChild(cloneNew);
       cfg.container.appendChild(cloneBack);
-      cfg.container.appendChild(cloneOut);
       cfg.container.appendChild(cloneIn);
+      cfg.container.appendChild(cloneOut);
       cfg.front.style.visibility = "hidden";
       cfg.mid.style.visibility = "hidden";
       cfg.back.style.visibility = "hidden";
@@ -323,19 +325,19 @@
         Object.assign(geomKf(M), { filter: "blur(" + BLUR_MID + "px)" })
       ], opts);
       cloneBack._veil.animate([{ opacity: VEIL_BACK }, { opacity: VEIL_MID }], opts);
-      var k45 = lerpSlot(F, B, 0.45, cfg.bulgeL, cfg.bulgeT);
-      var k55 = lerpSlot(F, B, 0.55, (cfg.bulgeL || 0) * 0.85, (cfg.bulgeT || 0) * 0.85);
+      var EXIT = { l: F.l + (F.l - M.l) * 0.9, t: F.t + (F.t - M.t) * 0.9, w: F.w * 1.06, h: F.h * 1.06 };
+      var ENTRY = { l: B.l + (B.l - M.l) * 0.9, t: B.t + (B.t - M.t) * 0.9, w: B.w * 0.9, h: B.h * 0.9 };
       cloneOut.animate([
-        Object.assign(geomKf(F), { zIndex: "2", filter: "blur(0px)" }),
-        Object.assign(geomKf(k45), { zIndex: "2", filter: "blur(" + (BLUR_BACK * 0.4) + "px)", offset: 0.45 }),
-        Object.assign(geomKf(k55), { zIndex: "0", filter: "blur(" + (BLUR_BACK * 0.6) + "px)", offset: 0.55 }),
-        Object.assign(geomKf(B), { zIndex: "0", filter: "blur(" + BLUR_BACK + "px)" })
+        Object.assign(geomKf(F), { opacity: "1", filter: "blur(0px)" }),
+        Object.assign(geomKf(lerpSlot(F, EXIT, 0.45)), { opacity: "0.55", offset: 0.45 }),
+        Object.assign(geomKf(EXIT), { opacity: "0", filter: "blur(0px)" })
       ], opts);
-      cloneOut._veil.animate([
-        { opacity: 0 },
-        { opacity: VEIL_BACK * 0.5, offset: 0.5 },
-        { opacity: VEIL_BACK }
+      cloneNew.animate([
+        Object.assign(geomKf(ENTRY), { opacity: "0", filter: "blur(" + BLUR_BACK + "px)" }),
+        Object.assign(geomKf(lerpSlot(ENTRY, B, 0.4)), { opacity: "0.4", offset: 0.4 }),
+        Object.assign(geomKf(B), { opacity: "1", filter: "blur(" + BLUR_BACK + "px)" })
       ], opts);
+      cloneNew._veil.animate([{ opacity: VEIL_BACK }, { opacity: VEIL_BACK }], opts);
       setTimeout(function () {
         setUrl(cfg.front, uM); setUrl(cfg.mid, uB); setUrl(cfg.back, uF);
         cfg.front.style.visibility = "";
