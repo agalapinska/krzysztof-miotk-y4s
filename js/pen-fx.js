@@ -417,6 +417,60 @@
   })();
 
 
+  /* --- 4e. „Jak wygląda współpraca?": scrollowe odsłanianie fali (miękka maska) + aktywacja ikon --- */
+  (function () {
+    var firstWave = document.querySelector('[data-pencil-name="Wave 1"]');
+    if (!firstWave) return;
+    var section = firstWave.parentElement;
+    var waves = Array.prototype.filter.call(section.children, function (el) {
+      return /^Wave/.test(el.getAttribute("data-pencil-name") || "");
+    });
+    if (!waves.length) return;
+    var cols = [];
+    var content = section.querySelector('[data-pencil-name="Frame 661"]');
+    if (content) {
+      var grid = null;
+      Array.prototype.forEach.call(content.children, function (el) {
+        if (!grid && el.children.length >= 4 && el.offsetHeight > 250) grid = el;
+      });
+      if (grid) cols = Array.prototype.slice.call(grid.children, 0, 4);
+    }
+    var rings = section.querySelectorAll('[data-pencil-name="Icon Ring"]');
+    if (reduced) return;
+
+    var wrap = document.createElement("div");
+    wrap.style.cssText = "position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:0;";
+    section.insertBefore(wrap, waves[0]);
+    waves.forEach(function (w) { wrap.appendChild(w); });
+    if (getComputedStyle(section).position === "static") section.style.position = "relative";
+
+    var DIM = [1, 1, 0.8, 0.65];
+    var CENTERS = [275, 585, 895, 1205];
+    var W0 = 179, W1 = 1620, FEATHER = 170;
+    function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
+    var ticking = false;
+    function apply() {
+      ticking = false;
+      var r = section.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var p = ease((vh * 0.85 - r.top) / (r.height * 0.75 + vh * 0.35));
+      var w = W0 + (W1 - W0) * p;
+      var maskCss = "linear-gradient(90deg, #000 " + Math.max(0, w - FEATHER) + "px, rgba(0,0,0,0) " + w + "px)";
+      wrap.style.webkitMaskImage = maskCss;
+      wrap.style.maskImage = maskCss;
+      cols.forEach(function (col, i) {
+        var sp = ease((w - CENTERS[i]) / 220 + 0.5);
+        var base = DIM[i];
+        col.style.opacity = String(base + (1 - base) * sp);
+        if (rings[i]) rings[i].style.opacity = String(0.35 + 0.65 * sp);
+      });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    apply();
+  })();
+
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
   (function () {
     var OFFER_PAGE = /(badania-ux|segmentacja-klientow|audyt-ux|konsultacje-i-mentoring|dyrektor-ux|wystapienia-i-szkolenia)\.html$/;
