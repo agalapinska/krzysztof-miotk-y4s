@@ -364,13 +364,43 @@
       return fill;
     }
 
+    function armHover(cfg, state) {
+      var els = [cfg.front, cfg.mid, cfg.back];
+      els.forEach(function (el) { el.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)"; });
+      var factors = [[10, 8], [3, 2], [-6, -5]];
+      cfg.container.addEventListener("mousemove", function (e) {
+        var r = cfg.container.getBoundingClientRect();
+        var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        var ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        els.forEach(function (el, i) {
+          el.style.transform = "translate(" + (nx * factors[i][0]).toFixed(1) + "px," + (ny * factors[i][1]).toFixed(1) + "px)" +
+            (i === 0 ? " rotate(" + (nx * 0.8).toFixed(2) + "deg)" : "");
+        });
+        state.hovered = true;
+        if (state.fill) state.fill.style.animationPlayState = "paused";
+      });
+      cfg.container.addEventListener("mouseleave", function () {
+        state.hovered = false;
+        els.forEach(function (el) { el.style.transform = ""; });
+        if (state.fill) state.fill.style.animationPlayState = "";
+      });
+    }
+
     function runDeck(cfg, fill) {
+      var state = { hovered: false, fill: fill };
+      armHover(cfg, state);
+      var els = [cfg.front, cfg.mid, cfg.back];
+      function attempt() {
+        if (document.hidden || state.hovered) { setTimeout(attempt, 400); return; }
+        els.forEach(function (el) { el.style.transform = ""; });
+        deckSwap(cfg, function () {
+          els.forEach(function (el) { el.style.transform = ""; });
+          cycle();
+        });
+      }
       function cycle() {
-        if (fill) { fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
-        setTimeout(function () {
-          if (document.hidden) { cycle(); return; }
-          deckSwap(cfg, cycle);
-        }, LOAD);
+        if (fill) { fill.style.animationPlayState = ""; fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
+        setTimeout(attempt, LOAD);
       }
       cycle();
     }
@@ -498,7 +528,7 @@
     function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
     var played = false;
     function playReveal() {
-      var t0 = performance.now(), D = 3600;
+      var t0 = performance.now(), D = 5200;
       function frame(now) {
         var t = Math.min(1, (now - t0) / D);
         setProgress(easeOut(t));
