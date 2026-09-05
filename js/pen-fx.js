@@ -447,6 +447,24 @@
     var DIM = [1, 1, 0.8, 0.65];
     var CENTERS = [275, 585, 895, 1205];
     var W0 = 179, W1 = 1620, FEATHER = 170;
+    var RAMPS = {
+      outer: [0, 0, 0.05, 0.25],
+      r673: [0, 0, 0.30, 0.50],
+      r674: [0, 0.25, 0.50, 0.80],
+      dot: [0, 0, 0.25, 0.90],
+      icon: [0.35, 0.55, 0.80, 1]
+    };
+    var ringLayers = Array.prototype.map.call(rings, function (ring) {
+      return {
+        outer: ring,
+        r673: ring.querySelector('[data-pencil-name="Frame 673"]'),
+        r674: ring.querySelector('[data-pencil-name="Frame 674"]'),
+        dot: ring.querySelector('[data-pencil-name="Frame 672"]'),
+        icon: ring.querySelector("svg")
+      };
+    });
+    function rampVal(r, s) { var i = Math.min(2, Math.floor(s)); var f = s - i; return r[i] + (r[i + 1] - r[i]) * f; }
+    function whiteA(a) { return "rgba(255,255,255," + a.toFixed(3) + ")"; }
     function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
     var ticking = false;
     function apply() {
@@ -462,7 +480,14 @@
         var sp = ease((w - CENTERS[i]) / 220 + 0.5);
         var base = DIM[i];
         col.style.opacity = String(base + (1 - base) * sp);
-        if (rings[i]) rings[i].style.opacity = String(0.35 + 0.65 * sp);
+        var L = ringLayers[i];
+        if (!L) return;
+        var s = sp * 3;
+        L.outer.style.outlineColor = whiteA(rampVal(RAMPS.outer, s));
+        if (L.r673) L.r673.style.borderColor = whiteA(rampVal(RAMPS.r673, s));
+        if (L.r674) L.r674.style.borderColor = whiteA(rampVal(RAMPS.r674, s));
+        if (L.dot) L.dot.style.backgroundColor = whiteA(rampVal(RAMPS.dot, s));
+        if (L.icon) L.icon.style.opacity = String(rampVal(RAMPS.icon, s));
       });
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }
