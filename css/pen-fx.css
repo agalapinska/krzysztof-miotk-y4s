@@ -176,3 +176,20 @@ html { overflow-x: hidden; }
 .km-nl-input::placeholder { color: #9094A6; }
 .km-nl-input.is-bad, .km-nl-input.is-bad::placeholder { color: #E5484D; }
 .km-nl-ok { font-family: Inter, system-ui, sans-serif; font-size: 16px; font-weight: 600; color: #FFFFFF; padding: 16px 0; }
+
+/* Historie klientów — gradientowe przejęcie sekcji od lewej + rakieta */
+.km-case-overlay {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(120deg, #2A0D71 0%, #4C16C9 100%);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path .9s cubic-bezier(.45,.05,.2,1);
+}
+.km-case-on .km-case-overlay { clip-path: inset(0 0 0 0); }
+.km-case-text { transition: color .6s ease; }
+.km-case-on .km-case-text { color: #FFFFFF !important; }
+.km-case-on svg[data-icon-name="rocket"] { animation: km-rocket 0.9s ease-in-out infinite; }
+@keyframes km-rocket {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40% { transform: translateY(-6px) rotate(-6deg); }
+  70% { transform: translateY(-2px) rotate(3deg); }
+}

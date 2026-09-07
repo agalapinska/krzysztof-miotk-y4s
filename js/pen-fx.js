@@ -587,10 +587,17 @@
 
   /* --- 4g. Tooltip przy kursorze na „Pobierz Demo Raportu" --- */
   (function () {
-    var btns = Array.prototype.filter.call(document.querySelectorAll(".km-btn-fx"), function (b) {
-      return /pobierz demo raportu/i.test((b.textContent || "").trim());
+    var btns = [];
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length !== 0 || !/^pobierz demo raportu$/i.test((el.textContent || "").trim())) return;
+      var b = el;
+      for (var i = 0; i < 4 && b; i++) {
+        if (/background-color/.test(b.getAttribute("style") || "")) { btns.push(b); return; }
+        b = b.parentElement;
+      }
     });
     if (!btns.length) return;
+    btns.forEach(function (b) { b.classList.add("km-btn-fx"); });
     var tip = document.createElement("div");
     tip.className = "km-dl-tip";
     tip.textContent = "Po kliknięciu rozpocznie się pobieranie";
@@ -639,6 +646,93 @@
       if (btn) btn.addEventListener("click", submit);
       input.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
     });
+  })();
+
+  /* --- 4i. Historie klientów: karuzela case study + gradientowe przejęcie sekcji --- */
+  (function () {
+    var head = null;
+    document.querySelectorAll("div").forEach(function (el) {
+      if (!head && el.children.length === 0 && (el.textContent || "").trim() === "Kilka historii moich klientów") head = el;
+    });
+    if (!head) return;
+    var sec = head.parentElement;
+    while (sec && sec.offsetWidth < 1400) sec = sec.parentElement;
+    if (!sec) return;
+    var title = null, desc = null, tag = null, paras = [];
+    sec.querySelectorAll("div").forEach(function (el) {
+      var t = (el.textContent || "").trim();
+      if (t.indexOf("7 KONCEPCJI") === 0 && !el.querySelector("div")) title = el;
+      if (!desc && el.children.length === 0 && /Badania RITE/.test(t)) desc = el;
+      if (!tag && el.children.length === 0 && t.indexOf("CASE /") === 0) tag = el;
+      if (el.children.length === 0 && /Dlatego nie dostarczam raportów/.test(t)) paras.push(el);
+    });
+    if (!title || !desc || !tag) return;
+    var leftPanel = title;
+    while (leftPanel && !/linear-gradient/.test(leftPanel.getAttribute("style") || "")) leftPanel = leftPanel.parentElement;
+    var cardRow = leftPanel ? leftPanel.parentElement : null;
+    if (!cardRow) return;
+    var rightPara = null, lead = null;
+    paras.forEach(function (el) {
+      if (cardRow.contains(el)) rightPara = el; else lead = el;
+    });
+    var bars = Array.prototype.filter.call(sec.querySelectorAll("div"), function (el) {
+      return el.offsetHeight === 12 && el.offsetWidth > 60 && el.children.length === 0;
+    });
+
+    sec.style.position = "relative";
+    Array.prototype.forEach.call(sec.children, function (ch) {
+      var cs = getComputedStyle(ch);
+      if (cs.position === "static") ch.style.position = "relative";
+      if (!ch.style.zIndex) ch.style.zIndex = "1";
+    });
+    var overlay = document.createElement("div");
+    overlay.className = "km-case-overlay";
+    sec.insertBefore(overlay, sec.firstChild);
+    [head, lead].forEach(function (el) { if (el) el.classList.add("km-case-text"); });
+    var linkEl = null;
+    sec.querySelectorAll("div").forEach(function (el) {
+      if (!linkEl && el.children.length === 0 && /Przeczytaj historię projektu/.test((el.textContent || "").trim())) linkEl = el;
+    });
+    cardRow.addEventListener("mouseenter", function () { sec.classList.add("km-case-on"); state.hover = true; });
+    cardRow.addEventListener("mouseleave", function () { sec.classList.remove("km-case-on"); state.hover = false; });
+
+    var CASES = [
+      { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "CASE / APTEKA GEMINI", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
+      { title: "MILISEKUNDY\n= PIENIĄDZE.", desc: "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych.", tag: "CASE / XTB", right: "Szybkość interfejsu przełożona wprost na wynik finansowy — badania wskazały, które ścieżki naprawdę bolą użytkowników." },
+      { title: "SEGMENTACJA\nPORZĄDKUJE.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "CASE / OLX", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
+    ];
+    var idx = 0;
+    var state = { hover: false };
+    function paintBars() {
+      bars.forEach(function (b, i) { b.style.backgroundColor = (i === idx % (bars.length || 1)) ? "#A399FD" : "#FFFFFF"; });
+    }
+    if (reduced) { paintBars(); return; }
+    cardRow.style.transition = "transform .5s cubic-bezier(.45,.05,.2,1), opacity .5s ease";
+    function setCase(c) {
+      title.innerText = c.title;
+      desc.innerText = c.desc;
+      tag.innerText = c.tag;
+      if (rightPara) rightPara.innerText = c.right;
+    }
+    function advance() {
+      if (document.hidden || state.hover) { setTimeout(advance, 500); return; }
+      idx = (idx + 1) % CASES.length;
+      cardRow.style.transform = "translateX(60px)";
+      cardRow.style.opacity = "0";
+      setTimeout(function () {
+        setCase(CASES[idx]);
+        paintBars();
+        cardRow.style.transition = "none";
+        cardRow.style.transform = "translateX(-60px)";
+        void cardRow.offsetWidth;
+        cardRow.style.transition = "transform .5s cubic-bezier(.45,.05,.2,1), opacity .5s ease";
+        cardRow.style.transform = "";
+        cardRow.style.opacity = "1";
+        setTimeout(advance, 6500);
+      }, 520);
+    }
+    paintBars();
+    setTimeout(advance, 6500);
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
