@@ -96,7 +96,7 @@
     return SERVICES;
   }
   var btnRules = [
-    [/umów|napisz wiadomość|wyślij|zapisz się|pobierz/i, CONTACT],
+    [/umów|napisz wiadomość|wyślij|zapisz się|pobierz|^kontakt$/i, CONTACT],
     [/zobacz usług|zobacz wszystkie usługi/i, SERVICES]
   ];
   function buttonTarget(el) {
