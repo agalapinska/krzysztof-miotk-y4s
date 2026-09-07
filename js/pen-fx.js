@@ -487,6 +487,12 @@
       icon: [0.75, 1, 1, 1]
     };
     var ringLayers = Array.prototype.map.call(rings, function (ring) {
+      ring.style.outline = "3px solid rgba(255,255,255,0)";
+      ring.style.outlineOffset = "-1.5px";
+      var f673 = ring.querySelector('[data-pencil-name="Frame 673"]');
+      var f674 = ring.querySelector('[data-pencil-name="Frame 674"]');
+      if (f673) f673.style.border = "3px solid rgba(255,255,255,0)";
+      if (f674) f674.style.border = "3px solid rgba(255,255,255,0)";
       return {
         outer: ring,
         r673: ring.querySelector('[data-pencil-name="Frame 673"]'),
@@ -547,6 +553,12 @@
     window.addEventListener("scroll", check, { passive: true });
     setProgress(0);
     check();
+
+    var ctaPanel = null;
+    Array.prototype.forEach.call(section.querySelectorAll("div"), function (el) {
+      if (!ctaPanel && /^#14053333$/i.test(((el.getAttribute("style") || "").match(/background-color:\s*(#[0-9a-f]{8})/i) || [])[1] || "")) ctaPanel = el;
+    });
+    if (ctaPanel) ctaPanel.classList.add("km-proc-cta");
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */

@@ -140,3 +140,13 @@ html { overflow-x: hidden; }
   .km-tape.km-tape-hidden { transform: none; }
   .km-card-fx, .km-btn-fx { transition: none; }
 }
+
+/* Panel CTA w sekcji procesu — hover: uniesienie, biel + ciemny fiolet, kamera się kołysze */
+.km-proc-cta { transition: transform .35s ease, background-color .35s ease; cursor: pointer; }
+.km-proc-cta:hover { transform: translateY(-5px); background-color: #FFFFFF !important; }
+.km-proc-cta div { transition: color .35s ease; }
+.km-proc-cta:hover div { color: #1D0055 !important; }
+.km-proc-cta:hover svg [fill]:not([fill="none"]) { fill: #1D0055 !important; }
+.km-proc-cta:hover svg [stroke] { stroke: #1D0055 !important; }
+.km-proc-cta:hover svg { animation: km-cam-rock 1.4s ease-in-out infinite; transform-origin: 50% 60%; }
+@keyframes km-cam-rock { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
