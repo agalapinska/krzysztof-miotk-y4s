@@ -655,8 +655,14 @@
       if (!head && el.children.length === 0 && (el.textContent || "").trim() === "Kilka historii moich klientów") head = el;
     });
     if (!head) return;
-    var sec = head.parentElement;
-    while (sec && sec.offsetWidth < 1400) sec = sec.parentElement;
+    var sec = head.parentElement, secBg = null;
+    while (sec) {
+      var st = sec.getAttribute("style") || "";
+      if (/background-color/.test(st) && sec.offsetWidth >= 1400) { secBg = sec; break; }
+      if (sec.offsetWidth >= 1400 && !secBg) secBg = sec;
+      sec = sec.parentElement;
+    }
+    sec = secBg;
     if (!sec) return;
     var title = null, desc = null, tag = null, paras = [];
     sec.querySelectorAll("div").forEach(function (el) {
@@ -675,9 +681,6 @@
     paras.forEach(function (el) {
       if (cardRow.contains(el)) rightPara = el; else lead = el;
     });
-    var bars = Array.prototype.filter.call(sec.querySelectorAll("div"), function (el) {
-      return el.offsetHeight === 12 && el.offsetWidth > 60 && el.children.length === 0;
-    });
 
     sec.style.position = "relative";
     Array.prototype.forEach.call(sec.children, function (ch) {
@@ -689,12 +692,30 @@
     overlay.className = "km-case-overlay";
     sec.insertBefore(overlay, sec.firstChild);
     [head, lead].forEach(function (el) { if (el) el.classList.add("km-case-text"); });
-    var linkEl = null;
-    sec.querySelectorAll("div").forEach(function (el) {
-      if (!linkEl && el.children.length === 0 && /Przeczytaj historię projektu/.test((el.textContent || "").trim())) linkEl = el;
+    var state = { hover: false };
+    var fill = null;
+    var f701 = sec.querySelector('[data-pencil-name="Frame 701"]');
+    if (f701) {
+      Array.prototype.forEach.call(f701.children, function (el) {
+        var st = el.getAttribute("style") || "";
+        if (/background-color:\s*#5205E7/i.test(st)) fill = el;
+      });
+      if (fill) {
+        f701.style.position = "relative";
+        fill.style.left = ""; fill.style.top = ""; fill.style.width = ""; fill.style.height = "";
+        fill.classList.add("km-hero-fill");
+      }
+    }
+    cardRow.addEventListener("mouseenter", function () {
+      sec.classList.add("km-case-on");
+      state.hover = true;
+      if (fill) fill.style.animationPlayState = "paused";
     });
-    cardRow.addEventListener("mouseenter", function () { sec.classList.add("km-case-on"); state.hover = true; });
-    cardRow.addEventListener("mouseleave", function () { sec.classList.remove("km-case-on"); state.hover = false; });
+    cardRow.addEventListener("mouseleave", function () {
+      sec.classList.remove("km-case-on");
+      state.hover = false;
+      if (fill) fill.style.animationPlayState = "";
+    });
 
     var CASES = [
       { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "CASE / APTEKA GEMINI", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
@@ -702,12 +723,8 @@
       { title: "SEGMENTACJA\nPORZĄDKUJE.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "CASE / OLX", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
     ];
     var idx = 0;
-    var state = { hover: false };
-    function paintBars() {
-      bars.forEach(function (b, i) { b.style.backgroundColor = (i === idx % (bars.length || 1)) ? "#A399FD" : "#FFFFFF"; });
-    }
-    if (reduced) { paintBars(); return; }
-    cardRow.style.transition = "transform .5s cubic-bezier(.45,.05,.2,1), opacity .5s ease";
+    if (reduced) return;
+    var SLIDE = 700, EASECR = "cubic-bezier(.45,.05,.2,1)";
     function setCase(c) {
       title.innerText = c.title;
       desc.innerText = c.desc;
@@ -715,24 +732,35 @@
       if (rightPara) rightPara.innerText = c.right;
     }
     function advance() {
-      if (document.hidden || state.hover) { setTimeout(advance, 500); return; }
+      if (document.hidden || state.hover) { setTimeout(advance, 400); return; }
       idx = (idx + 1) % CASES.length;
-      cardRow.style.transform = "translateX(60px)";
+      var parent = cardRow.parentElement;
+      if (getComputedStyle(parent).position === "static") parent.style.position = "relative";
+      var clone = cardRow.cloneNode(true);
+      clone.style.position = "absolute";
+      clone.style.left = cardRow.offsetLeft + "px";
+      clone.style.top = cardRow.offsetTop + "px";
+      clone.style.width = cardRow.offsetWidth + "px";
+      clone.style.zIndex = "2";
+      clone.style.transition = "transform " + SLIDE + "ms " + EASECR + ", opacity " + SLIDE + "ms ease";
+      parent.appendChild(clone);
+      setCase(CASES[idx]);
+      cardRow.style.transition = "none";
+      cardRow.style.transform = "translateX(-90px)";
       cardRow.style.opacity = "0";
-      setTimeout(function () {
-        setCase(CASES[idx]);
-        paintBars();
-        cardRow.style.transition = "none";
-        cardRow.style.transform = "translateX(-60px)";
-        void cardRow.offsetWidth;
-        cardRow.style.transition = "transform .5s cubic-bezier(.45,.05,.2,1), opacity .5s ease";
-        cardRow.style.transform = "";
-        cardRow.style.opacity = "1";
-        setTimeout(advance, 6500);
-      }, 520);
+      void cardRow.offsetWidth;
+      cardRow.style.transition = "transform " + SLIDE + "ms " + EASECR + ", opacity " + SLIDE + "ms ease";
+      cardRow.style.transform = "";
+      cardRow.style.opacity = "1";
+      clone.style.transform = "translateX(110px)";
+      clone.style.opacity = "0";
+      setTimeout(function () { clone.remove(); cycle(); }, SLIDE + 40);
     }
-    paintBars();
-    setTimeout(advance, 6500);
+    function cycle() {
+      if (fill) { fill.style.animationPlayState = ""; fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
+      setTimeout(advance, 3500);
+    }
+    cycle();
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
