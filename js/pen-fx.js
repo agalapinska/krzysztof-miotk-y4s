@@ -561,6 +561,30 @@
     if (ctaPanel) ctaPanel.classList.add("km-proc-cta");
   })();
 
+  /* --- 4f. Opinie: never-ending marquee z góry na dół --- */
+  (function () {
+    if (reduced) return;
+    var head = null;
+    document.querySelectorAll("div").forEach(function (el) {
+      if (!head && el.children.length === 0 && (el.textContent || "").trim() === "Co mówią klienci") head = el;
+    });
+    if (!head) return;
+    var scope = head.parentElement;
+    var f663 = scope && scope.querySelector('[data-pencil-name="Frame 663"]');
+    if (!f663) return;
+    var H = f663.offsetHeight, W = f663.offsetWidth, GAP = 20;
+    var vp = document.createElement("div");
+    vp.style.cssText = "overflow:hidden;height:" + H + "px;width:" + W + "px;position:relative;";
+    f663.parentNode.insertBefore(vp, f663);
+    var track = document.createElement("div");
+    track.style.cssText = "display:flex;flex-direction:column;gap:" + GAP + "px;will-change:transform;";
+    track.className = "km-reviews-track";
+    track.style.setProperty("--km-rev-shift", (H + GAP) + "px");
+    vp.appendChild(track);
+    track.appendChild(f663);
+    track.appendChild(f663.cloneNode(true));
+  })();
+
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
   (function () {
     var OFFER_PAGE = /(badania-ux|segmentacja-klientow|audyt-ux|konsultacje-i-mentoring|dyrektor-ux|wystapienia-i-szkolenia)\.html$/;

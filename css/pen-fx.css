@@ -150,3 +150,11 @@ html { overflow-x: hidden; }
 .km-proc-cta:hover svg [stroke] { stroke: #1D0055 !important; }
 .km-proc-cta:hover svg { animation: km-cam-rock 1.4s ease-in-out infinite; transform-origin: 50% 60%; }
 @keyframes km-cam-rock { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+
+/* Opinie — zapętlony marquee z góry na dół */
+.km-reviews-track { animation: km-reviews-loop 52s linear infinite; }
+@keyframes km-reviews-loop {
+  from { transform: translateY(calc(-1 * var(--km-rev-shift))); }
+  to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) { .km-reviews-track { animation: none; } }
