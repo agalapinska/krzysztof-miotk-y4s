@@ -158,3 +158,21 @@ html { overflow-x: hidden; }
   to { transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) { .km-reviews-track { animation: none; } }
+
+/* Tooltip przy kursorze — „Pobierz Demo Raportu" */
+.km-dl-tip {
+  position: fixed; transform: translate(-50%, -100%);
+  font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 600;
+  color: #1D0055; white-space: nowrap; pointer-events: none;
+  opacity: 0; transition: opacity .18s ease; z-index: 80;
+}
+.km-dl-tip.is-on { opacity: 1; }
+
+/* Newsletter — realny input */
+.km-nl-input {
+  border: none; outline: none; background: transparent; width: 100%; padding: 0;
+  font-family: Inter, system-ui, sans-serif; font-size: 16px; color: #15172C;
+}
+.km-nl-input::placeholder { color: #9094A6; }
+.km-nl-input.is-bad, .km-nl-input.is-bad::placeholder { color: #E5484D; }
+.km-nl-ok { font-family: Inter, system-ui, sans-serif; font-size: 16px; font-weight: 600; color: #FFFFFF; padding: 16px 0; }

@@ -96,7 +96,7 @@
     return SERVICES;
   }
   var btnRules = [
-    [/umów|napisz wiadomość|wyślij|zapisz się|pobierz|^kontakt$/i, CONTACT],
+    [/umów|napisz wiadomość|wyślij|pobierz|^kontakt$/i, CONTACT],
     [/zobacz usług|zobacz wszystkie usługi/i, SERVICES]
   ];
   function buttonTarget(el) {
@@ -583,6 +583,62 @@
     vp.appendChild(track);
     track.appendChild(f663);
     track.appendChild(f663.cloneNode(true));
+  })();
+
+  /* --- 4g. Tooltip przy kursorze na „Pobierz Demo Raportu" --- */
+  (function () {
+    var btns = Array.prototype.filter.call(document.querySelectorAll(".km-btn-fx"), function (b) {
+      return /pobierz demo raportu/i.test((b.textContent || "").trim());
+    });
+    if (!btns.length) return;
+    var tip = document.createElement("div");
+    tip.className = "km-dl-tip";
+    tip.textContent = "Po kliknięciu rozpocznie się pobieranie";
+    document.body.appendChild(tip);
+    function zoom() { return parseFloat(document.body.style.zoom) || 1; }
+    btns.forEach(function (b) {
+      b.addEventListener("mousemove", function (e) {
+        var z = zoom();
+        tip.style.left = (e.clientX / z) + "px";
+        tip.style.top = (e.clientY / z - 34) + "px";
+        tip.classList.add("is-on");
+      });
+      b.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+    });
+  })();
+
+  /* --- 4h. Newsletter: działający input + zapis --- */
+  (function () {
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length !== 0 || (el.textContent || "").trim() !== "Wpisz swój adres e-mail") return;
+      var box = el.parentElement;
+      var input = document.createElement("input");
+      input.type = "email";
+      input.placeholder = "Wpisz swój adres e-mail";
+      input.className = "km-nl-input";
+      el.replaceWith(input);
+      box.style.cursor = "text";
+      box.addEventListener("click", function () { input.focus(); });
+      var row = box.parentElement;
+      var btn = Array.prototype.find.call(row.children, function (c) { return /zapisz się/i.test(c.textContent || ""); });
+      function submit() {
+        var v = input.value.trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) {
+          input.classList.add("is-bad");
+          input.focus();
+          setTimeout(function () { input.classList.remove("is-bad"); }, 1200);
+          return;
+        }
+        row.style.transition = "opacity .3s ease";
+        row.style.opacity = "0";
+        setTimeout(function () {
+          row.innerHTML = '<div class="km-nl-ok">Dzięki! Sprawdź skrzynkę i potwierdź zapis ✨</div>';
+          row.style.opacity = "1";
+        }, 300);
+      }
+      if (btn) btn.addEventListener("click", submit);
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
+    });
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
