@@ -682,6 +682,27 @@
       if (cardRow.contains(el)) rightPara = el; else lead = el;
     });
 
+    var rightPanel = Array.prototype.find.call(cardRow.children, function (el) {
+      return /background-color:\s*#FFFFFF/i.test(el.getAttribute("style") || "");
+    });
+    cardRow.style.alignItems = "stretch";
+    if (rightPanel) {
+      rightPanel.style.height = "auto";
+      rightPanel.style.justifyContent = "space-between";
+      var linkWrap = null;
+      rightPanel.querySelectorAll("div").forEach(function (el) {
+        if (!linkWrap && /Przeczytaj historię projektu/.test(el.textContent || "")) {
+          var w = el;
+          while (w.parentElement !== rightPanel) w = w.parentElement;
+          linkWrap = w;
+        }
+      });
+      if (linkWrap) {
+        linkWrap.style.alignSelf = "flex-end";
+        linkWrap.style.marginTop = "auto";
+      }
+    }
+
     sec.style.position = "relative";
     Array.prototype.forEach.call(sec.children, function (ch) {
       var cs = getComputedStyle(ch);
