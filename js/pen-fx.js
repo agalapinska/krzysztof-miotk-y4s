@@ -561,7 +561,7 @@
     if (ctaPanel) ctaPanel.classList.add("km-proc-cta");
   })();
 
-  /* --- 4f. Opinie: never-ending marquee z góry na dół --- */
+  /* --- 4f. Opinie: never-ending marquee (auto-dryf, pauza na hover, scroll ręczny) --- */
   (function () {
     if (reduced) return;
     var head = null;
@@ -572,17 +572,37 @@
     var scope = head.parentElement;
     var f663 = scope && scope.querySelector('[data-pencil-name="Frame 663"]');
     if (!f663) return;
-    var H = f663.offsetHeight, W = f663.offsetWidth, GAP = 20;
+    var H = f663.offsetHeight, W = f663.offsetWidth, GAP = 20, shift = H + GAP;
     var vp = document.createElement("div");
     vp.style.cssText = "overflow:hidden;height:" + H + "px;width:" + W + "px;position:relative;";
     f663.parentNode.insertBefore(vp, f663);
     var track = document.createElement("div");
     track.style.cssText = "display:flex;flex-direction:column;gap:" + GAP + "px;will-change:transform;";
-    track.className = "km-reviews-track";
-    track.style.setProperty("--km-rev-shift", (H + GAP) + "px");
     vp.appendChild(track);
     track.appendChild(f663);
     track.appendChild(f663.cloneNode(true));
+    var pos = -shift, hovered = false, last = performance.now();
+    var SPEED = shift / 52;
+    function wrapPos() {
+      while (pos >= 0) pos -= shift;
+      while (pos < -shift) pos += shift;
+    }
+    function frame(now) {
+      var dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      if (!hovered) { pos += SPEED * dt; wrapPos(); }
+      track.style.transform = "translateY(" + pos + "px)";
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    vp.addEventListener("mouseenter", function () { hovered = true; });
+    vp.addEventListener("mouseleave", function () { hovered = false; });
+    vp.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      pos -= e.deltaY;
+      wrapPos();
+      track.style.transform = "translateY(" + pos + "px)";
+    }, { passive: false });
   })();
 
   /* --- 4g. Tooltip przy kursorze na „Pobierz Demo Raportu" --- */
