@@ -369,6 +369,7 @@
       els.forEach(function (el) { el.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)"; });
       var factors = [[10, 8], [3, 2], [-6, -5]];
       cfg.container.addEventListener("mousemove", function (e) {
+        if (state.swapping) return;
         var r = cfg.container.getBoundingClientRect();
         var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
         var ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
@@ -387,16 +388,19 @@
     }
 
     function runDeck(cfg, fill) {
-      var state = { hovered: false, fill: fill };
+      var state = { hovered: false, swapping: false, fill: fill };
       armHover(cfg, state);
       var els = [cfg.front, cfg.mid, cfg.back];
       function attempt() {
         if (document.hidden || state.hovered) { setTimeout(attempt, 400); return; }
-        els.forEach(function (el) { el.style.transform = ""; });
+        state.swapping = true;
         deckSwap(cfg, function () {
-          els.forEach(function (el) { el.style.transform = ""; });
+          void els[0].offsetWidth;
+          els.forEach(function (el) { el.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)"; });
+          state.swapping = false;
           cycle();
         });
+        els.forEach(function (el) { el.style.transition = "none"; el.style.transform = ""; });
       }
       function cycle() {
         if (fill) { fill.style.animationPlayState = ""; fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
