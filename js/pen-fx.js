@@ -250,19 +250,85 @@
         '</div>' +
       '</div>';
     wrap.appendChild(mega);
-    var hideT;
-    function open() { clearTimeout(hideT); wrap.classList.add("is-open"); }
-    function close() { hideT = setTimeout(function () { wrap.classList.remove("is-open"); }, 160); }
-    function overButton(t) {
-      return !!(t && t.closest && t.closest('.km-btn-fx, [data-pencil-name="Frame 710"]'));
-    }
-    nav.addEventListener("mouseover", function (e) {
-      if (overButton(e.target)) { close(); return; }
-      open();
+
+    /* Trigger = wyłącznie grupa „Usługi" w nawigacji (nie cały header).
+       Szukamy etykiety „Usługi :" i cofamy się do jej bezpośredniego rodzica w Nav-top. */
+    var label = null;
+    nav.querySelectorAll("div").forEach(function (el) {
+      if (!label && el.children.length === 0 && /^Usługi\s*:?$/.test((el.textContent || "").trim())) label = el;
     });
-    nav.addEventListener("mouseleave", close);
-    mega.addEventListener("mouseenter", open);
-    mega.addEventListener("mouseleave", close);
+    var group = label;
+    while (group && group.parentElement && group.parentElement !== nav) group = group.parentElement;
+    if (!group || group === nav) { mega.remove(); return; }
+    group.classList.add("km-nav-trigger");
+    if (label) {
+      label.setAttribute("tabindex", "0");
+      label.setAttribute("role", "button");
+      label.setAttribute("aria-expanded", "false");
+      label.setAttribute("aria-haspopup", "true");
+    }
+
+    /* Opóźnienia intencji — bez nich przejazd kursorem miga panelem. */
+    var OPEN_DELAY = 90, CLOSE_DELAY = 240, HIT_PAD = 16;
+    var openT = null, closeT = null, isOpen = false, pinned = false;
+    function doOpen() {
+      openT = null;
+      if (isOpen) return;
+      isOpen = true;
+      wrap.classList.add("is-open");
+      if (label) label.setAttribute("aria-expanded", "true");
+    }
+    function doClose() {
+      closeT = null;
+      if (!isOpen) return;
+      isOpen = false;
+      wrap.classList.remove("is-open");
+      if (label) label.setAttribute("aria-expanded", "false");
+    }
+    function requestOpen() {
+      if (closeT) { clearTimeout(closeT); closeT = null; }
+      if (isOpen || openT) return;
+      openT = setTimeout(doOpen, OPEN_DELAY);
+    }
+    function requestClose() {
+      if (pinned) return;
+      if (openT) { clearTimeout(openT); openT = null; }
+      if (!isOpen || closeT) return;
+      closeT = setTimeout(doClose, CLOSE_DELAY);
+    }
+    /* Pasek „Usługi" jest wysoki na ~19px — hit-area rozciągamy na pełną wysokość
+       nawigacji w pionie i o HIT_PAD w poziomie, licząc pozycję kursora. */
+    nav.addEventListener("mousemove", function (e) {
+      var r = group.getBoundingClientRect();
+      if (e.clientX >= r.left - HIT_PAD && e.clientX <= r.right + HIT_PAD) requestOpen();
+      else requestClose();
+    });
+    nav.addEventListener("mouseleave", requestClose);
+    mega.addEventListener("mouseenter", function () {
+      if (closeT) { clearTimeout(closeT); closeT = null; }
+    });
+    mega.addEventListener("mouseleave", requestClose);
+
+    if (label) {
+      label.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          pinned = !isOpen;
+          if (isOpen) doClose(); else doOpen();
+        }
+      });
+      label.addEventListener("focus", requestOpen);
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      pinned = false;
+      doClose();
+    });
+    document.addEventListener("mousedown", function (e) {
+      if (wrap.contains(e.target)) return;
+      pinned = false;
+      doClose();
+    });
   })();
 
   /* --- 4d. Animacje talii zdjęć (hero i demo raportu) wg klatek z Pen --- */
@@ -751,16 +817,21 @@
         fill.classList.add("km-hero-fill");
       }
     }
-    cardRow.addEventListener("mouseenter", function () {
-      sec.classList.add("km-case-on");
-      state.hover = true;
-      if (fill) fill.style.animationPlayState = "paused";
-    });
-    cardRow.addEventListener("mouseleave", function () {
-      sec.classList.remove("km-case-on");
-      state.hover = false;
-      if (fill) fill.style.animationPlayState = "";
-    });
+    /* Przejęcie sekcji jest kosztowne wizualnie (clip-path na całej szerokości + inwersja
+       kolorów), więc wymagamy intencji: 140 ms na wejściu, 300 ms na wyjściu. Bez tego
+       szybki przejazd kursorem strobuje całą sekcją. */
+    var caseHoverT = null;
+    function caseHover(on) {
+      if (caseHoverT) { clearTimeout(caseHoverT); caseHoverT = null; }
+      caseHoverT = setTimeout(function () {
+        caseHoverT = null;
+        sec.classList.toggle("km-case-on", on);
+        state.hover = on;
+        if (fill) fill.style.animationPlayState = on ? "paused" : "";
+      }, on ? 140 : 300);
+    }
+    cardRow.addEventListener("mouseenter", function () { caseHover(true); });
+    cardRow.addEventListener("mouseleave", function () { caseHover(false); });
 
     var CASES = [
       { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "CASE / APTEKA GEMINI", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
@@ -787,6 +858,7 @@
       clone.style.top = cardRow.offsetTop + "px";
       clone.style.width = cardRow.offsetWidth + "px";
       clone.style.zIndex = "2";
+      clone.style.pointerEvents = "none";
       clone.style.transition = "transform " + SLIDE + "ms " + EASECR + ", opacity " + SLIDE + "ms ease";
       parent.appendChild(clone);
       setCase(CASES[idx]);
@@ -852,11 +924,14 @@
     var hero = document.querySelector('[data-pencil-name="section"]');
     float.classList.add("is-hidden");
     function syncFloat() {
-      var f = float.getBoundingClientRect();
+      /* Progi liczymy z układu (top z CSS + offsetHeight), a nie z getBoundingClientRect:
+         w stanie ukrytym widżet ma translateY(-14px), więc jego własny rect przesuwałby
+         próg i powodował migotanie na granicy sekcji. */
+      var fTop = 80, fBottom = 80 + float.offsetHeight;
       var afterHero = true;
-      if (hero) afterHero = hero.getBoundingClientRect().bottom < Math.max(f.top, 60);
+      if (hero) afterHero = hero.getBoundingClientRect().bottom < Math.max(fTop, 60);
       var beforeEnd = true;
-      if (target) beforeEnd = target.getBoundingClientRect().top > f.bottom + 40;
+      if (target) beforeEnd = target.getBoundingClientRect().top > fBottom + 40;
       float.classList.toggle("is-hidden", !(afterHero && beforeEnd));
     }
     window.addEventListener("scroll", syncFloat, { passive: true });

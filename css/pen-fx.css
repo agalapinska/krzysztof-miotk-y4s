@@ -5,10 +5,14 @@ html { overflow-x: hidden; }
 
 @keyframes km-ripple { from { transform: scale(0); opacity: .4; } to { transform: scale(2.6); opacity: 0; } }
 @keyframes km-gradient-drift { 0%{background-position:0% 0%} 25%{background-position:80% 30%} 50%{background-position:100% 100%} 75%{background-position:20% 70%} 100%{background-position:0% 0%} }
-@keyframes km-glow-pulse { 0%,100%{opacity:.4;transform:scale(1) translate(0,0)} 33%{opacity:1;transform:scale(1.18) translate(-40px,30px)} 66%{opacity:.7;transform:scale(1.05) translate(30px,-20px)} }
+/* Poświaty pulsują wyłącznie krycia: skala + translate na warstwie z blur(70px)
+   wymuszały przemalowanie wielkiego obszaru w każdej klatce (widoczne migotanie). */
+@keyframes km-glow-pulse { 0%,100%{opacity:.45} 50%{opacity:.8} }
 
 /* Dryfujący gradient — nakładany przez JS na duże sekcje gradientowe */
-.km-drift { background-size: 300% 300% !important; animation: km-gradient-drift 14s ease-in-out infinite; }
+/* 300% + 14s znaczyło ciągłe przemalowywanie całej sekcji; mniejszy zakres i wolniejszy
+   cykl dają ten sam efekt bez pulsowania tła pod resztą animacji. */
+.km-drift { background-size: 220% 220% !important; animation: km-gradient-drift 22s ease-in-out infinite; }
 
 /* Pulsujące poświaty na sekcjach gradientowych */
 .km-glows { position: relative; }
@@ -19,12 +23,14 @@ html { overflow-x: hidden; }
 .km-glows::before {
   width: 420px; height: 420px; left: -120px; top: -100px;
   background: radial-gradient(circle, oklch(65% 0.23 285 / .5), transparent 70%);
-  animation: km-glow-pulse 9s ease-in-out infinite;
+  animation: km-glow-pulse 18s ease-in-out infinite;
+  will-change: opacity;
 }
 .km-glows::after {
   width: 380px; height: 380px; right: -100px; bottom: -120px;
   background: radial-gradient(circle, oklch(75% 0.16 300 / .4), transparent 70%);
-  animation: km-glow-pulse 11s ease-in-out 3s infinite;
+  animation: km-glow-pulse 22s ease-in-out 5s infinite;
+  will-change: opacity;
 }
 
 /* Karty / wiersze usług — lift + glow podążający za kursorem */
@@ -62,7 +68,7 @@ html { overflow-x: hidden; }
 .km-splitbtn:hover > .km-split-main { animation: km-btn-drift 2.4s ease-in-out infinite; }
 @keyframes km-btn-drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .km-splitbtn > .km-split-arrow { overflow: hidden; justify-content: center !important; }
-.km-splitbtn:hover > .km-split-arrow svg { animation: km-arrow-roll .85s linear infinite; }
+.km-splitbtn:hover > .km-split-arrow svg { animation: km-arrow-roll 1.5s linear infinite; }
 @keyframes km-arrow-roll { 0% { transform: translateX(-260%); } 100% { transform: translateX(260%); } }
 
 /* Mega-menu „Usługi" — stan otwarty z projektu Pen (Frame 684) */
@@ -75,6 +81,9 @@ html { overflow-x: hidden; }
   transition: opacity .22s ease, transform .22s ease, visibility .22s;
 }
 .km-nav-wrap.is-open .km-mega { opacity: 1; visibility: visible; transform: none; }
+/* Etykieta „Usługi" jest jedynym triggerem menu — dostępna też z klawiatury. */
+.km-nav-trigger [aria-haspopup="true"] { cursor: default; }
+.km-nav-trigger [aria-haspopup="true"]:focus-visible { outline: 2px solid #5205E7; outline-offset: 3px; }
 .km-mega__inner { width: 1180px; margin: 0 auto; display: flex; }
 .km-mega__left { width: 300px; padding: 40px 32px 0 0; box-sizing: border-box; }
 .km-mega__label { display: flex; align-items: center; gap: 6px; font-family: "Geist Mono", ui-monospace, monospace; font-weight: 500; font-size: 12.5px; letter-spacing: .08em; color: #665eee; }
@@ -111,13 +120,15 @@ html { overflow-x: hidden; }
   position: absolute;
   left: 0;
   top: 0;
-  width: 0;
+  width: 100%;
   height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 .km-hero-fill.is-run { animation: km-hero-load 3.5s linear forwards; }
 @keyframes km-hero-load {
-  from { width: 0; background-color: #A399FD; }
-  to { width: 100%; background-color: #5205E7; }
+  from { transform: scaleX(0); background-color: #A399FD; }
+  to { transform: scaleX(1); background-color: #5205E7; }
 }
 
 /* Pływający widżet kalendarza — stały w tym samym miejscu do sekcji „Co mówią klienci" */
@@ -139,6 +150,10 @@ html { overflow-x: hidden; }
   .km-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .km-tape.km-tape-hidden { transform: none; }
   .km-card-fx, .km-btn-fx { transition: none; }
+  .km-proc-cta:hover svg,
+  .km-case-on svg[data-icon-name="rocket"] { animation: none !important; }
+  .km-hero-fill.is-run { animation: none !important; transform: scaleX(1); background-color: #5205E7; }
+  .km-case-overlay { transition: none !important; }
 }
 
 /* Panel CTA w sekcji procesu — hover: uniesienie, biel + ciemny fiolet, kamera się kołysze */
@@ -148,8 +163,8 @@ html { overflow-x: hidden; }
 .km-proc-cta:hover div { color: #1D0055 !important; }
 .km-proc-cta:hover svg [fill]:not([fill="none"]) { fill: #1D0055 !important; }
 .km-proc-cta:hover svg [stroke] { stroke: #1D0055 !important; }
-.km-proc-cta:hover svg { animation: km-cam-rock 1.4s ease-in-out infinite; transform-origin: 50% 60%; }
-@keyframes km-cam-rock { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+.km-proc-cta:hover svg { animation: km-cam-rock 2.8s ease-in-out infinite; transform-origin: 50% 60%; }
+@keyframes km-cam-rock { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
 
 /* Tooltip przy kursorze — „Pobierz Demo Raportu" */
 .km-dl-tip {
@@ -175,13 +190,14 @@ html { overflow-x: hidden; }
   background: linear-gradient(120deg, #2A0D71 0%, #4C16C9 100%);
   clip-path: inset(0 100% 0 0);
   transition: clip-path .9s cubic-bezier(.45,.05,.2,1);
+  will-change: clip-path;
 }
 .km-case-on .km-case-overlay { clip-path: inset(0 0 0 0); }
 .km-case-text { transition: color .6s ease; }
 .km-case-on .km-case-text { color: #FFFFFF !important; }
-.km-case-on svg[data-icon-name="rocket"] { animation: km-rocket 0.9s ease-in-out infinite; }
+.km-case-on svg[data-icon-name="rocket"] { animation: km-rocket 2.2s ease-in-out infinite; }
 @keyframes km-rocket {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  40% { transform: translateY(-6px) rotate(-6deg); }
-  70% { transform: translateY(-2px) rotate(3deg); }
+  40% { transform: translateY(-5px) rotate(-4deg); }
+  70% { transform: translateY(-2px) rotate(2deg); }
 }
