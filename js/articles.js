@@ -3,7 +3,9 @@
 (function () {
   "use strict";
   var CONFIG = {
-    SHEET_CSV_URL: "" // wklej link CSV z „Opublikuj w internecie"; pusty = karty statyczne z projektu
+    // Arkusz „Artykuły_CMS" na Dysku Google. Wymaga udostępnienia:
+    // „Każdy, kto ma link — Przeglądający" (inaczej CSV zwraca 401 i zostają karty statyczne).
+    SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv"
   };
 
   function parseCSV(text) {
@@ -105,7 +107,17 @@
   if (!/artykuly\.html/.test(location.pathname)) return;
   if (!CONFIG.SHEET_CSV_URL) return;
   fetch(CONFIG.SHEET_CSV_URL)
-    .then(function (r) { return r.text(); })
-    .then(function (t) { init(toObjects(parseCSV(t))); })
-    .catch(function (e) { console.warn("Artykuły: nie udało się pobrać arkusza", e); });
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status + " — arkusz nie jest publiczny?");
+      return r.text();
+    })
+    .then(function (t) {
+      var rows = parseCSV(t);
+      if (!rows.length || rows[0].join(",").toLowerCase().indexOf("tytul") === -1) {
+        throw new Error("odpowiedź nie wygląda na CSV z kolumną 'tytul' (sprawdź udostępnianie arkusza)");
+      }
+      var arts = toObjects(rows).filter(function (a) { return a.tytul; });
+      if (arts.length) init(arts);
+    })
+    .catch(function (e) { console.warn("Artykuły: zostają karty statyczne —", e.message || e); });
 })();
