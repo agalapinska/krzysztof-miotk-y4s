@@ -163,7 +163,7 @@
     "Wystąpienia i szkolenia": PAGES["Wystąpienia i szkolenia"],
     "Zewnętrzny Dyrektor UX": PAGES["Zewnętrzny Dyrektor UX"],
     "Usługi": SERVICES, "Usługi/": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
-    "Strona główna": HOME, "Artykuły": ARTICLES
+    "Strona główna": HOME, "Artykuły": ARTICLES, "Artykuły/": ARTICLES
   };
   document.querySelectorAll("div, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
