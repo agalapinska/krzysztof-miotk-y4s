@@ -59,7 +59,8 @@ html { overflow-x: hidden; }
   background-size: 240% 100% !important;
   background-position: 0% 50%;
 }
-.km-splitbtn:hover > .km-split-main { animation: km-btn-drift 2.4s ease-in-out infinite; }
+.km-splitbtn > .km-split-main { animation: km-btn-drift 3.2s ease-in-out infinite; }
+.km-splitbtn.km-btn-fx:hover { transform: none !important; filter: none !important; }
 @keyframes km-btn-drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .km-splitbtn > .km-split-arrow { overflow: hidden; justify-content: center !important; }
 .km-splitbtn:hover > .km-split-arrow svg { animation: km-arrow-roll .85s linear infinite; }
@@ -135,7 +136,7 @@ html { overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .km-drift, .km-glows::before, .km-glows::after { animation: none !important; }
   .km-mega { transition: none; }
-  .km-splitbtn:hover > .km-split-main, .km-splitbtn:hover > .km-split-arrow svg { animation: none !important; }
+  .km-splitbtn > .km-split-main, .km-splitbtn:hover > .km-split-arrow svg { animation: none !important; }
   .km-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .km-tape.km-tape-hidden { transform: none; }
   .km-card-fx, .km-btn-fx { transition: none; }

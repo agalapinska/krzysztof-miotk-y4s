@@ -43,6 +43,25 @@
     }
   });
 
+  /* --- 1b. Typografia: bękarty — jednoliterowe spójniki łamane twardą spacją --- */
+  function kmNbsp(t) {
+    var re = /(^|[\s\u00A0(\u201E>])([aiouwzAIOUWZ]) /g;
+    return t.replace(re, "$1$2\u00A0").replace(re, "$1$2\u00A0");
+  }
+  (function () {
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var t = n.nodeValue;
+      if (!t || t.length < 4) return;
+      var p = n.parentElement;
+      if (p && /^(SCRIPT|STYLE|INPUT|TEXTAREA)$/.test(p.tagName)) return;
+      var r = kmNbsp(t);
+      if (r !== t) n.nodeValue = r;
+    });
+  })();
+
   /* --- 2. Karty i wiersze — glow za kursorem + lift --- */
   var cardSel = [
     '[data-pencil-name*="Card"]', '[data-pencil-name*="card"]',
@@ -772,9 +791,9 @@
     var SLIDE = 700, EASECR = "cubic-bezier(.45,.05,.2,1)";
     function setCase(c) {
       title.innerText = c.title;
-      desc.innerText = c.desc;
+      desc.innerText = kmNbsp(c.desc);
       tag.innerText = c.tag;
-      if (rightPara) rightPara.innerText = c.right;
+      if (rightPara) rightPara.innerText = kmNbsp(c.right);
     }
     function advance() {
       if (document.hidden || state.hover) { setTimeout(advance, 400); return; }
