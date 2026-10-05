@@ -93,7 +93,7 @@
   });
 
   /* --- 3. Przyciski — ripple + lift + nawigacja --- */
-  var CONTACT = "kontakt.html", SERVICES = "uslugi.html", HOME = "index.html";
+  var CONTACT = "kontakt.html", SERVICES = "uslugi.html", HOME = "index.html", ARTICLES = "artykuly.html";
   var PAGES = {
     "Badania UX": "badania-ux.html",
     "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
@@ -163,11 +163,16 @@
     "Wystąpienia i szkolenia": PAGES["Wystąpienia i szkolenia"],
     "Zewnętrzny Dyrektor UX": PAGES["Zewnętrzny Dyrektor UX"],
     "Usługi": SERVICES, "Usługi/": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
-    "Strona główna": HOME
+    "Strona główna": HOME, "Artykuły": ARTICLES
   };
   document.querySelectorAll("div, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
     var t = (el.textContent || "").trim();
+    if (/^Zobacz wszystkie artykuly/i.test(t)) {
+      el.classList.add("km-link-fx");
+      el.addEventListener("click", function () { window.location.href = ARTICLES; });
+      return;
+    }
     if (!(t in navMap)) return;
     if (el.closest(".km-btn-fx")) return;
     el.classList.add("km-link-fx");
