@@ -93,7 +93,7 @@
   });
 
   /* --- 3. Przyciski — ripple + lift + nawigacja --- */
-  var CONTACT = "kontakt.html", SERVICES = "uslugi.html", HOME = "index.html", ARTICLES = "artykuly.html";
+  var CONTACT = "kontakt.html", SERVICES = "uslugi.html", HOME = "index.html", ARTICLES = "artykuly.html", CASESTUDIES = "case-studies.html";
   var PAGES = {
     "Badania UX": "badania-ux.html",
     "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
@@ -163,7 +163,8 @@
     "Wystąpienia i szkolenia": PAGES["Wystąpienia i szkolenia"],
     "Zewnętrzny Dyrektor UX": PAGES["Zewnętrzny Dyrektor UX"],
     "Usługi": SERVICES, "Usługi/": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
-    "Strona główna": HOME, "Artykuły": ARTICLES, "Artykuły/": ARTICLES
+    "Strona główna": HOME, "Artykuły": ARTICLES, "Artykuły/": ARTICLES,
+    "Case studies": CASESTUDIES, "Case studies/": CASESTUDIES
   };
   document.querySelectorAll("div, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
@@ -171,6 +172,11 @@
     if (/^Zobacz wszystkie artykuly/i.test(t)) {
       el.classList.add("km-link-fx");
       el.addEventListener("click", function () { window.location.href = ARTICLES; });
+      return;
+    }
+    if (/^Zobacz case study$/i.test(t) && !/case-studies\.html/.test(location.pathname)) {
+      el.classList.add("km-link-fx");
+      el.addEventListener("click", function () { window.location.href = CASESTUDIES; });
       return;
     }
     if (!(t in navMap)) return;
