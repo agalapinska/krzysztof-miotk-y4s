@@ -176,7 +176,7 @@ function runsToMd(textEl) {
 function deploySite(quiet) {
   var token = PropertiesService.getUserProperties().getProperty("GH_TOKEN");
   if (!token) {
-    var msg = "Brak tokenu GitHub — użyj „🚀 CMS → Ustaw token GitHub…".";
+    var msg = "Brak tokenu GitHub — użyj menu: 🚀 CMS → Ustaw token GitHub…";
     if (!quiet) SpreadsheetApp.getUi().alert(msg);
     return msg;
   }
@@ -198,7 +198,7 @@ function deploySite(quiet) {
 
 function deployStatus() {
   var token = PropertiesService.getUserProperties().getProperty("GH_TOKEN");
-  if (!token) { SpreadsheetApp.getUi().alert("Brak tokenu GitHub — użyj „Ustaw token GitHub…"."); return; }
+  if (!token) { SpreadsheetApp.getUi().alert("Brak tokenu GitHub — użyj menu: 🚀 CMS → Ustaw token GitHub…"); return; }
   var resp = UrlFetchApp.fetch(
     "https://api.github.com/repos/" + CFG.GH_OWNER + "/" + CFG.GH_REPO + "/pages/builds/latest",
     { headers: ghHeaders(token), muteHttpExceptions: true }
