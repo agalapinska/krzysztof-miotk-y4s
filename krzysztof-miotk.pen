@@ -53258,6 +53258,1352 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "Vwigw",
+      "x": 24160,
+      "y": 1900,
+      "name": "Podstrona — Case studies",
+      "clip": true,
+      "width": 1440,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "DjVZE",
+          "type": "ref",
+          "ref": "iqBtl",
+          "name": "Nav",
+          "width": 1440
+        },
+        {
+          "type": "frame",
+          "id": "YixHz",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            56,
+            100,
+            40,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Iy9zl",
+              "name": "Breadcrumb",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qkxN5",
+                  "name": "bc1",
+                  "fill": "$color.soft",
+                  "content": "Start/",
+                  "fontFamily": "$font.body",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Gm6EO",
+                  "name": "bc2",
+                  "fill": "$color.ink",
+                  "content": "Case studies",
+                  "fontFamily": "$font.body",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "DEbP6",
+              "name": "H1",
+              "fill": "$color.ink",
+              "content": "Case studies: badania,\nktóre zmieniły produkty",
+              "lineHeight": 1.15,
+              "fontFamily": "$font.display",
+              "fontSize": 52,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Zdbnz",
+              "name": "Lead",
+              "fill": "$color.muted",
+              "textGrowth": "fixed-width",
+              "width": 760,
+              "content": "Realne projekty od wyzwania po mierzalny efekt. Zobacz, jak badania UX, segmentacja i optymalizacja ścieżek przekładają się na decyzje produktowe i wynik biznesowy.",
+              "lineHeight": 1.5,
+              "fontFamily": "$font.body",
+              "fontSize": 19,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "SpOKp",
+              "name": "Kategorie",
+              "gap": 12,
+              "padding": [
+                18,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IhEJm",
+                  "name": "Chip Wszystkie",
+                  "fill": "$sem.primary",
+                  "cornerRadius": 999,
+                  "stroke": "$sem.primary",
+                  "strokeWidth": 1,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C5ys6m",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Wszystkie",
+                      "fontFamily": "$font.body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "C3zhh",
+                  "name": "Chip E-commerce",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 999,
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "s1Kaw",
+                      "name": "Label",
+                      "fill": "$color.dimStrong",
+                      "content": "E-commerce",
+                      "fontFamily": "$font.body",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "G4qpQu",
+                  "name": "Chip Fintech",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 999,
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Nc8mH",
+                      "name": "Label",
+                      "fill": "$color.dimStrong",
+                      "content": "Fintech",
+                      "fontFamily": "$font.body",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o65C1U",
+                  "name": "Chip Marketplace",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 999,
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "padding": [
+                    10,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Q14KrM",
+                      "name": "Label",
+                      "fill": "$color.dimStrong",
+                      "content": "Marketplace",
+                      "fontFamily": "$font.body",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kNdxg",
+          "name": "Featured",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            16,
+            100,
+            8,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "gelex",
+              "name": "Featured Card",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "stroke": "$sem.border",
+              "strokeWidth": 1,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "uhtBT",
+                  "name": "Featured Left",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    44,
+                    48
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "K6phP",
+                      "name": "Meta",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "rKWiT",
+                          "name": "Kat",
+                          "fill": "$brand.violet-100",
+                          "padding": [
+                            5,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "gVkdL",
+                              "name": "KatT",
+                              "fill": "$brand.violet-800",
+                              "content": "E-COMMERCE",
+                              "fontFamily": "$font.mono",
+                              "fontSize": 12,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1.5
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ckx6E",
+                          "name": "Data",
+                          "fill": "$color.soft",
+                          "content": "15.09.2025  ·  7 MIN CZYTANIA",
+                          "fontFamily": "$font.mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "eayZ2",
+                      "name": "FTytuł",
+                      "fill": "$color.ink",
+                      "content": "7 koncepcji w 14 dni:\nbadania RITE dla Apteki Gemini",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$font.display",
+                      "fontSize": 32,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jkVaH",
+                      "name": "FZajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": 860,
+                      "content": "Szybka walidacja siedmiu koncepcji procesu zakupowego metodą RITE. Wdrożone rozwiązania nie wymagają zmian od kilku lat.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font.body",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "id": "zqqMe",
+                      "type": "ref",
+                      "ref": "GCM2o",
+                      "name": "Czytaj",
+                      "descendants": {
+                        "FMyEm": {
+                          "content": "Zobacz case study"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LAxMI",
+          "name": "Artykuły Grid",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            32,
+            100,
+            16,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "d7QFyG",
+              "name": "Row 1",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vHI6v",
+                  "name": "Case: XTB — milisekundy",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "h3UlH",
+                      "name": "Meta",
+                      "fill": "$color.soft",
+                      "content": "FINTECH  ·  20.06.2025  ·  6 MIN",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "CYFpb",
+                      "name": "Tytuł",
+                      "fill": "$color.ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Milisekundy = pieniądze: optymalizacja krytycznych ścieżek w XTB",
+                      "lineHeight": 1.3,
+                      "fontFamily": "$font.display",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rMRaJ",
+                      "name": "Zajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych. Szybkość interfejsu przełożona wprost na wynik finansowy.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y47xx",
+                      "name": "CTA",
+                      "fill": "$sem.primary",
+                      "content": "Zobacz case study →",
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ctiIV",
+                  "name": "Case: OLX — segmentacja",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GaW9R",
+                      "name": "Meta",
+                      "fill": "$color.soft",
+                      "content": "MARKETPLACE  ·  10.03.2025  ·  8 MIN",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "dKWNS",
+                      "name": "Tytuł",
+                      "fill": "$color.ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Segmentacja, która uporządkowała roadmapę OLX",
+                      "lineHeight": 1.3,
+                      "fontFamily": "$font.display",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MSQOR",
+                      "name": "Zajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów, na której zespół oparł priorytety rozwoju produktu.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vxyee",
+                      "name": "CTA",
+                      "fill": "$sem.primary",
+                      "content": "Zobacz case study →",
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XU8Hy",
+                  "name": "Case: Gemini — RITE",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "X7euXp",
+                      "name": "Meta",
+                      "fill": "$color.soft",
+                      "content": "E-COMMERCE  ·  15.09.2025  ·  7 MIN",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "Bsp0U",
+                      "name": "Tytuł",
+                      "fill": "$color.ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "7 koncepcji w 14 dni: badania RITE dla Apteki Gemini",
+                      "lineHeight": 1.3,
+                      "fontFamily": "$font.display",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "igHbY",
+                      "name": "Zajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Szybka walidacja siedmiu koncepcji procesu zakupowego metodą RITE. Efekty nie wymagają zmian od kilku lat.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "O2HvxI",
+                      "name": "CTA",
+                      "fill": "$sem.primary",
+                      "content": "Zobacz case study →",
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "V96RsT",
+          "name": "Newsletter Band",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            8,
+            100,
+            64,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "VseR6",
+              "name": "NL Panel",
+              "width": "fill_container",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 115,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#2A0D71",
+                    "position": 0
+                  },
+                  {
+                    "color": "#4C16C9",
+                    "position": 1
+                  }
+                ]
+              },
+              "gap": 60,
+              "padding": [
+                44,
+                56
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "KeWVA",
+                  "name": "NL Left",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "szGxu",
+                      "name": "NL H",
+                      "fill": "#FFFFFF",
+                      "content": "Nowe case studies prosto na maila",
+                      "fontFamily": "$font.display",
+                      "fontSize": 28,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XLSqz",
+                      "name": "NL P",
+                      "fill": "#FFFFFFD9",
+                      "content": "Raz w miesiącu, tylko konkrety. Zero spamu.",
+                      "fontFamily": "$font.body",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a4ciEn",
+                  "name": "NL Form",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "mceUj",
+                      "name": "NL Input",
+                      "width": 320,
+                      "fill": "#FFFFFF",
+                      "padding": [
+                        15,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nfpja",
+                          "name": "Placeholder",
+                          "fill": "$color.soft",
+                          "content": "Wpisz swój adres e-mail",
+                          "fontFamily": "$font.body",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "E4wjLK",
+                      "name": "Zapisz btn",
+                      "fill": "$brand.violet-900",
+                      "gap": 10,
+                      "padding": [
+                        15,
+                        26
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eiMYp",
+                          "name": "Zapisz t",
+                          "fill": "#FFFFFF",
+                          "content": "Zapisz się",
+                          "fontFamily": "$font.body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "isYl8",
+          "type": "ref",
+          "ref": "NtHCI",
+          "name": "Footer",
+          "width": 1440
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "yXLD9",
+      "x": 26260,
+      "y": 1528,
+      "name": "Podstrona — Case study (szablon)",
+      "clip": true,
+      "width": 1440,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "H41Y02",
+          "type": "ref",
+          "ref": "iqBtl",
+          "name": "Nav",
+          "width": 1440
+        },
+        {
+          "type": "frame",
+          "id": "M3F9r0",
+          "name": "Artykuł Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "padding": [
+            56,
+            100,
+            24,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "oHpwk",
+              "name": "Breadcrumb",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fz3KU",
+                  "name": "bc1",
+                  "fill": "$color.soft",
+                  "content": "Start/",
+                  "fontFamily": "$font.body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "JbG1Z",
+                  "name": "bc2",
+                  "fill": "$color.soft",
+                  "content": "Case studies/",
+                  "fontFamily": "$font.body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Xvr66",
+                  "name": "bc3",
+                  "fill": "$color.ink",
+                  "content": "7 koncepcji w 14 dni: badania RITE…",
+                  "fontFamily": "$font.body",
+                  "fontSize": 17,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "X0bQ3",
+              "name": "Meta",
+              "gap": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UXkCe",
+                  "name": "Kat",
+                  "fill": "$brand.violet-100",
+                  "padding": [
+                    5,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GBczC",
+                      "name": "KatT",
+                      "fill": "$brand.violet-800",
+                      "content": "E-COMMERCE",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "ZxIZh",
+                  "name": "DataT",
+                  "fill": "$color.soft",
+                  "content": "15.09.2025  ·  7 MIN CZYTANIA",
+                  "fontFamily": "$font.mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "TOVLX",
+              "name": "H1",
+              "fill": "$color.ink",
+              "textGrowth": "fixed-width",
+              "width": 900,
+              "content": "7 koncepcji w 14 dni: badania RITE dla Apteki Gemini",
+              "lineHeight": 1.2,
+              "fontFamily": "$font.display",
+              "fontSize": 42,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "G5ILn",
+          "name": "Artykuł Body",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            16,
+            100,
+            56,
+            100
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "DfqPi",
+              "name": "p",
+              "fill": "#2B2D42",
+              "textGrowth": "fixed-width",
+              "width": 760,
+              "content": "Apteka Gemini stała przed decyzją o przebudowie kluczowego procesu zakupowego. Na stole leżało siedem konkurencyjnych koncepcji, a każda z nich miała swoich zwolenników w zespole. Klasyczne badania porównawcze zajęłyby kwartał — biznes potrzebował odpowiedzi w tygodnie.",
+              "lineHeight": 1.65,
+              "fontFamily": "$font.body",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Uc8Eg",
+              "name": "h2",
+              "fill": "$color.ink",
+              "content": "Wyzwanie",
+              "fontFamily": "$font.display",
+              "fontSize": 27,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "AfD3Q",
+              "name": "p2",
+              "fill": "#2B2D42",
+              "textGrowth": "fixed-width",
+              "width": 760,
+              "content": "Proces zakupowy apteki internetowej łączy wymagania e-commerce z regulacjami rynku farmaceutycznego. Każdy błąd w przepływie to porzucone koszyki, a każda iteracja wdrożeniowa — realny koszt zespołu deweloperskiego.",
+              "lineHeight": 1.65,
+              "fontFamily": "$font.body",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "nr3my",
+              "name": "li",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LGe6l",
+                  "name": "dot wrap",
+                  "layout": "vertical",
+                  "padding": [
+                    9,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "S5hs9",
+                      "name": "dot",
+                      "width": 7,
+                      "height": 7,
+                      "fill": "$sem.primary",
+                      "cornerRadius": 99
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "vnBQY",
+                  "name": "liT",
+                  "fill": "#2B2D42",
+                  "textGrowth": "fixed-width",
+                  "width": 730,
+                  "content": "Siedem koncepcji procesu do zwalidowania w czternaście dni",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font.body",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wreE9",
+              "name": "Frame 731",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                32,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JuTpY",
+                  "name": "section",
+                  "context": "section",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "W8kNXU",
+                      "name": "div",
+                      "context": "div",
+                      "width": "fill_container",
+                      "fill": "#f1f2ff",
+                      "layout": "vertical",
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "B4EjMB",
+                          "name": "Frame 685",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": [
+                            10,
+                            0
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Y1y2d",
+                              "name": "„Jeżeli mam wybierać między badaniami sł",
+                              "context": "p",
+                              "fill": "#585b6e",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "„Szybkie badania iteracyjne nie są kompromisem jakościowym — dają decyzje, które bronią się latami.\"",
+                              "lineHeight": 1.6,
+                              "fontFamily": "Nexa",
+                              "fontSize": 20,
+                              "fontWeight": "500",
+                              "fontStyle": "italic"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "nVvjn",
+                          "layoutPosition": "absolute",
+                          "x": -20,
+                          "y": -14,
+                          "name": "Zewnętrzny Dyrektor UX",
+                          "context": "h3",
+                          "fill": "#645cedff",
+                          "textGrowth": "fixed-width-height",
+                          "width": "fill_container(1112)",
+                          "height": 51.66,
+                          "content": "\"",
+                          "lineHeight": 0.95,
+                          "fontFamily": "Nexa",
+                          "fontSize": 120,
+                          "fontWeight": "500",
+                          "letterSpacing": -0.82
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nLnDp",
+          "name": "Artykuł CTA",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 80,
+          "padding": [
+            64,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "uNTlo",
+              "name": "CTA Panel",
+              "width": "fill_container",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 115,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#2A0D71",
+                    "position": 0
+                  },
+                  {
+                    "color": "#4C16C9",
+                    "position": 1
+                  }
+                ]
+              },
+              "gap": 40,
+              "padding": [
+                40,
+                56
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fNSOc",
+                  "name": "CTA H",
+                  "fill": "#FFFFFF",
+                  "content": "Chcesz takich wyników w swoim produkcie?",
+                  "fontFamily": "$font.display",
+                  "fontSize": 24,
+                  "fontWeight": "normal"
+                },
+                {
+                  "id": "NSdsL",
+                  "type": "ref",
+                  "ref": "nQ3nh",
+                  "name": "CTA Btn",
+                  "height": 52
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Y9TG1L",
+              "name": "Row 1",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "j1nHF",
+                  "name": "Case: XTB — milisekundy",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xCes2",
+                      "name": "Meta",
+                      "fill": "$color.soft",
+                      "content": "FINTECH  ·  20.06.2025  ·  6 MIN",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "twpRy",
+                      "name": "Tytuł",
+                      "fill": "$color.ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Milisekundy = pieniądze: optymalizacja krytycznych ścieżek w XTB",
+                      "lineHeight": 1.3,
+                      "fontFamily": "$font.display",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nP2MH",
+                      "name": "Zajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych. Szybkość interfejsu przełożona wprost na wynik finansowy.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gW808",
+                      "name": "CTA",
+                      "fill": "$sem.primary",
+                      "content": "Zobacz case study →",
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ex8Iv",
+                  "name": "Case: OLX — segmentacja",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FGaJb",
+                      "name": "Meta",
+                      "fill": "$color.soft",
+                      "content": "MARKETPLACE  ·  10.03.2025  ·  8 MIN",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "YhzeV",
+                      "name": "Tytuł",
+                      "fill": "$color.ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Segmentacja, która uporządkowała roadmapę OLX",
+                      "lineHeight": 1.3,
+                      "fontFamily": "$font.display",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qhg0u",
+                      "name": "Zajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów, na której zespół oparł priorytety rozwoju produktu.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "dI9j7",
+                      "name": "CTA",
+                      "fill": "$sem.primary",
+                      "content": "Zobacz case study →",
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YxfVc",
+                  "name": "Case: Gemini — RITE",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": "$sem.border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iJhG6",
+                      "name": "Meta",
+                      "fill": "$color.soft",
+                      "content": "E-COMMERCE  ·  15.09.2025  ·  7 MIN",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 11.5,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "ufPVu",
+                      "name": "Tytuł",
+                      "fill": "$color.ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "7 koncepcji w 14 dni: badania RITE dla Apteki Gemini",
+                      "lineHeight": 1.3,
+                      "fontFamily": "$font.display",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "s3zCEX",
+                      "name": "Zajawka",
+                      "fill": "$color.muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Szybka walidacja siedmiu koncepcji procesu zakupowego metodą RITE. Efekty nie wymagają zmian od kilku lat.",
+                      "lineHeight": 1.45,
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fm4Ig",
+                      "name": "CTA",
+                      "fill": "$sem.primary",
+                      "content": "Zobacz case study →",
+                      "fontFamily": "$font.body",
+                      "fontSize": 14.5,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "VSSSF",
+          "type": "ref",
+          "ref": "NtHCI",
+          "name": "Footer",
+          "width": 1440
+        },
+        {
+          "type": "frame",
+          "id": "zxAVH",
+          "layoutPosition": "absolute",
+          "x": 962,
+          "y": 591,
+          "name": "div - float",
+          "context": "div",
+          "fill": "#ffffff80",
+          "stroke": "$brand.violet-100",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "effect": {
+            "type": "background_blur",
+            "radius": 12
+          },
+          "layout": "vertical",
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "r4jMWV",
+              "width": 358,
+              "effect": {
+                "type": "background_blur",
+                "radius": 8
+              },
+              "layout": "vertical",
+              "gap": 20,
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "PC54w",
+                  "name": "div",
+                  "context": "div",
+                  "width": "fill_container",
+                  "fill": "#fafafa",
+                  "layout": "vertical",
+                  "gap": 22.4,
+                  "padding": [
+                    80,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "aFSYq",
+                      "name": "Tu pojawi się widżet rezerwacji terminu.",
+                      "context": "p",
+                      "fill": "#3a3d52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Tu pojawi się widżet rezerwacji terminu. Wklej swój link Calendly lub Cal.com w pliku js/main.js (CONFIG.calendarUrl).",
+                      "lineHeight": 1.6,
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 17,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "OkUUn",
+                  "fill": "#3a3d52",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Wystarczy kliknąć \nw kalendarz :)",
+                  "lineHeight": 0.9,
+                  "textAlign": "right",
+                  "fontFamily": "$font.display",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "variables": {

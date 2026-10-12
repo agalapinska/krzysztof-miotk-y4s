@@ -186,3 +186,11 @@ html { overflow-x: hidden; }
   40% { transform: translateY(-6px) rotate(-6deg); }
   70% { transform: translateY(-2px) rotate(3deg); }
 }
+
+/* 0b. Tryb mobilny (<768px): elementy ukrywane / korekty, resztę robi kmMobilize() w JS */
+body.km-mob [data-pencil-name^="Wave"] { display: none !important; }
+body.km-mob [data-pencil-name="div - float"] { display: none !important; }
+body.km-mob .km-dl-tip { display: none !important; }
+body.km-mob .km-glows::before, body.km-mob .km-glows::after { width: 220px; height: 220px; filter: blur(50px); }
+body.km-mob div { max-width: 100%; }
+body.km-mob { overflow-x: clip; }

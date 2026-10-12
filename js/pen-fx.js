@@ -3,10 +3,31 @@
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* --- 0. Pełna szerokość ekranu: skala proporcjonalna + marginesy 140px ≥1480px --- */
+  /* --- 0. Pełna szerokość ekranu: skala proporcjonalna + marginesy 140px ≥1480px.
+         Poniżej 768px: tryb mobilny — baza 430px + linearyzacja layoutu (0b). --- */
+  var MOBILE_BP = 768, MBASE = 430;
+  var isMob = document.documentElement.clientWidth < MOBILE_BP;
   (function () {
     var root = document.body.firstElementChild;
     if (!root) return;
+    if (!root.getAttribute("data-pencil-name")) {
+      var page = null;
+      Array.prototype.forEach.call(root.children, function (k) {
+        if (k.tagName !== "DIV" || getComputedStyle(k).position !== "absolute") return;
+        if (k.offsetWidth >= 1200 && (!page || k.offsetWidth > page.offsetWidth)) page = k;
+      });
+      if (page) {
+        Array.prototype.forEach.call(root.children, function (k) {
+          if (k !== page) k.style.display = "none";
+        });
+        page.style.position = "relative";
+        page.style.left = "0";
+        page.style.top = "0";
+        root.style.width = "auto";
+        root.style.height = "auto";
+        root = page;
+      }
+    }
     var designW = root.offsetWidth || 1440;
     var padEls = null;
     function collectPads() {
@@ -19,6 +40,8 @@
     }
     function fit() {
       var w = document.documentElement.clientWidth;
+      if ((w < MOBILE_BP) !== isMob) { location.reload(); return; }
+      if (isMob) { document.body.style.zoom = w / MBASE; return; }
       if (padEls === null) collectPads();
       var wide = w >= 1480;
       padEls.forEach(function (el) {
@@ -27,10 +50,127 @@
       });
       document.body.style.zoom = w / designW;
     }
+    if (isMob) { kmMobilize(); document.body.classList.add("km-mob"); kmMobilizeWrap(); }
     fit();
+    if (isMob) requestAnimationFrame(function () { kmMobilizeWrap(); });
     var t;
     window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fit, 80); });
   })();
+
+  /* --- 0b. Tryb mobilny: linearyzacja eksportu 1440px do jednej kolumny ~430px.
+         Wiersze flex układane w kolumnę, stałe szerokości i paddingi klamrowane,
+         „kanwy" z absolutnie pozycjonowanymi dziećmi pomniejszane w całości (zoom). --- */
+  var kmCanvases = [];
+  function kmMobilize() {
+    var MAXW = MBASE, PAD = 20, CONTENT = MAXW - 2 * PAD;
+    document.querySelectorAll("body div").forEach(function (el) {
+      if (el.children.length !== 1) return;
+      var h = /px/.test(el.style.height || "") ? parseFloat(el.style.height) : 0;
+      if (!h || h > 100 || getComputedStyle(el).position !== "relative") return;
+      var kid = el.firstElementChild;
+      if (kid.tagName !== "DIV") return;
+      var kcs = getComputedStyle(kid);
+      if (kcs.position !== "absolute" || kcs.display !== "flex") return;
+      kid.style.position = "static";
+      kid.style.left = "";
+      kid.style.top = "";
+      kid.style.transform = "none";
+      el.style.height = "auto";
+      el.style.width = "auto";
+    });
+    document.querySelectorAll("body div").forEach(function (el) {
+      if (el.offsetWidth < 1200) return;
+      var kids = Array.prototype.filter.call(el.children, function (k) { return k.tagName === "DIV"; });
+      if (kids.length < 2) return;
+      var abs = kids.filter(function (k) { return getComputedStyle(k).position === "absolute"; });
+      if (abs.length !== kids.length) return;
+      el.style.height = "auto";
+      el.style.display = "flex";
+      el.style.flexDirection = "column";
+      el.style.gap = "28px";
+      el.style.padding = "40px 20px";
+      kids.forEach(function (k) { k.style.position = "static"; k.style.left = ""; k.style.top = ""; });
+    });
+    var divs = Array.prototype.slice.call(document.querySelectorAll("body div"));
+    var meta = [];
+    divs.forEach(function (el) {
+      var cs = getComputedStyle(el);
+      var kids = Array.prototype.filter.call(el.children, function (k) {
+        if (/^Wave/.test(k.getAttribute && k.getAttribute("data-pencil-name") || "")) return false;
+        return k.tagName === "DIV" || k.tagName === "IMG" || k.tagName === "svg";
+      });
+      meta.push({
+        el: el, w: el.offsetWidth, kids: kids,
+        display: cs.display, dir: cs.flexDirection, pos: cs.position,
+        padL: parseFloat(cs.paddingLeft) || 0, padR: parseFloat(cs.paddingRight) || 0,
+        nowrap: cs.whiteSpace === "nowrap", inlineW: /px/.test(el.style.width || "") ? parseFloat(el.style.width) : 0,
+        inlineH: /px/.test(el.style.height || "") ? parseFloat(el.style.height) : 0,
+        kidW: kids.map(function (k) { return k.offsetWidth; }),
+        kidAbs: kids.filter(function (k) { return getComputedStyle(k).position === "absolute"; }).length
+      });
+    });
+    var canvases = [];
+    meta.forEach(function (m) {
+      if (m.w <= CONTENT || m.kids.length < 2) return;
+      if (m.kidAbs >= 2 && m.kidAbs >= m.kids.length - 1) canvases.push(m.el);
+    });
+    canvases = canvases.filter(function (c) {
+      return !canvases.some(function (o) { return o !== c && o.contains(c); });
+    });
+    kmCanvases = canvases;
+    function inCanvas(el) {
+      return canvases.some(function (c) { return c === el || c.contains(el); });
+    }
+    canvases.forEach(function (c) {
+      c.style.zoom = Math.min(1, CONTENT / c.offsetWidth);
+    });
+    meta.forEach(function (m) {
+      if (inCanvas(m.el)) return;
+      if (m.padL >= 60) m.el.style.paddingLeft = PAD + "px";
+      if (m.padR >= 60) m.el.style.paddingRight = PAD + "px";
+    });
+    meta.forEach(function (m) {
+      if (inCanvas(m.el)) return;
+      if (m.display !== "flex" || m.dir !== "row" || m.w < 560) return;
+      var big = m.kidW.filter(function (w) { return w >= 150; }).length;
+      if (big < 2) return;
+      m.el.style.flexDirection = "column";
+      m.el.style.alignItems = "stretch";
+      m.el.style.height = "auto";
+      m.el.style.rowGap = getComputedStyle(m.el).columnGap;
+    });
+    meta.forEach(function (m) {
+      if (inCanvas(m.el)) return;
+      if (m.w > CONTENT || m.inlineW > CONTENT) {
+        if (m.el.style.width) m.el.style.width = "auto";
+        m.el.style.maxWidth = "100%";
+        m.el.style.minWidth = "0";
+        m.el.style.boxSizing = "border-box";
+      }
+      if (m.inlineH >= 300 && m.el.offsetWidth > 200) m.el.style.height = "auto";
+      if (!m.el.children.length && m.nowrap && m.w > CONTENT - 40) m.el.style.whiteSpace = "normal";
+    });
+    document.querySelectorAll("img").forEach(function (im) {
+      if (inCanvas(im.parentElement || im)) return;
+      if (im.offsetWidth > CONTENT) { im.style.maxWidth = "100%"; im.style.height = "auto"; }
+    });
+  }
+
+  function kmMobilizeWrap() {
+    document.querySelectorAll("body div").forEach(function (el) {
+      if (kmCanvases.some(function (c) { return c === el || c.contains(el); })) return;
+      if (el.scrollWidth <= el.clientWidth + 4) return;
+      if (!el.querySelector("div")) {
+        el.style.whiteSpace = "normal";
+        el.style.height = "auto";
+        return;
+      }
+      if (getComputedStyle(el).display === "flex") {
+        el.style.flexWrap = "wrap";
+        el.style.height = "auto";
+      }
+    });
+  }
 
   /* --- 1. Dryfujący gradient + poświaty na dużych sekcjach gradientowych --- */
   document.querySelectorAll('[style*="linear-gradient"], [style*="radial-gradient"]').forEach(function (el) {
@@ -243,6 +383,7 @@
 
   /* --- 4b. Mega-menu „Usługi" (stan otwarty z projektu Pen) --- */
   (function () {
+    if (isMob) return;
     var nav = document.querySelector('[data-pencil-name="Nav-top"]');
     if (!nav) return;
     var wrap = document.createElement("div");
@@ -485,6 +626,7 @@
 
   /* --- 4e. „Jak wygląda współpraca?": scrollowe odsłanianie fali (miękka maska) + aktywacja ikon --- */
   (function () {
+    if (isMob) return;
     var firstWave = document.querySelector('[data-pencil-name="Wave 1"]');
     if (!firstWave) return;
     var section = firstWave.parentElement;
@@ -641,6 +783,7 @@
 
   /* --- 4g. Tooltip przy kursorze na „Pobierz Demo Raportu" --- */
   (function () {
+    if (isMob) return;
     var btns = [];
     document.querySelectorAll("div").forEach(function (el) {
       if (el.children.length !== 0 || !/^pobierz demo raportu$/i.test((el.textContent || "").trim())) return;
@@ -842,6 +985,7 @@
   (function () {
     var OFFER_PAGE = /(badania-ux|segmentacja-klientow|audyt-ux|konsultacje-i-mentoring|dyrektor-ux|wystapienia-i-szkolenia)\.html$/;
     var existing = document.querySelector('[data-pencil-name="div - float"]');
+    if (isMob) { if (existing) existing.style.display = "none"; return; }
     if (!OFFER_PAGE.test(location.pathname)) {
       if (existing) existing.style.display = "none";
       return;

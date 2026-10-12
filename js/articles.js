@@ -50,7 +50,11 @@
   function init(arts) {
     var grid = [];
     document.querySelectorAll("div").forEach(function (el) {
-      if (/Czytaj więcej/.test(el.textContent || "") && el.children.length >= 4 && el.offsetWidth < 500 && el.offsetWidth > 250) grid.push(el);
+      var kids = el.children;
+      if (kids.length < 4 || kids.length > 7) return;
+      for (var i = 0; i < kids.length; i++) if (kids[i].children.length > 0) return;
+      if (!/Czytaj więcej/.test(el.textContent || "")) return;
+      grid.push(el);
     });
     if (!grid.length) return;
     arts.sort(function (a, b) { return (b.data || "").localeCompare(a.data || ""); });
