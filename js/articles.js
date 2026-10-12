@@ -127,7 +127,10 @@
       var withContent = {};
       if (res[1]) {
         var tr = parseCSV(res[1]);
-        if (tr.length > 1) toObjects(tr).forEach(function (t) { if (t.slug && t.tresc) withContent[t.slug] = true; });
+        if (tr.length > 1) toObjects(tr).forEach(function (t) {
+          var full = /^https:\/\/docs\.google\.com\/document\//.test((t.tresc || "").trim()) ? (t.tresc_md || "").trim() : (t.tresc || "").trim();
+          if (t.slug && full) withContent[t.slug] = true;
+        });
       }
       var arts = toObjects(rows).filter(function (a) { return a.tytul; });
       arts.forEach(function (a) {

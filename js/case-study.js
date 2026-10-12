@@ -33,6 +33,13 @@
     var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d);
     return m ? m[3] + "." + m[2] + "." + m[1] : d;
   }
+  function docLink(s) {
+    return /^https:\/\/docs\.google\.com\/document\//.test((s || "").trim());
+  }
+  function pickTresc(t) {
+    if (!t) return "";
+    return docLink(t.tresc) ? (t.tresc_md || "").trim() : (t.tresc || "").trim();
+  }
   function esc(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
@@ -52,7 +59,8 @@
   ]).then(function (res) {
     var meta = toObjects(parseCSV(res[0])).filter(function (a) { return a.slug === slug; })[0];
     var tresc = toObjects(parseCSV(res[1])).filter(function (a) { return a.slug === slug; })[0];
-    if (!meta || !tresc || !tresc.tresc) { location.replace("case-studies.html"); return; }
+    var body = pickTresc(tresc);
+    if (!meta || !body) { location.replace("case-studies.html"); return; }
 
     document.title = tresc.tytul_seo || (meta.tytul + " — Krzysztof Miotk");
     var md = document.querySelector('meta[name="description"]');
@@ -97,7 +105,7 @@
       }
     };
     while (bodyC.firstChild) bodyC.removeChild(bodyC.firstChild);
-    tresc.tresc.split(/\n\s*\n/).forEach(function (block) {
+    body.split(/\n\s*\n/).forEach(function (block) {
       block = block.trim();
       if (!block) return;
       if (block.indexOf("## ") === 0) { bodyC.appendChild(mk.h2(block.slice(3))); return; }
