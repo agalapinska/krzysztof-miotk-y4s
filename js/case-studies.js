@@ -4,8 +4,7 @@
   "use strict";
   var CONFIG = {
     SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv",
-    GID_META: "770001",
-    GID_TRESCI: "770002"
+    GID_META: "770001"
   };
 
   function parseCSV(text) {
@@ -110,29 +109,20 @@
 
   if (!/case-studies\.html/.test(location.pathname)) return;
   if (!CONFIG.SHEET_CSV_URL) return;
-  Promise.all([
-    fetch(CONFIG.SHEET_CSV_URL + "&gid=" + CONFIG.GID_META).then(function (r) {
+  fetch(CONFIG.SHEET_CSV_URL + "&gid=" + CONFIG.GID_META)
+    .then(function (r) {
       if (!r.ok) throw new Error("HTTP " + r.status + " — arkusz nie jest publiczny?");
       return r.text();
-    }),
-    fetch(CONFIG.SHEET_CSV_URL + "&gid=" + CONFIG.GID_TRESCI).then(function (r) { return r.ok ? r.text() : ""; })
-  ])
-    .then(function (res) {
-      var rows = parseCSV(res[0]);
+    })
+    .then(function (text) {
+      var rows = parseCSV(text);
       if (!rows.length || rows[0].join(",").toLowerCase().indexOf("tytul") === -1) {
         throw new Error("odpowiedź nie wygląda na CSV z kolumną 'tytul' (sprawdź udostępnianie arkusza)");
       }
-      var withContent = {};
-      if (res[1]) {
-        var tr = parseCSV(res[1]);
-        if (tr.length > 1) toObjects(tr).forEach(function (t) {
-          var full = /^https:\/\/docs\.google\.com\/document\//.test((t.tresc || "").trim()) ? (t.tresc_md || "").trim() : (t.tresc || "").trim();
-          if (t.slug && full) withContent[t.slug] = true;
-        });
-      }
       var cases = toObjects(rows).filter(function (a) { return a.tytul; });
       cases.forEach(function (a) {
-        a._href = withContent[a.slug] ? "case-study.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
+        var full = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+        a._href = full ? "case-study.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
       });
       if (cases.length) init(cases);
     })

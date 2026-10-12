@@ -12,7 +12,7 @@
  *
  * JAK DZIAŁA TREŚĆ Z GOOGLE DOCS
  * ------------------------------
- * W kartach „Tresci" i „Case_study_tresci" w kolumnie `tresc` można zamiast
+ * W kartach „Artykuły" i „Case_study" w kolumnie `tresc` można zamiast
  * tekstu wkleić link udostępniania do Google Doca
  * (https://docs.google.com/document/d/…). Po kliknięciu „Publikuj" skrypt
  * otwiera każdego podlinkowanego Doca, konwertuje jego formatowanie
@@ -42,12 +42,10 @@
 
 var CFG = {
   GH_OWNER: "agalapinska",
-  GH_REPO: "krzysztof-miotk-y4s",
-  CONTENT_SHEETS: ["Tresci", "Case_study_tresci"],
-  COL_SLUG: 1,      // A
-  COL_TRESC: 4,     // D — tekst albo link do Google Doca
-  COL_TRESC_MD: 5   // E — wynik konwersji (zarządzany przez skrypt)
+  GH_REPO: "krzysztof-miotk-y4s"
 };
+// Karty z treściami wykrywane automatycznie: każda karta, która w pierwszym
+// wierszu ma nagłówki "slug" i "tresc" (nazwa karty nie ma znaczenia).
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -80,40 +78,39 @@ function syncDocsMenu() {
 function syncDocs() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var done = [], errors = [];
-  CFG.CONTENT_SHEETS.forEach(function (name) {
-    var sh = ss.getSheetByName(name);
-    if (!sh) { errors.push(name + ": brak karty"); return; }
-    ensureTrescMdHeader(sh);
+  ss.getSheets().forEach(function (sh) {
+    if (sh.getLastRow() < 1 || sh.getLastColumn() < 1) return;
+    var head = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0]
+      .map(function (h) { return String(h).trim().toLowerCase(); });
+    var cSlug = head.indexOf("slug") + 1;
+    var cTresc = head.indexOf("tresc") + 1;
+    var cMd = head.indexOf("tresc_md") + 1;
+    if (!cSlug || !cTresc) return;
+    if (!cMd) {
+      cMd = head.length + 1;
+      if (sh.getMaxColumns() < cMd) sh.insertColumnsAfter(sh.getMaxColumns(), cMd - sh.getMaxColumns());
+      sh.getRange(1, cMd).setValue("tresc_md");
+    }
     var last = sh.getLastRow();
     if (last < 2) return;
-    var rows = sh.getRange(2, 1, last - 1, CFG.COL_TRESC_MD).getValues();
-    rows.forEach(function (row, i) {
-      var slug = String(row[CFG.COL_SLUG - 1] || "").trim();
-      var tresc = String(row[CFG.COL_TRESC - 1] || "").trim();
-      var docId = extractDocId(tresc);
-      if (!slug || !docId) return;
+    for (var r = 2; r <= last; r++) {
+      var slug = String(sh.getRange(r, cSlug).getValue() || "").trim();
+      var docId = extractDocId(String(sh.getRange(r, cTresc).getValue() || "").trim());
+      if (!slug || !docId) continue;
       try {
         var md = docToMarkdown(DocumentApp.openById(docId));
-        sh.getRange(i + 2, CFG.COL_TRESC_MD).setValue(md);
-        done.push(name + " / " + slug);
+        sh.getRange(r, cMd).setValue(md);
+        done.push(sh.getName() + " / " + slug);
       } catch (e) {
-        errors.push(name + " / " + slug + ": " + (e && e.message ? e.message : e));
+        errors.push(sh.getName() + " / " + slug + ": " + (e && e.message ? e.message : e));
       }
-    });
+    }
   });
   var msg = done.length
     ? "Zsynchronizowano " + done.length + " treści z Google Docs:\n• " + done.join("\n• ")
     : "Brak wierszy z linkami do Google Docs — nic do synchronizacji.";
   if (errors.length) msg += "\n\nBłędy:\n• " + errors.join("\n• ");
   return msg;
-}
-
-function ensureTrescMdHeader(sh) {
-  if (sh.getMaxColumns() < CFG.COL_TRESC_MD) {
-    sh.insertColumnsAfter(sh.getMaxColumns(), CFG.COL_TRESC_MD - sh.getMaxColumns());
-  }
-  var h = sh.getRange(1, CFG.COL_TRESC_MD);
-  if (String(h.getValue()).trim() !== "tresc_md") h.setValue("tresc_md");
 }
 
 function extractDocId(s) {

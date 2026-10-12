@@ -4,7 +4,7 @@
 (function () {
   "use strict";
   var SHEET = "https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv";
-  var GID_META = "0", GID_TRESCI = "154391268";
+  var GID_META = "0";
 
   function parseCSV(text) {
     var rows = [], row = [], cell = "", q = false;
@@ -53,18 +53,14 @@
   var slug = new URLSearchParams(location.search).get("slug") || "";
   if (!slug) { location.replace("artykuly.html"); return; }
 
-  Promise.all([
-    fetch(SHEET + "&gid=" + GID_META).then(function (r) { return r.text(); }),
-    fetch(SHEET + "&gid=" + GID_TRESCI).then(function (r) { return r.text(); })
-  ]).then(function (res) {
-    var meta = toObjects(parseCSV(res[0])).filter(function (a) { return a.slug === slug; })[0];
-    var tresc = toObjects(parseCSV(res[1])).filter(function (a) { return a.slug === slug; })[0];
-    var body = pickTresc(tresc);
+  fetch(SHEET + "&gid=" + GID_META).then(function (r) { return r.text(); }).then(function (text) {
+    var meta = toObjects(parseCSV(text)).filter(function (a) { return a.slug === slug; })[0];
+    var body = pickTresc(meta);
     if (!meta || !body) { location.replace("artykuly.html"); return; }
 
-    document.title = tresc.tytul_seo || (meta.tytul + " — Krzysztof Miotk");
+    document.title = meta.tytul_seo || (meta.tytul + " — Krzysztof Miotk");
     var md = document.querySelector('meta[name="description"]');
-    if (md) md.setAttribute("content", tresc.opis_seo || meta.zajawka || "");
+    if (md) md.setAttribute("content", meta.opis_seo || meta.zajawka || "");
     var canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement("link"); canon.rel = "canonical"; document.head.appendChild(canon); }
     canon.href = "https://agalapinska.github.io/krzysztof-miotk-y4s/artykul.html?slug=" + encodeURIComponent(slug);
@@ -73,7 +69,7 @@
     ld.textContent = JSON.stringify({
       "@context": "https://schema.org", "@type": "Article",
       "headline": meta.tytul, "datePublished": meta.data,
-      "articleSection": meta.kategoria, "description": tresc.opis_seo || meta.zajawka || "",
+      "articleSection": meta.kategoria, "description": meta.opis_seo || meta.zajawka || "",
       "author": { "@type": "Person", "name": "Krzysztof Miotk", "jobTitle": "UX Researcher" }
     });
     document.head.appendChild(ld);
