@@ -309,7 +309,7 @@
   document.querySelectorAll("div, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
     var t = (el.textContent || "").trim();
-    if (/^Zobacz wszystkie artykuly/i.test(t)) {
+    if (/^Zobacz wszystkie artyku/i.test(t)) {
       el.classList.add("km-link-fx");
       el.addEventListener("click", function () { window.location.href = ARTICLES; });
       return;
@@ -727,8 +727,11 @@
       }
     }
     window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
     setProgress(0);
     check();
+    setTimeout(check, 800);
+    window.addEventListener("load", check);
 
     var ctaPanel = null;
     Array.prototype.forEach.call(section.querySelectorAll("div"), function (el) {
@@ -866,7 +869,7 @@
       var t = (el.textContent || "").trim();
       if (t.indexOf("7 KONCEPCJI") === 0 && !el.querySelector("div")) title = el;
       if (!desc && el.children.length === 0 && /Badania RITE/.test(t)) desc = el;
-      if (!tag && el.children.length === 0 && t.indexOf("CASE /") === 0) tag = el;
+      if (!tag && el.children.length === 0 && (t.indexOf("CASE /") === 0 || /\/ CASE STUDY$/.test(t))) tag = el;
       if (el.children.length === 0 && /Dlatego nie dostarczam raportów/.test(t)) paras.push(el);
     });
     if (!title || !desc || !tag) return;
@@ -936,9 +939,9 @@
     });
 
     var CASES = [
-      { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "CASE / APTEKA GEMINI", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
-      { title: "MILISEKUNDY\n= PIENIĄDZE.", desc: "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych.", tag: "CASE / XTB", right: "Szybkość interfejsu przełożona wprost na wynik finansowy — badania wskazały, które ścieżki naprawdę bolą użytkowników." },
-      { title: "SEGMENTACJA\nPORZĄDKUJE.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "CASE / OLX", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
+      { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "APTEKA GEMINI / CASE STUDY", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
+      { title: "MILISEKUNDY\n= PIENIĄDZE.", desc: "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych.", tag: "XTB / CASE STUDY", right: "Szybkość interfejsu przełożona wprost na wynik finansowy — badania wskazały, które ścieżki naprawdę bolą użytkowników." },
+      { title: "SEGMENTACJA\nBEHAWIORALNA.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "OLX / CASE STUDY", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
     ];
     var idx = 0;
     if (reduced) return;
@@ -949,8 +952,9 @@
       tag.innerText = c.tag;
       if (rightPara) rightPara.innerText = kmNbsp(c.right);
     }
+    var timer = null;
     function advance() {
-      if (document.hidden || state.hover) { setTimeout(advance, 400); return; }
+      if (document.hidden || state.hover) { timer = setTimeout(advance, 400); return; }
       idx = (idx + 1) % CASES.length;
       var parent = cardRow.parentElement;
       if (getComputedStyle(parent).position === "static") parent.style.position = "relative";
@@ -976,7 +980,28 @@
     }
     function cycle() {
       if (fill) { fill.style.animationPlayState = ""; fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
-      setTimeout(advance, 3500);
+      clearTimeout(timer);
+      timer = setTimeout(advance, 3500);
+    }
+    function goTo(target) {
+      if (target === idx) return;
+      clearTimeout(timer);
+      idx = (target - 1 + CASES.length) % CASES.length;
+      advance();
+    }
+    if (f701) {
+      var bars = Array.prototype.filter.call(f701.children, function (el) { return el !== fill; });
+      f701.style.cursor = "pointer";
+      if (bars.length >= CASES.length) {
+        bars.forEach(function (bar, i) {
+          bar.style.cursor = "pointer";
+          bar.addEventListener("click", function (e) {
+            e.stopPropagation();
+            goTo(i % CASES.length);
+          });
+        });
+      }
+      f701.addEventListener("click", function () { goTo((idx + 1) % CASES.length); });
     }
     cycle();
   })();
