@@ -136,63 +136,218 @@
                     },
                     {
                       "type": "frame",
-                      "id": "i4ewZV",
-                      "name": "Frame 659",
-                      "gap": 32,
+                      "id": "D8NFz",
+                      "name": "Logos col",
+                      "layout": "vertical",
+                      "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "o-hc-1",
-                          "fill": "$neutral.500",
-                          "content": "PayU",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "i4ewZV",
+                          "name": "Frame 659",
+                          "gap": 32,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "o-hc-1",
+                              "fill": "$neutral.500",
+                              "content": "PayU",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o-hc-2",
+                              "fill": "$neutral.500",
+                              "content": "BLIK",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o-hc-3",
+                              "fill": "$neutral.500",
+                              "content": "OLX",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o-hc-4",
+                              "fill": "$neutral.500",
+                              "content": "mObywatel",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o-hc-5",
+                              "fill": "$neutral.500",
+                              "content": "mBank",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o-hc-6",
+                              "fill": "$neutral.500",
+                              "content": "OtoMoto",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
-                          "type": "text",
-                          "id": "o-hc-2",
-                          "fill": "$neutral.500",
-                          "content": "BLIK",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "xVekx",
+                          "name": "Logos row 2",
+                          "gap": 32,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "nqV9C",
+                              "name": "logo-ERLI",
+                              "fill": "$neutral.500",
+                              "content": "ERLI",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "kqif6",
+                              "name": "logo-ING",
+                              "fill": "$neutral.500",
+                              "content": "ING",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "aUNEk",
+                              "name": "logo-Santander BP",
+                              "fill": "$neutral.500",
+                              "content": "Santander BP",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "T3DfwK",
+                              "name": "logo-OtoDom",
+                              "fill": "$neutral.500",
+                              "content": "OtoDom",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "fDgDL",
+                              "name": "logo-Reserved",
+                              "fill": "$neutral.500",
+                              "content": "Reserved",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "pUrTg",
+                              "name": "logo-GOG",
+                              "fill": "$neutral.500",
+                              "content": "GOG",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "p5hbi",
+                              "name": "logo-Tubądzin",
+                              "fill": "$neutral.500",
+                              "content": "Tubądzin",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         },
                         {
-                          "type": "text",
-                          "id": "o-hc-3",
-                          "fill": "$neutral.500",
-                          "content": "OLX",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "o-hc-4",
-                          "fill": "$neutral.500",
-                          "content": "mObywatel",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "o-hc-5",
-                          "fill": "$neutral.500",
-                          "content": "mBank",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "o-hc-6",
-                          "fill": "$neutral.500",
-                          "content": "OtoMoto",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "Wu6K3",
+                          "name": "Logos row 3",
+                          "gap": 32,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SU1Ck",
+                              "name": "logo-Ergo Hestia",
+                              "fill": "$neutral.500",
+                              "content": "Ergo Hestia",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "S1HjZm",
+                              "name": "logo-Compensa",
+                              "fill": "$neutral.500",
+                              "content": "Compensa",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "i7aE4l",
+                              "name": "logo-Player",
+                              "fill": "$neutral.500",
+                              "content": "Player",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "qtki8",
+                              "name": "logo-Nocowanie.pl",
+                              "fill": "$neutral.500",
+                              "content": "Nocowanie.pl",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "HScvM",
+                              "name": "logo-Alior Bank",
+                              "fill": "$neutral.500",
+                              "content": "Alior Bank",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "HE8k7",
+                              "name": "logo-Tantis",
+                              "fill": "$neutral.500",
+                              "content": "Tantis",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -203,7 +358,7 @@
                   "type": "ref",
                   "ref": "nQ3nh",
                   "x": 0,
-                  "y": 289
+                  "y": 355
                 }
               ]
             },
@@ -430,7 +585,7 @@
                       "fill": "$brand.violet-200",
                       "textGrowth": "fixed-width",
                       "width": 560,
-                      "content": "[Kliknij na wybraną usługę, aby przeczytać przykładowe wdrożenie i przeczytać moje przemyślenia (artykuły) na ten temat.]",
+                      "content": "[Kliknij na wybraną usługę, aby przeczytać przykładowe wdrożenie i moje przemyślenia na ten temat.]",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
                       "fontSize": 14,
@@ -1824,7 +1979,7 @@
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Widziałem dziesiątki produktów od środka. Łączę badania z twardą analityką.",
+                      "content": "Widziałem dziesiątki produktów od środka. Łączę badania z biznesem.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
                       "fontSize": 20,
@@ -2774,7 +2929,7 @@
                                   "fill": "$neutral.600",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"",
+                                  "content": "„Kris has been a long-term partner at OLX. He delivered high-quality research work for multiple teams, on a range of topics, and collaborated well with our research and product teams. I'd recommend him, especially if you're looking for someone who gets up to speed quickly, and delivers results quick.\"",
                                   "lineHeight": 1.5,
                                   "fontFamily": "$font.body",
                                   "fontSize": 20,
@@ -2801,7 +2956,7 @@
                                       "fill": "$color.ink",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Jarek Piotrowski ·\nProduct Manager @Traffit",
+                                      "content": "Hailey Griffiths ·\nProduct Research Manager @OLX",
                                       "lineHeight": 1.6,
                                       "fontFamily": "$font.mono",
                                       "fontSize": 15,
@@ -2832,7 +2987,7 @@
                                   "fill": "$neutral.600",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"",
+                                  "content": "„Krzysztof wraz ze swoją agencją zbadał dla nas 7 koncepcji projektowych w 2 tygodnie. Rekomendacje były złotym środkiem między trendami na rynku światowym a regulacjami prawnymi nałożonymi na e-commerce z branży farmaceutycznej.\"",
                                   "lineHeight": 1.5,
                                   "fontFamily": "$font.body",
                                   "fontSize": 20,
@@ -2859,7 +3014,7 @@
                                       "fill": "$color.ink",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Jarek Piotrowski ·\nProduct Manager @Traffit",
+                                      "content": "Michał Bączek ·\nUX/UI Department Manager @Gemini",
                                       "lineHeight": 1.6,
                                       "fontFamily": "$font.mono",
                                       "fontSize": 15,
@@ -2890,16 +3045,6 @@
                   "alignItems": "end",
                   "children": [
                     {
-                      "type": "text",
-                      "id": "o-rm-h",
-                      "fill": "$brand.violet-900",
-                      "content": "Potrzebujesz referencji?",
-                      "lineHeight": 0.9,
-                      "fontFamily": "$font.display",
-                      "fontSize": 32,
-                      "fontWeight": "normal"
-                    },
-                    {
                       "type": "frame",
                       "id": "H8G6X2",
                       "name": "button",
@@ -2920,7 +3065,7 @@
                           "id": "tjuFi",
                           "name": "Prześlij",
                           "fill": "#ffffff",
-                          "content": "Napisz o referencje",
+                          "content": "Napisz do mnie",
                           "lineHeight": 1.6,
                           "textAlign": "center",
                           "fontFamily": "Inter",
@@ -3503,7 +3648,7 @@
                       "type": "text",
                       "id": "o-cl-tag",
                       "fill": "$brand.violet-100",
-                      "content": "CASE / APTEKA GEMINI",
+                      "content": "APTEKA GEMINI / CASE STUDY",
                       "fontFamily": "$font.mono",
                       "fontSize": 16,
                       "fontWeight": "500",
@@ -3769,7 +3914,7 @@
                                       "fill": "$neutral.700",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
+                                      "content": "Moim głównym zadaniem jest zmniejszanie Twojego ryzyka. Potrafię nie tylko wykonać każde badanie biznesowe na świecie, ale również podjąć na podstawie niego decyzje.",
                                       "lineHeight": 0.9,
                                       "fontFamily": "Inter",
                                       "fontSize": 20,
@@ -3806,7 +3951,7 @@
                                       "fill": "$neutral.700",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
+                                      "content": "Jestem sparing-partnerem. Nie będę pomagał Ci malować trawy na zielono, tylko wypracujemy sposób na to, aby mieć trawnik lepszy niż sąsiad.",
                                       "lineHeight": 0.9,
                                       "fontFamily": "Inter",
                                       "fontSize": 20,
@@ -3843,7 +3988,7 @@
                                       "fill": "$neutral.700",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
+                                      "content": "Mam chęci do pracy, ale tego samego wymagam od drugiej strony. Dzięki temu zajdziemy dalej.",
                                       "lineHeight": 0.9,
                                       "fontFamily": "Inter",
                                       "fontSize": 20,
@@ -3853,37 +3998,6 @@
                                     {
                                       "type": "rectangle",
                                       "id": "fWuPE",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "dtUii",
-                                  "name": "FAQ Item 1",
-                                  "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "SaSLU",
-                                      "fill": "$neutral.700",
-                                      "textGrowth": "fixed-width",
-                                      "width": "fill_container",
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
-                                      "lineHeight": 0.9,
-                                      "fontFamily": "Inter",
-                                      "fontSize": 20,
-                                      "fontWeight": "normal",
-                                      "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "t80JIf",
                                       "name": "FAQ Divider 1",
                                       "fill": "#E2E2EA",
                                       "width": "fill_container",
@@ -4242,7 +4356,7 @@
                           "type": "text",
                           "id": "o-b1-m",
                           "fill": "$neutral.600",
-                          "content": "5 min",
+                          "content": "8 min",
                           "fontFamily": "$font.body",
                           "fontSize": 14,
                           "fontWeight": "normal"
@@ -4251,7 +4365,7 @@
                           "type": "text",
                           "id": "o-b1-d",
                           "fill": "$neutral.600",
-                          "content": "25.03.2026",
+                          "content": "02.10.2026",
                           "fontFamily": "$font.body",
                           "fontSize": 14,
                           "fontWeight": "normal"
@@ -4264,7 +4378,7 @@
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
+                      "content": "Jak zaplanować badania UX, żeby skończyły się decyzją, a nie raportem do szuflady",
                       "lineHeight": 1.5,
                       "fontFamily": "Inter",
                       "fontSize": 20,
@@ -4294,7 +4408,7 @@
                           "type": "text",
                           "id": "o-b2-m",
                           "fill": "$neutral.600",
-                          "content": "5 min",
+                          "content": "7 min",
                           "fontFamily": "$font.body",
                           "fontSize": 14,
                           "fontWeight": "normal"
@@ -4303,7 +4417,7 @@
                           "type": "text",
                           "id": "o-b2-d",
                           "fill": "$neutral.600",
-                          "content": "25.03.2026",
+                          "content": "12.09.2026",
                           "fontFamily": "$font.body",
                           "fontSize": 14,
                           "fontWeight": "normal"
@@ -4316,7 +4430,7 @@
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
+                      "content": "Segmentacja klientów krok po kroku: od danych CRM do decyzji portfelowych",
                       "lineHeight": 1.5,
                       "fontFamily": "Inter",
                       "fontSize": 20,
@@ -4355,7 +4469,7 @@
                           "type": "text",
                           "id": "o-b3-d",
                           "fill": "$neutral.600",
-                          "content": "25.03.2026",
+                          "content": "14.08.2026",
                           "fontFamily": "$font.body",
                           "fontSize": 14,
                           "fontWeight": "normal"
@@ -4368,7 +4482,7 @@
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
+                      "content": "RITE w praktyce: walidacja 7 koncepcji procesu w 14 dni",
                       "lineHeight": 1.5,
                       "fontFamily": "Inter",
                       "fontSize": 20,
@@ -4389,7 +4503,7 @@
                   "type": "text",
                   "id": "o-b-all",
                   "fill": "$neutral.800",
-                  "content": "Zobacz wszystkie artykuly [45]",
+                  "content": "Zobacz wszystkie artykuły →",
                   "fontFamily": "$font.body",
                   "fontSize": 20,
                   "fontWeight": "normal"
@@ -37891,6 +38005,7 @@
       "x": -4132,
       "y": 6586,
       "name": "Komponenty — stany",
+      "height": 4542,
       "fill": "#FFFFFF",
       "layout": "vertical",
       "gap": 64,
@@ -54627,7 +54742,137 @@
           "ref": "apHOA",
           "name": "Logo",
           "width": 150,
-          "height": 22.5
+          "height": 22.5,
+          "descendants": {
+            "p2wcw": {
+              "flipX": false,
+              "flipY": false,
+              "width": 90,
+              "height": 23,
+              "x": 121.89999999999998,
+              "y": 3.328571428572104
+            },
+            "fQitG": {
+              "width": 16,
+              "height": 20,
+              "flipX": false,
+              "flipY": false,
+              "x": 0,
+              "y": -2.8126276901784877
+            },
+            "Hz2mk": {
+              "width": 20,
+              "height": 15,
+              "flipX": false,
+              "flipY": false,
+              "x": 18.192205347333633,
+              "y": 2.0473012924194336
+            },
+            "O8N36x": {
+              "width": 16,
+              "height": 22,
+              "flipX": false,
+              "flipY": false,
+              "x": 38.965063313075476,
+              "y": 2.0351712771825987
+            },
+            "p1BzAF": {
+              "width": 13,
+              "height": 16,
+              "flipX": false,
+              "flipY": false,
+              "x": 54.62049320765904,
+              "y": 1.7400181634093315
+            },
+            "nkuiF": {
+              "width": 13,
+              "height": 15,
+              "flipX": false,
+              "flipY": false,
+              "x": 69.37448512486048,
+              "y": 2.0473012924194336
+            },
+            "RRLbZ": {
+              "width": 9,
+              "height": 20,
+              "flipX": false,
+              "flipY": false,
+              "x": 83.80140925816127,
+              "y": -2.416393944195079
+            },
+            "UiYRN": {
+              "width": 15,
+              "height": 16,
+              "flipX": false,
+              "flipY": false,
+              "x": 93.1388190133231,
+              "y": 1.744061742510894
+            },
+            "TTCbh": {
+              "width": 8,
+              "height": 22,
+              "flipX": false,
+              "flipY": false,
+              "x": 109.97488446916853,
+              "y": -5
+            },
+            "nd8ZR": {
+              "width": 20,
+              "height": 20,
+              "flipX": false,
+              "flipY": false,
+              "x": 130.19332297188896,
+              "y": -2.8126276901784877
+            },
+            "T1nMB": {
+              "width": 3,
+              "height": 14,
+              "flipX": false,
+              "flipY": false,
+              "x": 153.96564004080636,
+              "y": 3.29260812486973
+            },
+            "wP27F": {
+              "flipX": false,
+              "flipY": false,
+              "width": 5,
+              "height": 20,
+              "x": 153.7,
+              "y": -1.214285714286234
+            },
+            "Ujf38": {
+              "width": 15,
+              "height": 16,
+              "flipX": false,
+              "flipY": false,
+              "x": 159.80103302001953,
+              "y": 1.744061742510894
+            },
+            "MEWzG": {
+              "width": 9,
+              "height": 20,
+              "flipX": false,
+              "flipY": false,
+              "x": 176.82057298932756,
+              "y": -2.416393944195079
+            },
+            "c3IK7i": {
+              "width": 3,
+              "height": 3,
+              "flipX": false,
+              "flipY": false,
+              "x": 153.96564004080636,
+              "y": -1.4338957445961569
+            },
+            "qmOXx": {
+              "width": 15,
+              "height": 22,
+              "flipX": false,
+              "flipY": false,
+              "x": 188.40757598876954,
+              "y": -4.785710299865968
+            }
+          }
         },
         {
           "type": "frame",
