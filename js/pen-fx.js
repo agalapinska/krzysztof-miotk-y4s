@@ -708,30 +708,31 @@
       });
     }
     function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
-    var played = false;
-    function playReveal() {
-      var t0 = performance.now(), D = 5200;
-      function frame(now) {
-        var t = Math.min(1, (now - t0) / D);
-        setProgress(easeOut(t));
-        if (t < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-    function check() {
-      if (played) return;
+    var target = 0, current = 0, rafId = null;
+    function calcTarget() {
       var r = section.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.62 && r.bottom > 0) {
-        played = true;
-        playReveal();
-      }
+      var vh = window.innerHeight;
+      var start = vh * 0.85, end = vh * 0.12;
+      var t = (start - r.top) / (start - end);
+      return easeOut(Math.max(0, Math.min(1, t)));
     }
-    window.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
+    function tick() {
+      current += (target - current) * 0.14;
+      if (Math.abs(target - current) < 0.002) current = target;
+      setProgress(current);
+      rafId = current !== target ? requestAnimationFrame(tick) : null;
+    }
+    function sync() {
+      target = calcTarget();
+      if (document.hidden) { current = target; setProgress(current); return; }
+      if (rafId === null && target !== current) rafId = requestAnimationFrame(tick);
+    }
+    window.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
     setProgress(0);
-    check();
-    setTimeout(check, 800);
-    window.addEventListener("load", check);
+    sync();
+    setTimeout(sync, 800);
+    window.addEventListener("load", sync);
 
     var ctaPanel = null;
     Array.prototype.forEach.call(section.querySelectorAll("div"), function (el) {
