@@ -136,218 +136,193 @@
                     },
                     {
                       "type": "frame",
-                      "id": "D8NFz",
-                      "name": "Logos col",
-                      "layout": "vertical",
-                      "gap": 12,
+                      "id": "i4ewZV",
+                      "name": "Frame 659",
+                      "gap": 32,
                       "children": [
                         {
-                          "type": "frame",
-                          "id": "i4ewZV",
-                          "name": "Frame 659",
-                          "gap": 32,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "o-hc-1",
-                              "fill": "$neutral.500",
-                              "content": "PayU",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "o-hc-2",
-                              "fill": "$neutral.500",
-                              "content": "BLIK",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "o-hc-3",
-                              "fill": "$neutral.500",
-                              "content": "OLX",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "o-hc-4",
-                              "fill": "$neutral.500",
-                              "content": "mObywatel",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "o-hc-5",
-                              "fill": "$neutral.500",
-                              "content": "mBank",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "o-hc-6",
-                              "fill": "$neutral.500",
-                              "content": "OtoMoto",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            }
-                          ]
+                          "type": "text",
+                          "id": "o-hc-1",
+                          "fill": "$neutral.500",
+                          "content": "PayU",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
                         },
                         {
-                          "type": "frame",
-                          "id": "xVekx",
-                          "name": "Logos row 2",
-                          "gap": 32,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "nqV9C",
-                              "name": "logo-ERLI",
-                              "fill": "$neutral.500",
-                              "content": "ERLI",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "kqif6",
-                              "name": "logo-ING",
-                              "fill": "$neutral.500",
-                              "content": "ING",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "aUNEk",
-                              "name": "logo-Santander BP",
-                              "fill": "$neutral.500",
-                              "content": "Santander BP",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "T3DfwK",
-                              "name": "logo-OtoDom",
-                              "fill": "$neutral.500",
-                              "content": "OtoDom",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "fDgDL",
-                              "name": "logo-Reserved",
-                              "fill": "$neutral.500",
-                              "content": "Reserved",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "pUrTg",
-                              "name": "logo-GOG",
-                              "fill": "$neutral.500",
-                              "content": "GOG",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "p5hbi",
-                              "name": "logo-Tubądzin",
-                              "fill": "$neutral.500",
-                              "content": "Tubądzin",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            }
-                          ]
+                          "type": "text",
+                          "id": "o-hc-2",
+                          "fill": "$neutral.500",
+                          "content": "BLIK",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
                         },
                         {
-                          "type": "frame",
-                          "id": "Wu6K3",
-                          "name": "Logos row 3",
-                          "gap": 32,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "SU1Ck",
-                              "name": "logo-Ergo Hestia",
-                              "fill": "$neutral.500",
-                              "content": "Ergo Hestia",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "S1HjZm",
-                              "name": "logo-Compensa",
-                              "fill": "$neutral.500",
-                              "content": "Compensa",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "i7aE4l",
-                              "name": "logo-Player",
-                              "fill": "$neutral.500",
-                              "content": "Player",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "qtki8",
-                              "name": "logo-Nocowanie.pl",
-                              "fill": "$neutral.500",
-                              "content": "Nocowanie.pl",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "HScvM",
-                              "name": "logo-Alior Bank",
-                              "fill": "$neutral.500",
-                              "content": "Alior Bank",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "HE8k7",
-                              "name": "logo-Tantis",
-                              "fill": "$neutral.500",
-                              "content": "Tantis",
-                              "fontFamily": "$font.body",
-                              "fontSize": 17,
-                              "fontWeight": "normal"
-                            }
-                          ]
+                          "type": "text",
+                          "id": "o-hc-3",
+                          "fill": "$neutral.500",
+                          "content": "OLX",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "o-hc-4",
+                          "fill": "$neutral.500",
+                          "content": "mObywatel",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "o-hc-5",
+                          "fill": "$neutral.500",
+                          "content": "mBank",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "o-hc-6",
+                          "fill": "$neutral.500",
+                          "content": "OtoMoto",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "nqV9C",
+                          "name": "logo-ERLI",
+                          "fill": "$neutral.500",
+                          "content": "ERLI",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kqif6",
+                          "name": "logo-ING",
+                          "fill": "$neutral.500",
+                          "content": "ING",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "aUNEk",
+                          "name": "logo-Santander BP",
+                          "fill": "$neutral.500",
+                          "content": "Santander BP",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "T3DfwK",
+                          "name": "logo-OtoDom",
+                          "fill": "$neutral.500",
+                          "content": "OtoDom",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "fDgDL",
+                          "name": "logo-Reserved",
+                          "fill": "$neutral.500",
+                          "content": "Reserved",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "pUrTg",
+                          "name": "logo-GOG",
+                          "fill": "$neutral.500",
+                          "content": "GOG",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "p5hbi",
+                          "name": "logo-Tubądzin",
+                          "fill": "$neutral.500",
+                          "content": "Tubądzin",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SU1Ck",
+                          "name": "logo-Ergo Hestia",
+                          "fill": "$neutral.500",
+                          "content": "Ergo Hestia",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "S1HjZm",
+                          "name": "logo-Compensa",
+                          "fill": "$neutral.500",
+                          "content": "Compensa",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "i7aE4l",
+                          "name": "logo-Player",
+                          "fill": "$neutral.500",
+                          "content": "Player",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qtki8",
+                          "name": "logo-Nocowanie.pl",
+                          "fill": "$neutral.500",
+                          "content": "Nocowanie.pl",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HScvM",
+                          "name": "logo-Alior Bank",
+                          "fill": "$neutral.500",
+                          "content": "Alior Bank",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HE8k7",
+                          "name": "logo-Tantis",
+                          "fill": "$neutral.500",
+                          "content": "Tantis",
+                          "fontFamily": "$font.body",
+                          "fontSize": 17,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -358,7 +333,7 @@
                   "type": "ref",
                   "ref": "nQ3nh",
                   "x": 0,
-                  "y": 355
+                  "y": 289
                 }
               ]
             },
@@ -3737,28 +3712,38 @@
                   "type": "frame",
                   "id": "WXjn8",
                   "name": "Frame 701",
-                  "width": 136,
-                  "height": 24,
-                  "layout": "none",
+                  "gap": 8,
+                  "alignItems": "center",
                   "children": [
                     {
-                      "type": "rectangle",
-                      "id": "l4jqi3",
-                      "x": 0,
-                      "y": 0,
-                      "fill": "$brand.violet-100",
-                      "width": "fill_container(136)",
-                      "height": "fill_container(24)"
+                      "type": "frame",
+                      "id": "ohzIG",
+                      "name": "Case bar 1",
+                      "clip": true,
+                      "width": 56,
+                      "height": 8,
+                      "fill": "$brand.violet-700",
+                      "cornerRadius": 4
                     },
                     {
-                      "type": "rectangle",
-                      "id": "l7ehj",
-                      "layoutPosition": "absolute",
-                      "x": 0,
-                      "y": 0,
-                      "fill": "$brand.violet-500",
-                      "width": 80,
-                      "height": 24
+                      "type": "frame",
+                      "id": "AvWde",
+                      "name": "Case bar 2",
+                      "clip": true,
+                      "width": 56,
+                      "height": 8,
+                      "fill": "#E9E9F7",
+                      "cornerRadius": 4
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zl4Au",
+                      "name": "Case bar 3",
+                      "clip": true,
+                      "width": 56,
+                      "height": 8,
+                      "fill": "#E9E9F7",
+                      "cornerRadius": 4
                     }
                   ]
                 },
@@ -3886,7 +3871,7 @@
                               "name": "FAQ Item 1",
                               "width": "fill_container",
                               "layout": "vertical",
-                              "gap": 12,
+                              "gap": 28,
                               "padding": [
                                 0,
                                 0,
@@ -3915,19 +3900,11 @@
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
                                       "content": "Moim głównym zadaniem jest zmniejszanie Twojego ryzyka. Potrafię nie tylko wykonać każde badanie biznesowe na świecie, ale również podjąć na podstawie niego decyzje.",
-                                      "lineHeight": 0.9,
+                                      "lineHeight": 1.45,
                                       "fontFamily": "Inter",
                                       "fontSize": 20,
                                       "fontWeight": "normal",
                                       "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "BGcYZ",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
                                     }
                                   ]
                                 },
@@ -3952,19 +3929,11 @@
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
                                       "content": "Jestem sparing-partnerem. Nie będę pomagał Ci malować trawy na zielono, tylko wypracujemy sposób na to, aby mieć trawnik lepszy niż sąsiad.",
-                                      "lineHeight": 0.9,
+                                      "lineHeight": 1.45,
                                       "fontFamily": "Inter",
                                       "fontSize": 20,
                                       "fontWeight": "normal",
                                       "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "U4bsh",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
                                     }
                                   ]
                                 },
@@ -3989,50 +3958,13 @@
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
                                       "content": "Mam chęci do pracy, ale tego samego wymagam od drugiej strony. Dzięki temu zajdziemy dalej.",
-                                      "lineHeight": 0.9,
+                                      "lineHeight": 1.45,
                                       "fontFamily": "Inter",
                                       "fontSize": 20,
                                       "fontWeight": "normal",
                                       "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "fWuPE",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
                                     }
                                   ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "LveJq",
-                          "name": "Frame 681",
-                          "height": "fill_container",
-                          "alignItems": "end",
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "M8duh",
-                              "name": "Frame 680",
-                              "height": "fill_container",
-                              "fill": "$brand.violet-100",
-                              "padding": [
-                                40,
-                                0
-                              ],
-                              "children": [
-                                {
-                                  "type": "rectangle",
-                                  "id": "ss9LV",
-                                  "fill": "$brand.violet-200",
-                                  "width": 8,
-                                  "height": 200
                                 }
                               ]
                             }
@@ -19715,8 +19647,9 @@
           "x": 0,
           "y": 0,
           "descendants": {
-            "rijQp": {
-              "gap": 12
+            "wBxDo": {
+              "fontStyle": "normal",
+              "fontWeight": "700"
             }
           }
         },
@@ -20349,33 +20282,26 @@
         },
         {
           "type": "frame",
-          "id": "N13tc",
+          "id": "KqoT7",
           "rotation": 0.02940925300231323,
           "gap": 8,
+          "justifyContent": "end",
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "MuNDi",
-              "fill": "$color.ink",
-              "content": "Usługi :",
-              "fontFamily": "$font.body",
-              "fontSize": 16,
-              "fontWeight": "600"
-            },
-            {
               "type": "frame",
-              "id": "rijQp",
+              "id": "XBcW1",
               "name": "Frame 711",
               "width": 582,
               "height": 16.000000000000455,
-              "gap": 16,
+              "gap": 36,
+              "justifyContent": "end",
               "children": [
                 {
                   "type": "text",
-                  "id": "aIbtC",
+                  "id": "wBxDo",
                   "fill": "$color.ink",
-                  "content": "Badania UX",
+                  "content": "Moja Oferta",
                   "lineHeight": 1,
                   "fontFamily": "$font.body",
                   "fontSize": 16,
@@ -20384,9 +20310,9 @@
                 },
                 {
                   "type": "text",
-                  "id": "Is7gV",
+                  "id": "MYQyt",
                   "fill": "$color.ink",
-                  "content": "Segmentacja klientów",
+                  "content": "Case Study",
                   "lineHeight": 1,
                   "fontFamily": "$font.body",
                   "fontSize": 16,
@@ -20395,31 +20321,9 @@
                 },
                 {
                   "type": "text",
-                  "id": "iARaV",
+                  "id": "p7f78O",
                   "fill": "$color.ink",
-                  "content": "Audyt UX",
-                  "lineHeight": 1,
-                  "fontFamily": "$font.body",
-                  "fontSize": 16,
-                  "fontWeight": "normal",
-                  "letterSpacing": 0.16
-                },
-                {
-                  "type": "text",
-                  "id": "h3BIEC",
-                  "fill": "$color.ink",
-                  "content": "Konsultacje",
-                  "lineHeight": 1,
-                  "fontFamily": "$font.body",
-                  "fontSize": 16,
-                  "fontWeight": "normal",
-                  "letterSpacing": 0.16
-                },
-                {
-                  "type": "text",
-                  "id": "qCqaq",
-                  "fill": "$color.ink",
-                  "content": "Wystąpienia",
+                  "content": "Artykuły",
                   "lineHeight": 1,
                   "fontFamily": "$font.body",
                   "fontSize": 16,
@@ -38995,12 +38899,7 @@
                           "type": "ref",
                           "ref": "iqBtl",
                           "x": 0,
-                          "y": 0,
-                          "descendants": {
-                            "rijQp": {
-                              "gap": 12
-                            }
-                          }
+                          "y": 0
                         },
                         {
                           "type": "frame",
@@ -39491,13 +39390,7 @@
                       "id": "qvnhD",
                       "type": "ref",
                       "ref": "iqBtl",
-                      "width": 1440,
-                      "descendants": {
-                        "aIbtC": {
-                          "fill": "$brand.violet-500",
-                          "fontWeight": "600"
-                        }
-                      }
+                      "width": 1440
                     }
                   ]
                 }
