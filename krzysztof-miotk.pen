@@ -10799,8 +10799,8 @@
     {
       "type": "frame",
       "id": "kWUTP",
-      "x": 10946,
-      "y": -1010,
+      "x": 11529,
+      "y": -1012,
       "name": "agalapinska.github.io",
       "context": "body",
       "clip": true,
@@ -16552,8 +16552,8 @@
     {
       "type": "frame",
       "id": "tyONP",
-      "x": 8999,
-      "y": -1010,
+      "x": 9702,
+      "y": -1012,
       "name": "agalapinska.github.io",
       "context": "body",
       "clip": true,
@@ -20487,8 +20487,8 @@
     {
       "type": "note",
       "id": "c3eE0",
-      "x": 12420,
-      "y": -271,
+      "x": 13003,
+      "y": -273,
       "width": 250,
       "height": 219,
       "content": "Przykład projektu obok kategorii albo zdjęcie obrazujące"
@@ -20496,8 +20496,8 @@
     {
       "type": "note",
       "id": "Jaa5P",
-      "x": 12509,
-      "y": -129,
+      "x": 13092,
+      "y": -131,
       "width": 250,
       "height": 124,
       "content": "+ case study"
@@ -21845,8 +21845,8 @@
     {
       "type": "frame",
       "id": "Uimrl",
-      "x": 8999,
-      "y": -1377,
+      "x": 9702,
+      "y": -1379,
       "name": "button-secondary-hover",
       "height": 50,
       "fill": "#ffffffff",
@@ -21910,15 +21910,15 @@
       "id": "OFfT4",
       "type": "ref",
       "ref": "nQ3nh",
-      "x": 8999,
-      "y": -1790
+      "x": 9702,
+      "y": -1792
     },
     {
       "id": "RjqQg",
       "type": "ref",
       "ref": "bWiDj",
-      "x": 9505,
-      "y": -1379,
+      "x": 10208,
+      "y": -1381,
       "descendants": {
         "x5oQdY": {
           "content": "Umów darmową rozmowę"
@@ -21928,8 +21928,8 @@
     {
       "type": "frame",
       "id": "hvPCn",
-      "x": 9251,
-      "y": -1378,
+      "x": 9954,
+      "y": -1380,
       "name": "Napisz wiadomość",
       "context": "a",
       "fill": "#ffffffff",
@@ -21959,8 +21959,8 @@
     {
       "type": "frame",
       "id": "G710R",
-      "x": 9251,
-      "y": -1274,
+      "x": 9954,
+      "y": -1276,
       "name": "Napisz wiadomość",
       "context": "a",
       "fill": "$brand.violet-50",
@@ -21996,8 +21996,8 @@
     {
       "type": "frame",
       "id": "uuuQw",
-      "x": 8999,
-      "y": -1643,
+      "x": 9702,
+      "y": -1645,
       "name": "button",
       "context": "button",
       "clip": true,
@@ -22055,8 +22055,8 @@
     {
       "type": "frame",
       "id": "Nnsuo",
-      "x": 9001,
-      "y": -1550,
+      "x": 9704,
+      "y": -1552,
       "fill": "$brand.violet-700",
       "gap": 14,
       "padding": [
@@ -50118,8 +50118,8 @@
     {
       "type": "rectangle",
       "id": "fKFn5",
-      "x": 10729,
-      "y": 2632,
+      "x": 11312,
+      "y": 2630,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -55394,9 +55394,9 @@
           "layout": "vertical",
           "gap": 40,
           "padding": [
-            72,
+            64,
             20,
-            120,
+            80,
             20
           ],
           "children": [
@@ -55405,7 +55405,7 @@
               "id": "me42D",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 40,
+              "gap": 28,
               "children": [
                 {
                   "type": "frame",
@@ -55413,7 +55413,7 @@
                   "name": "Frame 660",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 12,
+                  "gap": 20,
                   "children": [
                     {
                       "type": "text",
@@ -55421,10 +55421,10 @@
                       "fill": "$neutral.900",
                       "textGrowth": "fixed-width",
                       "width": 390,
-                      "content": "Zamieniam wiedzę o klientach \nw wzrost Twojego biznesu.",
+                      "content": "Zamieniam wiedzę \no klientach w wzrost Twojego biznesu.",
                       "lineHeight": 0.9,
                       "fontFamily": "Nexa",
-                      "fontSize": 56,
+                      "fontSize": 40,
                       "fontWeight": "normal",
                       "letterSpacing": -1
                     },
@@ -55437,7 +55437,7 @@
                       "content": "Zrobię to już w dwa tygodnie, a o jakości świadczą poniższe marki ",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
-                      "fontSize": 24,
+                      "fontSize": 20,
                       "fontWeight": "normal"
                     }
                   ]
@@ -55448,9 +55448,7 @@
                   "layout": "vertical",
                   "gap": 26,
                   "padding": [
-                    40,
-                    0,
-                    0,
+                    20,
                     0
                   ],
                   "children": [
@@ -55534,110 +55532,13 @@
                   "type": "ref",
                   "ref": "nQ3nh",
                   "x": 0,
-                  "y": 565
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "f4Sh20",
-              "width": "fill_container",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "rectangle",
-                  "id": "tMfGM",
-                  "layoutPosition": "absolute",
-                  "x": 161,
-                  "y": 87.69786096256684,
-                  "fill": {
-                    "type": "image",
-                    "enabled": true,
-                    "url": "image-2.png",
-                    "mode": "fill"
-                  },
-                  "width": 294,
-                  "height": 362
-                },
-                {
-                  "type": "rectangle",
-                  "id": "UMMf9",
-                  "layoutPosition": "absolute",
-                  "x": 46,
-                  "y": 38.5,
-                  "fill": {
-                    "type": "image",
-                    "enabled": true,
-                    "url": "assets/img/krzysztof-prelekcja.jpg",
-                    "mode": "fill"
-                  },
-                  "width": 374,
-                  "height": 460
-                },
-                {
-                  "type": "frame",
-                  "id": "q6Vrf",
-                  "name": "Frame 662",
-                  "clip": true,
-                  "layout": "vertical",
-                  "gap": 12,
-                  "alignItems": "end",
-                  "children": [
-                    {
-                      "type": "rectangle",
-                      "id": "PP5cv",
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "image-1.png",
-                        "mode": "fill"
-                      },
-                      "width": 375,
-                      "height": 537
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "X5OaZ",
-                      "fill": "$brand.violet-100",
-                      "width": 64,
-                      "height": 12
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "cQXpm",
-                      "layoutPosition": "absolute",
-                      "x": 311,
-                      "y": 549,
-                      "fill": "$brand.violet-500",
-                      "width": 32,
-                      "height": 12
+                  "y": 345,
+                  "width": "fill_container",
+                  "descendants": {
+                    "cYwJI": {
+                      "width": "fill_container"
                     }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "X01SUb",
-                  "layoutPosition": "absolute",
-                  "x": -37.95889770652525,
-                  "y": 516.6143410529032,
-                  "rotation": -3.0000000000000004,
-                  "fill": "$brand.violet-500",
-                  "padding": [
-                    9,
-                    16
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "kxLkk",
-                      "fill": "$brand.violet-50",
-                      "content": "DECISION GUY W QUALE UX",
-                      "fontFamily": "$font.mono",
-                      "fontSize": 16,
-                      "fontWeight": "normal",
-                      "letterSpacing": 1.8
-                    }
-                  ]
+                  }
                 }
               ]
             }
@@ -55715,6 +55616,8 @@
           "layout": "vertical",
           "gap": 64,
           "padding": [
+            40,
+            20,
             100,
             20
           ],
@@ -55724,7 +55627,7 @@
               "id": "uP96W",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 80,
+              "gap": 40,
               "children": [
                 {
                   "type": "text",

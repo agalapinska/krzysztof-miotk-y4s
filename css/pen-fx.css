@@ -194,3 +194,40 @@ body.km-mob .km-dl-tip { display: none !important; }
 body.km-mob .km-glows::before, body.km-mob .km-glows::after { width: 220px; height: 220px; filter: blur(50px); }
 body.km-mob div { max-width: 100%; }
 body.km-mob { overflow-x: clip; }
+
+/* 9. Metaliczny obrys na hover — karty na kolorowym tle */
+@property --km-ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes km-metal-spin { to { --km-ang: 360deg; } }
+.km-metal-fx { position: relative; }
+.km-metal-fx::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
+  background: conic-gradient(from var(--km-ang),
+    rgba(255,255,255,.04), rgba(255,255,255,.65) 18%, rgba(214,205,255,.25) 32%,
+    rgba(255,255,255,.08) 50%, rgba(226,220,255,.7) 68%, rgba(255,255,255,.12) 84%, rgba(255,255,255,.04));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .35s ease; pointer-events: none; z-index: 2;
+}
+.km-metal-fx:hover::after { opacity: 1; animation: km-metal-spin 2.6s linear infinite; }
+.km-metal-fx .km-link-fx:hover { color: inherit !important; opacity: inherit !important; }
+
+/* 9b. Karta opisu case — zalewanie kolorem od lewej na hover */
+.km-case-card-fx { position: relative; overflow: hidden; transition: color .2s ease .15s; }
+.km-case-card-fx::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, #2A0A66 0%, #5205E7 100%);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .5s cubic-bezier(.45,.05,.2,1);
+}
+.km-case-card-fx > * { position: relative; z-index: 1; }
+.km-case-card-fx:hover::before { transform: scaleX(1); }
+.km-case-card-fx.km-on, .km-case-card-fx.km-on * { color: #fff !important; }
+
+/* 9c. Pasek karuzeli case — wypełnienie aktywnego slotu */
+.km-case-slot { position: relative; cursor: pointer; }
+.km-case-slot .km-slot-fill {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+  background: #5205E7; border-radius: inherit;
+}
+.km-case-slot .km-slot-fill.is-run { animation: km-hero-load 3.5s linear forwards; }
+.km-case-card-fx.km-on::before { transform: scaleX(1); }

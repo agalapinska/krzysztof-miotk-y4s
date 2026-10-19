@@ -9,10 +9,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/pen-fx.css?v=8" />
+<link rel="stylesheet" href="css/pen-fx.css?v=9" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      @font-face {
+        font-family: Nexa;
+        src: url("Nexa-Regular.ttf") format("truetype");
+        font-display: swap;
+        font-weight: 400;
+        font-style: italic;
+      }
+
       @font-face {
         font-family: Nexa;
         src: url("Nexa-Book.ttf") format("truetype");
@@ -41,11 +49,11 @@
   <body>
     <div
       data-pencil-name="Podstrona — Artykuł (szablon)"
-      style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 1440px"
+      style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; position: relative; width: 1440px"
     >
       <div
         data-pencil-name="Nav"
-        style="align-items: center; background-color: #ffffffff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 36px; height: fit-content; justify-content: space-between; padding: 28px 64px; width: 1440px"
+        style="align-items: center; background-color: #ffffffff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 36px; height: fit-content; justify-content: space-between; padding: 28px 64px; position: relative; width: 1440px; z-index: 0"
       >
         <div
           data-pencil-name="Logo 03 — Compact"
@@ -244,44 +252,29 @@
           </div>
         </div>
         <div
-          style="box-sizing: border-box; flex-shrink: 0; height: 19.333px; position: relative; width: 648.01px"
+          style="box-sizing: border-box; flex-shrink: 0; height: 16.299px; position: relative; width: 582.008px"
         >
           <div
-            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; gap: 8px; height: fit-content; justify-content: flex-start; left: 0px; position: absolute; top: 0.333px; transform-origin: top left; transform: rotate(-0.029deg); width: fit-content"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; gap: 8px; height: fit-content; justify-content: flex-end; left: 0px; position: absolute; top: 0.299px; transform-origin: top left; transform: rotate(-0.029deg); width: fit-content"
           >
             <div
-              style="box-sizing: border-box; color: #15172C; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
-            >
-              Usługi :
-            </div>
-            <div
               data-pencil-name="Frame 711"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 16px; height: 16px; justify-content: flex-start; width: 582px"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 36px; height: 16px; justify-content: flex-end; width: 582px"
             >
               <div
                 style="box-sizing: border-box; color: #15172C; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0.16px; line-height: 16px; text-align: left; white-space: nowrap"
               >
-                Badania UX
+                Moja Oferta
               </div>
               <div
                 style="box-sizing: border-box; color: #15172C; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0.16px; line-height: 16px; text-align: left; white-space: nowrap"
               >
-                Segmentacja klientów
+                Case Study
               </div>
               <div
                 style="box-sizing: border-box; color: #15172C; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0.16px; line-height: 16px; text-align: left; white-space: nowrap"
               >
-                Audyt UX
-              </div>
-              <div
-                style="box-sizing: border-box; color: #15172C; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0.16px; line-height: 16px; text-align: left; white-space: nowrap"
-              >
-                Konsultacje
-              </div>
-              <div
-                style="box-sizing: border-box; color: #15172C; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0.16px; line-height: 16px; text-align: left; white-space: nowrap"
-              >
-                Wystąpienia
+                Artykuły
               </div>
             </div>
           </div>
@@ -328,7 +321,7 @@
       </div>
       <div
         data-pencil-name="Artykuł Header"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 18px; height: fit-content; justify-content: flex-start; padding: 56px 100px 24px 100px; width: 100%"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 18px; height: fit-content; justify-content: flex-start; padding: 56px 100px 24px 100px; position: relative; width: 100%; z-index: 1"
       >
         <div
           data-pencil-name="Breadcrumb"
@@ -379,14 +372,12 @@
           data-pencil-name="H1"
           style="box-sizing: border-box; color: #15172C; font-family: Nexa, system-ui, sans-serif; font-size: 42px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 50px; text-align: left; width: 900px"
         >
-          Jak zaplanować badania UX, żeby skończyły się decyzją,
-          <br />
-          a nie raportem do szuflady
+          Jak zaplanować badania UX, żeby skończyły się decyzją, a nie raportem do szuflady
         </div>
       </div>
       <div
         data-pencil-name="Artykuł Body"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 22px; height: fit-content; justify-content: flex-start; padding: 16px 100px 56px 100px; width: 100%"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 22px; height: fit-content; justify-content: flex-start; padding: 16px 100px 56px 100px; position: relative; width: 100%; z-index: 2"
       >
         <div
           data-pencil-name="p"
@@ -428,10 +419,42 @@
             Jaką decyzję blokuje brak wiedzy o użytkownikach?
           </div>
         </div>
+        <div
+          data-pencil-name="Frame 731"
+          style="align-items: flex-end; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 32px 0px; width: 100%"
+        >
+          <div
+            data-pencil-name="section"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: center; width: 100%"
+          >
+            <div
+              data-pencil-name="div"
+              style="align-items: flex-start; background-color: #f1f2ff; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 20px; position: relative; width: 100%"
+            >
+              <div
+                data-pencil-name="Frame 685"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: center; padding: 10px 0px; position: relative; width: 100%; z-index: 0"
+              >
+                <div
+                  data-pencil-name="„Jeżeli mam wybierać między badaniami sł"
+                  style="box-sizing: border-box; color: #585b6e; font-family: Nexa, system-ui, sans-serif; font-size: 20px; font-style: italic; font-weight: 500; letter-spacing: 0px; line-height: 32px; text-align: left; width: 100%"
+                >
+                  „Wiedza, której nie użyjesz w poniedziałek, to tylko rozrywka."
+                </div>
+              </div>
+              <div
+                data-pencil-name="Zewnętrzny Dyrektor UX"
+                style="box-sizing: border-box; color: #645cedff; font-family: Nexa, system-ui, sans-serif; font-size: 120px; font-style: normal; font-weight: 500; height: 51.66px; left: -20px; letter-spacing: -0.82px; line-height: 114px; position: absolute; text-align: left; top: -14px; width: 1112px; z-index: 1"
+              >
+                "
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div
         data-pencil-name="Artykuł CTA"
-        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 8px 100px 64px 100px; width: 100%"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 80px; height: fit-content; justify-content: flex-start; padding: 64px 100px; position: relative; width: 100%; z-index: 3"
       >
         <div
           data-pencil-name="CTA Panel"
@@ -488,10 +511,105 @@
             </div>
           </div>
         </div>
+        <div
+          data-pencil-name="Row 1"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Artykuł: Segmentacja klientów kro"
+            style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #D4D0F8; padding: 28px 26px"
+          >
+            <div
+              data-pencil-name="Meta"
+              style='box-sizing: border-box; color: #9094A6; font-family: "Geist Mono", system-ui, sans-serif; font-size: 11.5px; font-style: normal; font-weight: 400; letter-spacing: 1px; line-height: normal; text-align: left; white-space: nowrap'
+            >
+              SEGMENTACJA · 12.09.2026 · 7 MIN
+            </div>
+            <div
+              data-pencil-name="Tytuł"
+              style="box-sizing: border-box; color: #15172C; font-family: Nexa, system-ui, sans-serif; font-size: 19px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 25px; text-align: left; width: 100%"
+            >
+              Segmentacja klientów krok po kroku: od danych CRM do decyzji portfelowych
+            </div>
+            <div
+              data-pencil-name="Zajawka"
+              style="box-sizing: border-box; color: #585B6E; font-family: Inter, system-ui, sans-serif; font-size: 14.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 100%"
+            >
+              Jak połączyć dane transakcyjne z wywiadami, żeby wyodrębnić segmenty, które naprawdę
+              różnią się zachowaniem.
+            </div>
+            <div
+              data-pencil-name="CTA"
+              style="box-sizing: border-box; color: #5205E7; font-family: Inter, system-ui, sans-serif; font-size: 14.5px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+            >
+              Czytaj więcej →
+            </div>
+          </div>
+          <div
+            data-pencil-name="Artykuł: Audyt UX przed redesigne"
+            style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #D4D0F8; padding: 28px 26px"
+          >
+            <div
+              data-pencil-name="Meta"
+              style='box-sizing: border-box; color: #9094A6; font-family: "Geist Mono", system-ui, sans-serif; font-size: 11.5px; font-style: normal; font-weight: 400; letter-spacing: 1px; line-height: normal; text-align: left; white-space: nowrap'
+            >
+              AUDYT UX · 28.08.2026 · 6 MIN
+            </div>
+            <div
+              data-pencil-name="Tytuł"
+              style="box-sizing: border-box; color: #15172C; font-family: Nexa, system-ui, sans-serif; font-size: 19px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 25px; text-align: left; width: 100%"
+            >
+              Audyt UX przed redesignem: 12 miejsc, w których e-commerce traci pieniądze
+            </div>
+            <div
+              data-pencil-name="Zajawka"
+              style="box-sizing: border-box; color: #585B6E; font-family: Inter, system-ui, sans-serif; font-size: 14.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 100%"
+            >
+              Checklist z realnych audytów — od koszyka po stronę produktu. Z wagami problemów i
+              przykładami poprawek.
+            </div>
+            <div
+              data-pencil-name="CTA"
+              style="box-sizing: border-box; color: #5205E7; font-family: Inter, system-ui, sans-serif; font-size: 14.5px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+            >
+              Czytaj więcej →
+            </div>
+          </div>
+          <div
+            data-pencil-name="Artykuł: RITE w praktyce: walidac"
+            style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #D4D0F8; padding: 28px 26px"
+          >
+            <div
+              data-pencil-name="Meta"
+              style='box-sizing: border-box; color: #9094A6; font-family: "Geist Mono", system-ui, sans-serif; font-size: 11.5px; font-style: normal; font-weight: 400; letter-spacing: 1px; line-height: normal; text-align: left; white-space: nowrap'
+            >
+              BADANIA UX · 14.08.2026 · 5 MIN
+            </div>
+            <div
+              data-pencil-name="Tytuł"
+              style="box-sizing: border-box; color: #15172C; font-family: Nexa, system-ui, sans-serif; font-size: 19px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 25px; text-align: left; width: 100%"
+            >
+              RITE w praktyce: walidacja 7 koncepcji procesu w 14 dni
+            </div>
+            <div
+              data-pencil-name="Zajawka"
+              style="box-sizing: border-box; color: #585B6E; font-family: Inter, system-ui, sans-serif; font-size: 14.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 100%"
+            >
+              Case z Apteki Gemini: jak iteracyjne testy pozwoliły wybrać koncepcję, która działa
+              bez zmian od kilku lat.
+            </div>
+            <div
+              data-pencil-name="CTA"
+              style="box-sizing: border-box; color: #5205E7; font-family: Inter, system-ui, sans-serif; font-size: 14.5px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+            >
+              Czytaj więcej →
+            </div>
+          </div>
+        </div>
       </div>
       <div
         data-pencil-name="Footer"
-        style="box-sizing: border-box; flex-shrink: 0; height: 774px; position: relative; width: 1440px"
+        style="box-sizing: border-box; flex-shrink: 0; height: 774px; position: relative; width: 1440px; z-index: 4"
       >
         <div
           style="align-items: flex-start; background-image: linear-gradient(-119.728deg, #23095E 16.537%, #33107E 53.346%, #4C16C9 83.463%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px; height: fit-content; justify-content: flex-start; left: 0px; padding: 90px 100px 60px 100px; position: absolute; top: 0px; width: 1440px; z-index: 0"
@@ -780,8 +898,37 @@
           </div>
         </div>
       </div>
+      <div
+        data-pencil-name="div - float"
+        style="align-items: flex-start; backdrop-filter: blur(6px); background-color: #ffffff80; border: 1px solid #E9E9F7; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; left: 962px; padding: 20px; position: absolute; top: 591px; width: fit-content; z-index: 5"
+      >
+        <div
+          style="align-items: flex-start; backdrop-filter: blur(4px); box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-end; width: 358px"
+        >
+          <div
+            data-pencil-name="div"
+            style="align-items: center; background-color: #fafafa; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 22.4px; height: fit-content; justify-content: flex-start; padding: 80px 24px; width: 100%"
+          >
+            <div
+              data-pencil-name="Tu pojawi się widżet rezerwacji terminu."
+              style="box-sizing: border-box; color: #3a3d52; font-family: Inter, system-ui, sans-serif; font-size: 17px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: center; width: 100%"
+            >
+              Tu pojawi się widżet rezerwacji terminu. Wklej swój link Calendly lub Cal.com w pliku
+              js/main.js (CONFIG.calendarUrl).
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #3a3d52; font-family: Nexa, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: right; width: 100%"
+          >
+            Wystarczy kliknąć
+            <br />
+            w kalendarz :)
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="js/pen-fx.js?v=8" defer></script>
+  
+    <script src="js/pen-fx.js?v=9" defer></script>
   <script src="js/artykul.js?v=3" defer></script>
 </body>
 </html>

@@ -202,14 +202,104 @@
     });
   })();
 
+  /* --- 1c. Hero: logosy klientów — pozioma taśma (prawo→lewo, hover pauza) --- */
+  (function () {
+    if (isMob || reduced) return;
+    var label = null;
+    document.querySelectorAll("div").forEach(function (el) {
+      if (!label && el.children.length === 0 && /^PRACOWAŁEM Z:/.test((el.textContent || "").trim())) label = el;
+    });
+    if (!label) return;
+    var wrapRow = label.parentElement;
+    var row = null;
+    Array.prototype.forEach.call(wrapRow.children, function (el) {
+      if (el !== label && el.querySelectorAll("div").length >= 5) row = el;
+    });
+    if (!row) return;
+    var gap = getComputedStyle(row).columnGap || "32px";
+    var vp = document.createElement("div");
+    vp.style.cssText = "overflow:hidden;flex:1 1 auto;min-width:0;position:relative;";
+    row.parentNode.insertBefore(vp, row);
+    var track = document.createElement("div");
+    track.style.cssText = "display:flex;align-items:center;gap:" + gap + ";width:max-content;will-change:transform;";
+    vp.appendChild(track);
+    track.appendChild(row);
+    row.style.flexShrink = "0";
+    var clone = row.cloneNode(true);
+    clone.style.flexShrink = "0";
+    track.appendChild(clone);
+    var pos = 0, hovered = false, last = performance.now(), SPEED = 30;
+    function frame(now) {
+      var dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      if (!hovered) {
+        pos -= SPEED * dt;
+        var w = row.offsetWidth + parseFloat(gap);
+        if (-pos >= w) pos += w;
+        track.style.transform = "translateX(" + pos + "px)";
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    vp.addEventListener("mouseenter", function () { hovered = true; });
+    vp.addEventListener("mouseleave", function () { hovered = false; });
+  })();
+
+  /* --- 1d. Statystyki: liczby kalkulują się przy wejściu w widok --- */
+  (function () {
+    var items = [];
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length) return;
+      var t = (el.textContent || "").trim();
+      if (!/^#?\d[\d\s\u00A0]*(?:[–-]\s*\d[\d\s\u00A0]*)?(?:\+|tyg\.)?$/.test(t)) return;
+      if (parseFloat(getComputedStyle(el).fontSize) < 34) return;
+      items.push({ el: el, tpl: t, done: false });
+    });
+    if (!items.length) return;
+    function run(it) {
+      it.done = true;
+      if (reduced || document.hidden) { it.el.textContent = it.tpl; return; }
+      var t0 = performance.now(), D = 1400;
+      function fr(now) {
+        var t = Math.min(1, (now - t0) / D);
+        var k = 1 - Math.pow(1 - t, 3);
+        it.el.textContent = it.tpl.replace(/\d+/g, function (num) {
+          return String(Math.round(parseInt(num, 10) * k));
+        });
+        if (t < 1) requestAnimationFrame(fr); else it.el.textContent = it.tpl;
+      }
+      requestAnimationFrame(fr);
+    }
+    function check() {
+      items.forEach(function (it) {
+        if (it.done) return;
+        var r = it.el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.88 && r.bottom > 0) run(it);
+      });
+    }
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+    setTimeout(check, 600);
+  })();
+
   /* --- 2. Karty i wiersze — glow za kursorem + lift --- */
   var cardSel = [
     '[data-pencil-name*="Card"]', '[data-pencil-name*="card"]',
-    '[data-pencil-name*="Services Row"]', '[data-pencil-name*="FAQ Item"]',
+    '[data-pencil-name*="Services Row"]',
     '[data-pencil-name*="Frame 707"]'
   ].join(",");
+  function kmColoredBg(el) {
+    var n = el.parentElement;
+    for (var i = 0; i < 6 && n && n !== document.body; i++) {
+      var st = n.getAttribute("style") || "";
+      if (/linear-gradient|radial-gradient|background-image:\s*url\(/.test(st)) return true;
+      n = n.parentElement;
+    }
+    return false;
+  }
   document.querySelectorAll(cardSel).forEach(function (card) {
     if (card.offsetWidth < 120 || card.offsetHeight < 60) return;
+    if (kmColoredBg(card)) { card.classList.add("km-metal-fx"); return; }
     card.classList.add("km-card-fx");
     if (reduced) return;
     if (!card.querySelector(".card-glow")) {
@@ -304,7 +394,8 @@
     "Zewnętrzny Dyrektor UX": PAGES["Zewnętrzny Dyrektor UX"],
     "Usługi": SERVICES, "Usługi/": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
     "Strona główna": HOME, "Artykuły": ARTICLES, "Artykuły/": ARTICLES,
-    "Case studies": CASESTUDIES, "Case studies/": CASESTUDIES
+    "Case studies": CASESTUDIES, "Case studies/": CASESTUDIES,
+    "Moja Oferta": SERVICES, "Case Study": CASESTUDIES
   };
   document.querySelectorAll("div, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
@@ -644,7 +735,6 @@
       if (grid) cols = Array.prototype.slice.call(grid.children, 0, 4);
     }
     var rings = section.querySelectorAll('[data-pencil-name="Icon Ring"]');
-    if (reduced) return;
 
     var wrap = document.createElement("div");
     wrap.style.cssText = "position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:0;";
@@ -741,7 +831,7 @@
     if (ctaPanel) ctaPanel.classList.add("km-proc-cta");
   })();
 
-  /* --- 4f. Opinie: never-ending marquee (auto-dryf, pauza na hover, scroll ręczny) --- */
+  /* --- 4f. Opinie: pozioma taśma (prawo→lewo, hover pauza) --- */
   (function () {
     if (reduced) return;
     var head = null;
@@ -752,37 +842,48 @@
     var scope = head.parentElement;
     var f663 = scope && scope.querySelector('[data-pencil-name="Frame 663"]');
     if (!f663) return;
-    var H = f663.offsetHeight, W = f663.offsetWidth, GAP = 20, shift = H + GAP;
+    var cards = Array.prototype.slice.call(f663.children);
+    if (!cards.length) return;
+    var W = f663.offsetWidth;
     var vp = document.createElement("div");
-    vp.style.cssText = "overflow:hidden;height:" + H + "px;width:" + W + "px;position:relative;";
+    vp.style.cssText = "overflow:hidden;width:" + W + "px;position:relative;";
     f663.parentNode.insertBefore(vp, f663);
     var track = document.createElement("div");
-    track.style.cssText = "display:flex;flex-direction:column;gap:" + GAP + "px;will-change:transform;";
+    track.style.cssText = "display:flex;gap:24px;align-items:stretch;width:max-content;will-change:transform;";
     vp.appendChild(track);
-    track.appendChild(f663);
-    track.appendChild(f663.cloneNode(true));
-    var pos = -shift, hovered = false, last = performance.now();
-    var SPEED = shift / 52;
-    function wrapPos() {
-      while (pos >= 0) pos -= shift;
-      while (pos < -shift) pos += shift;
+    var CW = isMob ? 320 : 430;
+    function prepCard(c) {
+      c.style.width = CW + "px";
+      c.style.flexShrink = "0";
+      c.style.height = "auto";
+      c.querySelectorAll("div").forEach(function (d) {
+        var m = (d.getAttribute("style") || "").match(/width:\s*([\d.]+)px/);
+        if (m && parseFloat(m[1]) > CW - 50) { d.style.width = "auto"; d.style.maxWidth = "100%"; }
+        if (getComputedStyle(d).whiteSpace === "nowrap" && d.scrollWidth > CW - 50) d.style.whiteSpace = "normal";
+      });
     }
+    cards.forEach(function (c) { track.appendChild(c); prepCard(c); });
+    cards.forEach(function (c) {
+      var k = c.cloneNode(true);
+      k.style.flexShrink = "0";
+      track.appendChild(k);
+    });
+    f663.remove();
+    var pos = 0, hovered = false, last = performance.now(), SPEED = 26;
     function frame(now) {
       var dt = Math.min(0.1, (now - last) / 1000);
       last = now;
-      if (!hovered) { pos += SPEED * dt; wrapPos(); }
-      track.style.transform = "translateY(" + pos + "px)";
+      if (!hovered) {
+        pos -= SPEED * dt;
+        var half = track.scrollWidth / 2 + 12;
+        if (-pos >= half) pos += half;
+        track.style.transform = "translateX(" + pos + "px)";
+      }
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
     vp.addEventListener("mouseenter", function () { hovered = true; });
     vp.addEventListener("mouseleave", function () { hovered = false; });
-    vp.addEventListener("wheel", function (e) {
-      e.preventDefault();
-      pos -= e.deltaY;
-      wrapPos();
-      track.style.transform = "translateY(" + pos + "px)";
-    }, { passive: false });
   })();
 
   /* --- 4g. Tooltip przy kursorze na „Pobierz Demo Raportu" --- */
@@ -904,45 +1005,46 @@
       }
     }
 
-    sec.style.position = "relative";
-    Array.prototype.forEach.call(sec.children, function (ch) {
-      var cs = getComputedStyle(ch);
-      if (cs.position === "static") ch.style.position = "relative";
-      if (!ch.style.zIndex) ch.style.zIndex = "1";
-    });
-    var overlay = document.createElement("div");
-    overlay.className = "km-case-overlay";
-    sec.insertBefore(overlay, sec.firstChild);
-    [head, lead].forEach(function (el) { if (el) el.classList.add("km-case-text"); });
+
     var state = { hover: false };
     var fill = null;
     var f701 = sec.querySelector('[data-pencil-name="Frame 701"]');
+    var slots = [];
     if (f701) {
-      Array.prototype.forEach.call(f701.children, function (el) {
-        var st = el.getAttribute("style") || "";
-        if (/background-color:\s*#5205E7/i.test(st)) fill = el;
+      slots = Array.prototype.slice.call(f701.children);
+      slots.forEach(function (slot) {
+        slot.classList.add("km-case-slot");
+        slot.style.backgroundColor = "#E9E9F7";
       });
-      if (fill) {
-        f701.style.position = "relative";
-        fill.style.left = ""; fill.style.top = ""; fill.style.width = ""; fill.style.height = "";
-        fill.classList.add("km-hero-fill");
+      if (slots.length) {
+        fill = document.createElement("div");
+        fill.className = "km-slot-fill";
+        slots[0].appendChild(fill);
       }
     }
+    if (rightPanel) {
+      rightPanel.classList.add("km-case-card-fx");
+      rightPanel.style.cursor = "pointer";
+      rightPanel.addEventListener("mouseenter", function () { rightPanel.classList.add("km-on"); });
+      rightPanel.addEventListener("mouseleave", function () { rightPanel.classList.remove("km-on"); });
+      rightPanel.addEventListener("click", function () {
+        var c = CASES[idx];
+        if (c && c.slug) window.location.href = "case-study.html?slug=" + encodeURIComponent(c.slug);
+      });
+    }
     cardRow.addEventListener("mouseenter", function () {
-      sec.classList.add("km-case-on");
       state.hover = true;
       if (fill) fill.style.animationPlayState = "paused";
     });
     cardRow.addEventListener("mouseleave", function () {
-      sec.classList.remove("km-case-on");
       state.hover = false;
       if (fill) fill.style.animationPlayState = "";
     });
 
     var CASES = [
-      { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "APTEKA GEMINI / CASE STUDY", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
-      { title: "MILISEKUNDY\n= PIENIĄDZE.", desc: "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych.", tag: "XTB / CASE STUDY", right: "Szybkość interfejsu przełożona wprost na wynik finansowy — badania wskazały, które ścieżki naprawdę bolą użytkowników." },
-      { title: "SEGMENTACJA\nBEHAWIORALNA.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "OLX / CASE STUDY", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
+      { title: "7 KONCEPCJI\n14 DNI.", desc: "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.", tag: "APTEKA GEMINI / CASE STUDY", slug: "gemini-badania-rite", right: "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać." },
+      { title: "MILISEKUNDY\n= PIENIĄDZE.", desc: "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych.", tag: "XTB / CASE STUDY", slug: "xtb-optymalizacja-sciezek", right: "Szybkość interfejsu przełożona wprost na wynik finansowy — badania wskazały, które ścieżki naprawdę bolą użytkowników." },
+      { title: "SEGMENTACJA\nBEHAWIORALNA.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "OLX / CASE STUDY", slug: "olx-segmentacja-klientow", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
     ];
     var idx = 0;
     if (reduced) return;
@@ -980,7 +1082,13 @@
       setTimeout(function () { clone.remove(); cycle(); }, SLIDE + 40);
     }
     function cycle() {
-      if (fill) { fill.style.animationPlayState = ""; fill.classList.remove("is-run"); void fill.offsetWidth; fill.classList.add("is-run"); }
+      if (fill && slots.length) {
+        slots[idx % slots.length].appendChild(fill);
+        fill.style.animationPlayState = "";
+        fill.classList.remove("is-run");
+        void fill.offsetWidth;
+        fill.classList.add("is-run");
+      }
       clearTimeout(timer);
       timer = setTimeout(advance, 3500);
     }
@@ -990,21 +1098,28 @@
       idx = (target - 1 + CASES.length) % CASES.length;
       advance();
     }
-    if (f701) {
-      var bars = Array.prototype.filter.call(f701.children, function (el) { return el !== fill; });
-      f701.style.cursor = "pointer";
-      if (bars.length >= CASES.length) {
-        bars.forEach(function (bar, i) {
-          bar.style.cursor = "pointer";
-          bar.addEventListener("click", function (e) {
-            e.stopPropagation();
-            goTo(i % CASES.length);
-          });
-        });
-      }
-      f701.addEventListener("click", function () { goTo((idx + 1) % CASES.length); });
-    }
+    slots.forEach(function (slot, i) {
+      slot.addEventListener("click", function () { goTo(i % CASES.length); });
+    });
     cycle();
+  })();
+
+  /* --- 4j. „Poznaj mnie od innej strony": logo UX w Lesie + widget Spotify --- */
+  (function () {
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length) return;
+      var t = (el.textContent || "").replace(/\u00A0/g, " ").trim();
+      if (t === "UX w Lesie") {
+        el.style.whiteSpace = "normal";
+        el.innerHTML = '<a href="https://www.uxwlesie.pl" target="_blank" rel="noopener" style="display:inline-block"><img src="assets/uxwlesie.png" alt="UX w Lesie" style="height:56px;display:block"/></a>';
+      } else if (t === "Spotify pasek widget") {
+        var p = el.parentElement;
+        var w = p ? Math.min(p.clientWidth || 600, 640) : 600;
+        el.style.whiteSpace = "normal";
+        el.style.width = w + "px";
+        el.innerHTML = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/1SOUA8UPfusGYKE1oj2YTC?utm_source=generator&theme=0&si=74e6eb26634e4618" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Podcast UX w Lesie na Spotify"></iframe>';
+      }
+    });
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
