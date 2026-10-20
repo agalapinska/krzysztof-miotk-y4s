@@ -1123,6 +1123,51 @@
     });
   })();
 
+  /* --- 4l. Calendly: kalendarz inline w sekcji terminów + popup z pływającego widżetu --- */
+  (function () {
+    var CAL_URL = "https://calendly.com/krzysiek-quale/30min";
+    var targets = [];
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length) return;
+      if (/Tu pojawi się widżet rezerwacji/.test(el.textContent || "")) targets.push(el);
+    });
+    if (!targets.length) return;
+    var needScript = false;
+    targets.forEach(function (el) {
+      var float = el.closest('[data-pencil-name="div - float"]');
+      el.style.display = "none";
+      if (float) {
+        if (float._kmCal) return;
+        float._kmCal = 1;
+        float.style.cursor = "pointer";
+        float.addEventListener("click", function () {
+          if (window.Calendly) window.Calendly.initPopupWidget({ url: CAL_URL });
+          else window.open(CAL_URL, "_blank");
+        });
+        needScript = true;
+      } else {
+        var box = el.parentElement || el;
+        var w = document.createElement("div");
+        w.className = "calendly-inline-widget";
+        w.setAttribute("data-url", CAL_URL);
+        w.style.cssText = "min-width:320px;height:700px;width:100%;";
+        box.appendChild(w);
+        box.style.height = "auto";
+        needScript = true;
+      }
+    });
+    if (needScript && !document.querySelector('script[src*="assets.calendly.com"]')) {
+      var sc = document.createElement("script");
+      sc.src = "https://assets.calendly.com/assets/external/widget.js";
+      sc.async = true;
+      document.head.appendChild(sc);
+      var lk = document.createElement("link");
+      lk.rel = "stylesheet";
+      lk.href = "https://assets.calendly.com/assets/external/widget.css";
+      document.head.appendChild(lk);
+    }
+  })();
+
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
   (function () {
     var OFFER_PAGE = /(badania-ux|segmentacja-klientow|audyt-ux|konsultacje-i-mentoring|dyrektor-ux|wystapienia-i-szkolenia)\.html$/;
