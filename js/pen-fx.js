@@ -218,7 +218,7 @@
     if (!row) return;
     var gap = getComputedStyle(row).columnGap || "32px";
     var vp = document.createElement("div");
-    vp.style.cssText = "overflow:hidden;flex:1 1 auto;min-width:0;position:relative;";
+    vp.style.cssText = "overflow:hidden;width:660px;max-width:660px;flex:0 0 auto;position:relative;";
     row.parentNode.insertBefore(vp, row);
     var track = document.createElement("div");
     track.style.cssText = "display:flex;align-items:center;gap:" + gap + ";width:max-content;will-change:transform;";
@@ -672,6 +672,7 @@
     }
 
     (function heroDeck() {
+      return; // hero ma teraz statyczny kolaż zdjęć (design z Pen) — talia działa tylko w sekcji raportu
       var f662 = document.querySelector('[data-pencil-name="Frame 662"]');
       if (!f662) return;
       var photo = f662.firstElementChild;
