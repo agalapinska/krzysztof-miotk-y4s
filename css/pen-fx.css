@@ -312,3 +312,8 @@ body.km-mob { overflow-x: clip; }
 
 /* 14. Buttony z metalicznym podkreśleniem (Kontakt itp.) — hover bez zmiany tła, bez cienia */
 .km-metal-under.km-linkbtn:hover { background-color: #ffffff !important; border-color: transparent !important; box-shadow: none !important; }
+
+/* 15. Formularze Kontakt — focus ring i stan błędu na boxach pól */
+.km-kbox { transition: border-color .2s ease, box-shadow .2s ease; }
+.km-kbox:focus-within { border-color: #5205E7 !important; box-shadow: 0 0 0 3px rgba(82, 5, 231, 0.15); }
+.km-kbox.km-invalid { border-color: #D92D20 !important; }

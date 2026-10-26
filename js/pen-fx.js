@@ -367,6 +367,7 @@
     var name = el.getAttribute("data-pencil-name") || "";
     var looksBtn = /button|umów|zobacz|wyślij|zapisz|pobierz|napisz/i.test(name);
     if (!looksBtn) return;
+    if (el.closest('[data-pencil-name="form"]')) return;
     var style = el.getAttribute("style") || "";
     if (!/background/.test(style) && !/border/.test(style)) return;
     if (el.offsetHeight < 30 || el.offsetHeight > 90) return;
@@ -1387,6 +1388,116 @@
       btn.style.cursor = "pointer";
       if (btn === el) el.classList.add("km-link-fx");
       btn.addEventListener("click", openCal);
+    });
+  })();
+
+  /* --- 4m0. Formularze na stronie Kontakt (atrapy z Pen → prawdziwe pola + walidacja + mailto) --- */
+  (function () {
+    var MAIL = "krzysiek@quale.agency";
+    var USLUGI_OPT = ["Badania UX", "Strategia w biznesie", "Zewnętrzny Dyrektor UX", "Segmentacja klientów", "Audyt UX", "Konsultacje i mentoring", "Wystąpienia i szkolenia", "Jeszcze nie wiem"];
+    document.querySelectorAll('[data-pencil-name="form"]').forEach(function (form) {
+      if (form._km) return;
+      form._km = 1;
+      var fields = [];
+      form.querySelectorAll("div").forEach(function (box) {
+        var st = box.getAttribute("style") || "";
+        if (!/border: 1px solid #d0d0d9/i.test(st)) return;
+        var group = box.parentElement;
+        var label = null;
+        Array.prototype.forEach.call(group.children, function (d) {
+          if (!label && d !== box && d.children.length === 0 && /Nexa/.test(d.getAttribute("style") || "")) label = d;
+        });
+        var lt = label ? (label.textContent || "").replace(/ /g, " ").trim() : "";
+        var required = /\*\s*$/.test(lt);
+        var name = (box.getAttribute("data-pencil-name") || "").toLowerCase();
+        var phLeaf = box.querySelector("div");
+        var ph = phLeaf ? (phLeaf.textContent || "").replace(/ /g, " ").trim() : "";
+        var isMail = /e-mail/i.test(lt);
+        var kind = name === "select" ? "select" : (name === "textarea" || box.offsetHeight >= 100 ? "textarea" : "input");
+        box.innerHTML = "";
+        var ctl;
+        if (kind === "select") {
+          ctl = document.createElement("select");
+          var o0 = document.createElement("option");
+          o0.value = ""; o0.textContent = "Wybierz usługę…";
+          ctl.appendChild(o0);
+          USLUGI_OPT.forEach(function (u) {
+            var o = document.createElement("option");
+            o.value = u; o.textContent = u;
+            ctl.appendChild(o);
+          });
+        } else {
+          ctl = document.createElement(kind === "textarea" ? "textarea" : "input");
+          if (kind === "input") ctl.type = isMail ? "email" : "text";
+          ctl.placeholder = ph;
+        }
+        ctl.className = "km-field";
+        if (kind === "textarea") ctl.style.height = "100%";
+        if (kind === "select") ctl.style.cssText = "width:100%;height:100%;border:0;outline:0;background:transparent;font-family:Inter,system-ui,sans-serif;font-size:16px;color:#15172C;padding:0 12px;";
+        ctl.setAttribute("aria-label", lt.replace(/\s*\*\s*$/, "") || ph);
+        if (required) ctl.setAttribute("aria-required", "true");
+        if (!/padding/.test(st) && kind !== "select") box.style.padding = "12px 16px";
+        box.classList.add("km-kbox");
+        box.style.overflow = "visible";
+        box.appendChild(ctl);
+        box.addEventListener("click", function () { ctl.focus(); });
+        ctl.addEventListener("input", function () {
+          box.classList.remove("km-invalid");
+          var e2 = group.querySelector(".km-form-err");
+          if (e2) e2.remove();
+        });
+        fields.push({ box: box, group: group, ctl: ctl, required: required, isMail: isMail, label: lt.replace(/\s*\*\s*$/, "").trim() || ph });
+      });
+      if (!fields.length) return;
+      var btn = form.querySelector('[data-pencil-name="button"]');
+      var subject = btn ? (btn.textContent || "").trim() : "Formularz kontaktowy";
+      function mark(f, msg) {
+        f.box.classList.add("km-invalid");
+        if (!f.group.querySelector(".km-form-err")) {
+          var d = document.createElement("div");
+          d.className = "km-form-err";
+          d.setAttribute("role", "alert");
+          d.textContent = msg;
+          f.group.appendChild(d);
+        }
+      }
+      function submit() {
+        form.querySelectorAll(".km-form-err").forEach(function (x) { x.remove(); });
+        form.querySelectorAll(".km-invalid").forEach(function (x) { x.classList.remove("km-invalid"); });
+        var bad = false;
+        fields.forEach(function (f) {
+          var v = (f.ctl.value || "").trim();
+          if (f.required && !v) { mark(f, "To pole jest wymagane."); bad = true; }
+          else if (f.isMail && v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { mark(f, "Podaj poprawny adres e-mail."); bad = true; }
+        });
+        if (bad) {
+          var fb = form.querySelector(".km-invalid");
+          if (fb) { fb.scrollIntoView({ block: "center", behavior: "smooth" }); var ff = fb.querySelector(".km-field"); if (ff) ff.focus(); }
+          return;
+        }
+        var body = fields.map(function (f) { return f.label + ": " + (f.ctl.value || "").trim(); }).join("\n");
+        window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject) + "&body=" + encodeURIComponent(body);
+        var ok = form.querySelector(".km-form-ok");
+        if (!ok) {
+          ok = document.createElement("div");
+          ok.className = "km-form-ok";
+          ok.setAttribute("role", "status");
+          form.appendChild(ok);
+        }
+        ok.textContent = "Otwieram Twój program pocztowy — jeśli nic się nie wydarzyło, napisz na " + MAIL + ".";
+      }
+      if (btn) {
+        btn.style.cursor = "pointer";
+        btn.classList.add("km-metal-fx");
+        btn.classList.add("km-rock-icon");
+        btn.classList.add("km-ghost-hover");
+        btn.addEventListener("click", submit);
+      }
+      fields.forEach(function (f) {
+        f.ctl.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" && f.ctl.tagName === "INPUT") { e.preventDefault(); submit(); }
+        });
+      });
     });
   })();
 
