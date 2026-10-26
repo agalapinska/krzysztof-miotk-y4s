@@ -1333,9 +1333,28 @@
         var w = document.createElement("div");
         w.className = "calendly-inline-widget";
         w.setAttribute("data-url", CAL_URL);
-        var h = Math.max((box.clientHeight || 0) - 48, 480);
-        w.style.cssText = "min-width:320px;height:" + h + "px;width:100%;";
+        w.setAttribute("data-resize", "true");
+        var h0 = Math.max((box.clientHeight || 0) - 48, 480);
+        w.style.cssText = "min-width:320px;height:700px;width:100%;";
         box.appendChild(w);
+        /* panel z blur + Frame 676 rosną razem z widgetem, żeby Calendly mieścił się bez scrolla */
+        var panel = box.parentElement;
+        var frame = panel && panel.closest('[data-pencil-name="Frame 676"]');
+        if (panel && frame && getComputedStyle(panel).position === "absolute") {
+          var baseP = panel.offsetHeight;
+          var baseT = parseFloat(getComputedStyle(panel).top) || 0;
+          var baseF = frame.offsetHeight;
+          var sync = function () {
+            var extra = Math.max(0, w.offsetHeight - h0);
+            panel.style.height = (baseP + extra) + "px";
+            panel.style.top = (baseT - extra) + "px";
+            frame.style.height = (baseF + extra) + "px";
+          };
+          sync();
+          if (window.ResizeObserver) new ResizeObserver(sync).observe(w);
+        } else {
+          box.style.height = "auto";
+        }
         needScript = true;
       }
     });
