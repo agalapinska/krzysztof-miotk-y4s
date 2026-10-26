@@ -1329,12 +1329,12 @@
         needScript = true;
       } else {
         var box = el.parentElement || el;
-        box.style.padding = "24px 0 24px 40px";
+        box.style.padding = "0 0 24px 40px";
         var w = document.createElement("div");
         w.className = "calendly-inline-widget";
         w.setAttribute("data-url", CAL_URL);
         w.setAttribute("data-resize", "true");
-        var h0 = Math.max((box.clientHeight || 0) - 48, 480);
+        var h0 = Math.max((box.clientHeight || 0) - 24, 480);
         w.style.cssText = "min-width:320px;height:700px;width:100%;";
         box.appendChild(w);
         /* panel z blur + Frame 676 rosną razem z widgetem, żeby Calendly mieścił się bez scrolla */
