@@ -1026,24 +1026,28 @@
     var state = { hover: false };
     var fill = null;
     var f701 = sec.querySelector('[data-pencil-name="Frame 701"]');
-    var slots = [];
+    var slots = [], arrows = [];
     if (f701) {
-      slots = Array.prototype.slice.call(f701.children);
+      slots = Array.prototype.slice.call(f701.querySelectorAll('[data-pencil-name^="Case bar"]'));
       slots.forEach(function (slot) {
         slot.classList.add("km-case-slot");
         slot.style.backgroundColor = "#E9E9F7";
+        slot.style.overflow = "hidden";
+        slot.style.position = "relative";
       });
       if (slots.length) {
         fill = document.createElement("div");
         fill.className = "km-slot-fill";
         slots[0].appendChild(fill);
       }
+      arrows = Array.prototype.filter.call(f701.children, function (el) {
+        return (el.tagName || "").toLowerCase() === "svg" || (el.querySelector && el.querySelector("svg") && !el.querySelector('[data-pencil-name^="Case bar"]'));
+      });
     }
     if (rightPanel) {
-      rightPanel.classList.add("km-case-card-fx");
+      rightPanel.classList.add("km-metal-fx");
+      rightPanel.classList.add("km-metal-violet");
       rightPanel.style.cursor = "pointer";
-      rightPanel.addEventListener("mouseenter", function () { rightPanel.classList.add("km-on"); });
-      rightPanel.addEventListener("mouseleave", function () { rightPanel.classList.remove("km-on"); });
       rightPanel.addEventListener("click", function () {
         var c = CASES[idx];
         if (c && c.slug) window.location.href = "case-study.html?slug=" + encodeURIComponent(c.slug);
@@ -1118,6 +1122,12 @@
     slots.forEach(function (slot, i) {
       slot.addEventListener("click", function () { goTo(i % CASES.length); });
     });
+    if (arrows.length >= 2) {
+      arrows[0].style.cursor = "pointer";
+      arrows[arrows.length - 1].style.cursor = "pointer";
+      arrows[0].addEventListener("click", function () { goTo((idx - 1 + CASES.length) % CASES.length); });
+      arrows[arrows.length - 1].addEventListener("click", function () { goTo((idx + 1) % CASES.length); });
+    }
     cycle();
   })();
 

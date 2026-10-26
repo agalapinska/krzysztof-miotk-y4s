@@ -226,3 +226,11 @@ body.km-mob { overflow-x: clip; }
 }
 .km-case-slot .km-slot-fill.is-run { animation: km-hero-load 3.5s linear forwards; }
 .km-case-card-fx.km-on::before { transform: scaleX(1); }
+
+/* 9d. Wariant fioletowy metalicznego obrysu — dla kart na jasnym tle */
+.km-metal-fx.km-metal-violet::after {
+  padding: 2px;
+  background: conic-gradient(from var(--km-ang),
+    rgba(82,5,231,.06), rgba(82,5,231,.9) 18%, rgba(163,153,253,.4) 32%,
+    rgba(82,5,231,.1) 50%, rgba(122,59,255,.85) 68%, rgba(163,153,253,.2) 84%, rgba(82,5,231,.06));
+}
