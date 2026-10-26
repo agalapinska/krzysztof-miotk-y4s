@@ -234,3 +234,7 @@ body.km-mob { overflow-x: clip; }
     rgba(82,5,231,.06), rgba(82,5,231,.9) 18%, rgba(163,153,253,.4) 32%,
     rgba(82,5,231,.1) 50%, rgba(122,59,255,.85) 68%, rgba(163,153,253,.2) 84%, rgba(82,5,231,.06));
 }
+
+/* 9e. Strzałki karuzeli case — jasny fiolet default, ciemny na hover */
+.km-case-arrow path { fill: #A399FD !important; transition: fill .2s ease; }
+.km-case-arrow:hover path { fill: #3C00AB !important; }

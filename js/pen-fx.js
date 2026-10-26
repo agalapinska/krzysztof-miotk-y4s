@@ -1123,6 +1123,7 @@
       slot.addEventListener("click", function () { goTo(i % CASES.length); });
     });
     if (arrows.length >= 2) {
+      arrows.forEach(function (a) { a.classList.add("km-case-arrow"); });
       arrows[0].style.cursor = "pointer";
       arrows[arrows.length - 1].style.cursor = "pointer";
       arrows[0].addEventListener("click", function () { goTo((idx - 1 + CASES.length) % CASES.length); });
