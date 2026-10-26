@@ -1206,6 +1206,19 @@
       var row = c.parentElement;
       if (row && /Articles Row/.test(row.getAttribute("data-pencil-name") || "")) row.style.alignItems = "stretch";
     });
+    /* Karty usług — hover karty podkreśla tytuł, spójnie z linkami */
+    document.querySelectorAll(".km-metal-fx").forEach(function (card) {
+      var marker = false;
+      card.querySelectorAll("div").forEach(function (d) {
+        if (d.children.length === 0 && /^Przykładowi klienci/.test((d.textContent || "").replace(/ /g, " ").trim())) marker = true;
+      });
+      if (!marker) return;
+      card.querySelectorAll("div").forEach(function (d) {
+        if (d.children.length) return;
+        var st = d.getAttribute("style") || "";
+        if (/Nexa/.test(st) && /font-size:\s*(2[4-9]|[34][0-9])px/.test(st)) d.classList.add("km-svc-title");
+      });
+    });
     /* „Zobacz wszystkie artykuły" — szerokość hug, do lewej */
     document.querySelectorAll("div").forEach(function (el) {
       if (el.children.length) return;

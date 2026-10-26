@@ -301,3 +301,7 @@ body.km-mob { overflow-x: clip; }
 .km-ghost-hover:hover > div { color: #3C00AB !important; }
 .km-ghost-hover svg path { transition: fill .25s ease; }
 .km-ghost-hover:hover svg path { fill: #3C00AB !important; }
+
+/* 12. Karty usług — hover karty podkreśla tytuł (spójnie z underline linków) */
+.km-svc-title { text-underline-offset: 6px; text-decoration-thickness: 1.5px; }
+.km-metal-fx:hover .km-svc-title { text-decoration: underline; }
