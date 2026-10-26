@@ -317,3 +317,21 @@ body.km-mob { overflow-x: clip; }
 .km-kbox { transition: border-color .2s ease, box-shadow .2s ease; }
 .km-kbox:focus-within { border-color: #5205E7 !important; box-shadow: 0 0 0 3px rgba(82, 5, 231, 0.15); }
 .km-kbox.km-invalid { border-color: #D92D20 !important; }
+
+/* 16. Mobile: nav z hamburgerem (wg komponentu Pen Nav-mobile) + porządki */
+.km-burger { background: none; border: 0; padding: 6px; cursor: pointer; display: flex; align-items: center; }
+.km-mobnav {
+  display: none; background: #ffffff; padding: 4px 20px 20px;
+  box-shadow: 0 22px 34px -20px rgba(21, 23, 44, .28);
+  position: sticky; top: 58px; z-index: 79;
+}
+.km-mobnav.is-open { display: flex; flex-direction: column; }
+.km-mobnav a {
+  font-family: Inter, system-ui, sans-serif; font-size: 18px; color: #15172C;
+  text-decoration: none; padding: 14px 0; border-bottom: 1px solid #ECECF2;
+}
+.km-mobnav-cta {
+  background: #5205E7; color: #ffffff !important; text-align: center;
+  padding: 14px 16px !important; margin-top: 14px; border-bottom: 0 !important;
+}
+body.km-mob .km-cal-float { display: none !important; }

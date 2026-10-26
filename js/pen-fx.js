@@ -50,7 +50,7 @@
       });
       document.body.style.zoom = w / designW;
     }
-    if (isMob) { kmMobilize(); document.body.classList.add("km-mob"); kmMobilizeWrap(); }
+    if (isMob) { kmMobilize(); document.body.classList.add("km-mob"); kmMobilizeWrap(); kmMobileNav(); }
     fit();
     if (isMob) requestAnimationFrame(function () { kmMobilizeWrap(); });
     var t;
@@ -124,10 +124,40 @@
     canvases.forEach(function (c) {
       c.style.zoom = Math.min(1, CONTENT / c.offsetWidth);
     });
+    /* Typografia mobile wg projektu Pen (Mobile — Strona główna):
+       hero 56→40, nagłówki 40→32, tytuły kart 32→24, kroki 36→28, duże liczby →64 */
+    document.querySelectorAll("body div").forEach(function (el) {
+      if (el.children.length || inCanvas(el)) return;
+      var st = el.getAttribute("style") || "";
+      var fm = /font-size:\s*([\d.]+)px/.exec(st);
+      if (!fm) return;
+      var f = parseFloat(fm[1]);
+      var nf = null;
+      if (f >= 100) nf = 64;
+      else if (f >= 56) nf = 40;
+      else if (f >= 46) nf = 36;
+      else if (f >= 40) nf = 32;
+      else if (f >= 34) nf = 28;
+      else if (f >= 30) nf = 24;
+      if (!nf || nf >= f) return;
+      var ratio = nf / f;
+      el.style.fontSize = nf + "px";
+      var lh = /line-height:\s*([\d.]+)px/.exec(st);
+      if (lh) el.style.lineHeight = Math.round(parseFloat(lh[1]) * ratio) + "px";
+      var ls = /letter-spacing:\s*(-?[\d.]+)px/.exec(st);
+      if (ls) el.style.letterSpacing = (Math.round(parseFloat(ls[1]) * ratio * 100) / 100) + "px";
+    });
     meta.forEach(function (m) {
       if (inCanvas(m.el)) return;
       if (m.padL >= 60) m.el.style.paddingLeft = PAD + "px";
       if (m.padR >= 60) m.el.style.paddingRight = PAD + "px";
+      /* sekcje pełnej szerokości: pionowe paddingi wg projektu mobile (40–56) */
+      if (m.w >= 1200) {
+        var cs2 = getComputedStyle(m.el);
+        var pt = parseFloat(cs2.paddingTop) || 0, pb = parseFloat(cs2.paddingBottom) || 0;
+        if (pt >= 72) m.el.style.paddingTop = "56px"; else if (pt >= 48) m.el.style.paddingTop = "40px";
+        if (pb >= 72) m.el.style.paddingBottom = "56px"; else if (pb >= 48) m.el.style.paddingBottom = "40px";
+      }
     });
     meta.forEach(function (m) {
       if (inCanvas(m.el)) return;
@@ -153,6 +183,73 @@
     document.querySelectorAll("img").forEach(function (im) {
       if (inCanvas(im.parentElement || im)) return;
       if (im.offsetWidth > CONTENT) { im.style.maxWidth = "100%"; im.style.height = "auto"; }
+    });
+  }
+
+  /* --- 0c. Mobilny nav wg komponentu Pen „Nav-mobile": logo + hamburger, sticky --- */
+  function kmMobileNav() {
+    var nav = document.querySelector('[data-pencil-name="Nav-top"]');
+    if (!nav || nav._kmMob) return;
+    nav._kmMob = 1;
+    var logo = nav.querySelector('[data-pencil-name*="Logo"], [data-pencil-name="Layer_1"]');
+    Array.prototype.forEach.call(nav.children, function (k) {
+      if (!logo || !k.contains(logo)) k.style.display = "none";
+    });
+    nav.style.display = "flex";
+    nav.style.flexDirection = "row";
+    nav.style.justifyContent = "space-between";
+    nav.style.alignItems = "center";
+    nav.style.width = "100%";
+    nav.style.height = "auto";
+    nav.style.padding = "16px 20px";
+    nav.style.position = "sticky";
+    nav.style.top = "0";
+    nav.style.zIndex = "80";
+    nav.style.background = "#ffffff";
+    var btn = document.createElement("button");
+    btn.className = "km-burger";
+    btn.setAttribute("aria-label", "Menu");
+    btn.setAttribute("aria-expanded", "false");
+    btn.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15172C" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>';
+    nav.appendChild(btn);
+    var panel = document.createElement("div");
+    panel.className = "km-mobnav";
+    [["Strona główna", "index.html"], ["Moja Oferta", "uslugi.html"], ["Case Study", "case-studies.html"], ["Artykuły", "artykuly.html"], ["Kontakt", "kontakt.html"]].forEach(function (l) {
+      var a = document.createElement("a");
+      a.href = l[1];
+      a.textContent = l[0];
+      panel.appendChild(a);
+    });
+    var cta = document.createElement("a");
+    cta.href = "kontakt.html";
+    cta.textContent = "Umów darmową rozmowę";
+    cta.className = "km-mobnav-cta";
+    panel.appendChild(cta);
+    nav.parentNode.insertBefore(panel, nav.nextSibling);
+    btn.addEventListener("click", function () {
+      var open = panel.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    /* stopka: dolny pasek (logo + copyright) w kolumnę, bez nachodzenia */
+    document.querySelectorAll("div").forEach(function (bar) {
+      var st = bar.getAttribute("style") || "";
+      if (!/background-color:\s*(#1D0055|rgb\(29,\s*0,\s*85\))/i.test(st)) return;
+      if (!/polityka prywatno/i.test(bar.textContent || "")) return;
+      bar.style.position = "static";
+      bar.style.display = "flex";
+      bar.style.flexDirection = "column";
+      bar.style.alignItems = "flex-start";
+      bar.style.gap = "18px";
+      bar.style.height = "auto";
+      bar.style.width = "100%";
+      bar.style.padding = "20px";
+      Array.prototype.forEach.call(bar.children, function (k) {
+        if (getComputedStyle(k).position === "absolute") {
+          k.style.position = "relative";
+          k.style.left = "";
+          k.style.top = "";
+        }
+      });
     });
   }
 
@@ -1401,7 +1498,7 @@
       var fields = [];
       form.querySelectorAll("div").forEach(function (box) {
         var st = box.getAttribute("style") || "";
-        if (!/border: 1px solid #d0d0d9/i.test(st)) return;
+        if (!/border: 1px solid (#d0d0d9|rgb\(208,\s*208,\s*217\))/i.test(st)) return;
         var group = box.parentElement;
         var label = null;
         Array.prototype.forEach.call(group.children, function (d) {
