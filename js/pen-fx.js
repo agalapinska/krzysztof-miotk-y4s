@@ -400,6 +400,13 @@
     if (/Umów darmową rozmowę/.test((el.textContent || "").replace(/\u00A0/g, " "))) el.classList.add("km-grad-primary");
   });
 
+  /* --- 3f. Przyciski na ciemnym półprzezroczystym tle — jasny metaliczny border na hover --- */
+  document.querySelectorAll('div[style*="#1a064f86" i]').forEach(function (el) {
+    if (el.offsetHeight < 30 || el.offsetHeight > 90) return;
+    if (!el.querySelector("svg")) return;
+    el.classList.add("km-metal-fx");
+  });
+
   /* --- 4. Nawigacja tekstowa --- */
   var page = location.pathname.split("/").pop() || "index.html";
   var navMap = {
@@ -1412,6 +1419,8 @@
 
   /* --- 6. Lawendowe taśmy/markery — wjazd scaleX --- */
   document.querySelectorAll('[style*="#A399FD"], [style*="163, 153, 253"]').forEach(function (el) {
+    var st = el.getAttribute("style") || "";
+    if (!/background[^;]*(#A399FD|163,\s*153,\s*253)/i.test(st)) return;
     if (el.offsetHeight > 90 || el.offsetWidth < 30) return;
     if (el.querySelector("svg") || el.tagName === "svg" || el.tagName === "path") return;
     el.classList.add("km-tape", "km-tape-hidden");
