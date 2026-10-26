@@ -331,6 +331,64 @@
       var sib = calPhoto.nextElementSibling;
       if (sib && sib.getAttribute("data-pencil-name") === "Logo-short-white") sib.style.display = "none";
     }
+    /* newsletter „Raporty i artykuły": ciasny panel, input nad buttonem (wg projektu mobile) */
+    (function () {
+      var t = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!t && d.children.length === 0 && /^Raporty i artykuły$/.test((d.textContent || "").replace(/ /g, " ").trim())) t = d;
+      });
+      if (!t) return;
+      var panel = t.closest('div[style*="linear-gradient"]');
+      if (!panel) return;
+      panel.style.gap = "28px";
+      var zap = null;
+      panel.querySelectorAll("div").forEach(function (d) {
+        if (!zap && /^Zapisz się$/.test((d.textContent || "").replace(/ /g, " ").trim()) && d.children.length <= 1) zap = d;
+      });
+      var btn = zap && zap.closest('div[style*="background-color"]') !== zap ? zap.parentElement : zap;
+      if (btn) {
+        var row = btn.parentElement;
+        row.style.display = "flex";
+        row.style.flexFlow = "column nowrap";
+        row.style.alignItems = "stretch";
+        row.style.gap = "12px";
+        Array.prototype.forEach.call(row.children, function (k) {
+          k.style.width = "100%";
+          k.style.minWidth = "0";
+        });
+        btn.style.width = "fit-content";
+      }
+    })();
+    /* karuzela case: ciaśniejsze karty, strzałki ciemne/na środku/120%, 40px do końca sekcji */
+    (function () {
+      var h = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!h && d.children.length === 0 && /^Kilka historii/.test((d.textContent || "").replace(/ /g, " ").trim())) h = d;
+      });
+      if (!h) return;
+      var sec = h.parentElement;
+      sec.style.paddingBottom = "40px";
+      sec.querySelectorAll("div").forEach(function (d) {
+        var cs = getComputedStyle(d);
+        var pl = parseFloat(cs.paddingLeft) || 0, pt = parseFloat(cs.paddingTop) || 0;
+        if (pl >= 36 && d.offsetWidth < 420 && d !== sec) {
+          d.style.paddingLeft = "24px";
+          d.style.paddingRight = "24px";
+          if (pt >= 36) { d.style.paddingTop = "32px"; d.style.paddingBottom = "32px"; }
+        }
+      });
+      sec.querySelectorAll('[data-pencil-name="Frame 701"]').forEach(function (f701) {
+        f701.style.justifyContent = "center";
+        f701.style.gap = "72px";
+        f701.style.padding = "24px 0 0 0";
+        f701.style.width = "100%";
+        var bars = f701.querySelector('[data-pencil-name="Frame 733"]');
+        if (bars) bars.style.display = "none";
+        Array.prototype.forEach.call(f701.children, function (k) {
+          if (k.tagName === "svg") { k.style.width = "26.4px"; k.style.height = "26.4px"; }
+        });
+      });
+    })();
     /* stopka: dolny pasek (logo + copyright) w kolumnę, bez nachodzenia */
     document.querySelectorAll("div").forEach(function (bar) {
       var st = bar.getAttribute("style") || "";
@@ -1195,6 +1253,7 @@
     if (!cards.length) return;
     var W = f663.offsetWidth;
     var vp = document.createElement("div");
+    vp.className = "km-logos-vp";
     vp.style.cssText = "overflow:hidden;width:" + W + "px;position:relative;";
     f663.parentNode.insertBefore(vp, f663);
     var track = document.createElement("div");
@@ -1313,8 +1372,9 @@
     var sec = head.parentElement, secBg = null;
     while (sec) {
       var st = sec.getAttribute("style") || "";
-      if (/background-color/.test(st) && sec.offsetWidth >= 1400) { secBg = sec; break; }
-      if (sec.offsetWidth >= 1400 && !secBg) secBg = sec;
+      var minW = isMob ? 400 : 1400;
+      if (/background-color/.test(st) && sec.offsetWidth >= minW) { secBg = sec; break; }
+      if (sec.offsetWidth >= minW && !secBg) secBg = sec;
       sec = sec.parentElement;
     }
     sec = secBg;

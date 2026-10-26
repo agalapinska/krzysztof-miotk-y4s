@@ -335,3 +335,6 @@ body.km-mob { overflow-x: clip; }
   padding: 14px 16px !important; margin-top: 14px; border-bottom: 0 !important;
 }
 body.km-mob .km-cal-float { display: none !important; }
+
+/* 17. Mobile: strzałki karuzeli ciemne w default */
+body.km-mob .km-case-arrow path { fill: #3C00AB !important; }
