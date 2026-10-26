@@ -841,7 +841,7 @@
     Array.prototype.forEach.call(section.querySelectorAll("div"), function (el) {
       if (!ctaPanel && /^#14053333$/i.test(((el.getAttribute("style") || "").match(/background-color:\s*(#[0-9a-f]{8})/i) || [])[1] || "")) ctaPanel = el;
     });
-    if (ctaPanel) ctaPanel.classList.add("km-proc-cta");
+    if (ctaPanel) { ctaPanel.classList.add("km-proc-cta"); ctaPanel.classList.add("km-metal-fx"); }
   })();
 
   /* --- 4f. Opinie: pozioma taśma (prawo→lewo, hover pauza) --- */
