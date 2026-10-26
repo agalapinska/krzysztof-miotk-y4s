@@ -1219,18 +1219,34 @@
         }
       }
     });
-    /* Karty usług — hover karty podkreśla tytuł, spójnie z linkami */
+    /* Karty usług — hover podkreśla tytuł, cała karta klika do podstrony */
+    var SVC_LINKS = {
+      "Badania UX": "badania-ux.html",
+      "Strategia w biznesie": "uslugi.html",
+      "Dyrektor UX": "dyrektor-ux.html",
+      "Segmentacja klientów": "segmentacja-klientow.html",
+      "Audyt UX": "audyt-ux.html",
+      "Wystąpienia i szkolenia": "wystapienia-i-szkolenia.html",
+      "Konsultacje i Mentoring": "konsultacje-i-mentoring.html",
+      "Konsultacje i mentoring": "konsultacje-i-mentoring.html"
+    };
     document.querySelectorAll(".km-metal-fx").forEach(function (card) {
-      var marker = false;
+      var cst = card.getAttribute("style") || "";
+      if (!/backdrop-filter/.test(cst) || !(/#1c00544d/i.test(cst) || /rgba\(28,\s*0,\s*84/.test(cst))) return;
+      var title = null;
       card.querySelectorAll("div").forEach(function (d) {
-        if (d.children.length === 0 && /^Przykładowi klienci/.test((d.textContent || "").replace(/ /g, " ").trim())) marker = true;
-      });
-      if (!marker) return;
-      card.querySelectorAll("div").forEach(function (d) {
-        if (d.children.length) return;
+        if (title || d.children.length) return;
         var st = d.getAttribute("style") || "";
-        if (/Nexa/.test(st) && /font-size:\s*(2[4-9]|[34][0-9])px/.test(st)) d.classList.add("km-svc-title");
+        if (/Nexa/.test(st) && /font-size:\s*(2[4-9]|[34][0-9])px/.test(st)) title = d;
       });
+      if (!title) return;
+      title.classList.add("km-svc-title");
+      var href = SVC_LINKS[(title.textContent || "").replace(/ /g, " ").trim()];
+      if (href && !card._kmNav) {
+        card._kmNav = 1;
+        card.style.cursor = "pointer";
+        card.addEventListener("click", function () { window.location.href = href; });
+      }
     });
     /* „Zobacz wszystkie artykuły" — szerokość hug, do lewej */
     document.querySelectorAll("div").forEach(function (el) {
