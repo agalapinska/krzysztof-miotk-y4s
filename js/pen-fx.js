@@ -312,7 +312,7 @@
         }
       }
     });
-    /* kroki procesu: ikona po lewej, treść po prawej (wg projektu mobile) */
+    /* kroki procesu: ikona po lewej, treść po prawej, odstęp między kartami 20px (wg projektu mobile) */
     document.querySelectorAll('[data-pencil-name="Icon Ring"]').forEach(function (ring) {
       var step = ring.parentElement;
       if (!step || step.children.length !== 2) return;
@@ -320,7 +320,14 @@
       step.style.flexDirection = "row";
       step.style.alignItems = "flex-start";
       step.style.gap = "20px";
+      step.style.flex = "0 0 auto";
+      step.style.padding = "0";
       ring.style.flexShrink = "0";
+      var col = step.parentElement;
+      if (col) {
+        col.style.padding = "0";
+        col.style.gap = "20px";
+      }
     });
     /* hero bez kolażu zdjęć + kalendarz bez zdjęcia i logo (wg projektu mobile) */
     var colPhoto = document.querySelector('div[style*="image-2.jpg"], div[style*="image-2.png"]');
