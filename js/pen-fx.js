@@ -199,7 +199,8 @@
       m.el.style.flexDirection = "column";
       m.el.style.alignItems = "stretch";
       m.el.style.height = "auto";
-      m.el.style.rowGap = getComputedStyle(m.el).columnGap;
+      var cg = parseFloat(getComputedStyle(m.el).columnGap) || 28;
+      m.el.style.rowGap = Math.min(cg, 40) + "px";
     });
     meta.forEach(function (m) {
       if (inCanvas(m.el)) return;
@@ -269,6 +270,48 @@
       var open = panel.classList.toggle("is-open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
     });
+    /* karty usług: ikona po lewej, kolumna treści po prawej, ciasne odstępy (wg projektu mobile) */
+    document.querySelectorAll('[data-pencil-name="Ikona usługi"]').forEach(function (ic) {
+      var row = ic.parentElement;
+      if (!row) return;
+      row.classList.add("km-svc-fix");
+      row.style.display = "flex";
+      row.style.flexFlow = "row nowrap";
+      row.style.alignItems = "flex-start";
+      row.style.gap = "20px";
+      row.style.width = "100%";
+      ic.style.flexShrink = "0";
+      var textCol = null;
+      Array.prototype.forEach.call(row.children, function (k) {
+        if (k === ic) return;
+        textCol = k;
+        k.classList.add("km-svc-fix");
+        k.style.flex = "1 1 0";
+        k.style.minWidth = "0";
+        k.style.width = "auto";
+      });
+      /* ciaśniejsze odstępy w karcie */
+      var col = row.parentElement;
+      if (col) { col.style.gap = "16px"; col.style.width = "100%"; }
+      var srow = col && col.parentElement;
+      if (srow && /Services Row/.test(srow.getAttribute("data-pencil-name") || "")) {
+        srow.style.gap = "16px";
+        srow.style.width = "100%";
+        var card = srow.parentElement;
+        if (card && card.classList.contains("km-metal-fx")) { card.style.gap = "16px"; card.style.width = "100%"; }
+      }
+      /* „Przykładowi klienci" do kolumny treści (wcięcie jak w projekcie) */
+      if (textCol) {
+        var card2 = row.closest(".km-metal-fx") || srow || col;
+        if (card2) {
+          var kl = null;
+          card2.querySelectorAll("div").forEach(function (d) {
+            if (!kl && !textCol.contains(d) && d.children.length === 0 && /^Przykładowi klienci/.test((d.textContent || "").replace(/ /g, " ").trim())) kl = d;
+          });
+          if (kl) { kl.style.width = "auto"; textCol.appendChild(kl); }
+        }
+      }
+    });
     /* kroki procesu: ikona po lewej, treść po prawej (wg projektu mobile) */
     document.querySelectorAll('[data-pencil-name="Icon Ring"]').forEach(function (ring) {
       var step = ring.parentElement;
@@ -314,6 +357,7 @@
   function kmMobilizeWrap() {
     document.querySelectorAll("body div").forEach(function (el) {
       if (el.closest && el.closest(".km-logos-vp")) return;
+      if (el.classList && el.classList.contains("km-svc-fix")) return;
       if (kmCanvases.some(function (c) { return c === el || c.contains(el); })) return;
       if (el.scrollWidth <= el.clientWidth + 4) return;
       if (!el.querySelector("div")) {
@@ -1044,6 +1088,96 @@
       if (!ctaPanel && /^#14053333$/i.test(((el.getAttribute("style") || "").match(/background-color:\s*(#[0-9a-f]{8})/i) || [])[1] || "")) ctaPanel = el;
     });
     if (ctaPanel) { ctaPanel.classList.add("km-proc-cta"); ctaPanel.classList.add("km-metal-fx"); }
+  })();
+
+  /* --- 4e2. Mobile: aktywacja ikon procesu sprzężona ze scrollem (logika jak na desktopie) --- */
+  (function () {
+    if (!isMob) return;
+    var firstWave = document.querySelector('[data-pencil-name="Wave 1"]');
+    if (!firstWave) return;
+    var section = firstWave.parentElement;
+    var rings = section.querySelectorAll('[data-pencil-name="Icon Ring"]');
+    if (!rings.length) return;
+    var RAMPS = {
+      outer: [0, 0, 0.05, 0.25],
+      r673: [0, 0, 0.30, 0.50],
+      r674: [0, 0.25, 0.35, 0.80],
+      dot: [0, 0, 0.25, 0.90],
+      icon: [0.75, 1, 1, 1]
+    };
+    var layers = Array.prototype.map.call(rings, function (ring) {
+      ring.style.outline = "3px solid rgba(255,255,255,0)";
+      ring.style.outlineOffset = "-1.5px";
+      var f673 = ring.querySelector('[data-pencil-name="Frame 673"]');
+      var f674 = ring.querySelector('[data-pencil-name="Frame 674"]');
+      if (f673) f673.style.border = "3px solid rgba(255,255,255,0)";
+      if (f674) f674.style.border = "3px solid rgba(255,255,255,0)";
+      return {
+        ring: ring,
+        step: ring.parentElement,
+        r673: f673,
+        r674: f674,
+        dot: ring.querySelector('[data-pencil-name="Frame 672"]'),
+        icon: ring.querySelector("svg"),
+        glyphs: ring.querySelectorAll("svg path, svg circle, svg rect, svg line, svg polyline")
+      };
+    });
+    function rampVal(r, s) { var i = Math.min(2, Math.floor(s)); var f = s - i; return r[i] + (r[i + 1] - r[i]) * f; }
+    function whiteA(a) { return "rgba(255,255,255," + a.toFixed(3) + ")"; }
+    function iconColor(s) {
+      var t = Math.max(0, Math.min(1, s - 2));
+      var r = Math.round(255 + (29 - 255) * t), g = Math.round(255 - 255 * t), b = Math.round(255 + (85 - 255) * t);
+      return "rgb(" + r + "," + g + "," + b + ")";
+    }
+    function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
+    var target = [0, 0, 0, 0], current = [0, 0, 0, 0], rafId = null, synced = false;
+    function calc() {
+      var vh = window.innerHeight;
+      return layers.map(function (L) {
+        var r = L.ring.getBoundingClientRect();
+        var c = r.top + r.height / 2;
+        return ease((vh * 0.72 - c) / 200 + 0.5);
+      });
+    }
+    function apply(vals) {
+      layers.forEach(function (L, i) {
+        var sp = vals[i], s = sp * 3;
+        L.ring.style.outlineColor = whiteA(rampVal(RAMPS.outer, s));
+        if (L.r673) L.r673.style.borderColor = whiteA(rampVal(RAMPS.r673, s));
+        if (L.r674) L.r674.style.borderColor = whiteA(rampVal(RAMPS.r674, s));
+        if (L.dot) L.dot.style.backgroundColor = whiteA(rampVal(RAMPS.dot, s));
+        if (L.icon) L.icon.style.opacity = String(rampVal(RAMPS.icon, s));
+        var gc = iconColor(s);
+        Array.prototype.forEach.call(L.glyphs, function (g) { g.style.fill = gc; });
+        if (L.step) L.step.style.opacity = String(0.65 + 0.35 * sp);
+      });
+    }
+    function tick() {
+      var done = true;
+      current = current.map(function (c, i) {
+        var n = c + (target[i] - c) * 0.16;
+        if (Math.abs(target[i] - n) < 0.002) n = target[i]; else done = false;
+        return n;
+      });
+      apply(current);
+      rafId = done ? null : requestAnimationFrame(tick);
+    }
+    function sync() {
+      target = calc();
+      if (!synced || document.hidden) {
+        synced = true;
+        current = target.slice();
+        apply(current);
+        return;
+      }
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    }
+    window.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    apply([0, 0, 0, 0]);
+    sync();
+    setTimeout(sync, 800);
+    window.addEventListener("load", sync);
   })();
 
   /* --- 4f. Opinie: pozioma taśma (prawo→lewo, hover pauza) --- */
