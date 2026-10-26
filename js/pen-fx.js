@@ -1182,6 +1182,8 @@
       if (t === "UX w Lesie") {
         el.style.whiteSpace = "normal";
         el.innerHTML = '<a href="https://www.uxwlesie.pl" target="_blank" rel="noopener" style="display:inline-block"><img src="assets/uxwlesie.png" alt="UX w Lesie" style="height:56px;display:block"/></a>';
+        var row = el.closest('[data-pencil-name="Frame 732"]');
+        if (row) { row.style.alignItems = "center"; row.style.justifyContent = "center"; }
       } else if (t === "Spotify pasek widget") {
         var p = el.parentElement;
         var w = p ? Math.min(p.clientWidth || 600, 640) : 600;
@@ -1189,6 +1191,30 @@
         el.style.width = w + "px";
         el.innerHTML = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/1SOUA8UPfusGYKE1oj2YTC?utm_source=generator&theme=0&si=74e6eb26634e4618" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Podcast UX w Lesie na Spotify"></iframe>';
       }
+    });
+  })();
+
+  /* --- 4k. Karty „O czym ostatnio pisałem?" — równa wysokość, button zawsze w tym samym miejscu --- */
+  (function () {
+    var cols = document.querySelectorAll('[data-pencil-name="Article Col"]');
+    cols.forEach(function (c) {
+      c.style.height = "auto";
+      c.style.justifyContent = "space-between";
+      Array.prototype.forEach.call(c.children, function (k) {
+        if (k.children.length === 0 && /font-size:\s*18px/.test(k.getAttribute("style") || "")) k.style.flex = "1 1 0";
+      });
+      var row = c.parentElement;
+      if (row && /Articles Row/.test(row.getAttribute("data-pencil-name") || "")) row.style.alignItems = "stretch";
+    });
+    /* „Zobacz wszystkie artykuły" — szerokość hug, do lewej */
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length) return;
+      if (!/^Zobacz wszystkie artyku/i.test((el.textContent || "").trim())) return;
+      var btn = el.parentElement;
+      if (!btn || !/background-color/.test(btn.getAttribute("style") || "")) return;
+      btn.style.width = "fit-content";
+      btn.style.alignSelf = "flex-start";
+      btn.style.justifyContent = "flex-start";
     });
   })();
 
@@ -1355,6 +1381,7 @@
         clickable.style.cursor = "pointer";
         clickable.classList.add("km-metal-fx");
         clickable.classList.add("km-rock-icon");
+        clickable.classList.add("km-ghost-hover");
         clickable.addEventListener("click", submit);
       }
     });
