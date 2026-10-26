@@ -613,7 +613,7 @@
         cfg.front.style.visibility = "";
         cfg.mid.style.visibility = "";
         cfg.back.style.visibility = "";
-        cloneIn.remove(); cloneBack.remove(); cloneOut.remove();
+        cloneIn.remove(); cloneBack.remove(); cloneOut.remove(); cloneNew.remove();
         done();
       }, DUR + 60);
     }
@@ -680,7 +680,6 @@
     }
 
     (function heroDeck() {
-      return; // hero ma teraz statyczny kolaż zdjęć (design z Pen) — talia działa tylko w sekcji raportu
       var f662 = document.querySelector('[data-pencil-name="Frame 662"]');
       if (!f662) return;
       var photo = f662.firstElementChild;
