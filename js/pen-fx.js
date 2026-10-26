@@ -862,13 +862,17 @@
     vp.style.cssText = "overflow:hidden;width:" + W + "px;position:relative;";
     f663.parentNode.insertBefore(vp, f663);
     var track = document.createElement("div");
-    track.style.cssText = "display:flex;gap:24px;align-items:stretch;width:max-content;will-change:transform;";
+    track.style.cssText = "display:flex;gap:48px;align-items:stretch;width:max-content;will-change:transform;";
     vp.appendChild(track);
     var CW = isMob ? 320 : 430;
     function prepCard(c) {
       c.style.width = CW + "px";
       c.style.flexShrink = "0";
       c.style.height = "auto";
+      var col = c.firstElementChild;
+      if (col) { col.style.height = "100%"; }
+      var author = c.querySelector('[data-pencil-name="Frame 722"]');
+      if (author) author.style.marginTop = "auto";
       c.querySelectorAll("div").forEach(function (d) {
         var m = (d.getAttribute("style") || "").match(/width:\s*([\d.]+)px/);
         if (m && parseFloat(m[1]) > CW - 50) { d.style.width = "auto"; d.style.maxWidth = "100%"; }
@@ -888,7 +892,7 @@
       last = now;
       if (!hovered) {
         pos -= SPEED * dt;
-        var half = track.scrollWidth / 2 + 12;
+        var half = track.scrollWidth / 2 + 24;
         if (-pos >= half) pos += half;
         track.style.transform = "translateX(" + pos + "px)";
       }
