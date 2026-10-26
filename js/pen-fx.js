@@ -374,7 +374,7 @@
     if (/background-color:\s*#ffffff/i.test(style) && !/border(?!-box)|outline/i.test(style)) el.classList.add("km-metal-under");
     var target = buttonTarget(el);
     el.addEventListener("click", function (e) {
-      if (!reduced) {
+      if (!reduced && !el.classList.contains("km-metal-under")) {
         var r = el.getBoundingClientRect();
         var s = document.createElement("span");
         s.className = "km-ripple";
@@ -397,6 +397,7 @@
     if (el.offsetHeight < 30 || el.offsetHeight > 90) return;
     if (!el.querySelector("svg")) return;
     el.classList.add("km-grad-btn");
+    if (/Umów darmową rozmowę/.test((el.textContent || "").replace(/\u00A0/g, " "))) el.classList.add("km-grad-primary");
   });
 
   /* --- 4. Nawigacja tekstowa --- */
@@ -1087,29 +1088,28 @@
       if (rightPara) rightPara.innerText = kmNbsp(c.right);
     }
     var timer = null;
-    function advance() {
-      if (document.hidden || state.hover) { timer = setTimeout(advance, 400); return; }
-      idx = (idx + 1) % CASES.length;
+    function advance(dir) {
+      if (document.hidden || state.hover) { timer = setTimeout(function () { advance(dir); }, 400); return; }
+      dir = dir || 1;
+      idx = (idx + dir + CASES.length) % CASES.length;
       var parent = cardRow.parentElement;
       if (getComputedStyle(parent).position === "static") parent.style.position = "relative";
+      if (getComputedStyle(parent).overflow !== "hidden") parent.style.overflow = "hidden";
+      var W = cardRow.offsetWidth;
       var clone = cardRow.cloneNode(true);
       clone.style.position = "absolute";
       clone.style.left = cardRow.offsetLeft + "px";
       clone.style.top = cardRow.offsetTop + "px";
-      clone.style.width = cardRow.offsetWidth + "px";
+      clone.style.width = W + "px";
       clone.style.zIndex = "2";
-      clone.style.transition = "transform " + SLIDE + "ms " + EASECR + ", opacity " + SLIDE + "ms ease";
       parent.appendChild(clone);
       setCase(CASES[idx]);
-      cardRow.style.transition = "none";
-      cardRow.style.transform = "translateX(-90px)";
-      cardRow.style.opacity = "0";
-      void cardRow.offsetWidth;
-      cardRow.style.transition = "transform " + SLIDE + "ms " + EASECR + ", opacity " + SLIDE + "ms ease";
-      cardRow.style.transform = "";
-      cardRow.style.opacity = "1";
-      clone.style.transform = "translateX(110px)";
-      clone.style.opacity = "0";
+      var blurKf = { filter: ["blur(0px)", "blur(7px)", "blur(0px)"], offset: [0, 0.5, 1] };
+      var opts = { duration: SLIDE, easing: EASECR, fill: "forwards" };
+      clone.animate({ transform: ["translateX(0px)", "translateX(" + (-dir * W) + "px)"] }, opts);
+      clone.animate(blurKf, opts);
+      cardRow.animate({ transform: ["translateX(" + (dir * W) + "px)", "translateX(0px)"] }, opts);
+      cardRow.animate(blurKf, opts);
       setTimeout(function () { clone.remove(); cycle(); }, SLIDE + 40);
     }
     function cycle() {
@@ -1126,8 +1126,10 @@
     function goTo(target) {
       if (target === idx) return;
       clearTimeout(timer);
-      idx = (target - 1 + CASES.length) % CASES.length;
-      advance();
+      var n = CASES.length;
+      var dir = target === (idx + 1) % n ? 1 : target === (idx - 1 + n) % n ? -1 : (target > idx ? 1 : -1);
+      idx = (target - dir + n) % n;
+      advance(dir);
     }
     slots.forEach(function (slot, i) {
       slot.addEventListener("click", function () { goTo(i % CASES.length); });

@@ -291,3 +291,10 @@ body.km-mob { overflow-x: clip; }
   opacity: 0; transition: opacity .25s ease; pointer-events: none;
 }
 .km-metal-under:hover::after { opacity: 1; animation: km-under-sheen 1.6s linear infinite; }
+
+/* 9h. Wariant: hover z tłem primary buttona (dryfujący fiolet) */
+.km-grad-btn.km-grad-primary::before {
+  background: linear-gradient(115deg, #5205E7 0%, #7A3BFF 45%, #5205E7 100%);
+  background-size: 240% 100%;
+}
+.km-grad-btn.km-grad-primary:hover::before { animation: km-btn-drift 3.2s ease-in-out infinite; }
