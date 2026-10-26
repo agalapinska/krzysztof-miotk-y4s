@@ -1248,6 +1248,51 @@
         card.addEventListener("click", function () { window.location.href = href; });
       }
     });
+    /* Buttony „Przeczytaj artykuł" — link do artykułu przypisanego do karty (z arkusza CMS) */
+    if (cols.length) {
+      fetch("https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv&gid=0")
+        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+        .then(function (text) {
+          var rows = [], row = [], cell = "", q = false;
+          for (var i = 0; i < text.length; i++) {
+            var ch = text[i];
+            if (q) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += ch; }
+            else if (ch === '"') q = true;
+            else if (ch === ",") { row.push(cell); cell = ""; }
+            else if (ch === "\n") { row.push(cell.replace(/\r$/, "")); rows.push(row); row = []; cell = ""; }
+            else cell += ch;
+          }
+          if (cell.length || row.length) { row.push(cell.replace(/\r$/, "")); rows.push(row); }
+          var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+          var arts = rows.slice(1).map(function (r2) {
+            var o = {}; head.forEach(function (h, j) { o[h] = (r2[j] || "").trim(); }); return o;
+          }).filter(function (a) { return a.tytul; });
+          function norm(s) { return (s || "").replace(/ /g, " ").replace(/\s+/g, " ").trim().toLowerCase(); }
+          cols.forEach(function (c) {
+            var title = null;
+            Array.prototype.forEach.call(c.children, function (k) {
+              if (!title && k.children.length === 0 && /font-size:\s*18px/.test(k.getAttribute("style") || "")) title = k;
+            });
+            if (!title) return;
+            var tt = norm(title.textContent);
+            var art = arts.filter(function (a) {
+              var at = norm(a.tytul);
+              return at === tt || at.indexOf(tt.slice(0, 30)) === 0 || tt.indexOf(at.slice(0, 30)) === 0;
+            })[0];
+            if (!art) return;
+            var full = /^https:\/\/docs\.google\.com\/document\//.test(art.tresc || "") ? (art.tresc_md || "") : (art.tresc || "");
+            var href = full && art.slug ? "artykul.html?slug=" + encodeURIComponent(art.slug) : (art.url || "");
+            if (!href) return;
+            var cardBtn = Array.prototype.find.call(c.children, function (k) { return k.querySelector && k.querySelector("svg"); });
+            if (cardBtn && !cardBtn._kmArt) {
+              cardBtn._kmArt = 1;
+              cardBtn.style.cursor = "pointer";
+              cardBtn.addEventListener("click", function () { window.location.href = href; });
+            }
+          });
+        })
+        .catch(function (e) { console.warn("Karty artykułów: brak linków —", e.message || e); });
+    }
     /* „Zobacz wszystkie artykuły" — szerokość hug, do lewej */
     document.querySelectorAll("div").forEach(function (el) {
       if (el.children.length) return;
@@ -1284,7 +1329,7 @@
         needScript = true;
       } else {
         var box = el.parentElement || el;
-        box.style.padding = "24px 40px";
+        box.style.padding = "24px 0 24px 40px";
         var w = document.createElement("div");
         w.className = "calendly-inline-widget";
         w.setAttribute("data-url", CAL_URL);
