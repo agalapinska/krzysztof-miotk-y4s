@@ -338,3 +338,6 @@ body.km-mob .km-cal-float { display: none !important; }
 
 /* 17. Mobile: strzałki karuzeli ciemne w default */
 body.km-mob .km-case-arrow path { fill: #3C00AB !important; }
+
+/* 18. Mobile: mniejsze logo UX w Lesie */
+body.km-mob img[alt="UX w Lesie"] { height: 40px !important; }
