@@ -127,7 +127,8 @@
     /* Typografia mobile wg projektu Pen (Mobile — Strona główna):
        hero 56→40, nagłówki 40→32, tytuły kart 32→24, kroki 36→28, duże liczby →64 */
     document.querySelectorAll("body div").forEach(function (el) {
-      if (el.children.length || inCanvas(el)) return;
+      if (inCanvas(el)) return;
+      if (Array.prototype.some.call(el.children, function (c) { return c.tagName === "DIV"; })) return;
       var st = el.getAttribute("style") || "";
       var fm = /font-size:\s*([\d.]+)px/.exec(st);
       if (!fm) return;
@@ -139,7 +140,11 @@
       else if (f >= 40) nf = 32;
       else if (f >= 34) nf = 28;
       else if (f >= 30) nf = 24;
-      if (!nf || nf >= f) return;
+      else if (f >= 26 && f < 28) nf = 24;
+      else if (f > 20 && f < 24) nf = 20;
+      else if (f > 18 && f < 20) nf = 18;
+      else if (f < 13.5) nf = 14;
+      if (!nf || nf === f) return;
       var ratio = nf / f;
       el.style.fontSize = nf + "px";
       var lh = /line-height:\s*([\d.]+)px/.exec(st);
@@ -210,6 +215,13 @@
     document.querySelectorAll("img").forEach(function (im) {
       if (inCanvas(im.parentElement || im)) return;
       if (im.offsetWidth > CONTENT) { im.style.maxWidth = "100%"; im.style.height = "auto"; }
+    });
+    /* usztywnione wysokości: tekst po przełamaniu linii rośnie zamiast nachodzić */
+    document.querySelectorAll("body div").forEach(function (el) {
+      if (inCanvas(el)) return;
+      if (!/height:\s*[\d.]+px/.test(el.getAttribute("style") || "")) return;
+      if (getComputedStyle(el).overflow === "hidden") return;
+      if (el.scrollHeight > el.clientHeight + 4) el.style.height = "auto";
     });
   }
 
