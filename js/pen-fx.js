@@ -331,6 +331,41 @@
       var sib = calPhoto.nextElementSibling;
       if (sib && sib.getAttribute("data-pencil-name") === "Logo-short-white") sib.style.display = "none";
     }
+    /* paddingi i gapy sekcji 1:1 z projektem mobile (K4r2oV) */
+    var NRM = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+    [
+      [/^Zamieniam wiedzę/, "56px 20px", "40px"],
+      [/^Zadbaj o strategię/, "64px 20px", "40px"],
+      [/^Od pytania biznesowego/, "40px 20px", "24px"],
+      [/^Jak wygląda współpraca/, "56px 20px", "70px"],
+      [/^Co mówią klienci/, "40px 20px", "40px"],
+      [/^Zobacz demo raportu/, "64px 20px", "40px"],
+      [/^Raporty i artykuły$/, "0px", "0px"],
+      [/^Kilka historii/, "40px 20px", "12px"],
+      [/^Co warto wziąć/, "40px 20px", "20px"],
+      [/^O czym ostatnio pisałem/, "80px 20px 64px", "46px"],
+      [/^Wybierz termin w/, "40px 20px", "20px"],
+      [/^Poznaj mnie od innej strony/, "40px 20px", "20px"]
+    ].forEach(function (sp) {
+      var h = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (h) return;
+        if (Array.prototype.some.call(d.children, function (c) { return c.tagName === "DIV"; })) return;
+        if (sp[0].test(NRM(d.textContent))) h = d;
+      });
+      if (!h) return;
+      var BW = document.body.offsetWidth || MBASE;
+      var sec = h.parentElement;
+      while (sec && sec !== document.body) {
+        var cs = getComputedStyle(sec);
+        if (sec.offsetWidth >= BW - 8 && parseFloat(cs.paddingLeft) >= 12) break;
+        sec = sec.parentElement;
+      }
+      if (sec && sec !== document.body) {
+        sec.style.padding = sp[1];
+        sec.style.gap = sp[2];
+      }
+    });
     /* newsletter „Raporty i artykuły": ciasny panel, input nad buttonem (wg projektu mobile) */
     (function () {
       var t = null;
@@ -341,6 +376,8 @@
       var panel = t.closest('div[style*="linear-gradient"]');
       if (!panel) return;
       panel.style.gap = "28px";
+      panel.style.padding = "40px 20px";
+      panel.style.width = "100%";
       var zap = null;
       panel.querySelectorAll("div").forEach(function (d) {
         if (!zap && /^Zapisz się$/.test((d.textContent || "").replace(/ /g, " ").trim()) && d.children.length <= 1) zap = d;
@@ -1555,7 +1592,20 @@
         var p = el.parentElement;
         var w = p ? Math.min(p.clientWidth || 600, 640) : 600;
         el.style.whiteSpace = "normal";
-        el.style.width = w + "px";
+        el.style.width = isMob ? "100%" : w + "px";
+        if (isMob) {
+          var row2 = el.closest('[data-pencil-name="Frame 732"]');
+          if (row2) {
+            row2.style.gap = "24px";
+            row2.style.width = "100%";
+            row2.style.maxWidth = "100%";
+            Array.prototype.forEach.call(row2.children, function (cell) {
+              cell.style.padding = "0";
+              cell.style.width = "100%";
+              Array.prototype.forEach.call(cell.children, function (inner) { inner.style.width = "100%"; });
+            });
+          }
+        }
         el.innerHTML = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/1SOUA8UPfusGYKE1oj2YTC?utm_source=generator&theme=0&si=74e6eb26634e4618" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Podcast UX w Lesie na Spotify"></iframe>';
       }
     });
@@ -1696,7 +1746,20 @@
         needScript = true;
       } else {
         var box = el.parentElement || el;
-        box.style.padding = "0 0 24px 40px";
+        box.style.padding = isMob ? "0" : "0 0 24px 40px";
+        if (isMob) {
+          box.style.width = "100%";
+          if (box.parentElement) box.parentElement.style.alignItems = "stretch";
+          var anc = box.parentElement, guard = 0;
+          while (anc && guard++ < 4) {
+            anc.style.width = "100%";
+            anc.style.maxWidth = "100%";
+            anc.style.paddingLeft = "0";
+            anc.style.paddingRight = "0";
+            if (/Frame 676/.test(anc.getAttribute("data-pencil-name") || "")) break;
+            anc = anc.parentElement;
+          }
+        }
         var w = document.createElement("div");
         w.className = "calendly-inline-widget";
         w.setAttribute("data-url", CAL_URL);
