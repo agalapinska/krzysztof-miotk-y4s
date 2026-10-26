@@ -299,7 +299,15 @@
   }
   document.querySelectorAll(cardSel).forEach(function (card) {
     if (card.offsetWidth < 120 || card.offsetHeight < 60) return;
-    if (kmColoredBg(card)) { card.classList.add("km-metal-fx"); return; }
+    if (kmColoredBg(card)) {
+      var panel = card, pn = card;
+      for (var i = 0; i < 3 && pn && pn !== document.body; i++) {
+        if (/background-color:\s*(#|rgb)/.test(pn.getAttribute("style") || "")) { panel = pn; break; }
+        pn = pn.parentElement;
+      }
+      panel.classList.add("km-metal-fx");
+      return;
+    }
     card.classList.add("km-card-fx");
     if (reduced) return;
     if (!card.querySelector(".card-glow")) {
