@@ -1284,12 +1284,13 @@
         needScript = true;
       } else {
         var box = el.parentElement || el;
+        box.style.padding = "24px 40px";
         var w = document.createElement("div");
         w.className = "calendly-inline-widget";
         w.setAttribute("data-url", CAL_URL);
-        w.style.cssText = "min-width:320px;height:700px;width:100%;";
+        var h = Math.max((box.clientHeight || 0) - 48, 480);
+        w.style.cssText = "min-width:320px;height:" + h + "px;width:100%;";
         box.appendChild(w);
-        box.style.height = "auto";
         needScript = true;
       }
     });
