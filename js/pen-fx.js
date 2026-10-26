@@ -799,23 +799,28 @@
       });
     }
     function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
-    var target = 0, current = 0, rafId = null;
+    var target = 0, current = 0, rafId = null, synced = false;
     function calcTarget() {
       var r = section.getBoundingClientRect();
       var vh = window.innerHeight;
-      var start = vh * 0.85, end = vh * 0.12;
+      var start = vh * 0.92, end = vh * 0.10;
       var t = (start - r.top) / (start - end);
-      return easeOut(Math.max(0, Math.min(1, t)));
+      return Math.max(0, Math.min(1, t));
     }
     function tick() {
-      current += (target - current) * 0.14;
+      current += (target - current) * 0.16;
       if (Math.abs(target - current) < 0.002) current = target;
       setProgress(current);
       rafId = current !== target ? requestAnimationFrame(tick) : null;
     }
     function sync() {
       target = calcTarget();
-      if (document.hidden) { current = target; setProgress(current); return; }
+      if (!synced || document.hidden) {
+        synced = true;
+        current = target;
+        setProgress(current);
+        return;
+      }
       if (rafId === null && target !== current) rafId = requestAnimationFrame(tick);
     }
     window.addEventListener("scroll", sync, { passive: true });
