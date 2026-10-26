@@ -389,6 +389,18 @@
         });
       });
     })();
+    /* stopka po całej szerokości: bez białej ramki, pasek flush pod gradientem */
+    var foot = document.querySelector('[data-pencil-name="Footer"]');
+    if (foot) {
+      foot.style.padding = "0";
+      foot.style.gap = "0";
+      foot.style.width = "100%";
+      foot.style.maxWidth = "100%";
+      Array.prototype.forEach.call(foot.children, function (k) {
+        k.style.width = "100%";
+        k.style.maxWidth = "100%";
+      });
+    }
     /* stopka: dolny pasek (logo + copyright) w kolumnę, bez nachodzenia */
     document.querySelectorAll("div").forEach(function (bar) {
       var st = bar.getAttribute("style") || "";
