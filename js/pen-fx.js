@@ -407,6 +407,29 @@
     el.classList.add("km-metal-fx");
   });
 
+  /* --- 3g. Strzałki w przyciskach — rolka jak w hero CTA --- */
+  document.querySelectorAll('svg[data-icon-name="arrow-right"]').forEach(function (svg) {
+    if (svg.classList.contains("km-case-arrow") || svg.closest(".km-split-arrow")) return;
+    var btn = svg.closest(".km-btn-fx, .km-grad-btn, .km-metal-under, .km-metal-fx");
+    if (!btn) {
+      var n = svg.parentElement;
+      for (var i = 0; i < 3 && n; i++) {
+        var st = n.getAttribute("style") || "";
+        if (/background-color/.test(st) && n.offsetHeight >= 30 && n.offsetHeight <= 90) { btn = n; break; }
+        n = n.parentElement;
+      }
+    }
+    if (!btn) return;
+    var cs = getComputedStyle(svg);
+    var wrap = document.createElement("span");
+    wrap.className = "km-roll-wrap";
+    wrap.style.width = cs.width;
+    wrap.style.height = cs.height;
+    svg.parentNode.insertBefore(wrap, svg);
+    wrap.appendChild(svg);
+    btn.classList.add("km-roll-btn");
+  });
+
   /* --- 4. Nawigacja tekstowa --- */
   var page = location.pathname.split("/").pop() || "index.html";
   var navMap = {

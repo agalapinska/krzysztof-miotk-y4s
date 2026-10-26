@@ -243,17 +243,14 @@ body.km-mob { overflow-x: clip; }
 .km-grad-btn { position: relative; overflow: hidden; cursor: pointer; }
 .km-grad-btn::before {
   content: ""; position: absolute; inset: 0; z-index: 0;
-  background:
-    radial-gradient(120% 140% at 75% 50%, rgba(75,17,191,.95), transparent 62%),
-    radial-gradient(110% 120% at 100% 100%, #3C00AB, transparent 58%),
-    radial-gradient(100% 100% at 50% 0%, #370896, transparent 60%),
-    linear-gradient(135deg, #16023d, #1D0055 55%, #240361);
+  background: linear-gradient(115deg, #5205E7 0%, #7A3BFF 45%, #5205E7 100%);
+  background-size: 240% 100%;
   opacity: 0; transition: opacity .3s ease;
 }
 .km-grad-btn > * { position: relative; z-index: 1; }
 .km-grad-btn div { transition: color .25s ease; }
 .km-grad-btn svg path, .km-grad-btn svg circle, .km-grad-btn svg rect { transition: fill .25s ease, stroke .25s ease; }
-.km-grad-btn:hover::before { opacity: 1; }
+.km-grad-btn:hover::before { opacity: 1; animation: km-btn-drift 3.2s ease-in-out infinite; }
 .km-grad-btn:hover div { color: #FFFFFF !important; }
 .km-grad-btn:hover svg [fill]:not([fill="none"]) { fill: #FFFFFF !important; }
 .km-grad-btn:hover svg [stroke]:not([stroke="none"]) { stroke: #FFFFFF !important; }
@@ -292,9 +289,7 @@ body.km-mob { overflow-x: clip; }
 }
 .km-metal-under:hover::after { opacity: 1; animation: km-under-sheen 1.6s linear infinite; }
 
-/* 9h. Wariant: hover z tłem primary buttona (dryfujący fiolet) */
-.km-grad-btn.km-grad-primary::before {
-  background: linear-gradient(115deg, #5205E7 0%, #7A3BFF 45%, #5205E7 100%);
-  background-size: 240% 100%;
-}
-.km-grad-btn.km-grad-primary:hover::before { animation: km-btn-drift 3.2s ease-in-out infinite; }
+
+/* 9i. Strzałki w przyciskach — rolka jak w hero CTA */
+.km-roll-wrap { display: inline-flex; overflow: hidden; align-items: center; justify-content: center; flex-shrink: 0; }
+.km-roll-btn:hover .km-roll-wrap svg { animation: km-arrow-roll .85s linear infinite; }
