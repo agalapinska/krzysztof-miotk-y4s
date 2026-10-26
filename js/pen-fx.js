@@ -448,7 +448,7 @@
   };
   document.querySelectorAll("div, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
-    var t = (el.textContent || "").trim();
+    var t = (el.textContent || "").replace(/ /g, " ").trim();
     if (/^Zobacz wszystkie artyku/i.test(t)) {
       el.classList.add("km-link-fx");
       el.addEventListener("click", function () { window.location.href = ARTICLES; });
@@ -1205,6 +1205,19 @@
       });
       var row = c.parentElement;
       if (row && /Articles Row/.test(row.getAttribute("data-pencil-name") || "")) row.style.alignItems = "stretch";
+      /* button karty: zawsze tekst + ikona, bez tła, hover = sam metaliczny border */
+      var btn = Array.prototype.find.call(c.children, function (k) { return k.querySelector && k.querySelector("svg"); });
+      if (btn) {
+        btn.classList.remove("km-grad-btn", "km-grad-primary");
+        btn.classList.add("km-metal-fx", "km-metal-violet", "km-flat-metal");
+        var hasText = Array.prototype.some.call(btn.children, function (k) { return k.tagName === "DIV" && (k.textContent || "").trim(); });
+        if (!hasText) {
+          var lbl = document.createElement("div");
+          lbl.setAttribute("style", "box-sizing: border-box; color: #1D0055; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap");
+          lbl.textContent = "Przeczytaj artykuł";
+          btn.insertBefore(lbl, btn.firstChild);
+        }
+      }
     });
     /* Karty usług — hover karty podkreśla tytuł, spójnie z linkami */
     document.querySelectorAll(".km-metal-fx").forEach(function (card) {
@@ -1274,6 +1287,26 @@
       lk.href = "https://assets.calendly.com/assets/external/widget.css";
       document.head.appendChild(lk);
     }
+  })();
+
+  /* --- 4l2. „Umów videorozmowę" — tekst/button otwiera Calendly --- */
+  (function () {
+    var CAL_URL = "https://calendly.com/krzysiek-quale/30min";
+    function openCal() {
+      if (window.Calendly) window.Calendly.initPopupWidget({ url: CAL_URL });
+      else window.open(CAL_URL, "_blank");
+    }
+    document.querySelectorAll("div").forEach(function (el) {
+      if (el.children.length) return;
+      var t = (el.textContent || "").replace(/ /g, " ").trim();
+      if (t !== "Umów videorozmowę") return;
+      var btn = el.parentElement && el.parentElement.classList.contains("km-roll-btn") ? el.parentElement : el;
+      if (btn._kmCal) return;
+      btn._kmCal = 1;
+      btn.style.cursor = "pointer";
+      if (btn === el) el.classList.add("km-link-fx");
+      btn.addEventListener("click", openCal);
+    });
   })();
 
   /* --- 4m. Formularz pytań: prawdziwe pola + walidacja + wysyłka mailem --- */

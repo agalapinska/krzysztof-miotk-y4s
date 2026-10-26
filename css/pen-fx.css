@@ -305,3 +305,10 @@ body.km-mob { overflow-x: clip; }
 /* 12. Karty usług — hover karty podkreśla tytuł (spójnie z underline linków) */
 .km-svc-title { text-underline-offset: 6px; text-decoration-thickness: 1.5px; }
 .km-metal-fx:hover .km-svc-title { text-decoration: underline; }
+
+/* 13. Płaskie buttony kart artykułów — bez tła, hover tylko metaliczny border */
+.km-flat-metal { background-color: transparent !important; }
+.km-flat-metal:hover { transform: none !important; filter: none !important; box-shadow: none !important; }
+
+/* 14. Buttony z metalicznym podkreśleniem (Kontakt itp.) — hover bez zmiany tła, bez cienia */
+.km-metal-under.km-linkbtn:hover { background-color: #ffffff !important; border-color: transparent !important; box-shadow: none !important; }
