@@ -238,3 +238,56 @@ body.km-mob { overflow-x: clip; }
 /* 9e. Strzałki karuzeli case — jasny fiolet default, ciemny na hover */
 .km-case-arrow path { fill: #A399FD !important; transition: fill .2s ease; }
 .km-case-arrow:hover path { fill: #3C00AB !important; }
+
+/* 9f. Przyciski na jasnym tle (#F2F2F7) — hover: gradient sekcji usług */
+.km-grad-btn { position: relative; overflow: hidden; cursor: pointer; }
+.km-grad-btn::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(120% 140% at 75% 50%, rgba(75,17,191,.95), transparent 62%),
+    radial-gradient(110% 120% at 100% 100%, #3C00AB, transparent 58%),
+    radial-gradient(100% 100% at 50% 0%, #370896, transparent 60%),
+    linear-gradient(135deg, #16023d, #1D0055 55%, #240361);
+  opacity: 0; transition: opacity .3s ease;
+}
+.km-grad-btn > * { position: relative; z-index: 1; }
+.km-grad-btn div { transition: color .25s ease; }
+.km-grad-btn svg path, .km-grad-btn svg circle, .km-grad-btn svg rect { transition: fill .25s ease, stroke .25s ease; }
+.km-grad-btn:hover::before { opacity: 1; }
+.km-grad-btn:hover div { color: #FFFFFF !important; }
+.km-grad-btn:hover svg [fill]:not([fill="none"]) { fill: #FFFFFF !important; }
+.km-grad-btn:hover svg [stroke]:not([stroke="none"]) { stroke: #FFFFFF !important; }
+
+/* 10. Formularz pytań (FAQ/kontakt) — pola, focus, błędy */
+.km-field {
+  width: 100%; border: 0; outline: 0; background: transparent;
+  font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 24px;
+  color: #15172C; padding: 0; margin: 0; resize: none; display: block;
+}
+.km-field::placeholder { color: #9094A6; }
+[data-pencil-name="Input"]:focus-within {
+  border-color: #5205E7 !important;
+  box-shadow: 0 0 0 3px rgba(82, 5, 231, 0.15) !important;
+}
+[data-pencil-name="Input"].km-invalid { border-color: #D92D20 !important; }
+.km-form-err {
+  color: #D92D20; font-family: Inter, system-ui, sans-serif; font-size: 13px;
+  line-height: 18px; margin-top: 6px; width: 100%;
+}
+.km-form-ok {
+  color: #1D0055; font-family: Inter, system-ui, sans-serif; font-size: 15px;
+  line-height: 22px; margin-top: 10px; width: 100%;
+}
+.km-rock-icon:hover svg { animation: km-cam-rock 1.4s ease-in-out infinite; transform-origin: 50% 60%; }
+
+/* 9g. Płaskie białe buttony — na hover metaliczne podkreślenie, bez zmiany rozmiaru */
+@keyframes km-under-sheen { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.km-metal-under { position: relative; }
+.km-metal-under:hover { transform: none !important; filter: none !important; }
+.km-metal-under::after {
+  content: ""; position: absolute; left: 16px; right: 16px; bottom: 7px; height: 2px;
+  background: linear-gradient(90deg, rgba(82,5,231,0), #A399FD 18%, #5205E7 38%, #E2DCFF 55%, #5205E7 72%, rgba(82,5,231,0));
+  background-size: 220% 100%;
+  opacity: 0; transition: opacity .25s ease; pointer-events: none;
+}
+.km-metal-under:hover::after { opacity: 1; animation: km-under-sheen 1.6s linear infinite; }

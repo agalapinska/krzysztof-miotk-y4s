@@ -371,6 +371,7 @@
     if (!/background/.test(style) && !/border/.test(style)) return;
     if (el.offsetHeight < 30 || el.offsetHeight > 90) return;
     el.classList.add("km-btn-fx");
+    if (/background-color:\s*#ffffff/i.test(style) && !/border(?!-box)|outline/i.test(style)) el.classList.add("km-metal-under");
     var target = buttonTarget(el);
     el.addEventListener("click", function (e) {
       if (!reduced) {
@@ -387,6 +388,15 @@
       }
       if (target) setTimeout(function () { window.location.href = target; }, reduced ? 0 : 180);
     });
+  });
+
+  /* --- 3e. Przyciski na jasnym tle — hover z gradientem sekcji usług --- */
+  document.querySelectorAll("div").forEach(function (el) {
+    var st = el.getAttribute("style") || "";
+    if (!/background-color:\s*#f2f2f7/i.test(st)) return;
+    if (el.offsetHeight < 30 || el.offsetHeight > 90) return;
+    if (!el.querySelector("svg")) return;
+    el.classList.add("km-grad-btn");
   });
 
   /* --- 4. Nawigacja tekstowa --- */
@@ -1193,6 +1203,129 @@
       lk.href = "https://assets.calendly.com/assets/external/widget.css";
       document.head.appendChild(lk);
     }
+  })();
+
+  /* --- 4m. Formularz pytań: prawdziwe pola + walidacja + wysyłka mailem --- */
+  (function () {
+    var MAILTO = "krzysiek@quale.agency";
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-pencil-name="Input"]'));
+    if (!boxes.length) return;
+    function labelFor(box) {
+      var p = box.parentElement, prev = box.previousElementSibling;
+      while (!prev && p && p !== document.body) { prev = p.previousElementSibling; p = p.parentElement; }
+      return prev ? (prev.textContent || "").replace(/\u00A0/g, " ").trim() : "";
+    }
+    var panels = [];
+    boxes.forEach(function (box) {
+      var label = labelFor(box);
+      var isEmail = /mail/i.test(label);
+      var content = box.querySelector('[data-pencil-name="Content"]') || box;
+      var field = document.createElement(isEmail ? "input" : "textarea");
+      field.className = "km-field";
+      field.setAttribute("aria-label", label || (isEmail ? "Adres e-mail" : "Treść wiadomości"));
+      if (isEmail) {
+        field.type = "email";
+        field.name = "email";
+        field.autocomplete = "email";
+        field.inputMode = "email";
+        field.placeholder = "jan@firma.pl";
+      } else {
+        field.name = "message";
+        field.rows = 1;
+        field.placeholder = "Napisz, w czym mogę pomóc…";
+        field.addEventListener("input", function () {
+          field.style.height = "auto";
+          field.style.height = Math.min(220, Math.max(24, field.scrollHeight)) + "px";
+        });
+      }
+      field.required = true;
+      content.style.height = "auto";
+      content.style.minHeight = "24px";
+      content.appendChild(field);
+      box.style.cursor = "text";
+      box.addEventListener("click", function () { field.focus(); });
+      box._kmField = field;
+      var panel = box;
+      for (var i = 0; i < 5 && panel && panel !== document.body; i++) {
+        panel = panel.parentElement;
+        if (panel && panel.querySelectorAll('[data-pencil-name="Input"]').length >= 1 && /Zadaj mi pytanie|Wyślij/i.test(panel.textContent || "")) break;
+      }
+      if (panel && panels.indexOf(panel) === -1) panels.push(panel);
+    });
+    function errFor(box) {
+      var e = box._kmErr;
+      if (!e) {
+        e = document.createElement("div");
+        e.className = "km-form-err";
+        e.setAttribute("role", "alert");
+        box.parentNode.insertBefore(e, box.nextSibling);
+        box._kmErr = e;
+      }
+      return e;
+    }
+    function clearErr(box) {
+      box.classList.remove("km-invalid");
+      box._kmField.removeAttribute("aria-invalid");
+      if (box._kmErr) box._kmErr.textContent = "";
+    }
+    function setErr(box, msg) {
+      box.classList.add("km-invalid");
+      box._kmField.setAttribute("aria-invalid", "true");
+      errFor(box).textContent = msg;
+    }
+    panels.forEach(function (panel) {
+      var pBoxes = Array.prototype.slice.call(panel.querySelectorAll('[data-pencil-name="Input"]'));
+      var btnLeaf = null;
+      Array.prototype.forEach.call(panel.querySelectorAll("div"), function (el) {
+        if (!btnLeaf && el.children.length === 0 && /^(Zadaj mi pytanie|Wyślij wiadomość|Wyślij)$/i.test((el.textContent || "").replace(/\u00A0/g, " ").trim())) btnLeaf = el;
+      });
+      var clickable = btnLeaf ? btnLeaf.parentElement : null;
+      function submit() {
+        var ok = true, email = "", msg = "";
+        pBoxes.forEach(function (box) {
+          clearErr(box);
+          var f = box._kmField;
+          var v = (f.value || "").trim();
+          if (f.type === "email") {
+            email = v;
+            if (!v) { setErr(box, "Podaj adres e-mail — na niego odpowiem."); ok = false; }
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { setErr(box, "Ten adres wygląda na niepełny — sprawdź literówkę."); ok = false; }
+          } else {
+            msg = v;
+            if (!v) { setErr(box, "Napisz chociaż zdanie — o co chcesz zapytać?"); ok = false; }
+          }
+        });
+        if (!ok) {
+          var firstBad = pBoxes.filter(function (b) { return b.classList.contains("km-invalid"); })[0];
+          if (firstBad) firstBad._kmField.focus();
+          return;
+        }
+        var subject = encodeURIComponent("Pytanie ze strony krzysztof-miotk");
+        var body = encodeURIComponent(msg + "\n\n—\nOdpowiedz na: " + email);
+        window.location.href = "mailto:" + MAILTO + "?subject=" + subject + "&body=" + body;
+        var okMsg = panel.querySelector(".km-form-ok");
+        if (!okMsg) {
+          okMsg = document.createElement("div");
+          okMsg.className = "km-form-ok";
+          okMsg.setAttribute("role", "status");
+          var last = pBoxes[pBoxes.length - 1];
+          (last._kmErr || last).parentNode.appendChild(okMsg);
+        }
+        okMsg.textContent = "Otwieram Twój program pocztowy z gotową wiadomością — wystarczy kliknąć „Wyślij”.";
+      }
+      pBoxes.forEach(function (box) {
+        box._kmField.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" && box._kmField.tagName === "INPUT") { e.preventDefault(); submit(); }
+        });
+        box._kmField.addEventListener("input", function () { clearErr(box); });
+      });
+      if (clickable) {
+        clickable.style.cursor = "pointer";
+        clickable.classList.add("km-metal-fx");
+        clickable.classList.add("km-rock-icon");
+        clickable.addEventListener("click", submit);
+      }
+    });
   })();
 
   /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
