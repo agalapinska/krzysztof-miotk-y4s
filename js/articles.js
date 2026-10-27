@@ -61,18 +61,18 @@
     var featured = arts.filter(function (a) { return /^tak$/i.test(a.wyrozniony || ""); })[0] || arts[0];
     var rest = arts.filter(function (a) { return a !== featured; });
 
-    var fTitle = leaf(document.body, function (t) { return /^Jak zaplanować badania UX/.test(t) || t.length > 40 && false; });
-    var fWrap = fTitle && fTitle.closest("div");
+    var fTitle = document.querySelector('[data-pencil-name="FTytuł"]');
     if (fTitle && featured) {
       var fScope = fTitle.parentElement;
       fTitle.innerText = featured.tytul;
-      var fZaj = leaf(fScope, function (t) { return /Kompletny proces planowania/.test(t); });
+      fTitle.style.whiteSpace = "normal";
+      var fZaj = document.querySelector('[data-pencil-name="FZajawka"]');
       if (fZaj) fZaj.innerText = featured.zajawka || "";
       var fKat = leaf(fScope.parentElement || fScope, function (t) { return t === "BADANIA UX"; });
       if (fKat) fKat.innerText = (featured.kategoria || "").toUpperCase();
-      var fMeta = leaf(fScope, function (t) { return /MIN CZYTANIA/.test(t); });
+      var fMeta = document.querySelector('[data-pencil-name="Data"]');
       if (fMeta) fMeta.innerText = fmtDate(featured.data) + "  ·  " + (featured.czas_czytania || "") + " MIN CZYTANIA";
-      if (featured._href && fWrap) {
+      if (featured._href) {
         fScope.style.cursor = "pointer";
         fScope.addEventListener("click", function () { window.open(featured._href, "_self"); });
       }

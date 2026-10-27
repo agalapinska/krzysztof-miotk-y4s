@@ -381,7 +381,8 @@
       });
       var anim = document.querySelector('[data-pencil-name="animation"]');
       if (!dl || !anim) return;
-      dl.style.width = "100%";
+      dl.style.width = "fit-content";
+      dl.style.alignSelf = "flex-start";
       dl.style.justifyContent = "center";
       var common = dl.parentElement;
       while (common && common !== document.body && !common.contains(anim)) common = common.parentElement;
@@ -499,14 +500,16 @@
       });
     })();
     /* podstrony usług (template TxBlS): stat „Ponad X…" jako wiersz liczba+opis */
+    var kmStatDone = false;
     document.querySelectorAll("div, h2").forEach(function (el) {
-      if (el._kmStat) return;
+      if (kmStatDone || el._kmStat) return;
       if (Array.prototype.some.call(el.children, function (c) { return c.tagName === "DIV"; })) return;
       var t = (el.textContent || "").replace(/ /g, " ").trim();
       var m = /^Ponad\s+([\d\s]+?)\s+(\D.{8,})$/.exec(t);
       if (!m) return;
       if (parseFloat(getComputedStyle(el).fontSize) < 20) return;
       el._kmStat = 1;
+      kmStatDone = true;
       el.textContent = "";
       el.style.display = "flex";
       el.style.flexDirection = "row";
@@ -538,7 +541,7 @@
     })();
     /* podstrony usług: „Zobacz całą ofertę" pod kartami „Poznaj inne historie" */
     (function () {
-      if (/uslugi\.html/.test(location.pathname)) return;
+      if (/uslugi\.html|kontakt\.html/.test(location.pathname)) return;
       var N3 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
       var cards3 = Array.prototype.filter.call(document.querySelectorAll("div"), function (d) {
         var t = N3(d.textContent);
@@ -557,7 +560,7 @@
     })();
     /* podstrony usług: zdjęcie INFOSHARE nad kartą „Wystąpienia i szkolenia" (wg TxBlS) */
     (function () {
-      if (/uslugi\.html/.test(location.pathname)) return;
+      if (/uslugi\.html|kontakt\.html/.test(location.pathname)) return;
       var N4 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
       var wcard = Array.prototype.find.call(document.querySelectorAll("div"), function (d) {
         var t = N4(d.textContent);
@@ -684,8 +687,10 @@
         }
       });
     });
-    /* po zbudowaniu wszystkich sekcji: buttony i pola wg projektu mobile */
-    requestAnimationFrame(function () {
+    /* po zbudowaniu wszystkich sekcji: buttony i pola wg projektu mobile
+       (setTimeout zamiast rAF — rAF nie odpala w ukrytej karcie) */
+    setTimeout(function () {
+      window._kmRafRan = 1;
       var NB = function (s) { return (s || "").replace(/ /g, " ").trim(); };
       /* „Pobierz Demo Raportu": pod kolaż, pełna szerokość */
       var dl = null;
@@ -703,7 +708,8 @@
           common.insertBefore(dl, ab.nextSibling);
           dl.style.marginTop = "8px";
         }
-        dl.style.width = "100%";
+        dl.style.width = "fit-content";
+        dl.style.alignSelf = "flex-start";
         dl.style.justifyContent = "center";
       }
       /* newsletter: input na pełną szerokość */
@@ -744,6 +750,8 @@
               row6.appendChild(badge6);
               row6.appendChild(col6);
               texts6.forEach(function (t6) { col6.appendChild(t6); });
+              var next6 = item.nextElementSibling;
+              if (next6 && next6.children.length === 0 && (next6.textContent || "").trim()) col6.appendChild(next6);
               item.style.gap = "0";
             });
           }
@@ -795,7 +803,66 @@
         }
       }
       /* FAQ: „Zadaj mi pytanie" do prawej */
-      document.querySelectorAll(".km-ghost-hover").forEach(function (b) { b.style.alignSelf = "flex-end"; });
+      document.querySelectorAll(".km-ghost-hover").forEach(function (b) {
+        if (b.closest('[data-pencil-name="form"]')) { b.style.alignSelf = "stretch"; b.style.width = "100%"; }
+        else { b.style.alignSelf = "flex-end"; }
+      });
+      var kmLateFix = function () {
+      window._kmLateRuns = (window._kmLateRuns || 0) + 1;
+      /* podstrony usług: panel case „Apteka Gemini" w układ kolumnowy wg TxBlS (chip na górze, button pełna szerokość) */
+      document.querySelectorAll("div").forEach(function (b9) {
+        var st9 = b9.getAttribute("style") || "";
+        if (!/linear-gradient\(-94\.58deg/.test(st9)) return;
+        var left9, right9;
+        if (b9._kmCs) { left9 = b9._kmCsL; right9 = b9._kmCsR; }
+        else {
+          left9 = b9.children[0]; right9 = b9.children[1];
+          if (!left9 || !right9) return;
+          b9._kmCs = 1; b9._kmCsL = left9; b9._kmCsR = right9;
+        }
+        if (!left9 || !right9) return;
+        b9.style.flexDirection = "column";
+        b9.style.alignItems = "stretch";
+        b9.style.gap = "16px";
+        var chip9, btn9;
+        if (b9._kmCsChip) { chip9 = b9._kmCsChip; btn9 = b9._kmCsBtn; }
+        else { chip9 = right9.children[0]; btn9 = right9.children[1]; b9._kmCsChip = chip9; b9._kmCsBtn = btn9; }
+        if (chip9) { b9.insertBefore(chip9, left9); chip9.style.alignSelf = "flex-start"; }
+        right9.style.width = "100%";
+        right9.style.alignItems = "stretch";
+        if (btn9) {
+          btn9.style.width = "100%";
+          var in9 = btn9.children[0];
+          if (in9) { in9.style.width = "100%"; in9.style.justifyContent = "center"; }
+        }
+      });
+      /* wstawiona karta case XTB w „Poznaj inne historie": pełna szerokość po klamrach */
+      document.querySelectorAll('[onclick*="xtb-optymalizacja"]').forEach(function (xc) {
+        xc.style.width = "100%";
+        xc.style.maxWidth = "100%";
+        if (xc.parentElement) { xc.parentElement.style.width = "100%"; xc.parentElement.style.maxWidth = "100%"; }
+        var ar = xc.querySelector("svg");
+        if (ar && ar.parentElement) {
+          ar.parentElement.style.display = "flex";
+          ar.parentElement.style.flexDirection = "row";
+          ar.parentElement.style.justifyContent = "flex-end";
+          ar.parentElement.style.width = "100%";
+        }
+      });
+      /* wystąpienia: zdjęcie „Scena I Love Marketing" zapada się po linearyzacji — przywróć wysokość */
+      document.querySelectorAll("div").forEach(function (p9) {
+        var st9b = p9.getAttribute("style") || "";
+        if (!/krzysztof-prelekcja\.jpg/.test(st9b) || !/flex: 1 1 0/.test(st9b)) return;
+        p9.style.flex = "none";
+        p9.style.width = "100%";
+        if (p9.offsetHeight < 40) p9.style.height = "240px";
+        var fr9 = p9.parentElement;
+        if (fr9) { fr9.style.height = "auto"; fr9.style.width = "100%"; fr9.style.alignItems = "center"; }
+      });
+      };
+      kmLateFix();
+      setTimeout(kmLateFix, 500);
+      setTimeout(kmLateFix, 1600);
       /* pozostałe buttony */
       var widen = function (el) {
         var a = el.parentElement, g = 0, BW = document.body.offsetWidth;
@@ -849,7 +916,7 @@
           widen(d);
         }
       });
-    });
+    }, 0);
   }
 
   function kmMobilizeWrap() {
@@ -2236,6 +2303,15 @@
               cardBtn.style.cursor = "pointer";
               cardBtn.addEventListener("click", function () { window.location.href = href; });
             }
+            /* mobile wg K4r2oV: karta bez buttona, klikalna w całości */
+            if (isMob) {
+              if (cardBtn) cardBtn.style.display = "none";
+              if (!c._kmArtCard) {
+                c._kmArtCard = 1;
+                c.style.cursor = "pointer";
+                c.addEventListener("click", function () { window.location.href = href; });
+              }
+            }
           });
         })
         .catch(function (e) { console.warn("Karty artykułów: brak linków —", e.message || e); });
@@ -2350,6 +2426,85 @@
     });
   })();
 
+  /* --- 4l2. „Napisz o referencje": mailto --- */
+  (function () {
+    document.querySelectorAll("div").forEach(function (d) {
+      if (d.children.length) return;
+      if (!/^Napisz o referencje$/.test((d.textContent || "").replace(/ /g, " ").trim())) return;
+      var b = d.parentElement;
+      while (b && b !== document.body && !/background-color/.test(b.getAttribute("style") || "")) b = b.parentElement;
+      if (!b || b === document.body || b._kmRef) return;
+      b._kmRef = 1;
+      b.style.cursor = "pointer";
+      b.addEventListener("click", function () { window.location.href = "mailto:krzysiek@quale.agency?subject=" + encodeURIComponent("Referencje"); });
+    });
+  })();
+
+  /* --- 4n2. Artykuł/Case study na mobile: nagłówek meta + panel CTA wg JIwZX/esXoP --- */
+  (function () {
+    if (!isMob) return;
+    /* meta nad plakietką kategorii, plakietka na pełną szerokość */
+    var dataT = document.querySelector('[data-pencil-name="DataT"]');
+    var kat9 = document.querySelector('[data-pencil-name="Kat"]');
+    if (dataT && kat9 && dataT.parentElement === kat9.parentElement) {
+      var m9 = dataT.parentElement;
+      m9.style.flexDirection = "column";
+      m9.style.alignItems = "flex-start";
+      m9.style.width = "100%";
+      m9.style.gap = "10px";
+      m9.insertBefore(dataT, kat9);
+      kat9.style.width = "100%";
+    }
+    /* case-studies: „Zadaj mi pytanie" na pełną szerokość (wg iRYjn) */
+    var zadaj9 = document.querySelector('[data-pencil-name="Zadaj mi pytanie"]');
+    if (zadaj9) zadaj9.style.width = "100%";
+    /* panel CTA: nagłówek na białym, szary box z dwoma pełnoszerokimi split-buttonami */
+    var ctaP = document.querySelector('[data-pencil-name="CTA Panel"]');
+    if (ctaP && !ctaP._kmFix) {
+      ctaP._kmFix = 1;
+      var sec9 = ctaP.parentElement;
+      var h9 = ctaP.querySelector('[data-pencil-name="CTA H"]');
+      var btnRow9 = ctaP.querySelector('[data-pencil-name="CTA Btn"]');
+      var wrap9 = document.createElement("div");
+      wrap9.style.cssText = "display:flex;flex-direction:column;width:100%;";
+      sec9.insertBefore(wrap9, ctaP);
+      if (h9) {
+        h9.style.whiteSpace = "normal";
+        h9.style.color = "#15172C";
+        h9.style.fontSize = "32px";
+        h9.style.lineHeight = "36px";
+        h9.style.letterSpacing = "-1.5px";
+        h9.style.width = "100%";
+        wrap9.appendChild(h9);
+        var sub9 = document.createElement("div");
+        sub9.textContent = "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.";
+        sub9.setAttribute("style", "font-family: Inter, system-ui, sans-serif; font-size: 18px; line-height: 28px; color: #3a3d52; width: 100%; padding: 10px 0 18px;");
+        wrap9.appendChild(sub9);
+      }
+      wrap9.appendChild(ctaP);
+      ctaP.style.backgroundImage = "none";
+      ctaP.style.backgroundColor = "#F2F2F7";
+      ctaP.style.flexDirection = "column";
+      ctaP.style.alignItems = "stretch";
+      ctaP.style.gap = "16px";
+      ctaP.style.padding = "24px 20px";
+      var mail9 = document.createElement("div");
+      mail9.style.cssText = "display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;height:52px;cursor:pointer;";
+      mail9.innerHTML = '<div style="flex:1 1 auto;display:flex;align-items:center;background:#5205E7;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:17px;font-weight:400;padding:14px 20px;box-sizing:border-box;">krzysiek@quale.agency</div><div style="flex:0 0 auto;display:flex;align-items:center;background:#3C00AB;padding:16px;box-sizing:border-box;"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" fill="none" stroke="#FFFFFF" stroke-width="2"/><path d="M3 7l9 6 9-6" fill="none" stroke="#FFFFFF" stroke-width="2"/></svg></div>';
+      mail9.addEventListener("click", function () { window.location.href = "mailto:krzysiek@quale.agency"; });
+      if (btnRow9) {
+        ctaP.insertBefore(mail9, btnRow9);
+        btnRow9.style.width = "100%";
+        btnRow9.style.flexWrap = "nowrap";
+        var sgA = btnRow9.children[0], sgB = btnRow9.children[1];
+        if (sgA) { sgA.style.flex = "1 1 auto"; sgA.style.height = "100%"; sgA.style.flexWrap = "nowrap"; sgA.style.flexDirection = "row"; }
+        if (sgB) { sgB.style.flex = "0 0 auto"; sgB.style.height = "100%"; }
+      } else {
+        ctaP.appendChild(mail9);
+      }
+    }
+  })();
+
   /* --- 4m0. Formularze na stronie Kontakt (atrapy z Pen → prawdziwe pola + walidacja + mailto) --- */
   (function () {
     var MAIL = "krzysiek@quale.agency";
@@ -2447,6 +2602,8 @@
       }
       if (btn) {
         btn.style.cursor = "pointer";
+        btn.style.width = "100%";
+        btn.style.alignSelf = "stretch";
         btn.classList.add("km-metal-fx");
         btn.classList.add("km-rock-icon");
         btn.classList.add("km-ghost-hover");
