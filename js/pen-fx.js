@@ -464,6 +464,145 @@
         el.style.maxWidth = "100%";
       });
     })();
+    /* podstrony usług (template TxBlS): stat „Ponad X…" jako wiersz liczba+opis */
+    document.querySelectorAll("div, h2").forEach(function (el) {
+      if (el._kmStat) return;
+      if (Array.prototype.some.call(el.children, function (c) { return c.tagName === "DIV"; })) return;
+      var t = (el.textContent || "").replace(/ /g, " ").trim();
+      var m = /^Ponad\s+([\d\s]+?)\s+(\D.{8,})$/.exec(t);
+      if (!m) return;
+      if (parseFloat(getComputedStyle(el).fontSize) < 20) return;
+      el._kmStat = 1;
+      el.textContent = "";
+      el.style.display = "flex";
+      el.style.flexDirection = "row";
+      el.style.alignItems = "flex-start";
+      el.style.gap = "16px";
+      var num = document.createElement("div");
+      num.textContent = m[1].replace(/\s+/g, "").trim() + "+";
+      num.setAttribute("style", "font-family: Nexa, system-ui, sans-serif; font-size: 28px; line-height: 34px; color: #5205E7; width: 120px; flex-shrink: 0; white-space: nowrap;");
+      var rest = document.createElement("div");
+      rest.textContent = m[2];
+      rest.setAttribute("style", "font-family: Inter, system-ui, sans-serif; font-size: 18px; line-height: 26px; color: #4A4A61; flex: 1 1 0; min-width: 0;");
+      el.appendChild(num);
+      el.appendChild(rest);
+    });
+    /* podstrony usług: panel cytatu na fioletowy gradient z białym tekstem */
+    (function () {
+      var glyph = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!glyph && d.children.length === 0 && /^[„""]$/.test((d.textContent || "").trim()) && parseFloat(getComputedStyle(d).fontSize) >= 24) glyph = d;
+      });
+      if (!glyph) return;
+      var qp = glyph.parentElement;
+      while (qp && qp !== document.body && !/background/.test(qp.getAttribute("style") || "")) qp = qp.parentElement;
+      if (!qp || qp === document.body) return;
+      qp.style.background = "linear-gradient(135deg, #4C16C9 0%, #2E0E7E 100%)";
+      qp.querySelectorAll("div").forEach(function (d) {
+        if (d.children.length === 0 && (d.textContent || "").trim()) d.style.color = "#FFFFFF";
+      });
+    })();
+    /* podstrony usług: „Zobacz całą ofertę" pod kartami „Poznaj inne historie" */
+    (function () {
+      if (/uslugi\.html/.test(location.pathname)) return;
+      var N3 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      var cards3 = Array.prototype.filter.call(document.querySelectorAll("div"), function (d) {
+        var t = N3(d.textContent);
+        return d.offsetHeight > 150 && d.offsetHeight < 650 && /Zobacz usługę/.test(t) && !/Zobacz usługę[\s\S]*Zobacz usługę/.test(t);
+      });
+      if (!cards3.length) return;
+      var sec = cards3[cards3.length - 1];
+      while (sec && sec !== document.body && sec.offsetWidth < document.body.offsetWidth - 8) sec = sec.parentElement;
+      if (!sec || sec === document.body) return;
+      var link = document.createElement("div");
+      link.textContent = "Zobacz całą ofertę";
+      link.className = "km-link-fx";
+      link.setAttribute("style", "font-family: Inter, system-ui, sans-serif; font-size: 18px; color: #15172C; text-align: center; width: 100%; padding: 16px 0 0; cursor: pointer;");
+      link.addEventListener("click", function () { window.location.href = "uslugi.html"; });
+      sec.appendChild(link);
+    })();
+    /* uslugi.html: sekcja kart usług jak na stronie głównej (gradient + ciemne karty) */
+    (function () {
+      if (!/uslugi\.html/.test(location.pathname)) return;
+      var N2 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      var cards = Array.prototype.filter.call(document.querySelectorAll("div"), function (d) {
+        var st = d.getAttribute("style") || "";
+        if (!/border: 1px solid/.test(st) || !/background-color/.test(st)) return false;
+        if (d.offsetHeight < 150 || d.offsetHeight > 650) return false;
+        var t = N2(d.textContent);
+        return /Zobacz usługę/.test(t) && !/Zobacz usługę[\s\S]*Zobacz usługę/.test(t);
+      });
+      if (cards.length < 4) return;
+      var sec = cards[0];
+      while (sec && sec !== document.body && sec.offsetWidth < document.body.offsetWidth - 8) sec = sec.parentElement;
+      if (sec && sec !== document.body) {
+        sec.style.background = "linear-gradient(160deg, #16023d 0%, #370896 48%, #240361 100%)";
+        sec.style.padding = "64px 20px";
+      }
+      cards.forEach(function (card) {
+        card.style.backgroundColor = "rgba(28, 0, 84, 0.3)";
+        card.style.border = "0";
+        card.style.backdropFilter = "blur(4px)";
+        /* ikona w wierszu z treścią (jak w projekcie aLb03) */
+        var wrap = card.firstElementChild;
+        if (wrap && getComputedStyle(wrap).flexDirection === "column") {
+          var wkids = Array.prototype.slice.call(wrap.children);
+          var badge = null, title = null, desc = null;
+          wkids.forEach(function (k) {
+            var ks = k.getAttribute("style") || "";
+            if (!badge && k.offsetWidth <= 72 && /background-color/.test(ks)) badge = k;
+            else if ((k.textContent || "").trim() && k.getAttribute("data-pencil-name") !== "spacer") {
+              if (!title && parseFloat(getComputedStyle(k).fontSize) >= 20) title = k;
+              else if (title && !desc) desc = k;
+            }
+            if (k.getAttribute("data-pencil-name") === "spacer") k.style.display = "none";
+          });
+          if (badge && title) {
+            badge.style.backgroundColor = "transparent";
+            var row3 = document.createElement("div");
+            row3.style.cssText = "display:flex;flex-direction:row;gap:16px;align-items:flex-start;width:100%;";
+            var col3 = document.createElement("div");
+            col3.style.cssText = "display:flex;flex-direction:column;gap:10px;flex:1 1 0;min-width:0;";
+            wrap.insertBefore(row3, wrap.firstChild);
+            row3.appendChild(badge);
+            row3.appendChild(col3);
+            col3.appendChild(title);
+            if (desc) col3.appendChild(desc);
+            wrap.style.gap = "16px";
+          }
+        }
+        card.querySelectorAll("div").forEach(function (d) {
+          var ds = d.getAttribute("style") || "";
+          if (d.children.length === 0 && (d.textContent || "").trim()) {
+            d.style.color = parseFloat(getComputedStyle(d).fontSize) >= 22 ? "#FFFFFF" : "#E9E9F7";
+          }
+          if (/background-color/.test(ds) && /Zobacz usługę/.test(N2(d.textContent)) && d.offsetHeight < 90) {
+            d.style.backgroundColor = "transparent";
+            d.style.border = "1px solid rgba(255, 255, 255, 0.45)";
+          }
+        });
+        card.querySelectorAll("svg [stroke]").forEach(function (p) {
+          if (p.getAttribute("stroke") !== "none") p.setAttribute("stroke", "#FFFFFF");
+        });
+        card.querySelectorAll("svg [fill]").forEach(function (p) {
+          if (p.getAttribute("fill") !== "none") p.setAttribute("fill", "#FFFFFF");
+        });
+      });
+    })();
+    /* kontakt.html: buttony outline na pełną szerokość, wyśrodkowane */
+    (function () {
+      if (!/kontakt\.html/.test(location.pathname)) return;
+      ["Napisz wiadomość", "Wyceń projekt"].forEach(function (txt) {
+        var leaf = null;
+        document.querySelectorAll("div").forEach(function (d) {
+          if (!leaf && d.children.length === 0 && (d.textContent || "").replace(/ /g, " ").trim() === txt) leaf = d;
+        });
+        var btn = leaf && leaf.parentElement;
+        if (!btn) return;
+        btn.style.width = "100%";
+        btn.style.justifyContent = "center";
+      });
+    })();
     /* stopka po całej szerokości: bez białej ramki, pasek flush pod gradientem */
     var foot = document.querySelector('[data-pencil-name="Footer"]');
     if (foot) {
