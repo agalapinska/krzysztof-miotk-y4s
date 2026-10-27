@@ -449,6 +449,21 @@
         });
       });
     })();
+    /* FAQ: panel formularza pytania na pełną szerokość, inputy 100% (wg projektu mobile) */
+    (function () {
+      var inp = document.querySelector('[data-pencil-name="Input"]');
+      if (!inp) return;
+      var panel = inp.closest('div[style*="backdrop-filter"]');
+      if (!panel) return;
+      panel.style.width = "100%";
+      panel.style.flex = "0 0 auto";
+      var pw = panel.parentElement;
+      if (pw) { pw.style.width = "100%"; pw.style.alignItems = "stretch"; pw.style.height = "auto"; }
+      panel.querySelectorAll('[data-pencil-name="Input"], [data-pencil-name="Input with label"], [data-pencil-name="Input field"], [data-pencil-name="Content"]').forEach(function (el) {
+        el.style.width = "100%";
+        el.style.maxWidth = "100%";
+      });
+    })();
     /* stopka po całej szerokości: bez białej ramki, pasek flush pod gradientem */
     var foot = document.querySelector('[data-pencil-name="Footer"]');
     if (foot) {
@@ -1656,10 +1671,14 @@
         var hasText = Array.prototype.some.call(btn.children, function (k) { return k.tagName === "DIV" && (k.textContent || "").trim(); });
         if (!hasText) {
           var lbl = document.createElement("div");
-          lbl.setAttribute("style", "box-sizing: border-box; color: #1D0055; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap");
+          lbl.setAttribute("style", "box-sizing: border-box; color: #4A4A61; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap");
           lbl.textContent = "Przeczytaj artykuł";
           btn.insertBefore(lbl, btn.firstChild);
         }
+        /* label delikatnie jaśniejszy, żeby nie konkurował z tytułem */
+        Array.prototype.forEach.call(btn.children, function (k) {
+          if (k.tagName === "DIV" && (k.textContent || "").trim()) k.style.color = "#4A4A61";
+        });
       }
     });
     /* Karty usług — hover podkreśla tytuł, cała karta klika do podstrony */
