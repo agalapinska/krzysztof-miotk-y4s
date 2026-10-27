@@ -2303,14 +2303,12 @@
               cardBtn.style.cursor = "pointer";
               cardBtn.addEventListener("click", function () { window.location.href = href; });
             }
-            /* mobile wg K4r2oV: karta bez buttona, klikalna w całości */
-            if (isMob) {
-              if (cardBtn) cardBtn.style.display = "none";
-              if (!c._kmArtCard) {
-                c._kmArtCard = 1;
-                c.style.cursor = "pointer";
-                c.addEventListener("click", function () { window.location.href = href; });
-              }
+            /* wg K4r2oV (mobile-first, też desktop): karta bez buttona, klikalna w całości */
+            if (cardBtn) cardBtn.style.display = "none";
+            if (!c._kmArtCard) {
+              c._kmArtCard = 1;
+              c.style.cursor = "pointer";
+              c.addEventListener("click", function () { window.location.href = href; });
             }
           });
         })
@@ -2440,9 +2438,16 @@
     });
   })();
 
-  /* --- 4n2. Artykuł/Case study na mobile: nagłówek meta + panel CTA wg JIwZX/esXoP --- */
+  /* --- 4n2. Artykuł/Case study: nagłówek meta + panel CTA wg JIwZX/esXoP (mobile i desktop) --- */
   (function () {
-    if (!isMob) return;
+    if (!/artykul\.html|case-study\.html/.test(location.pathname)) {
+      /* poza szablonami tylko mobilna poprawka hero case-studies */
+      if (isMob) {
+        var zadajM = document.querySelector('[data-pencil-name="Zadaj mi pytanie"]');
+        if (zadajM) zadajM.style.width = "100%";
+      }
+      return;
+    }
     /* meta nad plakietką kategorii, plakietka na pełną szerokość */
     var dataT = document.querySelector('[data-pencil-name="DataT"]');
     var kat9 = document.querySelector('[data-pencil-name="Kat"]');
@@ -2455,9 +2460,6 @@
       m9.insertBefore(dataT, kat9);
       kat9.style.width = "100%";
     }
-    /* case-studies: „Zadaj mi pytanie" na pełną szerokość (wg iRYjn) */
-    var zadaj9 = document.querySelector('[data-pencil-name="Zadaj mi pytanie"]');
-    if (zadaj9) zadaj9.style.width = "100%";
     /* panel CTA: nagłówek na białym, szary box z dwoma pełnoszerokimi split-buttonami */
     var ctaP = document.querySelector('[data-pencil-name="CTA Panel"]');
     if (ctaP && !ctaP._kmFix) {
@@ -2503,6 +2505,129 @@
         ctaP.appendChild(mail9);
       }
     }
+  })();
+
+
+  /* --- 4j4. Panel case „Apteka Gemini" (strony usług): układ kolumnowy wg TxBlS, także desktop --- */
+  (function () {
+    document.querySelectorAll("div").forEach(function (b9) {
+      var st9 = b9.getAttribute("style") || "";
+      if (!/linear-gradient\(-94\.58deg/.test(st9)) return;
+      var left9, right9, chip9, btn9;
+      if (b9._kmCs) { left9 = b9._kmCsL; right9 = b9._kmCsR; chip9 = b9._kmCsChip; btn9 = b9._kmCsBtn; }
+      else {
+        left9 = b9.children[0]; right9 = b9.children[1];
+        if (!left9 || !right9) return;
+        chip9 = right9.children[0]; btn9 = right9.children[1];
+        b9._kmCs = 1; b9._kmCsL = left9; b9._kmCsR = right9; b9._kmCsChip = chip9; b9._kmCsBtn = btn9;
+      }
+      b9.style.flexDirection = "column";
+      b9.style.alignItems = "stretch";
+      b9.style.gap = "16px";
+      if (chip9) { b9.insertBefore(chip9, left9); chip9.style.alignSelf = "flex-start"; }
+      right9.style.width = "100%";
+      right9.style.alignItems = "stretch";
+      if (btn9) {
+        btn9.style.width = "100%";
+        btn9.style.flexWrap = "nowrap";
+        var in9 = btn9.children[0];
+        if (in9) { in9.style.width = "100%"; in9.style.justifyContent = "center"; }
+      }
+    });
+  })();
+
+  /* --- 4j5. uslugi: benefity „Co zyskasz…" — ikona po lewej, tytuł+opis w kolumnie (aLb03, także desktop) --- */
+  (function () {
+    if (!/uslugi\.html/.test(location.pathname)) return;
+    var NB2 = function (s2) { return (s2 || "").replace(/\u00A0/g, " ").trim(); };
+    var czH = null;
+    document.querySelectorAll("h2, div").forEach(function (d) {
+      if (!czH && !Array.prototype.some.call(d.children, function (c) { return c.tagName === "DIV"; }) && /^Co zyskasz/.test(NB2(d.textContent))) czH = d;
+    });
+    if (!czH) return;
+    var czSec = czH.parentElement;
+    while (czSec && czSec !== document.body && czSec.offsetWidth < document.body.offsetWidth - 8) czSec = czSec.parentElement;
+    if (!czSec || czSec === document.body) return;
+    czSec.querySelectorAll("div").forEach(function (item) {
+      if (item._kmBen) return;
+      var kids6 = Array.prototype.slice.call(item.children);
+      if (kids6.length < 2) return;
+      var badge6 = kids6[0];
+      var bs6 = badge6.getAttribute && (badge6.getAttribute("style") || "");
+      if (!badge6.querySelector || !badge6.querySelector("svg") || badge6.offsetWidth > 72 || !/background-color/.test(bs6)) return;
+      var texts6 = kids6.filter(function (k) { return k !== badge6 && (k.textContent || "").trim(); });
+      if (!texts6.length) return;
+      item._kmBen = 1;
+      badge6.style.backgroundColor = "transparent";
+      var row6 = document.createElement("div");
+      row6.style.cssText = "display:flex;flex-direction:row;gap:16px;align-items:flex-start;width:100%;";
+      var col6 = document.createElement("div");
+      col6.style.cssText = "display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-width:0;";
+      item.insertBefore(row6, item.firstChild);
+      row6.appendChild(badge6);
+      row6.appendChild(col6);
+      texts6.forEach(function (t6) { col6.appendChild(t6); });
+      var next6 = item.nextElementSibling;
+      if (next6 && next6.children.length === 0 && (next6.textContent || "").trim()) col6.appendChild(next6);
+      item.style.gap = "0";
+    });
+  })();
+
+  /* --- 4k3. „O czym ostatnio pisałem?" na stronach usług: realne artykuły z arkusza + licznik --- */
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-pencil-name="Article Col"]'));
+    var counters = [];
+    document.querySelectorAll("div").forEach(function (d) {
+      if (d.children.length === 0 && /^Zobacz wszystkie artyku/i.test((d.textContent || "").replace(/\u00A0/g, " ").trim())) counters.push(d);
+    });
+    if (!cards.length && !counters.length) return;
+    fetch("https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv&gid=0")
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(function (text) {
+        var rows = [], row = [], cell = "", q = false;
+        for (var i = 0; i < text.length; i++) {
+          var ch = text[i];
+          if (q) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += ch; }
+          else if (ch === '"') q = true;
+          else if (ch === ",") { row.push(cell); cell = ""; }
+          else if (ch === "\n") { row.push(cell.replace(/\r$/, "")); rows.push(row); row = []; cell = ""; }
+          else cell += ch;
+        }
+        if (cell.length || row.length) { row.push(cell.replace(/\r$/, "")); rows.push(row); }
+        var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+        var arts = rows.slice(1).map(function (r2) { var o = {}; head.forEach(function (h, j) { o[h] = (r2[j] || "").trim(); }); return o; }).filter(function (a) { return a.tytul; });
+        arts.sort(function (a, b) { return (b.data || "").localeCompare(a.data || ""); });
+        var fmt = function (d) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ""); return m ? m[3] + "." + m[2] + "." + m[1] : (d || ""); };
+        var hrefOf = function (a) {
+          var full = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+          return full && a.slug ? "artykul.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
+        };
+        cards.forEach(function (card, i) {
+          var a = arts[i];
+          if (!a) { card.style.display = "none"; return; }
+          var leaves = Array.prototype.filter.call(card.querySelectorAll("div"), function (d) { return d.children.length === 0; });
+          if (leaves[0]) leaves[0].textContent = (a.czas_czytania || "5") + " min";
+          if (leaves[1]) leaves[1].textContent = fmt(a.data);
+          if (leaves[2]) { leaves[2].textContent = a.tytul; leaves[2].style.letterSpacing = "0"; }
+          var href = hrefOf(a);
+          if (href && !card._kmArt3) {
+            card._kmArt3 = 1;
+            card.style.cursor = "pointer";
+            card.addEventListener("click", function () { window.location.href = href; });
+          }
+        });
+        counters.forEach(function (c) {
+          c.textContent = "Zobacz wszystkie artykuły [" + arts.length + "]";
+          var btn = c.parentElement;
+          var t = btn && /background-color/.test(btn.getAttribute("style") || "") ? btn : c;
+          if (!t._kmArtAll) {
+            t._kmArtAll = 1;
+            t.style.cursor = "pointer";
+            t.addEventListener("click", function () { window.location.href = "artykuly.html"; });
+          }
+        });
+      })
+      .catch(function (e) { console.warn("Artykuły (sekcja): zostają statyczne —", e.message || e); });
   })();
 
   /* --- 4m0. Formularze na stronie Kontakt (atrapy z Pen → prawdziwe pola + walidacja + mailto) --- */

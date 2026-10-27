@@ -78,21 +78,63 @@
       }
     }
 
-    grid.forEach(function (card, i) {
-      var a = rest[i];
-      if (!a) { card.style.display = "none"; return; }
-      var meta = leaf(card, function (t) { return /·/.test(t); });
-      var kids = Array.prototype.filter.call(card.children, function (c) { return (c.textContent || "").trim(); });
-      if (meta) meta.innerText = (a.kategoria || "").toUpperCase() + "  ·  " + fmtDate(a.data) + "  ·  " + (a.czas_czytania || "") + " MIN";
-      if (kids[1]) kids[1].innerText = a.tytul || "";
-      if (kids[2]) kids[2].innerText = a.zajawka || "";
-      card.setAttribute("data-kategoria", (a.kategoria || "").toLowerCase());
-      var href = a._href;
-      if (href) {
-        card.style.cursor = "pointer";
-        card.addEventListener("click", function () { window.open(href, "_self"); });
-      }
+    /* lista jak w projekcie mobile: karty w kolumnie, 4 na stronę, paginacja bez strzałek */
+    var PAGE = 4;
+    var state = { filter: "Wszystkie", page: 0 };
+    var rowSet = [];
+    grid.forEach(function (card) {
+      var r = card.parentElement;
+      if (rowSet.indexOf(r) === -1) rowSet.push(r);
+      card.style.flex = "none";
+      card.style.width = "100%";
     });
+    rowSet.forEach(function (r) {
+      r.style.flexDirection = "column";
+      r.style.gap = "24px";
+      r.style.height = "auto";
+    });
+    var lastRow = rowSet[rowSet.length - 1];
+    var pagRow = document.createElement("div");
+    pagRow.style.cssText = "display:flex;flex-direction:row;gap:12px;justify-content:center;align-items:center;width:100%;padding:28px 0 0;";
+    lastRow.parentNode.insertBefore(pagRow, lastRow.nextSibling);
+    grid.forEach(function (card) {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", function () { if (card._href) window.open(card._href, "_self"); });
+    });
+    function filtered() {
+      if (state.filter === "Wszystkie") return rest;
+      var want = state.filter.toLowerCase();
+      return rest.filter(function (a) {
+        var k = (a.kategoria || "").toLowerCase();
+        return k.indexOf(want) !== -1 || (k && want.indexOf(k) !== -1);
+      });
+    }
+    function render() {
+      var list = filtered();
+      var pages = Math.max(1, Math.ceil(list.length / PAGE));
+      if (state.page >= pages) state.page = 0;
+      grid.forEach(function (card, i) {
+        var a = i < PAGE ? list[state.page * PAGE + i] : null;
+        if (!a) { card.style.display = "none"; card._href = ""; return; }
+        card.style.display = "";
+        var meta = leaf(card, function (t) { return /·/.test(t); });
+        var kids = Array.prototype.filter.call(card.children, function (c) { return (c.textContent || "").trim(); });
+        if (meta) meta.innerText = (a.kategoria || "").toUpperCase() + "  ·  " + fmtDate(a.data) + "  ·  " + (a.czas_czytania || "") + " MIN";
+        if (kids[1]) kids[1].innerText = a.tytul || "";
+        if (kids[2]) kids[2].innerText = a.zajawka || "";
+        card._href = a._href || "";
+      });
+      pagRow.innerHTML = "";
+      for (var p = 0; p < pages; p++) (function (p) {
+        var b = document.createElement("div");
+        b.textContent = String(p + 1);
+        var active = p === state.page;
+        b.style.cssText = "width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Inter,system-ui,sans-serif;font-size:17px;font-weight:500;" + (active ? "background:#5205E7;color:#FFFFFF;" : "background:#FFFFFF;color:#15172C;border:1px solid #D4D0F8;");
+        b.addEventListener("click", function () { state.page = p; render(); });
+        pagRow.appendChild(b);
+      })(p);
+    }
+    render();
 
     document.querySelectorAll("div").forEach(function (chip) {
       var t = (chip.textContent || "").trim();
@@ -100,12 +142,9 @@
       if (!/^(Wszystkie|Badania UX|Segmentacja|Audyt UX|Strategia|Narzędzia)$/.test(t)) return;
       chip.style.cursor = "pointer";
       chip.addEventListener("click", function () {
-        var want = t.toLowerCase();
-        grid.forEach(function (card) {
-          var k = card.getAttribute("data-kategoria") || "";
-          var show = t === "Wszystkie" || k.indexOf(want) !== -1 || want.indexOf(k) !== -1 && k;
-          card.style.display = (show && card.getAttribute("data-kategoria") !== null) || t === "Wszystkie" ? "" : "none";
-        });
+        state.filter = t;
+        state.page = 0;
+        render();
       });
     });
   }
