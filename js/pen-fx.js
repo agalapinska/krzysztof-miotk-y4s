@@ -2695,7 +2695,7 @@
         if (pd._kmDemo) return;
         pd._kmDemo = 1;
         pd.style.cursor = "pointer";
-        pd.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "mailto:krzysiek@quale.agency?subject=" + encodeURIComponent("Poproszę o demo raportu"); }, true);
+        pd.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "https://drive.google.com/uc?export=download&id=1i2jCNOw_7D6RibchM1QZjVXg1fIcm3do"; }, true);
       } else if (/^Zobacz historie moich klientów$/.test(t)) {
         var zh = climb(d, function (x) { return /background-color/.test((x.getAttribute && x.getAttribute("style")) || ""); });
         zh = zh.parentElement && /flex/.test((zh.parentElement.getAttribute("style") || "")) && zh.parentElement.querySelector("svg") ? zh.parentElement : zh;
@@ -2722,7 +2722,7 @@
       }
     });
     /* ikony social w stopce */
-    var SOC = { linkedin: "https://www.linkedin.com/in/miotkkrzysztof/", instagram: "https://www.instagram.com/krzysztofmiotk/" };
+    var SOC = { linkedin: "https://www.linkedin.com/in/miotkkrzysztof/", instagram: "https://www.instagram.com/krzysiek_miotk/" };
     document.querySelectorAll('svg[data-icon-name="linkedin"], svg[data-icon-name="instagram"]').forEach(function (ic) {
       if (ic._kmSoc) return;
       ic._kmSoc = 1;
