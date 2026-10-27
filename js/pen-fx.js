@@ -754,6 +754,11 @@
         if (advSec && !advSec._kmArrows && advSec._kmCardRow) {
           advSec._kmArrows = 1;
           var wrapEl = advSec._kmCardRow.parentElement;
+          wrapEl.style.height = "auto";
+          wrapEl.style.paddingBottom = "0";
+          Array.prototype.forEach.call(wrapEl.children, function (k9) {
+            if (k9 !== advSec._kmCardRow && !NB(k9.textContent) && !k9.querySelector("svg,img") && k9.offsetHeight > 40) k9.style.display = "none";
+          });
           var rowA = document.createElement("div");
           rowA.style.cssText = "display:flex;flex-direction:row;justify-content:center;align-items:center;gap:72px;width:100%;padding:24px 0 0;";
           var mkA = function (dir) {
@@ -808,7 +813,22 @@
           d.style.width = "100%";
         } else if (/^Zobacz historie moich klientów/.test(t) && d.children.length <= 3) {
           d.style.width = "100%";
-          d.style.justifyContent = "center";
+          d.style.display = "flex";
+          d.style.flexWrap = "nowrap";
+          d.style.gap = "0";
+          d.style.alignItems = "stretch";
+          if (d.children[0]) {
+            d.children[0].style.flex = "1 1 auto";
+            d.children[0].style.justifyContent = "center";
+            d.children[0].style.height = "auto";
+          }
+          if (d.children[1]) {
+            d.children[1].style.flex = "0 0 auto";
+            d.children[1].style.height = "auto";
+            d.children[1].style.display = "flex";
+            d.children[1].style.alignItems = "center";
+            d.children[1].style.margin = "0";
+          }
           widen(d);
         } else if (/^Zobacz wszystkie artykuły$/.test(t) && d.children.length <= 3) {
           d.style.backgroundColor = "transparent";
@@ -2107,6 +2127,9 @@
         });
         card.querySelectorAll("svg [fill]").forEach(function (p) {
           if (p.getAttribute("fill") !== "none") p.setAttribute("fill", "#FFFFFF");
+        });
+        card.querySelectorAll("div").forEach(function (d9) {
+          if (/outline:/.test(d9.getAttribute("style") || "")) d9.style.outlineColor = "#FFFFFF";
         });
       });
     })();
