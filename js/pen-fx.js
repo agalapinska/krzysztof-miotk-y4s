@@ -1868,6 +1868,41 @@
       box.addEventListener("click", function () { input.focus(); });
       var row = box.parentElement;
       var btn = Array.prototype.find.call(row.children, function (c) { return /zapisz się/i.test(c.textContent || ""); });
+      function mlPopup() {
+        var ov = document.querySelector(".km-nl-modal");
+        if (!ov) {
+          ov = document.createElement("div");
+          ov.className = "km-nl-modal";
+          ov.style.cssText = "position:fixed;inset:0;background:rgba(13,0,51,.55);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;";
+          var card = document.createElement("div");
+          card.style.cssText = "position:relative;background:#ffffff;width:100%;max-width:420px;max-height:86vh;overflow:auto;";
+          var x = document.createElement("div");
+          x.setAttribute("aria-label", "Zamknij");
+          x.style.cssText = "position:absolute;top:8px;right:12px;font:400 26px/1 Inter,system-ui,sans-serif;color:#15172C;cursor:pointer;z-index:2;";
+          x.textContent = "×";
+          var fr = document.createElement("iframe");
+          fr.src = "https://assets.mailerlite.com/jsonp/615128/forms/cvjsW2/content";
+          fr.title = "Zapis do newslettera";
+          fr.style.cssText = "width:100%;height:520px;border:0;display:block;";
+          card.appendChild(x);
+          card.appendChild(fr);
+          ov.appendChild(card);
+          document.body.appendChild(ov);
+          var close = function () { ov.style.display = "none"; };
+          x.addEventListener("click", close);
+          ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
+        }
+        ov.style.display = "flex";
+      }
+      function okMsg() {
+        row.style.transition = "opacity .3s ease";
+        row.style.opacity = "0";
+        setTimeout(function () {
+          row.innerHTML = '<div class="km-nl-ok">Dzięki! Sprawdź skrzynkę i potwierdź zapis ✨</div>';
+          row.style.opacity = "1";
+        }, 300);
+      }
+      var sending = false;
       function submit() {
         var v = input.value.trim();
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) {
@@ -1876,12 +1911,20 @@
           setTimeout(function () { input.classList.remove("is-bad"); }, 1200);
           return;
         }
-        row.style.transition = "opacity .3s ease";
-        row.style.opacity = "0";
-        setTimeout(function () {
-          row.innerHTML = '<div class="km-nl-ok">Dzięki! Sprawdź skrzynkę i potwierdź zapis ✨</div>';
-          row.style.opacity = "1";
-        }, 300);
+        if (sending) return;
+        sending = true;
+        var body = new URLSearchParams();
+        body.set("fields[email]", v);
+        body.set("ml-submit", "1");
+        body.set("anticsrf", "true");
+        fetch("https://assets.mailerlite.com/jsonp/615128/forms/202511296279611328/subscribe", { method: "POST", body: body })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            sending = false;
+            if (j && j.success) okMsg();
+            else mlPopup();
+          })
+          .catch(function () { sending = false; mlPopup(); });
       }
       if (btn) btn.addEventListener("click", submit);
       input.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
