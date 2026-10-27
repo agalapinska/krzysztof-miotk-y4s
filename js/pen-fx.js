@@ -1231,7 +1231,7 @@
     "Wystąpienia i szkolenia": PAGES["Wystąpienia i szkolenia"],
     "Zewnętrzny Dyrektor UX": PAGES["Zewnętrzny Dyrektor UX"],
     "Usługi": SERVICES, "Usługi/": SERVICES, "Kontakt": CONTACT, "Start/": HOME, "Start": HOME,
-    "Strona główna": HOME, "Artykuły": ARTICLES, "Artykuły/": ARTICLES,
+    "Strona główna": HOME, "Strona Główna": HOME, "Artykuły": ARTICLES, "Artykuły/": ARTICLES,
     "Case studies": CASESTUDIES, "Case studies/": CASESTUDIES,
     "Moja Oferta": SERVICES, "Case Study": CASESTUDIES
   };
@@ -2641,6 +2641,63 @@
         });
       })
       .catch(function (e) { console.warn("Artykuły (sekcja): zostają statyczne —", e.message || e); });
+  })();
+
+  /* --- 4p. Calendly popup dla buttonów „Umów…", mailto dla krzysiek@quale.agency, link quale.agency --- */
+  (function () {
+    var CAL = "https://calendly.com/krzysiek-quale/30min";
+    var calLoading = false;
+    function openCal() {
+      if (window.Calendly && window.Calendly.initPopupWidget) { window.Calendly.initPopupWidget({ url: CAL }); return; }
+      if (calLoading) return;
+      calLoading = true;
+      var l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = "https://assets.calendly.com/assets/external/widget.css";
+      document.head.appendChild(l);
+      var sc = document.createElement("script");
+      sc.src = "https://assets.calendly.com/assets/external/widget.js";
+      sc.onload = function () { if (window.Calendly) window.Calendly.initPopupWidget({ url: CAL }); };
+      sc.onerror = function () { window.open(CAL, "_blank"); };
+      document.head.appendChild(sc);
+    }
+    var NT = function (el) { return (el.textContent || "").replace(/\u00A0/g, " ").trim(); };
+    function climb(d, test) {
+      var b = d;
+      for (var i = 0; i < 3 && b.parentElement; i++) {
+        if (test(b)) break;
+        b = b.parentElement;
+      }
+      return b;
+    }
+    var RXCAL = /^(Umów się na rozmowę( online!?)?|Umów videorozmowę|Umów darmową rozmowę)$/;
+    document.querySelectorAll("div, span, a").forEach(function (d) {
+      if (d.children.length) return;
+      var t = NT(d);
+      if (RXCAL.test(t)) {
+        var b = climb(d, function (x) {
+          var st = (x.getAttribute && x.getAttribute("style")) || "";
+          var nm = (x.getAttribute && x.getAttribute("data-pencil-name")) || "";
+          return /background/.test(st) || /^(a|button)$/.test(nm) || (x.classList && x.classList.contains("km-mobnav-cta"));
+        });
+        if (b._kmCal) return;
+        b._kmCal = 1;
+        b.style.cursor = "pointer";
+        b.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); openCal(); }, true);
+      } else if (t === "krzysiek@quale.agency") {
+        var m = climb(d, function (x) { return /background-color/.test((x.getAttribute && x.getAttribute("style")) || ""); });
+        if (m._kmMailB) return;
+        m._kmMailB = 1;
+        m.style.cursor = "pointer";
+        m.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "mailto:krzysiek@quale.agency"; }, true);
+      } else if (/^quale\.agency$/i.test(t) || /^QUALE\.AGENCY/.test(t)) {
+        var q = climb(d, function (x) { return /background-color|border/.test((x.getAttribute && x.getAttribute("style")) || ""); });
+        if (q._kmQual) return;
+        q._kmQual = 1;
+        q.style.cursor = "pointer";
+        q.addEventListener("click", function (e) { e.stopPropagation(); window.open("https://quale.agency/", "_blank", "noopener"); }, true);
+      }
+    });
   })();
 
   /* --- 4m0. Formularze na stronie Kontakt (atrapy z Pen → prawdziwe pola + walidacja + mailto) --- */

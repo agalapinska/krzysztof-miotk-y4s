@@ -54,7 +54,8 @@
   if (!slug) { location.replace("case-studies.html"); return; }
 
   fetch(SHEET + "&gid=" + GID_META).then(function (r) { return r.text(); }).then(function (text) {
-    var meta = toObjects(parseCSV(text)).filter(function (a) { return a.slug === slug; })[0];
+    var all = toObjects(parseCSV(text)).filter(function (a) { return a.tytul && a.slug; });
+    var meta = all.filter(function (a) { return a.slug === slug; })[0];
     var body = pickTresc(meta);
     if (!meta || !body) { location.replace("case-studies.html"); return; }
 
@@ -63,7 +64,7 @@
     if (md) md.setAttribute("content", meta.opis_seo || meta.zajawka || "");
     var canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement("link"); canon.rel = "canonical"; document.head.appendChild(canon); }
-    canon.href = "https://agalapinska.github.io/krzysztof-miotk-y4s/case-study.html?slug=" + encodeURIComponent(slug);
+    canon.href = "https://krzysztofmiotk.pl/case-study.html?slug=" + encodeURIComponent(slug);
     var ld = document.createElement("script");
     ld.type = "application/ld+json";
     ld.textContent = JSON.stringify({
@@ -116,6 +117,33 @@
         else if (/^- /.test(l.trim())) bodyC.appendChild(mk.li(l.trim().slice(2)));
         else bodyC.appendChild(mk.p(l));
       });
+    });
+
+    /* „Kolejne" (wg XMAtc): następne pozycje po bieżącej, zapętlone, karty klikalne */
+    var seq = all.slice().sort(function (a, b) { return (b.data || "").localeCompare(a.data || ""); });
+    var ci = -1;
+    seq.forEach(function (a, i) { if (a.slug === slug) ci = i; });
+    var cards = document.querySelectorAll('[data-pencil-name^="Case: "]');
+    var next = [];
+    for (var k = 1; k <= seq.length - 1 && next.length < cards.length; k++) {
+      var cand = seq[(ci + k + seq.length) % seq.length];
+      if (pickTresc(cand) || cand.url) next.push(cand);
+    }
+    Array.prototype.forEach.call(cards, function (card, i) {
+      var a = next[i];
+      if (!a) { card.style.display = "none"; return; }
+      var mEl = card.querySelector('[data-pencil-name="Meta"]');
+      var tEl = card.querySelector('[data-pencil-name="Tytuł"]');
+      var zEl = card.querySelector('[data-pencil-name="Zajawka"]');
+      if (mEl) mEl.innerText = (a.branza || "").toUpperCase() + "  ·  " + fmtDate(a.data) + "  ·  " + (a.czas_czytania || "") + " MIN";
+      if (tEl) tEl.innerText = a.tytul;
+      if (zEl) zEl.innerText = a.zajawka || "";
+      card._kmHref = pickTresc(a) ? "case-study.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
+      card.style.cursor = "pointer";
+      if (!card._kmNext) {
+        card._kmNext = 1;
+        card.addEventListener("click", function () { if (card._kmHref) window.location.href = card._kmHref; });
+      }
     });
   }).catch(function (e) {
     console.warn("Case study: nie udało się pobrać treści —", e.message || e);
