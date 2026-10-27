@@ -782,6 +782,65 @@
         if (nlBox) { nlBox.style.width = "100%"; nlBox.style.flex = "1 1 auto"; }
         if (nlBox && nlBox.parentElement) nlBox.parentElement.style.width = "100%";
       }
+      /* uslugi (Moja Oferta): poprawki wg projektu aLb03 */
+      if (/uslugi\.html/.test(location.pathname)) {
+        /* benefity „Co zyskasz…": ikona po lewej, bez plakietki */
+        var czH = null;
+        document.querySelectorAll("h2, div").forEach(function (d) {
+          if (!czH && !Array.prototype.some.call(d.children, function (c) { return c.tagName === "DIV"; }) && /^Co zyskasz/.test(NB(d.textContent))) czH = d;
+        });
+        if (czH) {
+          var czSec = czH.parentElement;
+          while (czSec && czSec !== document.body && czSec.offsetWidth < document.body.offsetWidth - 8) czSec = czSec.parentElement;
+          if (czSec && czSec !== document.body) {
+            czSec.querySelectorAll("div").forEach(function (item) {
+              if (item._kmBen) return;
+              var kids6 = Array.prototype.slice.call(item.children);
+              if (kids6.length < 2) return;
+              var badge6 = kids6[0];
+              var bs6 = badge6.getAttribute && (badge6.getAttribute("style") || "");
+              if (!badge6.querySelector || !badge6.querySelector("svg") || badge6.offsetWidth > 72 || !/background-color/.test(bs6)) return;
+              var texts6 = kids6.filter(function (k) { return k !== badge6 && (k.textContent || "").trim(); });
+              if (!texts6.length) return;
+              item._kmBen = 1;
+              badge6.style.backgroundColor = "transparent";
+              var row6 = document.createElement("div");
+              row6.style.cssText = "display:flex;flex-direction:row;gap:16px;align-items:flex-start;width:100%;";
+              var col6 = document.createElement("div");
+              col6.style.cssText = "display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-width:0;";
+              item.insertBefore(row6, item.firstChild);
+              row6.appendChild(badge6);
+              row6.appendChild(col6);
+              texts6.forEach(function (t6) { col6.appendChild(t6); });
+              item.style.gap = "0";
+            });
+          }
+        }
+        /* strzałki karuzeli case (sekcja „Kilka historii moich klientów") */
+        var advSec = null;
+        document.querySelectorAll("div").forEach(function (d) { if (!advSec && d._kmAdvance) advSec = d; });
+        if (advSec && !advSec._kmArrows && advSec._kmCardRow) {
+          advSec._kmArrows = 1;
+          var wrapEl = advSec._kmCardRow.parentElement;
+          var rowA = document.createElement("div");
+          rowA.style.cssText = "display:flex;flex-direction:row;justify-content:center;align-items:center;gap:72px;width:100%;padding:24px 0 0;";
+          var mkA = function (dir) {
+            var s6 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            s6.setAttribute("viewBox", "0 0 24 24");
+            s6.setAttribute("width", "26");
+            s6.setAttribute("height", "26");
+            s6.style.cursor = "pointer";
+            s6.innerHTML = dir < 0
+              ? '<path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+              : '<path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+            s6.addEventListener("click", function () { advSec._kmAdvance(dir); });
+            return s6;
+          };
+          rowA.appendChild(mkA(-1));
+          rowA.appendChild(mkA(1));
+          if (wrapEl && wrapEl.parentNode) wrapEl.parentNode.insertBefore(rowA, wrapEl.nextSibling);
+        }
+      }
       /* demo: logosy „PRACOWAŁEM MIĘDZY INNYMI Z:" w jednej przyciętej linii */
       var dLbl = null;
       document.querySelectorAll("div").forEach(function (d) {
@@ -815,6 +874,10 @@
         var t = NB(d.textContent);
         if (/^Przeczytaj historię projektu$/.test(t)) {
           d.style.width = "100%";
+        } else if (/^Zobacz historie moich klientów/.test(t) && d.children.length <= 3) {
+          d.style.width = "100%";
+          d.style.justifyContent = "center";
+          widen(d);
         } else if (/^Zobacz wszystkie artykuły$/.test(t) && d.children.length <= 3) {
           d.style.backgroundColor = "transparent";
           d.style.width = "100%";
@@ -1904,6 +1967,8 @@
       if (rightPara) rightPara.innerText = kmNbsp(c.right);
     }
     var timer = null;
+    sec._kmAdvance = function (dir) { advance(dir); };
+    sec._kmCardRow = cardRow;
     function advance(dir) {
       if (document.hidden || state.hover) { timer = setTimeout(function () { advance(dir); }, 400); return; }
       dir = dir || 1;
