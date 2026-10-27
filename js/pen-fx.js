@@ -2713,9 +2713,21 @@
       }
       return b;
     }
-    var RXCAL = /^(Umów się na rozmowę( online!?)?|Umów videorozmowę|Umów darmową rozmowę)$/;
+    function kmScrollWycena() {
+      var h = null;
+      document.querySelectorAll("h1, h2, div").forEach(function (x) {
+        if (!h && x.children.length === 0 && /^Chcesz otrzymać wycenę/.test((x.textContent || "").replace(/\u00A0/g, " ").trim())) h = x;
+      });
+      if (h) h.scrollIntoView({ block: "start" });
+    }
+    if (/kontakt\.html/.test(location.pathname) && location.hash === "#wycena") {
+      setTimeout(kmScrollWycena, 400);
+      setTimeout(kmScrollWycena, 1800);
+    }
+    var RXCAL = /^(Umów się na rozmowę( online!?)?|Umów videorozmowę|Umów darmową rozmowę|Porozmawiajmy( o projekcie)?)$/;
     document.querySelectorAll("div, span, a").forEach(function (d) {
       if (d.children.length) return;
+      if (/^H[1-6]$/.test(d.tagName) || parseFloat(getComputedStyle(d).fontSize) > 26) return;
       var t = NT(d);
       if (RXCAL.test(t)) {
         var b = climb(d, function (x) {
@@ -2733,6 +2745,23 @@
         m._kmMailB = 1;
         m.style.cursor = "pointer";
         m.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "mailto:krzysiek@quale.agency"; }, true);
+      } else if (/^Napisz wiadomość$/.test(t)) {
+        var nw = climb(d, function (x) { return /background-color|border/.test((x.getAttribute && x.getAttribute("style")) || ""); });
+        if (nw._kmMsg) return;
+        nw._kmMsg = 1;
+        nw.style.cursor = "pointer";
+        nw.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); window.location.href = "mailto:krzysiek@quale.agency"; }, true);
+      } else if (/^(Wyceń projekt|Wycena bez spotkania)$/.test(t)) {
+        var wy = climb(d, function (x) { return /background-color|border/.test((x.getAttribute && x.getAttribute("style")) || ""); });
+        if (wy._kmWyc) return;
+        wy._kmWyc = 1;
+        wy.style.cursor = "pointer";
+        wy.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (/kontakt\.html/.test(location.pathname)) { kmScrollWycena(); }
+          else { window.location.href = "kontakt.html#wycena"; }
+        }, true);
       } else if (/^Pobierz Demo Raportu$/.test(t)) {
         var pd = climb(d, function (x) { return /background-color/.test((x.getAttribute && x.getAttribute("style")) || ""); });
         if (pd._kmDemo) return;
