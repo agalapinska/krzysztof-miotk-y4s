@@ -373,6 +373,22 @@
         sec.style.gap = sp[2];
       }
     });
+    /* demo raportu: button „Pobierz Demo Raportu" pod kolażem (wg projektu mobile) */
+    (function () {
+      var dl = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!dl && d.offsetHeight > 30 && d.offsetHeight < 90 && /^Pobierz Demo Raportu/.test((d.textContent || "").replace(/ /g, " ").trim())) dl = d;
+      });
+      var anim = document.querySelector('[data-pencil-name="animation"]');
+      if (!dl || !anim) return;
+      var common = dl.parentElement;
+      while (common && common !== document.body && !common.contains(anim)) common = common.parentElement;
+      if (!common || common === document.body) return;
+      var ab = anim;
+      while (ab.parentElement !== common) ab = ab.parentElement;
+      common.insertBefore(dl, ab.nextSibling);
+      dl.style.marginTop = "8px";
+    })();
     /* newsletter „Raporty i artykuły": ciasny panel, input nad buttonem (wg projektu mobile) */
     (function () {
       var t = null;

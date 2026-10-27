@@ -59791,7 +59791,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -59886,7 +59891,7 @@
                       "content": "\"Jeżeli mam wybierać między badaniami złymi a gorszymi, to wolę nie wybierać wcale.",
                       "lineHeight": 0.9,
                       "fontFamily": "Nexa",
-                      "fontSize": 56,
+                      "fontSize": 40,
                       "fontWeight": "normal",
                       "letterSpacing": -2.4
                     },
@@ -59910,7 +59915,7 @@
                       "content": "Krzysztof Miotk, Wiedźmin UX",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 20.8,
+                      "fontSize": 20,
                       "fontWeight": "normal"
                     }
                   ]
@@ -61529,7 +61534,7 @@
                           "content": "Konkretny plan i działania",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -61600,7 +61605,7 @@
                           "content": "Wyznaczony kierunek i metryki",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -61671,7 +61676,7 @@
                           "content": "Decyzje oparte na danych",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -62030,7 +62035,7 @@
                       "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 20.8,
+                      "fontSize": 20,
                       "fontWeight": "normal"
                     }
                   ]
@@ -62087,7 +62092,7 @@
                               "content": "Oferta",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -62200,7 +62205,7 @@
                           "content": "QUALE UX",
                           "lineHeight": 1.6,
                           "fontFamily": "Geist Mono",
-                          "fontSize": 11.84,
+                          "fontSize": 14,
                           "fontWeight": "normal",
                           "letterSpacing": 1.18
                         }
@@ -62330,7 +62335,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -62424,7 +62434,7 @@
                       "content": "Porozmawiajmy",
                       "lineHeight": 0.9,
                       "fontFamily": "Nexa",
-                      "fontSize": 56,
+                      "fontSize": 40,
                       "fontWeight": "normal",
                       "letterSpacing": -2.4
                     },
@@ -62448,7 +62458,7 @@
                       "content": "Lubię kontakt twarzą w twarz, więc wrzuć w mój kalendarz spotkanie i zobaczmy co dobrego możemy wspólnie zrobić 🙂",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 20.8,
+                      "fontSize": 20,
                       "fontWeight": "normal"
                     }
                   ]
@@ -62491,7 +62501,7 @@
                           "content": "Napisz wiadomość",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 16.8,
+                          "fontSize": 17,
                           "fontWeight": "600",
                           "letterSpacing": -0.17
                         }
@@ -62519,7 +62529,7 @@
                           "content": "Wyceń projekt",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 16.8,
+                          "fontSize": 17,
                           "fontWeight": "600",
                           "letterSpacing": -0.17
                         }
@@ -62598,7 +62608,7 @@
                               "content": "Wybierz dogodny termin na bezpłatną videorozmowę i pogadamy o Twoim produkcie!",
                               "lineHeight": 1.6,
                               "fontFamily": "Inter",
-                              "fontSize": 20.8,
+                              "fontSize": 20,
                               "fontWeight": "normal"
                             }
                           ]
@@ -62697,7 +62707,7 @@
                               "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                               "lineHeight": 1.6,
                               "fontFamily": "Inter",
-                              "fontSize": 20.8,
+                              "fontSize": 20,
                               "fontWeight": "normal"
                             }
                           ]
@@ -62754,7 +62764,7 @@
                                       "content": "Oferta",
                                       "lineHeight": 1.6,
                                       "fontFamily": "Geist Mono",
-                                      "fontSize": 11.84,
+                                      "fontSize": 14,
                                       "fontWeight": "normal",
                                       "letterSpacing": 1.18
                                     }
@@ -62867,7 +62877,7 @@
                                   "content": "QUALE UX",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -63027,7 +63037,7 @@
                               "content": "Nie ma sprawy!",
                               "lineHeight": 1.6,
                               "fontFamily": "Inter",
-                              "fontSize": 20.8,
+                              "fontSize": 20,
                               "fontWeight": "normal"
                             }
                           ]
@@ -63076,7 +63086,7 @@
                                   "content": "Imię *",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 14.72,
+                                  "fontSize": 14,
                                   "fontWeight": "600"
                                 },
                                 {
@@ -63131,7 +63141,7 @@
                                   "content": "Adres e-mail *",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 14.72,
+                                  "fontSize": 14,
                                   "fontWeight": "600"
                                 },
                                 {
@@ -63186,7 +63196,7 @@
                                   "content": "Twoja strona www / nazwa aplikacji",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 14.72,
+                                  "fontSize": 14,
                                   "fontWeight": "600"
                                 },
                                 {
@@ -63241,7 +63251,7 @@
                                   "content": "W czym mogę Ci pomóc? *",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 14.72,
+                                  "fontSize": 14,
                                   "fontWeight": "600"
                                 },
                                 {
@@ -63305,7 +63315,7 @@
                                   "lineHeight": 1.6,
                                   "textAlign": "center",
                                   "fontFamily": "Inter",
-                                  "fontSize": 16.8,
+                                  "fontSize": 17,
                                   "fontWeight": "600",
                                   "letterSpacing": -0.17
                                 },
@@ -63345,7 +63355,7 @@
                               "content": "Wysyłając formularz, akceptujesz politykę prywatności.",
                               "lineHeight": 1.6,
                               "fontFamily": "Inter",
-                              "fontSize": 13.6,
+                              "fontSize": 14,
                               "fontWeight": "normal"
                             }
                           ]
@@ -63426,7 +63436,7 @@
                               "content": "Uzupełnij uproszczony brief, a otrzymasz orientacyjną wycenę w ciągu 48h!",
                               "lineHeight": 1.6,
                               "fontFamily": "Inter",
-                              "fontSize": 20.8,
+                              "fontSize": 20,
                               "fontWeight": "normal"
                             }
                           ]
@@ -63485,7 +63495,7 @@
                                       "content": "Imię i nazwisko *",
                                       "lineHeight": 1.6,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 14.72,
+                                      "fontSize": 14,
                                       "fontWeight": "600"
                                     },
                                     {
@@ -63527,7 +63537,7 @@
                                       "content": "Adres e-mail *",
                                       "lineHeight": 1.6,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 14.72,
+                                      "fontSize": 14,
                                       "fontWeight": "600"
                                     },
                                     {
@@ -63579,7 +63589,7 @@
                                       "content": "Twoje stanowisko",
                                       "lineHeight": 1.6,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 14.72,
+                                      "fontSize": 14,
                                       "fontWeight": "600"
                                     },
                                     {
@@ -63621,7 +63631,7 @@
                                       "content": "O jaki produkt / usługę / firmę chodzi?",
                                       "lineHeight": 1.6,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 14.72,
+                                      "fontSize": 14,
                                       "fontWeight": "600"
                                     },
                                     {
@@ -63661,7 +63671,7 @@
                               "content": "Cel biznesowy",
                               "lineHeight": 1.6,
                               "fontFamily": "Nexa",
-                              "fontSize": 14.72,
+                              "fontSize": 14,
                               "fontWeight": "600"
                             },
                             {
@@ -63712,7 +63722,7 @@
                               "content": "Grupa docelowa",
                               "lineHeight": 1.6,
                               "fontFamily": "Nexa",
-                              "fontSize": 14.72,
+                              "fontSize": 14,
                               "fontWeight": "600"
                             },
                             {
@@ -63763,7 +63773,7 @@
                               "content": "Wstępny opis",
                               "lineHeight": 1.6,
                               "fontFamily": "Nexa",
-                              "fontSize": 14.72,
+                              "fontSize": 14,
                               "fontWeight": "600"
                             },
                             {
@@ -63844,7 +63854,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -63894,7 +63904,7 @@
                           "content": "Możesz się wypisać kiedy chcesz. Więcej informacji w polityce prywatności.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 13.6,
+                          "fontSize": 14,
                           "fontWeight": "normal"
                         }
                       ]
@@ -63936,7 +63946,7 @@
                   "content": "Masz wątpliwości?",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -63975,7 +63985,7 @@
                       "lineHeight": 1.6,
                       "textAlignVertical": "middle",
                       "fontFamily": "Inter",
-                      "fontSize": 20.8,
+                      "fontSize": 20,
                       "fontWeight": "normal"
                     }
                   ]
@@ -64133,7 +64143,7 @@
                                           "content": "Badania UX",
                                           "lineHeight": 0.95,
                                           "fontFamily": "Nexa",
-                                          "fontSize": 27.2,
+                                          "fontSize": 24,
                                           "fontWeight": "500",
                                           "letterSpacing": -0.82
                                         },
@@ -64409,7 +64419,7 @@
                                           "content": "Zewnętrzny Dyrektor UX",
                                           "lineHeight": 0.95,
                                           "fontFamily": "Nexa",
-                                          "fontSize": 27.2,
+                                          "fontSize": 24,
                                           "fontWeight": "500",
                                           "letterSpacing": -0.82
                                         },
@@ -64602,7 +64612,7 @@
                                       "content": "Segmentacja klientów",
                                       "lineHeight": 0.95,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 27.2,
+                                      "fontSize": 24,
                                       "fontWeight": "500",
                                       "letterSpacing": -0.82
                                     },
@@ -64819,7 +64829,7 @@
                                       "content": "Konsultacje i mentoring",
                                       "lineHeight": 0.95,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 27.2,
+                                      "fontSize": 24,
                                       "fontWeight": "500",
                                       "letterSpacing": -0.82
                                     },
@@ -65097,7 +65107,7 @@
                                       "content": "Audyt UX",
                                       "lineHeight": 0.95,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 27.2,
+                                      "fontSize": 24,
                                       "fontWeight": "500",
                                       "letterSpacing": -0.82
                                     },
@@ -65296,7 +65306,7 @@
                                       "content": "Wystąpienia i szkolenia",
                                       "lineHeight": 0.95,
                                       "fontFamily": "Nexa",
-                                      "fontSize": 27.2,
+                                      "fontSize": 24,
                                       "fontWeight": "500",
                                       "letterSpacing": -0.82
                                     },
@@ -65483,7 +65493,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -65584,7 +65599,7 @@
                   "content": "Badania UX",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -65655,7 +65670,7 @@
                       "content": "Wycena bez spotkania",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 16.8,
+                      "fontSize": 17,
                       "fontWeight": "600",
                       "letterSpacing": -0.17
                     }
@@ -66006,7 +66021,7 @@
                               "content": "1",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -66028,7 +66043,7 @@
                           "content": "Testy użyteczności",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -66051,7 +66066,7 @@
                           "content": "Użyteczność produktów online i offline to obecnie podstawa. Zbadam Twój produkt lub usługę z Twoją grupą docelową, aby zwiększyć m.in. konwersję, retencję, oraz CLV.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -66089,7 +66104,7 @@
                               "content": "2",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -66111,7 +66126,7 @@
                           "content": "Product Discovery",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -66134,7 +66149,7 @@
                           "content": "Proces badawczy, który pozwoli na odkrycie potencjału i popytu na Twój produkt. Przyda się przy nowym pomyśle na produkt lub stagnacji obecnego.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -66172,7 +66187,7 @@
                               "content": "3",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -66194,7 +66209,7 @@
                           "content": "Wywiady pogłębione",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -66217,7 +66232,7 @@
                           "content": "Odkryję ukryte potrzeby Twoich klientów – również te niezaspokojone przez Twoją konkurencję. Przekujemy je w innowacje w Twojej firmie.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -66264,7 +66279,7 @@
                               "content": "4",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -66286,7 +66301,7 @@
                           "content": "Focusy",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -66309,7 +66324,7 @@
                           "content": "Poprowadzę grupowe wywiady, które wskażą emocjonalną część zachowań i potrzeb Twoich klientów. Dzięki temu wskażę Ci ścieżkę zakupową Twoich klientów.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -66347,7 +66362,7 @@
                               "content": "5",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -66369,7 +66384,7 @@
                           "content": "Warsztaty z klientami",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -66392,7 +66407,7 @@
                           "content": "Wraz z Twoimi klientami wypracujemy optymalizacje i innowacje Twojego produktu. Te warsztaty świetnie pokazują jak klienci postrzegają Twój produkt i czego potrzebują, aby z Tobą pozostać.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -66430,7 +66445,7 @@
                               "content": "6",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -66452,7 +66467,7 @@
                           "content": "Inne metody badań UX",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -66475,7 +66490,7 @@
                           "content": "Eyetracking? Treetesting? Card sorting? A może coś jeszcze innego? Są to rzadsze metody, ale również je realizuję! Po prostu napisz do mnie a opowiem Ci jak to robię 🙂",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -66583,7 +66598,7 @@
                               "content": "CASE STUDY",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -66908,7 +66923,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -67053,7 +67068,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -67147,7 +67162,7 @@
                           "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 20.8,
+                          "fontSize": 20,
                           "fontWeight": "normal"
                         }
                       ]
@@ -67204,7 +67219,7 @@
                                   "content": "Oferta",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -67317,7 +67332,7 @@
                               "content": "QUALE UX",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -67558,7 +67573,7 @@
                                   "content": "Zewnętrzny Dyrektor UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -67749,7 +67764,7 @@
                                   "content": "Segmentacja klientów",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -67961,7 +67976,7 @@
                                   "content": "Audyt UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -68178,7 +68193,7 @@
                                   "content": "Konsultacje i mentoring",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -68369,7 +68384,7 @@
                                   "content": "Wystąpienia i szkolenia",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -68713,7 +68728,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -68814,7 +68834,7 @@
                   "content": "Segmentacja klientów",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -68885,7 +68905,7 @@
                       "content": "Wycena bez spotkania",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 16.8,
+                      "fontSize": 17,
                       "fontWeight": "600",
                       "letterSpacing": -0.17
                     }
@@ -69170,7 +69190,7 @@
                               "content": "1",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -69194,7 +69214,7 @@
                           "content": "Wywiady z klientami",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -69217,7 +69237,7 @@
                           "content": "Pogłębione rozmowy odsłaniają motywacje, konteksty i zadania, których nie widać w danych ilościowych ani w CRM.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -69255,7 +69275,7 @@
                               "content": "2",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -69279,7 +69299,7 @@
                           "content": "Badania ilościowe",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -69302,7 +69322,7 @@
                           "content": "Ankiety na dobrze dobranych próbach pozwalają zmierzyć wielkość, wartość i potencjał każdego segmentu.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -69340,7 +69360,7 @@
                               "content": "3",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -69364,7 +69384,7 @@
                           "content": "Analiza danych transakcyjnych",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -69387,7 +69407,7 @@
                           "content": "Łączę deklaracje z realnym zachowaniem — danymi zakupowymi, retencją i wartością klienta w czasie.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -69434,7 +69454,7 @@
                               "content": "4",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -69458,7 +69478,7 @@
                           "content": "Jobs to be done",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -69481,7 +69501,7 @@
                           "content": "Opisuję segmenty przez zadania, które klienci chcą wykonać, a nie tylko przez to, kim są. To ułatwia projektowanie oferty.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -69519,7 +69539,7 @@
                               "content": "5",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -69543,7 +69563,7 @@
                           "content": "Persony oparte na danych",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -69566,7 +69586,7 @@
                           "content": "Tworzę persony, które zespół faktycznie wykorzystuje w decyzjach produktowych i marketingowych — nie plakaty na ścianę.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -69604,7 +69624,7 @@
                               "content": "6",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -69628,7 +69648,7 @@
                           "content": "Warsztaty wdrożeniowe",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -69651,7 +69671,7 @@
                           "content": "Wspólnie z zespołem przekładamy segmentację na priorytety produktu, oferty i komunikacji na najbliższe kwartały.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -69759,7 +69779,7 @@
                               "content": "CASE STUDY",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -70082,7 +70102,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -70227,7 +70247,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -70321,7 +70341,7 @@
                           "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 20.8,
+                          "fontSize": 20,
                           "fontWeight": "normal"
                         }
                       ]
@@ -70378,7 +70398,7 @@
                                   "content": "Oferta",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -70491,7 +70511,7 @@
                               "content": "QUALE UX",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -70719,7 +70739,7 @@
                                   "content": "Badania UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -70923,7 +70943,7 @@
                                   "content": "Zewnętrzny Dyrektor UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -71136,7 +71156,7 @@
                                   "content": "Audyt UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -71353,7 +71373,7 @@
                                   "content": "Konsultacje i mentoring",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -71544,7 +71564,7 @@
                                   "content": "Wystąpienia i szkolenia",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -71888,7 +71908,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -71989,7 +72014,7 @@
                   "content": "Audyt UX",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -72080,7 +72105,7 @@
                       "content": "Wycena bez spotkania",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 16.8,
+                      "fontSize": 17,
                       "fontWeight": "600",
                       "letterSpacing": -0.17
                     }
@@ -72351,7 +72376,7 @@
                               "content": "1",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -72375,7 +72400,7 @@
                           "content": "Audyt heurystyczny",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -72398,7 +72423,7 @@
                           "content": "Systematyczny przegląd produktu według sprawdzonych heurystyk użyteczności i moich własnych list kontrolnych.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -72436,7 +72461,7 @@
                               "content": "2",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -72460,7 +72485,7 @@
                           "content": "Wędrówka poznawcza",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -72483,7 +72508,7 @@
                           "content": "Przechodzę kluczowe ścieżki krok po kroku, sprawdzając, gdzie użytkownik może się zgubić lub zniechęcić.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -72521,7 +72546,7 @@
                               "content": "3",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -72545,7 +72570,7 @@
                           "content": "Analiza danych",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -72568,7 +72593,7 @@
                           "content": "Łączę audyt z danymi z analityki: konwersją, porzuceniami i mapami zachowań użytkowników.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -72615,7 +72640,7 @@
                               "content": "4",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -72639,7 +72664,7 @@
                           "content": "Audyt dostępności",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -72662,7 +72687,7 @@
                           "content": "Sprawdzam, czy z produktu wygodnie skorzystają osoby o różnych potrzebach i ograniczeniach.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -72700,7 +72725,7 @@
                               "content": "5",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -72724,7 +72749,7 @@
                           "content": "Benchmark konkurencji",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -72747,7 +72772,7 @@
                           "content": "Porównuję Twoje rozwiązania z konkurencją i wzorcami rynkowymi, wskazując przewagi i braki.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -72785,7 +72810,7 @@
                               "content": "6",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -72809,7 +72834,7 @@
                           "content": "Rekomendacje i priorytety",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -72832,7 +72857,7 @@
                           "content": "Każdy problem dostaje wagę, uzasadnienie i przykładowe rozwiązanie — gotowe do wdrożenia przez Twój zespół.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -72940,7 +72965,7 @@
                               "content": "CASE STUDY",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -73261,7 +73286,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -73406,7 +73431,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -73500,7 +73525,7 @@
                           "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 20.8,
+                          "fontSize": 20,
                           "fontWeight": "normal"
                         }
                       ]
@@ -73557,7 +73582,7 @@
                                   "content": "Oferta",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -73670,7 +73695,7 @@
                               "content": "QUALE UX",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -73911,7 +73936,7 @@
                                   "content": "Zewnętrzny Dyrektor UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -74102,7 +74127,7 @@
                                   "content": "Segmentacja klientów",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -74314,7 +74339,7 @@
                                   "content": "Badania UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -74531,7 +74556,7 @@
                                   "content": "Konsultacje i mentoring",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -74722,7 +74747,7 @@
                                   "content": "Wystąpienia i szkolenia",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -75066,7 +75091,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -75167,7 +75197,7 @@
                   "content": "Konsultacje i mentoring",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -75238,7 +75268,7 @@
                       "content": "Napisz wiadomość",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 16.8,
+                      "fontSize": 17,
                       "fontWeight": "600",
                       "letterSpacing": -0.17
                     }
@@ -75507,7 +75537,7 @@
                               "content": "1",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -75531,7 +75561,7 @@
                           "content": "Konsultacja jednorazowa",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -75554,7 +75584,7 @@
                           "content": "60–90 minut na konkretny problem: plan badania, interpretacja wyników albo trudna decyzja produktowa.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -75592,7 +75622,7 @@
                               "content": "2",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -75616,7 +75646,7 @@
                           "content": "Pakiet konsultacji",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -75639,7 +75669,7 @@
                           "content": "Cykl spotkań wokół większego tematu — na przykład przygotowania strategii badań na najbliższy kwartał.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -75677,7 +75707,7 @@
                               "content": "3",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -75701,7 +75731,7 @@
                           "content": "Mentoring badaczy",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -75724,7 +75754,7 @@
                           "content": "Regularna praca 1:1 nad warsztatem badawczym, analizą wyników i ich komunikacją w organizacji.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -75771,7 +75801,7 @@
                               "content": "4",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -75795,7 +75825,7 @@
                           "content": "Wsparcie liderów",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -75818,7 +75848,7 @@
                           "content": "Doradztwo dla menedżerów budujących zespoły i procesy research/UX — od rekrutacji po sposób pracy z interesariuszami.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -75856,7 +75886,7 @@
                               "content": "5",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -75880,7 +75910,7 @@
                           "content": "Przegląd projektu badawczego",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -75903,7 +75933,7 @@
                           "content": "Sprawdzę scenariusz, próbę i metodę, zanim wydasz budżet na badanie, które nic nie wniesie.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -75941,7 +75971,7 @@
                               "content": "6",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -75965,7 +75995,7 @@
                           "content": "Konsultacje strategiczne",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -75988,7 +76018,7 @@
                           "content": "Praca z zarządem nad rolą badań i danych o klientach w strategii firmy oraz priorytetach inwestycji.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -76096,7 +76126,7 @@
                               "content": "CASE STUDY",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -76413,7 +76443,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -76558,7 +76588,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -76652,7 +76682,7 @@
                           "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 20.8,
+                          "fontSize": 20,
                           "fontWeight": "normal"
                         }
                       ]
@@ -76709,7 +76739,7 @@
                                   "content": "Oferta",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -76822,7 +76852,7 @@
                               "content": "QUALE UX",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -77063,7 +77093,7 @@
                                   "content": "Zewnętrzny Dyrektor UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -77254,7 +77284,7 @@
                                   "content": "Segmentacja klientów",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -77466,7 +77496,7 @@
                                   "content": "Audyt UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -77683,7 +77713,7 @@
                                   "content": "Badania UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -77874,7 +77904,7 @@
                                   "content": "Wystąpienia i szkolenia",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -78218,7 +78248,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -78319,7 +78354,7 @@
                   "content": "Zewnętrzny Dyrektor UX",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -78390,7 +78425,7 @@
                       "content": "Napisz wiadomość",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 16.8,
+                      "fontSize": 17,
                       "fontWeight": "600",
                       "letterSpacing": -0.17
                     }
@@ -78661,7 +78696,7 @@
                               "content": "1",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -78685,7 +78720,7 @@
                           "content": "Strategia UX",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -78708,7 +78743,7 @@
                           "content": "Łączę cele biznesowe z planem działań projektowych i badawczych rozpisanym na kwartały, nie na tygodnie.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -78746,7 +78781,7 @@
                               "content": "2",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -78770,7 +78805,7 @@
                           "content": "Procesy i standardy",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -78793,7 +78828,7 @@
                           "content": "Wdrażam procesy discovery, badań i oceny jakości, które zostają w firmie także po zakończeniu współpracy.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -78831,7 +78866,7 @@
                               "content": "3",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -78855,7 +78890,7 @@
                           "content": "Rozwój zespołu",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -78878,7 +78913,7 @@
                           "content": "Rekrutuję, mentoruję i układam ścieżki rozwoju projektantów oraz badaczy w Twojej organizacji.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -78925,7 +78960,7 @@
                               "content": "4",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -78949,7 +78984,7 @@
                           "content": "Wsparcie zarządu",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -78972,7 +79007,7 @@
                           "content": "Dostarczam zarządowi dane i argumenty do decyzji o produkcie, priorytetach i inwestycjach w UX.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -79010,7 +79045,7 @@
                               "content": "5",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -79034,7 +79069,7 @@
                           "content": "Nadzór nad jakością",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -79057,7 +79092,7 @@
                           "content": "Regularnie przeglądam kluczowe projekty i pilnuję spójności doświadczenia klienta w całym produkcie.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -79095,7 +79130,7 @@
                               "content": "6",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -79119,7 +79154,7 @@
                           "content": "Kultura pracy z danymi",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -79142,7 +79177,7 @@
                           "content": "Uczę organizację podejmowania decyzji na podstawie badań i analityki, a nie najgłośniejszej opinii na spotkaniu.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -79250,7 +79285,7 @@
                               "content": "CASE STUDY",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -79567,7 +79602,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -79712,7 +79747,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -79806,7 +79841,7 @@
                           "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 20.8,
+                          "fontSize": 20,
                           "fontWeight": "normal"
                         }
                       ]
@@ -79863,7 +79898,7 @@
                                   "content": "Oferta",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -79976,7 +80011,7 @@
                               "content": "QUALE UX",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -80217,7 +80252,7 @@
                                   "content": "Badania UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -80408,7 +80443,7 @@
                                   "content": "Segmentacja klientów",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -80620,7 +80655,7 @@
                                   "content": "Audyt UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -80837,7 +80872,7 @@
                                   "content": "Konsultacje i mentoring",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -81028,7 +81063,7 @@
                                   "content": "Wystąpienia i szkolenia",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -81372,7 +81407,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -81473,7 +81513,7 @@
                   "content": "Wystąpienia i szkolenia",
                   "lineHeight": 0.9,
                   "fontFamily": "Nexa",
-                  "fontSize": 56,
+                  "fontSize": 40,
                   "fontWeight": "normal",
                   "letterSpacing": -2.4
                 },
@@ -81544,7 +81584,7 @@
                       "content": "Napisz wiadomość",
                       "lineHeight": 1.6,
                       "fontFamily": "Inter",
-                      "fontSize": 16.8,
+                      "fontSize": 17,
                       "fontWeight": "600",
                       "letterSpacing": -0.17
                     }
@@ -81849,7 +81889,7 @@
                               "content": "1",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -81873,7 +81913,7 @@
                           "content": "Wystąpienia konferencyjne",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -81896,7 +81936,7 @@
                           "content": "Merytoryczne prelekcje o badaniach, segmentacji klientów i pracy z danymi — bez marketingowej waty.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -81934,7 +81974,7 @@
                               "content": "2",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -81958,7 +81998,7 @@
                           "content": "Szkolenia z badań UX",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -81981,7 +82021,7 @@
                           "content": "Praktyczne warsztaty: od planowania badania, przez moderację, po analizę i komunikację wyników.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -82019,7 +82059,7 @@
                               "content": "3",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -82043,7 +82083,7 @@
                           "content": "Warsztaty dla zespołów",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -82066,7 +82106,7 @@
                           "content": "Praca na Waszym produkcie i danych — kończymy z gotowymi decyzjami, a nie stertą notatek.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -82113,7 +82153,7 @@
                               "content": "4",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -82137,7 +82177,7 @@
                           "content": "Szkolenia dla liderów",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -82160,7 +82200,7 @@
                           "content": "Jak zamawiać, oceniać i wykorzystywać badania w decyzjach biznesowych — dla menedżerów i zarządów.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -82198,7 +82238,7 @@
                               "content": "5",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -82222,7 +82262,7 @@
                           "content": "Webinary i wykłady online",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -82245,7 +82285,7 @@
                           "content": "Formaty zdalne dla rozproszonych zespołów, społeczności i wydarzeń branżowych.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -82283,7 +82323,7 @@
                               "content": "6",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "500"
                             }
                           ]
@@ -82307,7 +82347,7 @@
                           "content": "Programy rozwojowe",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 27.2,
+                          "fontSize": 24,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         },
@@ -82330,7 +82370,7 @@
                           "content": "Cykle szkoleniowo-mentoringowe budujące trwałe kompetencje badawcze w organizacji.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 15.68,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -82438,7 +82478,7 @@
                               "content": "CASE STUDY",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -82757,7 +82797,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -82902,7 +82942,7 @@
                               "lineHeight": 1.6,
                               "textAlign": "center",
                               "fontFamily": "Inter",
-                              "fontSize": 16.8,
+                              "fontSize": 17,
                               "fontWeight": "600",
                               "letterSpacing": -0.17
                             },
@@ -82996,7 +83036,7 @@
                           "content": "Wolisz napisać od razu? Odpowiadam na każdą wiadomość.",
                           "lineHeight": 1.6,
                           "fontFamily": "Inter",
-                          "fontSize": 20.8,
+                          "fontSize": 20,
                           "fontWeight": "normal"
                         }
                       ]
@@ -83053,7 +83093,7 @@
                                   "content": "Oferta",
                                   "lineHeight": 1.6,
                                   "fontFamily": "Geist Mono",
-                                  "fontSize": 11.84,
+                                  "fontSize": 14,
                                   "fontWeight": "normal",
                                   "letterSpacing": 1.18
                                 }
@@ -83166,7 +83206,7 @@
                               "content": "QUALE UX",
                               "lineHeight": 1.6,
                               "fontFamily": "Geist Mono",
-                              "fontSize": 11.84,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.18
                             }
@@ -83407,7 +83447,7 @@
                                   "content": "Zewnętrzny Dyrektor UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -83598,7 +83638,7 @@
                                   "content": "Segmentacja klientów",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -83810,7 +83850,7 @@
                                   "content": "Audyt UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -84027,7 +84067,7 @@
                                   "content": "Konsultacje i mentoring",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -84218,7 +84258,7 @@
                                   "content": "Badania UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -84561,7 +84601,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -84613,7 +84658,7 @@
               "content": "Artykuły o badaniach UX,\nsegmentacji i strategii produktu",
               "lineHeight": 1.15,
               "fontFamily": "$font.display",
-              "fontSize": 52,
+              "fontSize": 40,
               "fontWeight": "normal"
             },
             {
@@ -84626,7 +84671,7 @@
               "content": "Praktyczna wiedza z 2500+ sesji badawczych: jak planować badania UX, segmentować klientów i zamieniać wnioski w decyzje biznesowe. Bez teorii z podręczników — same sprawdzone podejścia.",
               "lineHeight": 1.5,
               "fontFamily": "$font.body",
-              "fontSize": 19,
+              "fontSize": 18,
               "fontWeight": "normal"
             },
             {
@@ -84853,7 +84898,7 @@
                               "fill": "$brand.violet-800",
                               "content": "BADANIA UX",
                               "fontFamily": "$font.mono",
-                              "fontSize": 12,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.5
                             }
@@ -84866,7 +84911,7 @@
                           "fill": "$color.soft",
                           "content": "02.10.2026  ·  8 MIN CZYTANIA",
                           "fontFamily": "$font.mono",
-                          "fontSize": 13,
+                          "fontSize": 14,
                           "fontWeight": "normal",
                           "letterSpacing": 1
                         }
@@ -84960,7 +85005,7 @@
                       "fill": "$color.soft",
                       "content": "SEGMENTACJA  ·  12.09.2026  ·  7 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -84974,7 +85019,7 @@
                       "content": "Segmentacja klientów krok po kroku: od danych CRM do decyzji portfelowych",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -84987,7 +85032,7 @@
                       "content": "Jak połączyć dane transakcyjne z wywiadami, żeby wyodrębnić segmenty, które naprawdę różnią się zachowaniem.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -84997,7 +85042,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -85024,7 +85069,7 @@
                       "fill": "$color.soft",
                       "content": "AUDYT UX  ·  28.08.2026  ·  6 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -85038,7 +85083,7 @@
                       "content": "Audyt UX przed redesignem: 12 miejsc, w których e-commerce traci pieniądze",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -85051,7 +85096,7 @@
                       "content": "Checklist z realnych audytów — od koszyka po stronę produktu. Z wagami problemów i przykładami poprawek.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -85061,7 +85106,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -85088,7 +85133,7 @@
                       "fill": "$color.soft",
                       "content": "BADANIA UX  ·  14.08.2026  ·  5 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -85102,7 +85147,7 @@
                       "content": "RITE w praktyce: walidacja 7 koncepcji procesu w 14 dni",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -85115,7 +85160,7 @@
                       "content": "Case z Apteki Gemini: jak iteracyjne testy pozwoliły wybrać koncepcję, która działa bez zmian od kilku lat.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -85125,7 +85170,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -85162,7 +85207,7 @@
                       "fill": "$color.soft",
                       "content": "STRATEGIA  ·  30.07.2026  ·  6 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -85176,7 +85221,7 @@
                       "content": "Jobs to be done w polskich produktach: 5 najczęstszych błędów interpretacji",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -85189,7 +85234,7 @@
                       "content": "JTBD to nie ankieta o potrzebach. Pokazuję, gdzie zespoły przeinaczają metodę i jak robić to dobrze.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -85199,7 +85244,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -85226,7 +85271,7 @@
                       "fill": "$color.soft",
                       "content": "STRATEGIA  ·  16.07.2026  ·  7 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -85240,7 +85285,7 @@
                       "content": "Ile kosztują badania UX i kiedy się zwracają",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -85253,7 +85298,7 @@
                       "content": "Realne widełki, struktura kosztów i trzy scenariusze zwrotu — na liczbach z projektów, nie z prezentacji.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -85263,7 +85308,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -85290,7 +85335,7 @@
                       "fill": "$color.soft",
                       "content": "NARZĘDZIA  ·  02.07.2026  ·  9 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -85304,7 +85349,7 @@
                       "content": "Narzędzia badacza 2026: czym naprawdę robię wywiady, testy i analizę",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -85317,7 +85362,7 @@
                       "content": "Mój aktualny stack: rekrutacja, moderacja, transkrypcje, synteza. Co warte pieniędzy, a co zastąpi arkusz.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -85327,7 +85372,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -85610,7 +85655,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -85688,7 +85738,7 @@
                       "fill": "$brand.violet-800",
                       "content": "BADANIA UX",
                       "fontFamily": "$font.mono",
-                      "fontSize": 12,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1.5
                     }
@@ -85701,7 +85751,7 @@
                   "fill": "$color.soft",
                   "content": "02.10.2026  ·  8 MIN CZYTANIA",
                   "fontFamily": "$font.mono",
-                  "fontSize": 13,
+                  "fontSize": 14,
                   "fontWeight": "normal",
                   "letterSpacing": 1
                 }
@@ -85717,7 +85767,7 @@
               "content": "Jak zaplanować badania UX, żeby skończyły się decyzją, a nie raportem do szuflady",
               "lineHeight": 1.2,
               "fontFamily": "$font.display",
-              "fontSize": 42,
+              "fontSize": 32,
               "fontWeight": "normal"
             }
           ]
@@ -85758,7 +85808,7 @@
               "width": 390,
               "content": "Zacznij od metryki, nie od metody",
               "fontFamily": "$font.display",
-              "fontSize": 27,
+              "fontSize": 24,
               "fontWeight": "normal"
             },
             {
@@ -85897,7 +85947,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -86004,7 +86054,7 @@
                       "fill": "$color.soft",
                       "content": "SEGMENTACJA  ·  12.09.2026  ·  7 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -86018,7 +86068,7 @@
                       "content": "Segmentacja klientów krok po kroku: od danych CRM do decyzji portfelowych",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -86031,7 +86081,7 @@
                       "content": "Jak połączyć dane transakcyjne z wywiadami, żeby wyodrębnić segmenty, które naprawdę różnią się zachowaniem.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -86041,7 +86091,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -86068,7 +86118,7 @@
                       "fill": "$color.soft",
                       "content": "AUDYT UX  ·  28.08.2026  ·  6 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -86082,7 +86132,7 @@
                       "content": "Audyt UX przed redesignem: 12 miejsc, w których e-commerce traci pieniądze",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -86095,7 +86145,7 @@
                       "content": "Checklist z realnych audytów — od koszyka po stronę produktu. Z wagami problemów i przykładami poprawek.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -86105,7 +86155,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -86132,7 +86182,7 @@
                       "fill": "$color.soft",
                       "content": "BADANIA UX  ·  14.08.2026  ·  5 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -86146,7 +86196,7 @@
                       "content": "RITE w praktyce: walidacja 7 koncepcji procesu w 14 dni",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -86159,7 +86209,7 @@
                       "content": "Case z Apteki Gemini: jak iteracyjne testy pozwoliły wybrać koncepcję, która działa bez zmian od kilku lat.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -86169,7 +86219,7 @@
                       "fill": "$sem.primary",
                       "content": "Czytaj więcej →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -86283,7 +86333,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -86335,7 +86390,7 @@
               "content": "Case studies: badania,\nktóre zmieniły produkty",
               "lineHeight": 1.15,
               "fontFamily": "$font.display",
-              "fontSize": 52,
+              "fontSize": 40,
               "fontWeight": "normal"
             },
             {
@@ -86348,7 +86403,7 @@
               "content": "Realne projekty od wyzwania po mierzalny efekt. Zobacz, jak badania UX, segmentacja i optymalizacja ścieżek przekładają się na decyzje produktowe i wynik biznesowy.",
               "lineHeight": 1.5,
               "fontFamily": "$font.body",
-              "fontSize": 19,
+              "fontSize": 18,
               "fontWeight": "normal"
             },
             {
@@ -86525,7 +86580,7 @@
                               "fill": "$brand.violet-800",
                               "content": "E-COMMERCE",
                               "fontFamily": "$font.mono",
-                              "fontSize": 12,
+                              "fontSize": 14,
                               "fontWeight": "normal",
                               "letterSpacing": 1.5
                             }
@@ -86538,7 +86593,7 @@
                           "fill": "$color.soft",
                           "content": "15.09.2025  ·  7 MIN CZYTANIA",
                           "fontFamily": "$font.mono",
-                          "fontSize": 13,
+                          "fontSize": 14,
                           "fontWeight": "normal",
                           "letterSpacing": 1
                         }
@@ -86632,7 +86687,7 @@
                       "fill": "$color.soft",
                       "content": "FINTECH  ·  20.06.2025  ·  6 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -86646,7 +86701,7 @@
                       "content": "Milisekundy = pieniądze: optymalizacja krytycznych ścieżek w XTB",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -86659,7 +86714,7 @@
                       "content": "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych. Szybkość interfejsu przełożona wprost na wynik finansowy.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -86669,7 +86724,7 @@
                       "fill": "$sem.primary",
                       "content": "Zobacz case study →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -86696,7 +86751,7 @@
                       "fill": "$color.soft",
                       "content": "MARKETPLACE  ·  10.03.2025  ·  8 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -86710,7 +86765,7 @@
                       "content": "Segmentacja, która uporządkowała roadmapę OLX",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -86723,7 +86778,7 @@
                       "content": "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów, na której zespół oparł priorytety rozwoju produktu.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -86733,7 +86788,7 @@
                       "fill": "$sem.primary",
                       "content": "Zobacz case study →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -86760,7 +86815,7 @@
                       "fill": "$color.soft",
                       "content": "E-COMMERCE  ·  15.09.2025  ·  7 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -86774,7 +86829,7 @@
                       "content": "7 koncepcji w 14 dni: badania RITE dla Apteki Gemini",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -86787,7 +86842,7 @@
                       "content": "Szybka walidacja siedmiu koncepcji procesu zakupowego metodą RITE. Efekty nie wymagają zmian od kilku lat.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -86797,7 +86852,7 @@
                       "fill": "$sem.primary",
                       "content": "Zobacz case study →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -86967,7 +87022,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -87045,7 +87105,7 @@
                       "fill": "$brand.violet-800",
                       "content": "E-COMMERCE",
                       "fontFamily": "$font.mono",
-                      "fontSize": 12,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1.5
                     }
@@ -87058,7 +87118,7 @@
                   "fill": "$color.soft",
                   "content": "15.09.2025  ·  7 MIN CZYTANIA",
                   "fontFamily": "$font.mono",
-                  "fontSize": 13,
+                  "fontSize": 14,
                   "fontWeight": "normal",
                   "letterSpacing": 1
                 }
@@ -87074,7 +87134,7 @@
               "content": "7 koncepcji w 14 dni: badania RITE dla Apteki Gemini",
               "lineHeight": 1.2,
               "fontFamily": "$font.display",
-              "fontSize": 42,
+              "fontSize": 32,
               "fontWeight": "normal"
             }
           ]
@@ -87113,7 +87173,7 @@
               "fill": "$color.ink",
               "content": "Wyzwanie",
               "fontFamily": "$font.display",
-              "fontSize": 27,
+              "fontSize": 24,
               "fontWeight": "normal"
             },
             {
@@ -87252,7 +87312,7 @@
                           "content": "\"",
                           "lineHeight": 0.95,
                           "fontFamily": "Nexa",
-                          "fontSize": 120,
+                          "fontSize": 28,
                           "fontWeight": "500",
                           "letterSpacing": -0.82
                         }
@@ -87359,7 +87419,7 @@
                       "fill": "$color.soft",
                       "content": "FINTECH  ·  20.06.2025  ·  6 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -87373,7 +87433,7 @@
                       "content": "Milisekundy = pieniądze: optymalizacja krytycznych ścieżek w XTB",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -87386,7 +87446,7 @@
                       "content": "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych. Szybkość interfejsu przełożona wprost na wynik finansowy.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -87396,7 +87456,7 @@
                       "fill": "$sem.primary",
                       "content": "Zobacz case study →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -87423,7 +87483,7 @@
                       "fill": "$color.soft",
                       "content": "MARKETPLACE  ·  10.03.2025  ·  8 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -87437,7 +87497,7 @@
                       "content": "Segmentacja, która uporządkowała roadmapę OLX",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -87450,7 +87510,7 @@
                       "content": "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów, na której zespół oparł priorytety rozwoju produktu.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -87460,7 +87520,7 @@
                       "fill": "$sem.primary",
                       "content": "Zobacz case study →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
@@ -87487,7 +87547,7 @@
                       "fill": "$color.soft",
                       "content": "E-COMMERCE  ·  15.09.2025  ·  7 MIN",
                       "fontFamily": "$font.mono",
-                      "fontSize": 11.5,
+                      "fontSize": 14,
                       "fontWeight": "normal",
                       "letterSpacing": 1
                     },
@@ -87501,7 +87561,7 @@
                       "content": "7 koncepcji w 14 dni: badania RITE dla Apteki Gemini",
                       "lineHeight": 1.3,
                       "fontFamily": "$font.display",
-                      "fontSize": 19,
+                      "fontSize": 18,
                       "fontWeight": "normal"
                     },
                     {
@@ -87514,7 +87574,7 @@
                       "content": "Szybka walidacja siedmiu koncepcji procesu zakupowego metodą RITE. Efekty nie wymagają zmian od kilku lat.",
                       "lineHeight": 1.45,
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "normal"
                     },
                     {
@@ -87524,7 +87584,7 @@
                       "fill": "$sem.primary",
                       "content": "Zobacz case study →",
                       "fontFamily": "$font.body",
-                      "fontSize": 14.5,
+                      "fontSize": 14,
                       "fontWeight": "600"
                     }
                   ]
