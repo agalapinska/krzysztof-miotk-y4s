@@ -32,7 +32,7 @@
     var padEls = null;
     function collectPads() {
       padEls = [];
-      document.querySelectorAll("div").forEach(function (el) {
+      document.querySelectorAll("div, h1, h2").forEach(function (el) {
         if (el.offsetWidth < designW - 200) return;
         var cs = getComputedStyle(el);
         if (cs.paddingLeft === "100px" && cs.paddingRight === "100px") padEls.push(el);
@@ -63,7 +63,7 @@
   var kmCanvases = [];
   function kmMobilize() {
     var MAXW = MBASE, PAD = 20, CONTENT = MAXW - 2 * PAD;
-    document.querySelectorAll("body div").forEach(function (el) {
+    document.querySelectorAll("body div, body h1, body h2").forEach(function (el) {
       if (el.children.length !== 1) return;
       var h = /px/.test(el.style.height || "") ? parseFloat(el.style.height) : 0;
       if (!h || h > 100 || getComputedStyle(el).position !== "relative") return;
@@ -78,7 +78,7 @@
       el.style.height = "auto";
       el.style.width = "auto";
     });
-    document.querySelectorAll("body div").forEach(function (el) {
+    document.querySelectorAll("body div, body h1, body h2").forEach(function (el) {
       if (el.offsetWidth < 1200) return;
       var kids = Array.prototype.filter.call(el.children, function (k) { return k.tagName === "DIV"; });
       if (kids.length < 2) return;
@@ -91,13 +91,13 @@
       el.style.padding = "40px 20px";
       kids.forEach(function (k) { k.style.position = "static"; k.style.left = ""; k.style.top = ""; });
     });
-    var divs = Array.prototype.slice.call(document.querySelectorAll("body div"));
+    var divs = Array.prototype.slice.call(document.querySelectorAll("body div, body h1, body h2"));
     var meta = [];
     divs.forEach(function (el) {
       var cs = getComputedStyle(el);
       var kids = Array.prototype.filter.call(el.children, function (k) {
         if (/^Wave/.test(k.getAttribute && k.getAttribute("data-pencil-name") || "")) return false;
-        return k.tagName === "DIV" || k.tagName === "IMG" || k.tagName === "svg";
+        return k.tagName === "DIV" || k.tagName === "H1" || k.tagName === "H2" || k.tagName === "IMG" || k.tagName === "svg";
       });
       meta.push({
         el: el, w: el.offsetWidth, kids: kids,
@@ -126,7 +126,7 @@
     });
     /* Typografia mobile wg projektu Pen (Mobile — Strona główna):
        hero 56→40, nagłówki 40→32, tytuły kart 32→24, kroki 36→28, duże liczby →64 */
-    document.querySelectorAll("body div").forEach(function (el) {
+    document.querySelectorAll("body div, body h1, body h2").forEach(function (el) {
       if (inCanvas(el)) return;
       if (Array.prototype.some.call(el.children, function (c) { return c.tagName === "DIV"; })) return;
       var st = el.getAttribute("style") || "";
@@ -153,7 +153,7 @@
       if (ls) el.style.letterSpacing = (Math.round(parseFloat(ls[1]) * ratio * 100) / 100) + "px";
     });
     /* statystyki (liczba + opis): wiersz z liczbą 28px/120px — wg projektu mobile */
-    document.querySelectorAll("body div").forEach(function (el) {
+    document.querySelectorAll("body div, body h1, body h2").forEach(function (el) {
       if (el.children.length || inCanvas(el)) return;
       var t = (el.textContent || "").replace(/ /g, " ").trim();
       if (!/^#?\d[\d\s]*(?:[–-]\s*\d[\d\s]*)?(?:\+|tyg\.)?$/.test(t)) return;
@@ -218,7 +218,7 @@
       if (im.offsetWidth > CONTENT) { im.style.maxWidth = "100%"; im.style.height = "auto"; }
     });
     /* usztywnione wysokości: tekst po przełamaniu linii rośnie zamiast nachodzić */
-    document.querySelectorAll("body div").forEach(function (el) {
+    document.querySelectorAll("body div, body h1, body h2").forEach(function (el) {
       if (inCanvas(el)) return;
       if (!/height:\s*[\d.]+px/.test(el.getAttribute("style") || "")) return;
       if (getComputedStyle(el).overflow === "hidden") return;
@@ -305,7 +305,7 @@
         var card2 = row.closest(".km-metal-fx") || srow || col;
         if (card2) {
           var kl = null;
-          card2.querySelectorAll("div").forEach(function (d) {
+          card2.querySelectorAll("div, h1, h2").forEach(function (d) {
             if (!kl && !textCol.contains(d) && d.children.length === 0 && /^Przykładowi klienci/.test((d.textContent || "").replace(/ /g, " ").trim())) kl = d;
           });
           if (kl) { kl.style.width = "auto"; textCol.appendChild(kl); }
@@ -355,7 +355,7 @@
       [/^Poznaj mnie od innej strony/, "40px 20px", "20px"]
     ].forEach(function (sp) {
       var h = null;
-      document.querySelectorAll("div").forEach(function (d) {
+      document.querySelectorAll("div, h1, h2").forEach(function (d) {
         if (h) return;
         if (Array.prototype.some.call(d.children, function (c) { return c.tagName === "DIV"; })) return;
         if (sp[0].test(NRM(d.textContent))) h = d;
@@ -376,7 +376,7 @@
     /* demo raportu: button „Pobierz Demo Raportu" pod kolażem (wg projektu mobile) */
     (function () {
       var dl = null;
-      document.querySelectorAll("div").forEach(function (d) {
+      document.querySelectorAll("div, h1, h2").forEach(function (d) {
         if (!dl && d.offsetHeight > 30 && d.offsetHeight < 90 && /^Pobierz Demo Raportu/.test((d.textContent || "").replace(/ /g, " ").trim())) dl = d;
       });
       var anim = document.querySelector('[data-pencil-name="animation"]');
@@ -392,7 +392,7 @@
     /* newsletter „Raporty i artykuły": ciasny panel, input nad buttonem (wg projektu mobile) */
     (function () {
       var t = null;
-      document.querySelectorAll("div").forEach(function (d) {
+      document.querySelectorAll("div, h1, h2").forEach(function (d) {
         if (!t && d.children.length === 0 && /^Raporty i artykuły$/.test((d.textContent || "").replace(/ /g, " ").trim())) t = d;
       });
       if (!t) return;
@@ -402,7 +402,7 @@
       panel.style.padding = "40px 20px";
       panel.style.width = "100%";
       var zap = null;
-      panel.querySelectorAll("div").forEach(function (d) {
+      panel.querySelectorAll("div, h1, h2").forEach(function (d) {
         if (!zap && /^Zapisz się$/.test((d.textContent || "").replace(/ /g, " ").trim()) && d.children.length <= 1) zap = d;
       });
       var btn = zap && zap.closest('div[style*="background-color"]') !== zap ? zap.parentElement : zap;
@@ -422,13 +422,13 @@
     /* karuzela case: ciaśniejsze karty, strzałki ciemne/na środku/120%, 40px do końca sekcji */
     (function () {
       var h = null;
-      document.querySelectorAll("div").forEach(function (d) {
+      document.querySelectorAll("div, h1, h2").forEach(function (d) {
         if (!h && d.children.length === 0 && /^Kilka historii/.test((d.textContent || "").replace(/ /g, " ").trim())) h = d;
       });
       if (!h) return;
       var sec = h.parentElement;
       sec.style.paddingBottom = "40px";
-      sec.querySelectorAll("div").forEach(function (d) {
+      sec.querySelectorAll("div, h1, h2").forEach(function (d) {
         var cs = getComputedStyle(d);
         var pl = parseFloat(cs.paddingLeft) || 0, pt = parseFloat(cs.paddingTop) || 0;
         if (pl >= 36 && d.offsetWidth < 420 && d !== sec) {
@@ -477,7 +477,7 @@
       });
     }
     /* stopka: dolny pasek (logo + copyright) w kolumnę, bez nachodzenia */
-    document.querySelectorAll("div").forEach(function (bar) {
+    document.querySelectorAll("div, h1, h2").forEach(function (bar) {
       var st = bar.getAttribute("style") || "";
       if (!/background-color:\s*(#1D0055|rgb\(29,\s*0,\s*85\))/i.test(st)) return;
       if (!/polityka prywatno/i.test(bar.textContent || "")) return;
@@ -500,7 +500,7 @@
   }
 
   function kmMobilizeWrap() {
-    document.querySelectorAll("body div").forEach(function (el) {
+    document.querySelectorAll("body div, body h1, body h2").forEach(function (el) {
       if (el.closest && el.closest(".km-logos-vp")) return;
       if (el.classList && el.classList.contains("km-svc-fix")) return;
       if (kmCanvases.some(function (c) { return c === el || c.contains(el); })) return;
@@ -551,14 +551,14 @@
   (function () {
     if (reduced) return;
     var label = null;
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (!label && el.children.length === 0 && /^PRACOWAŁEM Z:/.test((el.textContent || "").trim())) label = el;
     });
     if (!label) return;
     var wrapRow = label.parentElement;
     var row = null;
     Array.prototype.forEach.call(wrapRow.children, function (el) {
-      if (el !== label && el.querySelectorAll("div").length >= 5) row = el;
+      if (el !== label && el.querySelectorAll("div, h1, h2").length >= 5) row = el;
     });
     if (!row) return;
     var gap = getComputedStyle(row).columnGap || "32px";
@@ -597,7 +597,7 @@
   /* --- 1d. Statystyki: liczby kalkulują się przy wejściu w widok --- */
   (function () {
     var items = [];
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length) return;
       var t = (el.textContent || "").trim();
       if (!/^#?\d[\d\s\u00A0]*(?:[–-]\s*\d[\d\s\u00A0]*)?(?:\+|tyg\.)?$/.test(t)) return;
@@ -741,7 +741,7 @@
   });
 
   /* --- 3e. Przyciski na jasnym tle — hover z gradientem sekcji usług --- */
-  document.querySelectorAll("div").forEach(function (el) {
+  document.querySelectorAll("div, h1, h2").forEach(function (el) {
     var st = el.getAttribute("style") || "";
     if (!/background-color:\s*#f2f2f7/i.test(st)) return;
     if (el.offsetHeight < 30 || el.offsetHeight > 90) return;
@@ -796,7 +796,7 @@
     "Case studies": CASESTUDIES, "Case studies/": CASESTUDIES,
     "Moja Oferta": SERVICES, "Case Study": CASESTUDIES
   };
-  document.querySelectorAll("div, span, p").forEach(function (el) {
+  document.querySelectorAll("div, h1, h2, span, p").forEach(function (el) {
     if (el.children.length > 0) return;
     var t = (el.textContent || "").replace(/ /g, " ").trim();
     if (/^Zobacz wszystkie artyku/i.test(t)) {
@@ -823,7 +823,7 @@
   });
 
   /* --- 3b. Split buttony (primary): równe segmenty + drift + rolka strzałki --- */
-  document.querySelectorAll("div").forEach(function (el) {
+  document.querySelectorAll("div, h1, h2").forEach(function (el) {
     if (el.children.length !== 2) return;
     var main = el.children[0], arrow = el.children[1];
     if (!(arrow.children.length === 1 && arrow.querySelector('svg[data-icon-name="arrow-right"], svg[data-icon-name="arrow_right_alt"]'))) return;
@@ -1011,7 +1011,7 @@
 
     function armFill(scope) {
       var track = null, fill = null;
-      Array.prototype.forEach.call(scope.querySelectorAll("div"), function (el) {
+      Array.prototype.forEach.call(scope.querySelectorAll("div, h1, h2"), function (el) {
         var cs = getComputedStyle(el);
         if (!track && cs.backgroundColor === "rgb(233, 233, 247)" && el.offsetHeight <= 16) track = el;
         if (!fill && cs.backgroundColor === "rgb(82, 5, 231)" && el.offsetHeight <= 16) fill = el;
@@ -1229,7 +1229,7 @@
     window.addEventListener("load", sync);
 
     var ctaPanel = null;
-    Array.prototype.forEach.call(section.querySelectorAll("div"), function (el) {
+    Array.prototype.forEach.call(section.querySelectorAll("div, h1, h2"), function (el) {
       if (!ctaPanel && /^#14053333$/i.test(((el.getAttribute("style") || "").match(/background-color:\s*(#[0-9a-f]{8})/i) || [])[1] || "")) ctaPanel = el;
     });
     if (ctaPanel) { ctaPanel.classList.add("km-proc-cta"); ctaPanel.classList.add("km-metal-fx"); }
@@ -1329,7 +1329,7 @@
   (function () {
     if (reduced) return;
     var head = null;
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (!head && el.children.length === 0 && (el.textContent || "").trim() === "Co mówią klienci") head = el;
     });
     if (!head) return;
@@ -1355,7 +1355,7 @@
       if (col) { col.style.height = "100%"; }
       var author = c.querySelector('[data-pencil-name="Frame 722"]');
       if (author) author.style.marginTop = "auto";
-      c.querySelectorAll("div").forEach(function (d) {
+      c.querySelectorAll("div, h1, h2").forEach(function (d) {
         var m = (d.getAttribute("style") || "").match(/width:\s*([\d.]+)px/);
         if (m && parseFloat(m[1]) > CW - 50) { d.style.width = "auto"; d.style.maxWidth = "100%"; }
         if (getComputedStyle(d).whiteSpace === "nowrap" && d.scrollWidth > CW - 50) d.style.whiteSpace = "normal";
@@ -1389,7 +1389,7 @@
   (function () {
     if (isMob) return;
     var btns = [];
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length !== 0 || !/^pobierz demo raportu$/i.test((el.textContent || "").trim())) return;
       var b = el;
       for (var i = 0; i < 4 && b; i++) {
@@ -1417,7 +1417,7 @@
 
   /* --- 4h. Newsletter: działający input + zapis --- */
   (function () {
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length !== 0 || (el.textContent || "").trim() !== "Wpisz swój adres e-mail") return;
       var box = el.parentElement;
       var input = document.createElement("input");
@@ -1452,7 +1452,7 @@
   /* --- 4i. Historie klientów: karuzela case study + gradientowe przejęcie sekcji --- */
   (function () {
     var head = null;
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (!head && el.children.length === 0 && (el.textContent || "").trim() === "Kilka historii moich klientów") head = el;
     });
     if (!head) return;
@@ -1467,7 +1467,7 @@
     sec = secBg;
     if (!sec) return;
     var title = null, desc = null, tag = null, paras = [];
-    sec.querySelectorAll("div").forEach(function (el) {
+    sec.querySelectorAll("div, h1, h2").forEach(function (el) {
       var t = (el.textContent || "").trim();
       if (t.indexOf("7 KONCEPCJI") === 0 && !el.querySelector("div")) title = el;
       if (!desc && el.children.length === 0 && /Badania RITE/.test(t)) desc = el;
@@ -1492,7 +1492,7 @@
       rightPanel.style.height = "auto";
       rightPanel.style.justifyContent = "space-between";
       var linkWrap = null;
-      rightPanel.querySelectorAll("div").forEach(function (el) {
+      rightPanel.querySelectorAll("div, h1, h2").forEach(function (el) {
         if (!linkWrap && /Przeczytaj historię projektu/.test(el.textContent || "")) {
           var w = el;
           while (w.parentElement !== rightPanel) w = w.parentElement;
@@ -1618,7 +1618,7 @@
 
   /* --- 4j. „Poznaj mnie od innej strony": logo UX w Lesie + widget Spotify --- */
   (function () {
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length) return;
       var t = (el.textContent || "").replace(/\u00A0/g, " ").trim();
       if (t === "UX w Lesie") {
@@ -1696,7 +1696,7 @@
       var cst = card.getAttribute("style") || "";
       if (!/backdrop-filter/.test(cst) || !(/#1c00544d/i.test(cst) || /rgba\(28,\s*0,\s*84/.test(cst))) return;
       var title = null;
-      card.querySelectorAll("div").forEach(function (d) {
+      card.querySelectorAll("div, h1, h2").forEach(function (d) {
         if (title || d.children.length) return;
         var st = d.getAttribute("style") || "";
         if (/Nexa/.test(st) && /font-size:\s*(2[4-9]|[34][0-9])px/.test(st)) title = d;
@@ -1756,7 +1756,7 @@
         .catch(function (e) { console.warn("Karty artykułów: brak linków —", e.message || e); });
     }
     /* „Zobacz wszystkie artykuły" — szerokość hug, do lewej */
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length) return;
       if (!/^Zobacz wszystkie artyku/i.test((el.textContent || "").trim())) return;
       var btn = el.parentElement;
@@ -1771,7 +1771,7 @@
   (function () {
     var CAL_URL = "https://calendly.com/krzysiek-quale/30min";
     var targets = [];
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length) return;
       if (/Tu pojawi się widżet rezerwacji/.test(el.textContent || "")) targets.push(el);
     });
@@ -1852,7 +1852,7 @@
       if (window.Calendly) window.Calendly.initPopupWidget({ url: CAL_URL });
       else window.open(CAL_URL, "_blank");
     }
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (el.children.length) return;
       var t = (el.textContent || "").replace(/ /g, " ").trim();
       if (t !== "Umów videorozmowę") return;
@@ -1873,7 +1873,7 @@
       if (form._km) return;
       form._km = 1;
       var fields = [];
-      form.querySelectorAll("div").forEach(function (box) {
+      form.querySelectorAll("div, h1, h2").forEach(function (box) {
         var st = box.getAttribute("style") || "";
         if (!/border: 1px solid (#d0d0d9|rgb\(208,\s*208,\s*217\))/i.test(st)) return;
         var group = box.parentElement;
@@ -2046,7 +2046,7 @@
     panels.forEach(function (panel) {
       var pBoxes = Array.prototype.slice.call(panel.querySelectorAll('[data-pencil-name="Input"]'));
       var btnLeaf = null;
-      Array.prototype.forEach.call(panel.querySelectorAll("div"), function (el) {
+      Array.prototype.forEach.call(panel.querySelectorAll("div, h1, h2"), function (el) {
         if (!btnLeaf && el.children.length === 0 && /^(Zadaj mi pytanie|Wyślij wiadomość|Wyślij)$/i.test((el.textContent || "").replace(/\u00A0/g, " ").trim())) btnLeaf = el;
       });
       var clickable = btnLeaf ? btnLeaf.parentElement : null;
@@ -2126,7 +2126,7 @@
     float.addEventListener("click", function () { window.location.href = CONTACT; });
 
     var target = null;
-    document.querySelectorAll("div").forEach(function (el) {
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
       if (!target && el.children.length === 0 && (el.textContent || "").trim() === "Co mówią klienci") target = el;
     });
     if (target) {
