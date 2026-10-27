@@ -377,10 +377,12 @@
     (function () {
       var dl = null;
       document.querySelectorAll("div, h1, h2").forEach(function (d) {
-        if (!dl && d.offsetHeight > 30 && d.offsetHeight < 90 && /^Pobierz Demo Raportu/.test((d.textContent || "").replace(/ /g, " ").trim())) dl = d;
+        if (!dl && d.offsetHeight > 30 && d.offsetHeight < 90 && d.querySelector("svg") && /background-color/.test(d.getAttribute("style") || "") && /^Pobierz Demo Raportu/.test((d.textContent || "").replace(/ /g, " ").trim())) dl = d;
       });
       var anim = document.querySelector('[data-pencil-name="animation"]');
       if (!dl || !anim) return;
+      dl.style.width = "100%";
+      dl.style.justifyContent = "center";
       var common = dl.parentElement;
       while (common && common !== document.body && !common.contains(anim)) common = common.parentElement;
       if (!common || common === document.body) return;
@@ -417,6 +419,13 @@
           k.style.minWidth = "0";
         });
         btn.style.width = "fit-content";
+      }
+      var nlInp = panel.querySelector(".km-nl-input");
+      if (nlInp) {
+        nlInp.style.width = "100%";
+        var nlBox = nlInp.parentElement;
+        if (nlBox) { nlBox.style.width = "100%"; nlBox.style.flex = "1 1 auto"; }
+        if (nlBox && nlBox.parentElement) { nlBox.parentElement.style.width = "100%"; }
       }
     })();
     /* karuzela case: ciaśniejsze karty, strzałki ciemne/na środku/120%, 40px do końca sekcji */
@@ -462,6 +471,31 @@
       panel.querySelectorAll('[data-pencil-name="Input"], [data-pencil-name="Input with label"], [data-pencil-name="Input field"], [data-pencil-name="Content"]').forEach(function (el) {
         el.style.width = "100%";
         el.style.maxWidth = "100%";
+      });
+      var faqSubmit = panel.querySelector(".km-ghost-hover");
+      if (faqSubmit) faqSubmit.style.alignSelf = "flex-end";
+    })();
+    /* buttony wg projektu mobile: historie projektu 100%, artykuły jako tekst, CTA 100% */
+    (function () {
+      var NB = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      document.querySelectorAll("div").forEach(function (d) {
+        var t = NB(d.textContent);
+        if (!d.querySelector("svg") || d.offsetHeight < 30 || d.offsetHeight > 95) return;
+        if (/^Przeczytaj historię projektu$/.test(t)) {
+          d.style.width = "100%";
+        } else if (/^Zobacz wszystkie artykuły$/.test(t)) {
+          d.style.backgroundColor = "transparent";
+          d.style.width = "100%";
+          d.style.justifyContent = "center";
+          var lbl5 = d.querySelector("div");
+          if (lbl5) lbl5.style.color = "#15172C";
+          var rw = d.querySelector(".km-roll-wrap");
+          if (rw) rw.style.display = "none";
+          d.classList.remove("km-roll-btn");
+        } else if (/^Umów videorozmowę$/.test(t)) {
+          d.style.width = "100%";
+          d.style.justifyContent = "center";
+        }
       });
     })();
     /* podstrony usług (template TxBlS): stat „Ponad X…" jako wiersz liczba+opis */
@@ -715,6 +749,59 @@
           k.style.position = "relative";
           k.style.left = "";
           k.style.top = "";
+        }
+      });
+    });
+    /* po zbudowaniu wszystkich sekcji: buttony i pola wg projektu mobile */
+    requestAnimationFrame(function () {
+      var NB = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      /* „Pobierz Demo Raportu": pod kolaż, pełna szerokość */
+      var dl = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!dl && d.querySelector("svg") && /background-color/.test(d.getAttribute("style") || "") && d.offsetHeight > 20 && d.offsetHeight < 120 && /^Pobierz Demo Raportu/.test(NB(d.textContent))) dl = d;
+      });
+      var anim = document.querySelector('[data-pencil-name="animation"]');
+      if (dl && anim && !dl._kmMoved) {
+        dl._kmMoved = 1;
+        var common = dl.parentElement;
+        while (common && common !== document.body && !common.contains(anim)) common = common.parentElement;
+        if (common && common !== document.body) {
+          var ab = anim;
+          while (ab.parentElement !== common) ab = ab.parentElement;
+          common.insertBefore(dl, ab.nextSibling);
+          dl.style.marginTop = "8px";
+        }
+        dl.style.width = "100%";
+        dl.style.justifyContent = "center";
+      }
+      /* newsletter: input na pełną szerokość */
+      var nlInp = document.querySelector(".km-nl-input");
+      if (nlInp) {
+        nlInp.style.width = "100%";
+        var nlBox = nlInp.parentElement;
+        if (nlBox) { nlBox.style.width = "100%"; nlBox.style.flex = "1 1 auto"; }
+        if (nlBox && nlBox.parentElement) nlBox.parentElement.style.width = "100%";
+      }
+      /* FAQ: „Zadaj mi pytanie" do prawej */
+      document.querySelectorAll(".km-ghost-hover").forEach(function (b) { b.style.alignSelf = "flex-end"; });
+      /* pozostałe buttony */
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!d.querySelector("svg") || d.offsetHeight < 20 || d.offsetHeight > 120) return;
+        var t = NB(d.textContent);
+        if (/^Przeczytaj historię projektu$/.test(t)) {
+          d.style.width = "100%";
+        } else if (/^Zobacz wszystkie artykuły$/.test(t) && d.children.length <= 3) {
+          d.style.backgroundColor = "transparent";
+          d.style.width = "100%";
+          d.style.justifyContent = "center";
+          var lbl5 = d.querySelector("div");
+          if (lbl5) lbl5.style.color = "#15172C";
+          var rw = d.querySelector(".km-roll-wrap");
+          if (rw) rw.style.display = "none";
+          d.classList.remove("km-roll-btn");
+        } else if (/^Umów videorozmowę$/.test(t) && d.children.length <= 3) {
+          d.style.width = "100%";
+          d.style.justifyContent = "center";
         }
       });
     });
