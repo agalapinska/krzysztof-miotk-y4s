@@ -320,19 +320,23 @@ body.km-mob { overflow-x: clip; }
 
 /* 16. Mobile: nav z hamburgerem (wg komponentu Pen Nav-mobile) + porządki */
 .km-burger { background: none; border: 0; padding: 6px; cursor: pointer; display: flex; align-items: center; }
-.km-mobnav {
-  display: none; background: #ffffff; padding: 4px 20px 20px;
+.km-mobnav { width: 100%; align-self: stretch;
+  display: none; background: #ffffff; padding: 20px; gap: 16px;
   box-shadow: 0 22px 34px -20px rgba(21, 23, 44, .28);
   position: sticky; top: 58px; z-index: 79;
 }
 .km-mobnav.is-open { display: flex; flex-direction: column; }
 .km-mobnav a {
-  font-family: Inter, system-ui, sans-serif; font-size: 18px; color: #15172C;
-  text-decoration: none; padding: 14px 0; border-bottom: 1px solid #ECECF2;
+  font-family: Inter, system-ui, sans-serif; font-size: 18px; font-weight: 400;
+  color: #1D0055; letter-spacing: -0.17px; line-height: 29px;
+  text-decoration: none; padding: 12px 16px; background: #ffffff;
+  border-bottom: 2px solid transparent;
 }
+.km-mobnav a.is-active { font-weight: 600; border-bottom-color: #A399FD; }
 .km-mobnav-cta {
-  background: #5205E7; color: #ffffff !important; text-align: center;
-  padding: 14px 16px !important; margin-top: 14px; border-bottom: 0 !important;
+  background: #F2F2F7 !important; color: #1D0055 !important; font-weight: 600;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 14px 20px !important; margin-top: 0; border-bottom: 0 !important;
 }
 body.km-mob .km-cal-float { display: none !important; }
 

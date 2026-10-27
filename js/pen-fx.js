@@ -246,29 +246,42 @@
     nav.style.top = "0";
     nav.style.zIndex = "80";
     nav.style.background = "#ffffff";
+    var ICO_BURGER = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15172C" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>';
+    var ICO_CLOSE = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15172C" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>';
     var btn = document.createElement("button");
     btn.className = "km-burger";
     btn.setAttribute("aria-label", "Menu");
     btn.setAttribute("aria-expanded", "false");
-    btn.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15172C" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>';
+    btn.innerHTML = ICO_BURGER;
     nav.appendChild(btn);
+    if (logo && !/index\.html$|\/$/.test(location.pathname)) {
+      logo.style.cursor = "pointer";
+      logo.addEventListener("click", function () { window.location.href = "index.html"; });
+    }
     var panel = document.createElement("div");
     panel.className = "km-mobnav";
-    [["Strona główna", "index.html"], ["Moja Oferta", "uslugi.html"], ["Case Study", "case-studies.html"], ["Artykuły", "artykuly.html"], ["Kontakt", "kontakt.html"]].forEach(function (l) {
+    var PATH9 = location.pathname.split("/").pop() || "index.html";
+    var ACTIVE9 = /^(uslugi|badania-ux|segmentacja-klientow|audyt-ux|dyrektor-ux|konsultacje-i-mentoring|wystapienia-i-szkolenia)\.html$/.test(PATH9) ? "Moja Oferta"
+      : /^case-stud/.test(PATH9) ? "Case Study"
+      : /^artykul/.test(PATH9) ? "Artykuły"
+      : /^kontakt\.html$/.test(PATH9) ? "Kontakt" : "";
+    [["Moja Oferta", "uslugi.html"], ["Case Study", "case-studies.html"], ["Artykuły", "artykuly.html"], ["Kontakt", "kontakt.html"]].forEach(function (l) {
       var a = document.createElement("a");
       a.href = l[1];
       a.textContent = l[0];
+      if (l[0] === ACTIVE9) a.classList.add("is-active");
       panel.appendChild(a);
     });
     var cta = document.createElement("a");
     cta.href = "kontakt.html";
-    cta.textContent = "Umów darmową rozmowę";
     cta.className = "km-mobnav-cta";
+    cta.innerHTML = '<span>Umów darmową rozmowę</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D0055" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="13" x2="12" y2="17"/><line x1="10" y1="15" x2="14" y2="15"/></svg>';
     panel.appendChild(cta);
     nav.parentNode.insertBefore(panel, nav.nextSibling);
     btn.addEventListener("click", function () {
       var open = panel.classList.toggle("is-open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.innerHTML = open ? ICO_CLOSE : ICO_BURGER;
     });
     /* karty usług: ikona po lewej, kolumna treści po prawej, ciasne odstępy (wg projektu mobile) */
     document.querySelectorAll('[data-pencil-name="Ikona usługi"]').forEach(function (ic) {
