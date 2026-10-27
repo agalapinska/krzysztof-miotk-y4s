@@ -82,6 +82,11 @@
     if (bc3) bc3.innerText = meta.tytul.length > 46 ? meta.tytul.slice(0, 44) + "…" : meta.tytul;
     var kat = document.querySelector('[data-pencil-name="KatT"]');
     if (kat) kat.innerText = (meta.kategoria || "").toUpperCase();
+    var katBox = document.querySelector('[data-pencil-name="Kat"]');
+    if (katBox && meta.kategoria) {
+      katBox.style.cursor = "pointer";
+      katBox.addEventListener("click", function () { window.location.href = "artykuly.html?tag=" + encodeURIComponent(meta.kategoria); });
+    }
     var dt = document.querySelector('[data-pencil-name="DataT"]');
     if (dt) dt.innerText = fmtDate(meta.data) + "  ·  " + (meta.czas_czytania || "") + " MIN CZYTANIA";
     var h1 = document.querySelector('[data-pencil-name="H1"]');

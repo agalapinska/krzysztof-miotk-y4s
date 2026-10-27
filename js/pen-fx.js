@@ -2690,6 +2690,29 @@
         m._kmMailB = 1;
         m.style.cursor = "pointer";
         m.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "mailto:krzysiek@quale.agency"; }, true);
+      } else if (/^Pobierz Demo Raportu$/.test(t)) {
+        var pd = climb(d, function (x) { return /background-color/.test((x.getAttribute && x.getAttribute("style")) || ""); });
+        if (pd._kmDemo) return;
+        pd._kmDemo = 1;
+        pd.style.cursor = "pointer";
+        pd.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "mailto:krzysiek@quale.agency?subject=" + encodeURIComponent("Poproszę o demo raportu"); }, true);
+      } else if (/^Zobacz historie moich klientów$/.test(t)) {
+        var zh = climb(d, function (x) { return /background-color/.test((x.getAttribute && x.getAttribute("style")) || ""); });
+        zh = zh.parentElement && /flex/.test((zh.parentElement.getAttribute("style") || "")) && zh.parentElement.querySelector("svg") ? zh.parentElement : zh;
+        if (zh._kmHist) return;
+        zh._kmHist = 1;
+        zh.style.cursor = "pointer";
+        zh.addEventListener("click", function (e) { e.stopPropagation(); window.location.href = "case-studies.html"; }, true);
+      } else if (/^© \d{4} KRZYSZTOF MIOTK/.test(t) && /POLITYKA PRYWATNOŚCI/.test(t)) {
+        if (d._kmCopy) return;
+        d._kmCopy = 1;
+        d.innerHTML = t.replace(/POLITYKA PRYWATNOŚCI/, '<a href="https://quale.agency/polityka-prywatnosci" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; cursor: pointer;">POLITYKA PRYWATNOŚCI</a>')
+          .replace(/QUALE\.AGENCY ?↗?/, '<a href="https://quale.agency/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; cursor: pointer;">QUALE.AGENCY ↗</a>');
+      } else if (/politykę prywatności/.test(t) && t.length < 220 && !d.querySelector("a")) {
+        if (d._kmPriv) return;
+        d._kmPriv = 1;
+        var esc9 = t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        d.innerHTML = esc9.replace(/politykę prywatności/, '<a href="https://quale.agency/polityka-prywatnosci" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">politykę prywatności</a>');
       } else if (/^quale\.agency$/i.test(t) || /^QUALE\.AGENCY/.test(t)) {
         var q = climb(d, function (x) { return /background-color|border/.test((x.getAttribute && x.getAttribute("style")) || ""); });
         if (q._kmQual) return;
@@ -2697,6 +2720,15 @@
         q.style.cursor = "pointer";
         q.addEventListener("click", function (e) { e.stopPropagation(); window.open("https://quale.agency/", "_blank", "noopener"); }, true);
       }
+    });
+    /* ikony social w stopce */
+    var SOC = { linkedin: "https://www.linkedin.com/in/miotkkrzysztof/", instagram: "https://www.instagram.com/krzysztofmiotk/" };
+    document.querySelectorAll('svg[data-icon-name="linkedin"], svg[data-icon-name="instagram"]').forEach(function (ic) {
+      if (ic._kmSoc) return;
+      ic._kmSoc = 1;
+      var url = SOC[ic.getAttribute("data-icon-name")];
+      ic.style.cursor = "pointer";
+      ic.addEventListener("click", function (e) { e.stopPropagation(); window.open(url, "_blank", "noopener"); });
     });
   })();
 

@@ -134,12 +134,18 @@
         pagRow.appendChild(b);
       })(p);
     }
-    render();
-
+    /* chipy tagów: stan aktywny, ukrywanie pustych, filtr z ?tag= */
+    var chipEls = {};
+    var chipStyles = { active: null, idle: null, activeLeaf: null, idleLeaf: null };
     document.querySelectorAll("div").forEach(function (chip) {
       var t = (chip.textContent || "").trim();
       if (chip.children.length !== 1 || chip.offsetHeight > 60 || chip.offsetHeight < 30) return;
       if (!/^(Wszystkie|Badania UX|Segmentacja|Audyt UX|Strategia|Narzędzia)$/.test(t)) return;
+      chipEls[t] = chip;
+      var st = chip.getAttribute("style") || "";
+      var lf = chip.firstElementChild ? (chip.firstElementChild.getAttribute("style") || "") : "";
+      if (t === "Wszystkie") { chipStyles.active = st; chipStyles.activeLeaf = lf; }
+      else if (!chipStyles.idle) { chipStyles.idle = st; chipStyles.idleLeaf = lf; }
       chip.style.cursor = "pointer";
       chip.addEventListener("click", function () {
         state.filter = t;
@@ -147,6 +153,35 @@
         render();
       });
     });
+    var allItems = [featured].concat(rest);
+    function paintChips() {
+      Object.keys(chipEls).forEach(function (name) {
+        var chip = chipEls[name];
+        if (name !== "Wszystkie") {
+          var cnt = allItems.filter(function (a) {
+            var k = (a.kategoria || "").toLowerCase();
+            var w = name.toLowerCase();
+            return k === w || k.indexOf(w) !== -1 || (k && w.indexOf(k) !== -1);
+          }).length;
+          if (!cnt) { chip.style.display = "none"; return; }
+        }
+        var active = name === state.filter;
+        if (chipStyles.active && chipStyles.idle) chip.setAttribute("style", active ? chipStyles.active : chipStyles.idle);
+        if (chip.firstElementChild && chipStyles.activeLeaf && chipStyles.idleLeaf) chip.firstElementChild.setAttribute("style", active ? chipStyles.activeLeaf : chipStyles.idleLeaf);
+        chip.style.cursor = "pointer";
+        chip.style.display = "";
+      });
+    }
+    var tagQ = new URLSearchParams(location.search).get("tag") || "";
+    if (tagQ) {
+      Object.keys(chipEls).forEach(function (n) {
+        var a = n.toLowerCase(), b = tagQ.toLowerCase();
+        if (a === b || a.indexOf(b) !== -1 || b.indexOf(a) !== -1) state.filter = n;
+      });
+    }
+    var renderBase = render;
+    render = function () { renderBase(); paintChips(); };
+    render();
   }
 
   if (!/artykuly\.html/.test(location.pathname)) return;
