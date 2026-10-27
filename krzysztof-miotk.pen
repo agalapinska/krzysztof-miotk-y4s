@@ -4,8 +4,8 @@
     {
       "type": "frame",
       "id": "TqaTR",
-      "x": -8368,
-      "y": 3314,
+      "x": -16000,
+      "y": 12000,
       "name": "Frame 671",
       "clip": true,
       "width": 972,
@@ -2698,6 +2698,9 @@
                   "id": "F8hZIv",
                   "width": 570,
                   "fill": "#14053333",
+                  "stroke": "#ffffffff",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "effect": {
                     "type": "background_blur",
                     "radius": 8
@@ -2793,7 +2796,7 @@
           "width": "fill_container",
           "fill": "#FFFFFF",
           "layout": "vertical",
-          "gap": 64,
+          "gap": 40,
           "padding": 100,
           "children": [
             {
@@ -2811,6 +2814,7 @@
               "id": "CAnCS",
               "name": "Frame 664",
               "width": "fit_content(1240)",
+              "height": 471,
               "layout": "vertical",
               "children": [
                 {
@@ -2825,7 +2829,7 @@
                       "id": "V8ktrP",
                       "name": "Frame 663",
                       "width": "fill_container",
-                      "gap": 64,
+                      "gap": 80,
                       "children": [
                         {
                           "type": "frame",
@@ -3331,7 +3335,7 @@
                   "type": "frame",
                   "id": "CNnxf",
                   "name": "Frame 701",
-                  "width": 64,
+                  "width": "fill_container",
                   "height": 12,
                   "layout": "none",
                   "children": [
@@ -3341,7 +3345,7 @@
                       "x": 0,
                       "y": 0,
                       "fill": "$brand.violet-100",
-                      "width": 64,
+                      "width": "fill_container(530)",
                       "height": 12
                     },
                     {
@@ -3351,7 +3355,7 @@
                       "x": 0,
                       "y": 0,
                       "fill": "$brand.violet-500",
-                      "width": 32,
+                      "width": 323,
                       "height": 12
                     }
                   ]
@@ -3529,7 +3533,7 @@
           "layout": "vertical",
           "gap": 24,
           "padding": [
-            90,
+            80,
             100
           ],
           "children": [
@@ -3598,6 +3602,16 @@
                   "children": [
                     {
                       "type": "text",
+                      "id": "o-cl-tag",
+                      "fill": "$brand.violet-100",
+                      "content": "APTEKA GEMINI / CASE STUDY",
+                      "fontFamily": "$font.mono",
+                      "fontSize": 16,
+                      "fontWeight": "500",
+                      "letterSpacing": 1.8
+                    },
+                    {
+                      "type": "text",
                       "id": "o-cl-h",
                       "fill": "$brand.violet-50",
                       "content": "7 KONCEPCJI\n14 DNI.",
@@ -3618,16 +3632,6 @@
                       "fontFamily": "$font.body",
                       "fontSize": 20,
                       "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "o-cl-tag",
-                      "fill": "$brand.violet-100",
-                      "content": "APTEKA GEMINI / CASE STUDY",
-                      "fontFamily": "$font.mono",
-                      "fontSize": 16,
-                      "fontWeight": "500",
-                      "letterSpacing": 1.8
                     }
                   ]
                 },
@@ -3639,18 +3643,16 @@
                   "fill": "#FFFFFF",
                   "layout": "vertical",
                   "gap": 40,
-                  "padding": [
-                    48,
-                    56
-                  ],
+                  "padding": 40,
                   "justifyContent": "space_between",
+                  "alignItems": "end",
                   "children": [
                     {
                       "type": "text",
                       "id": "o-cr-p",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 580,
+                      "width": "fill_container",
                       "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
@@ -3660,15 +3662,16 @@
                     {
                       "type": "frame",
                       "id": "o-cr-link",
-                      "width": "fill_container",
+                      "fill": "$brand.violet-50",
                       "gap": 12,
+                      "padding": 20,
                       "justifyContent": "end",
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
                           "id": "o-crl-t",
-                          "fill": "$color.ink",
+                          "fill": "$brand.violet",
                           "content": "Przeczytaj historię projektu",
                           "fontFamily": "$font.body",
                           "fontSize": 18,
@@ -3681,7 +3684,7 @@
                           "height": 22,
                           "icon": "rocket",
                           "library": "lucide",
-                          "fill": "$color.ink"
+                          "fill": "$brand.violet"
                         }
                       ]
                     }
@@ -3691,96 +3694,72 @@
             },
             {
               "type": "frame",
-              "id": "o-c-bars",
+              "id": "WXjn8",
+              "name": "Frame 701",
               "width": "fill_container",
-              "gap": 32,
+              "gap": 48,
               "padding": [
-                24,
+                32,
                 0,
                 0,
                 0
               ],
+              "alignItems": "center",
               "children": [
                 {
-                  "type": "rectangle",
-                  "id": "o-cb-1",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
+                  "type": "icon",
+                  "id": "kdjaj",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$brand.violet-3"
                 },
                 {
                   "type": "frame",
-                  "id": "WXjn8",
-                  "name": "Frame 701",
-                  "gap": 8,
-                  "alignItems": "center",
+                  "id": "fOab2",
+                  "name": "Frame 733",
+                  "width": "fill_container",
+                  "height": 12,
+                  "gap": 64,
                   "children": [
                     {
                       "type": "frame",
                       "id": "ohzIG",
                       "name": "Case bar 1",
                       "clip": true,
-                      "width": 56,
-                      "height": 8,
-                      "fill": "$brand.violet-700",
-                      "cornerRadius": 4
+                      "width": "fill_container",
+                      "height": 12,
+                      "fill": "$brand.violet-700"
                     },
                     {
                       "type": "frame",
                       "id": "AvWde",
                       "name": "Case bar 2",
                       "clip": true,
-                      "width": 56,
-                      "height": 8,
-                      "fill": "#E9E9F7",
-                      "cornerRadius": 4
+                      "width": "fill_container",
+                      "height": 12,
+                      "fill": "#E9E9F7"
                     },
                     {
                       "type": "frame",
                       "id": "zl4Au",
                       "name": "Case bar 3",
                       "clip": true,
-                      "width": 56,
-                      "height": 8,
-                      "fill": "#E9E9F7",
-                      "cornerRadius": 4
+                      "width": "fill_container",
+                      "height": 12,
+                      "fill": "#E9E9F7"
                     }
                   ]
                 },
                 {
-                  "type": "rectangle",
-                  "id": "o-cb-3",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "o-cb-4",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "ayUEL",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "R8dZcE",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "DyCkP",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
+                  "type": "icon",
+                  "id": "G2pZp2",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "$brand.violet-300"
                 }
               ]
             }
@@ -3822,7 +3801,7 @@
                       "padding": [
                         0,
                         0,
-                        40,
+                        20,
                         0
                       ],
                       "children": [
@@ -3843,12 +3822,6 @@
                       "id": "dMtob",
                       "width": "fill_container",
                       "gap": 20,
-                      "padding": [
-                        0,
-                        40,
-                        0,
-                        0
-                      ],
                       "alignItems": "end",
                       "children": [
                         {
@@ -3871,12 +3844,12 @@
                               "name": "FAQ Item 1",
                               "width": "fill_container",
                               "layout": "vertical",
-                              "gap": 28,
+                              "gap": 20,
                               "padding": [
                                 0,
                                 0,
                                 12,
-                                16
+                                0
                               ],
                               "children": [
                                 {
@@ -3884,15 +3857,25 @@
                                   "id": "UJZVE",
                                   "name": "FAQ Item 1",
                                   "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
+                                  "gap": 16,
                                   "padding": [
                                     0,
                                     0,
-                                    24,
+                                    8,
                                     0
                                   ],
                                   "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "lI9Ul",
+                                      "fill": "$brand.violet-500",
+                                      "textGrowth": "fixed-width",
+                                      "width": 80,
+                                      "content": "#1",
+                                      "fontFamily": "$font.display",
+                                      "fontSize": 46,
+                                      "fontWeight": "bold"
+                                    },
                                     {
                                       "type": "text",
                                       "id": "gdxbw",
@@ -3913,15 +3896,25 @@
                                   "id": "ZVunY",
                                   "name": "FAQ Item 1",
                                   "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
+                                  "gap": 16,
                                   "padding": [
                                     0,
                                     0,
-                                    24,
+                                    8,
                                     0
                                   ],
                                   "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "N9laL",
+                                      "fill": "$brand.violet-500",
+                                      "textGrowth": "fixed-width",
+                                      "width": 80,
+                                      "content": "#2",
+                                      "fontFamily": "$font.display",
+                                      "fontSize": 46,
+                                      "fontWeight": "bold"
+                                    },
                                     {
                                       "type": "text",
                                       "id": "B1YdYv",
@@ -3942,15 +3935,25 @@
                                   "id": "qWHbr",
                                   "name": "FAQ Item 1",
                                   "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
+                                  "gap": 16,
                                   "padding": [
                                     0,
                                     0,
-                                    24,
+                                    8,
                                     0
                                   ],
                                   "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "f077I",
+                                      "fill": "$brand.violet-500",
+                                      "textGrowth": "fixed-width",
+                                      "width": 80,
+                                      "content": "#3",
+                                      "fontFamily": "$font.display",
+                                      "fontSize": 46,
+                                      "fontWeight": "bold"
+                                    },
                                     {
                                       "type": "text",
                                       "id": "jhjHO",
@@ -3980,10 +3983,11 @@
               "type": "frame",
               "id": "o-f-form",
               "width": 600,
+              "height": "fill_container",
               "layout": "vertical",
               "gap": 20,
               "padding": [
-                40,
+                80,
                 0,
                 0,
                 0
@@ -3995,6 +3999,7 @@
                   "type": "frame",
                   "id": "N2QMBx",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "#e9e9f778",
                   "effect": {
                     "type": "background_blur",
@@ -4006,18 +4011,8 @@
                     32,
                     26
                   ],
-                  "justifyContent": "end",
+                  "justifyContent": "space_between",
                   "children": [
-                    {
-                      "type": "text",
-                      "id": "TG20m",
-                      "fill": "$brand.violet-900",
-                      "content": "Masz pytanie, \nktórego nie ma na liście?",
-                      "lineHeight": 0.9,
-                      "fontFamily": "$font.display",
-                      "fontSize": 24,
-                      "fontWeight": "normal"
-                    },
                     {
                       "type": "frame",
                       "id": "Hmb3Y",
@@ -4050,7 +4045,7 @@
                                   "id": "xintB",
                                   "name": "Label",
                                   "fill": "#414651ff",
-                                  "content": "Email",
+                                  "content": "E-mail, na który mam odpowiedzieć",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Inter",
                                   "fontSize": 18,
@@ -4104,6 +4099,7 @@
                       "id": "zlKH1",
                       "name": "Input field",
                       "width": "fill_container",
+                      "height": "fill_container",
                       "fill": {
                         "type": "color",
                         "color": "#ffffffff",
@@ -4117,6 +4113,7 @@
                           "id": "y5FC8p",
                           "name": "Input with label",
                           "width": "fill_container",
+                          "height": "fill_container",
                           "layout": "vertical",
                           "gap": 6,
                           "children": [
@@ -4131,7 +4128,7 @@
                                   "id": "eWU7N",
                                   "name": "Label",
                                   "fill": "#414651ff",
-                                  "content": "Email",
+                                  "content": "Treść Twojego pytania",
                                   "lineHeight": 1.4285714285714286,
                                   "fontFamily": "Inter",
                                   "fontSize": 18,
@@ -4144,7 +4141,7 @@
                               "id": "YuWrt",
                               "name": "Input",
                               "width": "fill_container",
-                              "height": 108,
+                              "height": "fill_container",
                               "fill": "#ffffffff",
                               "stroke": "$brand.violet-200",
                               "strokeWidth": 1,
@@ -4240,7 +4237,7 @@
           "width": "fill_container",
           "fill": "#f2f2f780",
           "layout": "vertical",
-          "gap": 46,
+          "gap": 20,
           "padding": [
             80,
             100,
@@ -4249,16 +4246,34 @@
           ],
           "children": [
             {
-              "type": "text",
-              "id": "o-b-h2",
-              "fill": "$brand.violet-900",
-              "textGrowth": "fixed-width",
+              "type": "frame",
+              "id": "Tmznh",
+              "name": "Frame 734",
               "width": "fill_container",
-              "content": "O czym ostatnio pisałem?",
-              "lineHeight": 0.9,
-              "fontFamily": "$font.display",
-              "fontSize": 40,
-              "fontWeight": "normal"
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                24,
+                0,
+                12,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "o-b-h2",
+                  "fill": "$brand.violet-900",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "O czym ostatnio pisałem?",
+                  "lineHeight": 0.9,
+                  "fontFamily": "$font.display",
+                  "fontSize": 40,
+                  "fontWeight": "normal"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -4266,6 +4281,12 @@
               "name": "Articles Row",
               "width": "fill_container",
               "gap": 40,
+              "padding": [
+                0,
+                0,
+                20,
+                0
+              ],
               "children": [
                 {
                   "type": "frame",
@@ -4274,7 +4295,7 @@
                   "width": "fill_container",
                   "fill": "#ffffffff",
                   "layout": "vertical",
-                  "gap": 16,
+                  "gap": 28,
                   "padding": 16,
                   "children": [
                     {
@@ -4290,7 +4311,7 @@
                           "fill": "$neutral.600",
                           "content": "8 min",
                           "fontFamily": "$font.body",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -4299,7 +4320,7 @@
                           "fill": "$neutral.600",
                           "content": "02.10.2026",
                           "fontFamily": "$font.body",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -4311,11 +4332,32 @@
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Jak zaplanować badania UX, żeby skończyły się decyzją, a nie raportem do szuflady",
-                      "lineHeight": 1.5,
+                      "lineHeight": 1.4,
                       "fontFamily": "Inter",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sBgJD",
+                      "width": "fill_container",
+                      "fill": "$brand.violet-50",
+                      "gap": 12,
+                      "padding": 20,
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "weDlu",
+                          "width": 22,
+                          "height": 22,
+                          "icon": "rocket",
+                          "library": "lucide",
+                          "fill": "$brand.violet"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -4326,7 +4368,7 @@
                   "width": "fill_container",
                   "fill": "#ffffffff",
                   "layout": "vertical",
-                  "gap": 16,
+                  "gap": 28,
                   "padding": 16,
                   "children": [
                     {
@@ -4342,7 +4384,7 @@
                           "fill": "$neutral.600",
                           "content": "7 min",
                           "fontFamily": "$font.body",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -4351,7 +4393,7 @@
                           "fill": "$neutral.600",
                           "content": "12.09.2026",
                           "fontFamily": "$font.body",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -4363,11 +4405,41 @@
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Segmentacja klientów krok po kroku: od danych CRM do decyzji portfelowych",
-                      "lineHeight": 1.5,
+                      "lineHeight": 1.4,
                       "fontFamily": "Inter",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yXiv0",
+                      "width": "fill_container",
+                      "fill": "$brand.violet-50",
+                      "gap": 12,
+                      "padding": 20,
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "w9Mh1x",
+                          "fill": "$brand.violet",
+                          "content": "Przeczytaj artykuł",
+                          "fontFamily": "$font.body",
+                          "fontSize": 18,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "OMmXv",
+                          "width": 22,
+                          "height": 22,
+                          "icon": "rocket",
+                          "library": "lucide",
+                          "fill": "$brand.violet"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -4376,10 +4448,12 @@
                   "id": "UU98N",
                   "name": "Article Col",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "#ffffffff",
                   "layout": "vertical",
-                  "gap": 16,
+                  "gap": 28,
                   "padding": 16,
+                  "justifyContent": "space_between",
                   "children": [
                     {
                       "type": "frame",
@@ -4394,7 +4468,7 @@
                           "fill": "$neutral.600",
                           "content": "5 min",
                           "fontFamily": "$font.body",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         },
                         {
@@ -4403,7 +4477,7 @@
                           "fill": "$neutral.600",
                           "content": "14.08.2026",
                           "fontFamily": "$font.body",
-                          "fontSize": 14,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -4412,14 +4486,45 @@
                       "type": "text",
                       "id": "o-b3-t",
                       "fill": "$neutral.700",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": "fill_container",
                       "content": "RITE w praktyce: walidacja 7 koncepcji procesu w 14 dni",
-                      "lineHeight": 1.5,
+                      "lineHeight": 1.4,
                       "fontFamily": "Inter",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mNDPU",
+                      "width": "fill_container",
+                      "fill": "$brand.violet-50",
+                      "gap": 12,
+                      "padding": 20,
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OWAcz",
+                          "fill": "$brand.violet",
+                          "content": "Przeczytaj artykuł",
+                          "fontFamily": "$font.body",
+                          "fontSize": 18,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "i1M9V",
+                          "width": 22,
+                          "height": 22,
+                          "icon": "rocket",
+                          "library": "lucide",
+                          "fill": "$brand.violet"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -4427,18 +4532,118 @@
             },
             {
               "type": "frame",
-              "id": "WVsOF",
-              "name": "Frame 682",
-              "padding": 16,
+              "id": "X8kDBC",
+              "width": "fill_container",
+              "fill": "$brand.violet-700",
+              "gap": 14,
+              "padding": [
+                18,
+                28
+              ],
+              "justifyContent": "end",
+              "alignItems": "center",
               "children": [
                 {
                   "type": "text",
-                  "id": "o-b-all",
-                  "fill": "$neutral.800",
-                  "content": "Zobacz wszystkie artykuły →",
+                  "id": "eBzsd",
+                  "fill": "#FFFFFF",
+                  "content": "Zobacz wszystkie artykuły",
                   "fontFamily": "$font.body",
                   "fontSize": 20,
                   "fontWeight": "normal"
+                },
+                {
+                  "type": "icon",
+                  "id": "qOO5e",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zUZDj",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 40,
+          "padding": [
+            80,
+            100
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "AnppH",
+              "name": "FAQ Head Pad",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [
+                0,
+                0,
+                20,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "MQG1G",
+                  "fill": "$brand.violet-900",
+                  "content": "Poznaj mnie od innej strony:",
+                  "lineHeight": 0.9,
+                  "fontFamily": "$font.display",
+                  "fontSize": 40,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kA3M1",
+              "name": "Frame 732",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Z5g11",
+                  "name": "Frame 682",
+                  "width": 400,
+                  "padding": 16,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fOiec",
+                      "fill": "$neutral.800",
+                      "content": "UX w Lesie",
+                      "fontFamily": "$font.body",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HBHe1",
+                  "name": "Frame 682",
+                  "width": "fill_container",
+                  "padding": 16,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UMOe2",
+                      "fill": "$neutral.800",
+                      "content": "Spotify pasek widget",
+                      "fontFamily": "$font.body",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             }
@@ -4448,8 +4653,9 @@
           "type": "frame",
           "id": "a38PxF",
           "width": "fill_container",
+          "fill": "#f2f2f780",
           "layout": "vertical",
-          "gap": 40,
+          "gap": 12,
           "padding": [
             80,
             100
@@ -4485,6 +4691,7 @@
               "id": "Oh64x",
               "name": "Frame 676",
               "width": "fill_container",
+              "height": 612,
               "gap": 20,
               "alignItems": "end",
               "children": [
@@ -4499,25 +4706,78 @@
                   "alignItems": "end",
                   "children": [
                     {
+                      "type": "frame",
+                      "id": "yQ2h0",
+                      "layoutPosition": "absolute",
+                      "x": 0,
+                      "y": -229,
+                      "width": "fill_container(1240)",
+                      "height": "fill_container(612)",
+                      "effect": {
+                        "type": "background_blur",
+                        "radius": 8
+                      },
+                      "layout": "vertical",
+                      "gap": 40,
+                      "padding": 12,
+                      "justifyContent": "end",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "nfYek",
+                          "name": "div",
+                          "context": "div",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "fill": "#fafafa",
+                          "layout": "vertical",
+                          "gap": 22.4,
+                          "padding": [
+                            80,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "RwmeC",
+                              "name": "Tu pojawi się widżet rezerwacji terminu.",
+                              "context": "p",
+                              "fill": "#3a3d52",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Tu pojawi się widżet rezerwacji terminu. Wklej swój link Calendly lub Cal.com w pliku js/main.js (CONFIG.calendarUrl).",
+                              "lineHeight": 1.6,
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
                       "type": "rectangle",
                       "id": "HlVjj",
                       "layoutPosition": "absolute",
                       "x": -10,
-                      "y": -38,
+                      "y": 0,
                       "fill": {
                         "type": "image",
                         "enabled": true,
                         "url": "image-6.png",
                         "mode": "fill"
                       },
-                      "width": 523,
-                      "height": 453
+                      "width": 455,
+                      "height": 394
                     },
                     {
                       "id": "k7edR3",
                       "type": "ref",
                       "ref": "ElWT1",
-                      "x": 351,
+                      "x": 241,
                       "y": 366,
                       "width": 168,
                       "height": 48,
@@ -4592,127 +4852,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "type": "frame",
-                  "id": "yQ2h0",
-                  "width": "fill_container",
-                  "effect": {
-                    "type": "background_blur",
-                    "radius": 8
-                  },
-                  "layout": "vertical",
-                  "gap": 40,
-                  "padding": 40,
-                  "justifyContent": "end",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "nfYek",
-                      "name": "div",
-                      "context": "div",
-                      "width": "fill_container",
-                      "fill": "#fafafa",
-                      "layout": "vertical",
-                      "gap": 22.4,
-                      "padding": [
-                        80,
-                        24
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "RwmeC",
-                          "name": "Tu pojawi się widżet rezerwacji terminu.",
-                          "context": "p",
-                          "fill": "#3a3d52",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Tu pojawi się widżet rezerwacji terminu. Wklej swój link Calendly lub Cal.com w pliku js/main.js (CONFIG.calendarUrl).",
-                          "lineHeight": 1.6,
-                          "textAlign": "center",
-                          "fontFamily": "Inter",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "p5Aj6J",
-                      "fill": "$brand.violet-900",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "Wystarczy kliknąć w kalendarz :)",
-                      "lineHeight": 0.9,
-                      "textAlign": "right",
-                      "fontFamily": "$font.display",
-                      "fontSize": 24,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "zUZDj",
-          "width": "fill_container",
-          "gap": 20,
-          "padding": [
-            40,
-            100
-          ],
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "h5bA7t",
-              "fill": "$brand.violet-900",
-              "content": "Poznaj mnie od innej strony:",
-              "lineHeight": 0.9,
-              "fontFamily": "$font.display",
-              "fontSize": 24,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "Z5g11",
-              "name": "Frame 682",
-              "width": "fill_container",
-              "padding": 16,
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "fOiec",
-                  "fill": "$neutral.800",
-                  "content": "UX w Lesie",
-                  "fontFamily": "$font.body",
-                  "fontSize": 20,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "HBHe1",
-              "name": "Frame 682",
-              "width": "fill_container",
-              "padding": 16,
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "UMOe2",
-                  "fill": "$neutral.800",
-                  "content": "Spotify pasek widget",
-                  "fontFamily": "$font.body",
-                  "fontSize": 20,
-                  "fontWeight": "normal"
                 }
               ]
             }
@@ -10036,8 +10175,8 @@
     {
       "type": "frame",
       "id": "x1dxE",
-      "x": -8179,
-      "y": 1887,
+      "x": -14200,
+      "y": 12000,
       "name": "Frame 658",
       "clip": true,
       "width": 180,
@@ -10064,8 +10203,8 @@
     {
       "type": "frame",
       "id": "o-nav-cta",
-      "x": -8816,
-      "y": 172,
+      "x": -12400,
+      "y": 12000,
       "fill": "$color.gray",
       "gap": 12,
       "padding": [
@@ -10097,8 +10236,8 @@
     {
       "type": "rectangle",
       "id": "Xd3mx",
-      "x": -8049,
-      "y": 917,
+      "x": -14200,
+      "y": 18000,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -10111,8 +10250,8 @@
     {
       "type": "rectangle",
       "id": "N9Ctr",
-      "x": -6823,
-      "y": -633,
+      "x": -12400,
+      "y": 18000,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -10125,8 +10264,8 @@
     {
       "type": "rectangle",
       "id": "ipVkw",
-      "x": -6823,
-      "y": 3022,
+      "x": -10600,
+      "y": 18000,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -10139,8 +10278,8 @@
     {
       "type": "rectangle",
       "id": "ULMyB",
-      "x": -6823,
-      "y": 1486,
+      "x": -8800,
+      "y": 18000,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -10153,8 +10292,8 @@
     {
       "type": "rectangle",
       "id": "b5nxO",
-      "x": -8341,
-      "y": 1047,
+      "x": -7000,
+      "y": 18000,
       "fill": "#CCCCCC",
       "width": 64,
       "height": 12
@@ -10162,8 +10301,8 @@
     {
       "type": "rectangle",
       "id": "WJnIY",
-      "x": -9729,
-      "y": 281,
+      "x": -16000,
+      "y": 19500,
       "fill": "#CCCCCC",
       "width": 1,
       "height": 1
@@ -10171,8 +10310,8 @@
     {
       "type": "frame",
       "id": "JJzDd",
-      "x": -8353,
-      "y": 4295,
+      "x": -10600,
+      "y": 12000,
       "name": "Customer details",
       "width": 528,
       "layout": "vertical",
@@ -10310,8 +10449,8 @@
     {
       "type": "frame",
       "id": "m4yvk",
-      "x": -8362,
-      "y": 3260,
+      "x": -8800,
+      "y": 12000,
       "name": "Frame",
       "clip": true,
       "width": 20,
@@ -10336,8 +10475,8 @@
     {
       "type": "frame",
       "id": "jjSsV",
-      "x": -8324,
-      "y": 3260,
+      "x": -7000,
+      "y": 12000,
       "name": "Frame",
       "clip": true,
       "width": 22,
@@ -10362,8 +10501,8 @@
     {
       "type": "frame",
       "id": "X66Uz",
-      "x": -9558,
-      "y": -619,
+      "x": -16000,
+      "y": 13500,
       "width": 400,
       "alignItems": "center",
       "children": [
@@ -10476,8 +10615,8 @@
     {
       "type": "frame",
       "id": "G65Uf",
-      "x": -9044,
-      "y": -619,
+      "x": -14200,
+      "y": 13500,
       "width": 400,
       "alignItems": "center",
       "children": [
@@ -10609,8 +10748,8 @@
     {
       "type": "rectangle",
       "id": "bHU2E",
-      "x": -8372.012633392873,
-      "y": -504.3021390374331,
+      "x": -14200,
+      "y": 19500,
       "opacity": 0.6,
       "fill": [
         {
@@ -10628,8 +10767,8 @@
     {
       "type": "rectangle",
       "id": "Q2pLb",
-      "x": -8487.012633392873,
-      "y": -553.5,
+      "x": -12400,
+      "y": 19500,
       "fill": [
         {
           "type": "image",
@@ -10646,8 +10785,8 @@
     {
       "type": "frame",
       "id": "aFHy3",
-      "x": -8533.012633392873,
-      "y": -592,
+      "x": -12400,
+      "y": 13500,
       "name": "Frame 662",
       "clip": true,
       "layout": "vertical",
@@ -10707,8 +10846,8 @@
     {
       "type": "frame",
       "id": "CqlTV",
-      "x": -8573,
-      "y": -60.10489728954076,
+      "x": -10600,
+      "y": 13500,
       "rotation": 2.9388281550921187,
       "fill": "$brand.violet-500",
       "padding": [
@@ -21749,8 +21888,8 @@
     {
       "type": "frame",
       "id": "Uimrl",
-      "x": 9702,
-      "y": -1379,
+      "x": -16000,
+      "y": 16500,
       "name": "button-secondary-hover",
       "height": 50,
       "fill": "#ffffffff",
@@ -21814,15 +21953,15 @@
       "id": "OFfT4",
       "type": "ref",
       "ref": "nQ3nh",
-      "x": 9702,
-      "y": -1792
+      "x": -7000,
+      "y": 16500
     },
     {
       "id": "RjqQg",
       "type": "ref",
       "ref": "bWiDj",
-      "x": 10208,
-      "y": -1381,
+      "x": -16000,
+      "y": 18000,
       "descendants": {
         "x5oQdY": {
           "content": "Umów darmową rozmowę"
@@ -21832,8 +21971,8 @@
     {
       "type": "frame",
       "id": "hvPCn",
-      "x": 9954,
-      "y": -1380,
+      "x": -14200,
+      "y": 16500,
       "name": "Napisz wiadomość",
       "context": "a",
       "fill": "#ffffffff",
@@ -21863,8 +22002,8 @@
     {
       "type": "frame",
       "id": "G710R",
-      "x": 9954,
-      "y": -1276,
+      "x": -12400,
+      "y": 16500,
       "name": "Napisz wiadomość",
       "context": "a",
       "fill": "$brand.violet-50",
@@ -21900,8 +22039,8 @@
     {
       "type": "frame",
       "id": "uuuQw",
-      "x": 9702,
-      "y": -1645,
+      "x": -10600,
+      "y": 16500,
       "name": "button",
       "context": "button",
       "clip": true,
@@ -21959,8 +22098,8 @@
     {
       "type": "frame",
       "id": "Nnsuo",
-      "x": 9704,
-      "y": -1552,
+      "x": -8800,
+      "y": 16500,
       "fill": "$brand.violet-700",
       "gap": 14,
       "padding": [
@@ -21992,8 +22131,8 @@
     {
       "type": "rectangle",
       "id": "adyK7",
-      "x": 23033,
-      "y": -705,
+      "x": -10600,
+      "y": 19500,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -45563,8 +45702,8 @@
     {
       "type": "frame",
       "id": "ELpE8",
-      "x": -390,
-      "y": -125,
+      "x": -8800,
+      "y": 13500,
       "width": "fill_container(1440)",
       "height": 1122,
       "fill": {
@@ -46575,8 +46714,8 @@
     {
       "type": "frame",
       "id": "MmYuw",
-      "x": 1104,
-      "y": -125,
+      "x": -7000,
+      "y": 13500,
       "width": "fill_container(1440)",
       "height": 1122,
       "fill": {
@@ -47575,8 +47714,8 @@
     {
       "type": "frame",
       "id": "hxmbR",
-      "x": 2658,
-      "y": -125,
+      "x": -16000,
+      "y": 15000,
       "width": "fill_container(1440)",
       "height": 1122,
       "fill": {
@@ -48563,8 +48702,8 @@
     {
       "type": "frame",
       "id": "D9FJe1",
-      "x": -1956,
-      "y": -125,
+      "x": -14200,
+      "y": 15000,
       "width": "fill_container(1440)",
       "fill": {
         "type": "mesh_gradient",
@@ -49595,8 +49734,8 @@
     {
       "type": "frame",
       "id": "w9HHUY",
-      "x": -4132,
-      "y": 10370.344348144532,
+      "x": -7000,
+      "y": 15000,
       "name": "Propozycja ikony — Strategia biznesu",
       "fill": "#FFFFFF",
       "layout": "vertical",
@@ -49978,18 +50117,9 @@
     },
     {
       "type": "context",
-      "id": "iUveI",
-      "x": 8424,
-      "y": 4729,
-      "width": 385,
-      "height": 219,
-      "content": "Tu musi zadziałać input"
-    },
-    {
-      "type": "context",
       "id": "ksSjP",
-      "x": 8424,
-      "y": 5446,
+      "x": 8482,
+      "y": 5463,
       "width": 385,
       "height": 219,
       "content": "tutaj od lewej do prawej przesuwaja sie case study z dynamiczna interakcja i zsynchronizowane z paskiem, a na hover jest pauza, a interakcja od lewej do prawej zmienia sie cala sekcja na tlo gradientu i biale napisy, a ikona rakiety podskakuje"
@@ -49997,8 +50127,8 @@
     {
       "type": "rectangle",
       "id": "uHM7f",
-      "x": 6265,
-      "y": -793,
+      "x": -8800,
+      "y": 19500,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -50011,8 +50141,8 @@
     {
       "type": "rectangle",
       "id": "fKFn5",
-      "x": 11312,
-      "y": 2630,
+      "x": -7000,
+      "y": 19500,
       "fill": {
         "type": "image",
         "enabled": true,
@@ -50034,8 +50164,8 @@
     {
       "type": "frame",
       "id": "azIoH",
-      "x": 8029,
-      "y": -2726,
+      "x": -10600,
+      "y": 15000,
       "width": 400,
       "alignItems": "center",
       "children": [
@@ -50139,8 +50269,8 @@
     {
       "type": "frame",
       "id": "b4Dfp",
-      "x": 8962,
-      "y": 4729,
+      "x": -8800,
+      "y": 15000,
       "width": "fill_container(1440)",
       "fill": "#FFFFFF",
       "layout": "vertical",
@@ -50153,6 +50283,7 @@
           "type": "frame",
           "id": "a7vpZ6",
           "width": "fill_container",
+          "height": 213,
           "fill": {
             "type": "gradient",
             "gradientType": "linear",
@@ -50173,7 +50304,10 @@
             ]
           },
           "gap": 80,
-          "padding": 40,
+          "padding": [
+            20,
+            40
+          ],
           "alignItems": "center",
           "children": [
             {
@@ -50217,10 +50351,7 @@
               },
               "layout": "vertical",
               "gap": 8,
-              "padding": [
-                32,
-                26
-              ],
+              "padding": 16,
               "children": [
                 {
                   "type": "frame",
@@ -50229,7 +50360,7 @@
                   "padding": [
                     0,
                     0,
-                    18,
+                    12,
                     8
                   ],
                   "alignItems": "center",
@@ -50284,7 +50415,7 @@
                       "fill": "#ffffff",
                       "content": "Mail nie dotarł",
                       "fontFamily": "$font.body",
-                      "fontSize": 14,
+                      "fontSize": 16,
                       "fontWeight": "normal"
                     }
                   ]
@@ -50298,8 +50429,8 @@
     {
       "type": "frame",
       "id": "D5qMCY",
-      "x": 5545,
-      "y": -155,
+      "x": -12400,
+      "y": 15000,
       "width": "fill_container(1440)",
       "fill": {
         "type": "mesh_gradient",
@@ -51562,7 +51693,7 @@
           "id": "GCbHX",
           "type": "ref",
           "ref": "iqBtl",
-          "name": "Nav",
+          "name": "Nav-top",
           "width": 1440
         },
         {
@@ -52615,7 +52746,7 @@
           "id": "tXyEM",
           "type": "ref",
           "ref": "iqBtl",
-          "name": "Nav",
+          "name": "Nav-top",
           "width": 1440
         },
         {
@@ -53282,7 +53413,7 @@
           "id": "DjVZE",
           "type": "ref",
           "ref": "iqBtl",
-          "name": "Nav",
+          "name": "Nav-top",
           "width": 1440
         },
         {
@@ -53961,7 +54092,7 @@
           "id": "H41Y02",
           "type": "ref",
           "ref": "iqBtl",
-          "name": "Nav",
+          "name": "Nav-top",
           "width": 1440
         },
         {
@@ -55277,7 +55408,12 @@
           "type": "ref",
           "ref": "CcgBj",
           "name": "Nav mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "X27dXd": {
+              "enabled": false
+            }
+          }
         },
         {
           "type": "frame",
@@ -55287,9 +55423,7 @@
           "layout": "vertical",
           "gap": 40,
           "padding": [
-            64,
-            20,
-            80,
+            56,
             20
           ],
           "children": [
@@ -55298,123 +55432,133 @@
               "id": "me42D",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 28,
+              "gap": 20,
               "children": [
                 {
                   "type": "frame",
-                  "id": "u3AtKl",
-                  "name": "Frame 660",
-                  "width": "fill_container",
+                  "id": "m9cm5",
+                  "name": "Frame 735",
+                  "width": 491,
                   "layout": "vertical",
-                  "gap": 20,
+                  "gap": 32,
                   "children": [
-                    {
-                      "type": "text",
-                      "id": "A3dsqn",
-                      "fill": "$neutral.900",
-                      "textGrowth": "fixed-width",
-                      "width": 390,
-                      "content": "Zamieniam wiedzę \no klientach w wzrost Twojego biznesu.",
-                      "lineHeight": 0.9,
-                      "fontFamily": "Nexa",
-                      "fontSize": 40,
-                      "fontWeight": "normal",
-                      "letterSpacing": -1
-                    },
-                    {
-                      "type": "text",
-                      "id": "KkeI1",
-                      "fill": "$neutral.700",
-                      "textGrowth": "fixed-width",
-                      "width": 390,
-                      "content": "Zrobię to już w dwa tygodnie, a o jakości świadczą poniższe marki ",
-                      "lineHeight": 1.5,
-                      "fontFamily": "$font.body",
-                      "fontSize": 20,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "vioo9",
-                  "layout": "vertical",
-                  "gap": 26,
-                  "padding": [
-                    20,
-                    0
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "EwtaZ",
-                      "fill": "$brand.violet-800",
-                      "content": "PRACOWAŁEM Z:",
-                      "lineHeight": 0.9,
-                      "fontFamily": "Nexa",
-                      "fontSize": 16,
-                      "fontWeight": "700",
-                      "letterSpacing": 1.5
-                    },
                     {
                       "type": "frame",
-                      "id": "whZ0A",
-                      "name": "Frame 659",
-                      "gap": 32,
+                      "id": "u3AtKl",
+                      "name": "Frame 660",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 20,
                       "children": [
                         {
                           "type": "text",
-                          "id": "aFLbi",
-                          "fill": "$neutral.500",
-                          "content": "PayU",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
+                          "id": "A3dsqn",
+                          "fill": "$neutral.900",
+                          "textGrowth": "fixed-width",
+                          "width": 390,
+                          "content": "Zamieniam wiedzę \no klientach w wzrost Twojego biznesu.",
+                          "lineHeight": 0.9,
+                          "fontFamily": "Nexa",
+                          "fontSize": 40,
+                          "fontWeight": "normal",
+                          "letterSpacing": -1
                         },
                         {
                           "type": "text",
-                          "id": "LLvi9",
-                          "fill": "$neutral.500",
-                          "content": "BLIK",
+                          "id": "KkeI1",
+                          "fill": "$neutral.700",
+                          "textGrowth": "fixed-width",
+                          "width": 390,
+                          "content": "Zrobię to już w dwa tygodnie, a o jakości świadczą poniższe marki ",
+                          "lineHeight": 1.5,
                           "fontFamily": "$font.body",
-                          "fontSize": 17,
+                          "fontSize": 20,
                           "fontWeight": "normal"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vioo9",
+                      "layout": "vertical",
+                      "gap": 26,
+                      "padding": [
+                        20,
+                        0
+                      ],
+                      "children": [
                         {
                           "type": "text",
-                          "id": "xZ9yY",
-                          "fill": "$neutral.500",
-                          "content": "OLX",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
+                          "id": "EwtaZ",
+                          "fill": "$brand.violet-800",
+                          "content": "PRACOWAŁEM Z:",
+                          "lineHeight": 0.9,
+                          "fontFamily": "Nexa",
+                          "fontSize": 16,
+                          "fontWeight": "700",
+                          "letterSpacing": 1.5
                         },
                         {
-                          "type": "text",
-                          "id": "dDksr",
-                          "fill": "$neutral.500",
-                          "content": "mObywatel",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "EcTIH",
-                          "fill": "$neutral.500",
-                          "content": "mBank",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "LpSZL",
-                          "fill": "$neutral.500",
-                          "content": "OtoMoto",
-                          "fontFamily": "$font.body",
-                          "fontSize": 17,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "whZ0A",
+                          "name": "Frame 659",
+                          "gap": 32,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "aFLbi",
+                              "fill": "$neutral.500",
+                              "content": "PayU",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "LLvi9",
+                              "fill": "$neutral.500",
+                              "content": "BLIK",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "xZ9yY",
+                              "fill": "$neutral.500",
+                              "content": "OLX",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "dDksr",
+                              "fill": "$neutral.500",
+                              "content": "mObywatel",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "EcTIH",
+                              "fill": "$neutral.500",
+                              "content": "mBank",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "LpSZL",
+                              "fill": "$neutral.500",
+                              "content": "OtoMoto",
+                              "fontFamily": "$font.body",
+                              "fontSize": 17,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -55425,7 +55569,7 @@
                   "type": "ref",
                   "ref": "nQ3nh",
                   "x": 0,
-                  "y": 345,
+                  "y": 341,
                   "width": "fill_container",
                   "descendants": {
                     "cYwJI": {
@@ -55507,11 +55651,9 @@
             ]
           },
           "layout": "vertical",
-          "gap": 64,
+          "gap": 40,
           "padding": [
-            40,
-            20,
-            100,
+            64,
             20
           ],
           "children": [
@@ -55531,7 +55673,7 @@
                   "content": "Zadbaj o strategię i badania dzięki moim usługom",
                   "lineHeight": 0.9,
                   "fontFamily": "$font.display",
-                  "fontSize": 40,
+                  "fontSize": 32,
                   "fontWeight": "normal",
                   "letterSpacing": 0.4
                 },
@@ -55540,7 +55682,7 @@
                   "id": "PoAAj",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 20,
+                  "gap": 12,
                   "children": [
                     {
                       "type": "text",
@@ -55554,19 +55696,6 @@
                       "fontSize": 20,
                       "fontWeight": "normal",
                       "letterSpacing": 0.2
-                    },
-                    {
-                      "type": "text",
-                      "id": "sIWV1",
-                      "fill": "$brand.violet-200",
-                      "textGrowth": "fixed-width",
-                      "width": 390,
-                      "content": "[Kliknij na wybraną usługę, aby przeczytać przykładowe wdrożenie i przeczytać moje przemyślenia (artykuły) na ten temat.]",
-                      "lineHeight": 1.5,
-                      "fontFamily": "$font.body",
-                      "fontSize": 14,
-                      "fontWeight": "normal",
-                      "fontStyle": "italic"
                     }
                   ]
                 }
@@ -55606,7 +55735,7 @@
                           },
                           "layout": "vertical",
                           "gap": 80,
-                          "padding": 32,
+                          "padding": 20,
                           "children": [
                             {
                               "type": "frame",
@@ -55702,10 +55831,12 @@
                                               "type": "text",
                                               "id": "U1X5V",
                                               "fill": "$brand.violet-50",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Badania UX",
                                               "lineHeight": 0.9,
                                               "fontFamily": "$font.display",
-                                              "fontSize": 32,
+                                              "fontSize": 24,
                                               "fontWeight": "normal"
                                             },
                                             {
@@ -55713,11 +55844,11 @@
                                               "id": "So36t",
                                               "fill": "$brand.violet-200",
                                               "textGrowth": "fixed-width",
-                                              "width": 254,
+                                              "width": "fill_container",
                                               "content": "Pozyskaj wiedzę o użytkownikach i przekuj je w biznes z moją pomocą.",
                                               "lineHeight": 1.5,
                                               "fontFamily": "$font.body",
-                                              "fontSize": 20,
+                                              "fontSize": 16,
                                               "fontWeight": "300",
                                               "letterSpacing": 0.2
                                             },
@@ -55776,7 +55907,7 @@
                                 "radius": 8
                               },
                               "gap": 80,
-                              "padding": 32,
+                              "padding": 20,
                               "children": [
                                 {
                                   "type": "frame",
@@ -55830,10 +55961,12 @@
                                                   "type": "text",
                                                   "id": "D4PZ7K",
                                                   "fill": "$brand.violet-50",
+                                                  "textGrowth": "fixed-width",
+                                                  "width": "fill_container",
                                                   "content": "Strategia w biznesie",
                                                   "lineHeight": 0.9,
                                                   "fontFamily": "$font.display",
-                                                  "fontSize": 32,
+                                                  "fontSize": 24,
                                                   "fontWeight": "normal"
                                                 },
                                                 {
@@ -55841,11 +55974,11 @@
                                                   "id": "RnInm",
                                                   "fill": "$brand.violet-200",
                                                   "textGrowth": "fixed-width",
-                                                  "width": 254,
+                                                  "width": "fill_container",
                                                   "content": "Lojalizacja i strategia całej ścieżki klienta dla Twojego produktu (od fizycznego po cyfrowy)",
                                                   "lineHeight": 1.5,
                                                   "fontFamily": "$font.body",
-                                                  "fontSize": 20,
+                                                  "fontSize": 16,
                                                   "fontWeight": "300",
                                                   "letterSpacing": 0.2
                                                 },
@@ -55900,7 +56033,7 @@
                           },
                           "layout": "vertical",
                           "gap": 80,
-                          "padding": 32,
+                          "padding": 20,
                           "children": [
                             {
                               "type": "frame",
@@ -55996,20 +56129,24 @@
                                               "type": "text",
                                               "id": "lHXNE",
                                               "fill": "$brand.violet-50",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Dyrektor UX",
                                               "lineHeight": 0.9,
                                               "fontFamily": "$font.display",
-                                              "fontSize": 32,
+                                              "fontSize": 24,
                                               "fontWeight": "normal"
                                             },
                                             {
                                               "type": "text",
                                               "id": "HdPju",
                                               "fill": "$brand.violet-200",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Oddeleguj zarządzanie doświadczeniami\nTwoich klientów bez kosztów etatu.",
                                               "lineHeight": 1.5,
                                               "fontFamily": "$font.body",
-                                              "fontSize": 20,
+                                              "fontSize": 16,
                                               "fontWeight": "300",
                                               "letterSpacing": 0.2
                                             },
@@ -56079,7 +56216,7 @@
                               },
                               "layout": "vertical",
                               "gap": 80,
-                              "padding": 32,
+                              "padding": 20,
                               "children": [
                                 {
                                   "type": "frame",
@@ -56162,10 +56299,12 @@
                                                   "type": "text",
                                                   "id": "LOR2T",
                                                   "fill": "$brand.violet-50",
+                                                  "textGrowth": "fixed-width",
+                                                  "width": "fill_container",
                                                   "content": "Segmentacja klientów",
                                                   "lineHeight": 0.9,
                                                   "fontFamily": "$font.display",
-                                                  "fontSize": 32,
+                                                  "fontSize": 24,
                                                   "fontWeight": "normal"
                                                 },
                                                 {
@@ -56173,11 +56312,11 @@
                                                   "id": "oww8M",
                                                   "fill": "$brand.violet-200",
                                                   "textGrowth": "fixed-width",
-                                                  "width": 254,
+                                                  "width": "fill_container",
                                                   "content": "Zrozum, którzy klienci przynoszą największy zysk i jak o nich zadbać.",
                                                   "lineHeight": 1.5,
                                                   "fontFamily": "$font.body",
-                                                  "fontSize": 20,
+                                                  "fontSize": 16,
                                                   "fontWeight": "300",
                                                   "letterSpacing": 0.2
                                                 },
@@ -56232,7 +56371,7 @@
                           },
                           "layout": "vertical",
                           "gap": 80,
-                          "padding": 32,
+                          "padding": 20,
                           "children": [
                             {
                               "type": "frame",
@@ -56328,10 +56467,12 @@
                                               "type": "text",
                                               "id": "K0ods",
                                               "fill": "$brand.violet-50",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Audyt UX",
                                               "lineHeight": 0.9,
                                               "fontFamily": "$font.display",
-                                              "fontSize": 32,
+                                              "fontSize": 24,
                                               "fontWeight": "normal"
                                             },
                                             {
@@ -56339,11 +56480,11 @@
                                               "id": "cLkMk",
                                               "fill": "$brand.violet-200",
                                               "textGrowth": "fixed-width",
-                                              "width": 254,
+                                              "width": "fill_container",
                                               "content": "Zacznij od przeglądu UX w Twoim produkcie\nna bazie mojej wiedzy i analityki.",
                                               "lineHeight": 1.5,
                                               "fontFamily": "$font.body",
-                                              "fontSize": 20,
+                                              "fontSize": 16,
                                               "fontWeight": "300",
                                               "letterSpacing": 0.2
                                             },
@@ -56396,7 +56537,7 @@
                           },
                           "layout": "vertical",
                           "gap": 80,
-                          "padding": 32,
+                          "padding": 20,
                           "children": [
                             {
                               "type": "frame",
@@ -56473,26 +56614,30 @@
                                           "id": "EUPxP",
                                           "width": "fill_container",
                                           "layout": "vertical",
-                                          "gap": 12,
+                                          "gap": 8,
                                           "children": [
                                             {
                                               "type": "text",
                                               "id": "HogXR",
                                               "fill": "$brand.violet-50",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Wystąpienia i szkolenia",
                                               "lineHeight": 0.9,
                                               "fontFamily": "$font.display",
-                                              "fontSize": 32,
+                                              "fontSize": 24,
                                               "fontWeight": "normal"
                                             },
                                             {
                                               "type": "text",
                                               "id": "e2ihMX",
                                               "fill": "$brand.violet-200",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Zaproś mnie na konferencję lub podnieś\nkompetencje swojego zespołu.",
                                               "lineHeight": 1.5,
                                               "fontFamily": "$font.body",
-                                              "fontSize": 20,
+                                              "fontSize": 16,
                                               "fontWeight": "300",
                                               "letterSpacing": 0.2
                                             },
@@ -56563,7 +56708,7 @@
                             "radius": 8
                           },
                           "gap": 80,
-                          "padding": 32,
+                          "padding": 20,
                           "children": [
                             {
                               "type": "frame",
@@ -56668,16 +56813,18 @@
                                           "id": "KHXJv",
                                           "width": "fill_container",
                                           "layout": "vertical",
-                                          "gap": 12,
+                                          "gap": 8,
                                           "children": [
                                             {
                                               "type": "text",
                                               "id": "hB9Mh",
                                               "fill": "$brand.violet-50",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
                                               "content": "Konsultacje i Mentoring",
                                               "lineHeight": 0.9,
                                               "fontFamily": "$font.display",
-                                              "fontSize": 32,
+                                              "fontSize": 24,
                                               "fontWeight": "normal"
                                             },
                                             {
@@ -56685,11 +56832,11 @@
                                               "id": "o73Sf8",
                                               "fill": "$brand.violet-200",
                                               "textGrowth": "fixed-width",
-                                              "width": 254,
+                                              "width": "fill_container",
                                               "content": "Indywidualnie przedyskutuj rzeczy lub podnieś swoje kompetencje w UX.",
                                               "lineHeight": 1.5,
                                               "fontFamily": "$font.body",
-                                              "fontSize": 20,
+                                              "fontSize": 16,
                                               "fontWeight": "300",
                                               "letterSpacing": 0.2
                                             }
@@ -56717,11 +56864,9 @@
           "width": "fill_container",
           "fill": "#FFFFFF",
           "layout": "vertical",
-          "gap": 40,
+          "gap": 24,
           "padding": [
-            90,
-            20,
-            110,
+            40,
             20
           ],
           "children": [
@@ -56731,10 +56876,10 @@
               "fill": "$brand.violet-900",
               "textGrowth": "fixed-width",
               "width": 390,
-              "content": "Od pytania biznesowego do decyzji\nz moim wsparciem",
+              "content": "Od pytania biznesowego do decyzji z moim wsparciem",
               "lineHeight": 0.9,
               "fontFamily": "$font.display",
-              "fontSize": 40,
+              "fontSize": 32,
               "fontWeight": "normal",
               "letterSpacing": 0.4
             },
@@ -56743,11 +56888,9 @@
               "id": "tHEpa",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 40,
+              "gap": 16,
               "padding": [
-                24,
-                0,
-                0,
+                20,
                 0
               ],
               "children": [
@@ -56757,16 +56900,18 @@
                   "width": "fill_container",
                   "fill": "#FFFFFF",
                   "stroke": "#E7E7EF",
-                  "layout": "vertical",
-                  "gap": 8,
+                  "gap": 12,
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
                       "id": "A6y1XC",
                       "fill": "$brand.violet-500",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
                       "content": "2500+",
                       "fontFamily": "$font.display",
-                      "fontSize": 46,
+                      "fontSize": 28,
                       "fontWeight": "bold"
                     },
                     {
@@ -56774,11 +56919,11 @@
                       "id": "M1OUry",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
-                      "content": "sesji badawczych\nw kilkudziesięciu firmach.",
+                      "width": "fill_container",
+                      "content": "sesji badawczych w kilkudziesięciu firmach.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 0.2
                     }
@@ -56790,16 +56935,18 @@
                   "width": "fill_container",
                   "fill": "#FFFFFF",
                   "stroke": "#E7E7EF",
-                  "layout": "vertical",
-                  "gap": 8,
+                  "gap": 12,
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
                       "id": "tO1X2",
                       "fill": "$brand.violet-500",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
                       "content": "#1",
                       "fontFamily": "$font.display",
-                      "fontSize": 46,
+                      "fontSize": 28,
                       "fontWeight": "bold"
                     },
                     {
@@ -56807,11 +56954,11 @@
                       "id": "REUCb",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
+                      "width": "fill_container",
                       "content": "jedyny kierownik studiów badań UX w Polsce.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 0.2
                     }
@@ -56823,16 +56970,18 @@
                   "width": "fill_container",
                   "fill": "#FFFFFF",
                   "stroke": "#E7E7EF",
-                  "layout": "vertical",
-                  "gap": 8,
+                  "gap": 12,
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
                       "id": "CMBNj",
                       "fill": "$brand.violet-500",
+                      "textGrowth": "fixed-width",
+                      "width": "fit_content(120)",
                       "content": "2 tyg.",
                       "fontFamily": "$font.display",
-                      "fontSize": 46,
+                      "fontSize": 28,
                       "fontWeight": "bold"
                     },
                     {
@@ -56840,11 +56989,11 @@
                       "id": "pk3hb",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
+                      "width": "fill_container",
                       "content": "tyle wystarczy, aby podnieść ze mną konwersję.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 0.2
                     }
@@ -56856,16 +57005,18 @@
                   "width": "fill_container",
                   "fill": "#FFFFFF",
                   "stroke": "#E7E7EF",
-                  "layout": "vertical",
-                  "gap": 8,
+                  "gap": 12,
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
                       "id": "S1NiyD",
                       "fill": "$brand.violet-500",
+                      "textGrowth": "fixed-width",
+                      "width": 120,
                       "content": "50–100",
                       "fontFamily": "$font.display",
-                      "fontSize": 46,
+                      "fontSize": 28,
                       "fontWeight": "bold"
                     },
                     {
@@ -56873,11 +57024,11 @@
                       "id": "r75t09",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
-                      "content": "badaczy rocznie korzysta \nz mojego know-how.",
+                      "width": "fill_container",
+                      "content": "badaczy rocznie korzysta z mojego know-how.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
-                      "fontSize": 20,
+                      "fontSize": 18,
                       "fontWeight": "normal",
                       "letterSpacing": 0.2
                     }
@@ -56916,12 +57067,11 @@
                   "y": 0.6673600617708174
                 }
               },
-              "gap": 40,
+              "gap": 16,
               "padding": [
-                28,
-                34
+                16,
+                20
               ],
-              "alignItems": "center",
               "children": [
                 {
                   "type": "icon",
@@ -56937,11 +57087,11 @@
                   "id": "BrOOl",
                   "fill": "$brand.violet-50",
                   "textGrowth": "fixed-width",
-                  "width": 248,
-                  "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz\npieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.",
+                  "width": "fill_container",
+                  "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.",
                   "lineHeight": 1.5,
                   "fontFamily": "$font.body",
-                  "fontSize": 20,
+                  "fontSize": 18,
                   "fontWeight": "normal",
                   "letterSpacing": 0.2
                 }
@@ -56964,7 +57114,6 @@
                   "type": "frame",
                   "id": "M9HUu",
                   "width": "fill_container",
-                  "layout": "vertical",
                   "gap": 12,
                   "children": [
                     {
@@ -56981,7 +57130,7 @@
                       "id": "T9Se7c",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
+                      "width": "fill_container",
                       "content": "Widziałem dziesiątki produktów od środka. Łączę badania z twardą analityką.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
@@ -56995,7 +57144,6 @@
                   "type": "frame",
                   "id": "ciSpl",
                   "width": "fill_container",
-                  "layout": "vertical",
                   "gap": 12,
                   "children": [
                     {
@@ -57012,7 +57160,7 @@
                       "id": "bMi19",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
+                      "width": "fill_container",
                       "content": "Każdą rekomendację wiążę z metryką biznesową: konwersją, LTV, retencją.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
@@ -57026,7 +57174,6 @@
                   "type": "frame",
                   "id": "kiSfk",
                   "width": "fill_container",
-                  "layout": "vertical",
                   "gap": 12,
                   "children": [
                     {
@@ -57043,7 +57190,7 @@
                       "id": "VzYP7",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
+                      "width": "fill_container",
                       "content": "Uczę tego co sam praktykuję i pokazuję realne przykłady z pracy.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
@@ -57057,7 +57204,6 @@
                   "type": "frame",
                   "id": "eono6",
                   "width": "fill_container",
-                  "layout": "vertical",
                   "gap": 12,
                   "children": [
                     {
@@ -57074,7 +57220,7 @@
                       "id": "vD8Mh",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 390,
+                      "width": "fill_container",
                       "content": "Klienci po naszej współpracy potrafią działać samodzielnie.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
@@ -57201,9 +57347,7 @@
           "layout": "vertical",
           "gap": 70,
           "padding": [
-            90,
-            20,
-            80,
+            56,
             20
           ],
           "children": [
@@ -57262,7 +57406,7 @@
                   "content": "Jak wygląda współpraca?",
                   "lineHeight": 0.9,
                   "fontFamily": "$font.display",
-                  "fontSize": 40,
+                  "fontSize": 32,
                   "fontWeight": "normal"
                 },
                 {
@@ -57270,20 +57414,13 @@
                   "id": "zMrwQ",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 40,
-                  "padding": [
-                    64,
-                    0,
-                    64,
-                    40
-                  ],
+                  "gap": 20,
                   "children": [
                     {
                       "type": "frame",
                       "id": "tv1Ms",
                       "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 14,
+                      "gap": 20,
                       "children": [
                         {
                           "type": "frame",
@@ -57359,13 +57496,16 @@
                         {
                           "type": "frame",
                           "id": "ALTPz",
+                          "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 12,
+                          "gap": 6,
                           "children": [
                             {
                               "type": "text",
                               "id": "rmfYf",
                               "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
                               "content": "Zrozumienie celu",
                               "fontFamily": "$font.display",
                               "fontSize": 28,
@@ -57376,7 +57516,7 @@
                               "id": "xJmxi",
                               "fill": "#FFFFFFD9",
                               "textGrowth": "fixed-width",
-                              "width": 250,
+                              "width": "fill_container",
                               "content": "Zaczynam tam, gdzie boli biznes: od metryk, którą chcesz poprawić.",
                               "lineHeight": 1.47,
                               "fontFamily": "$font.body",
@@ -57391,14 +57531,7 @@
                       "type": "frame",
                       "id": "PrYbb",
                       "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 14,
-                      "padding": [
-                        212,
-                        0,
-                        0,
-                        0
-                      ],
+                      "gap": 20,
                       "children": [
                         {
                           "type": "frame",
@@ -57475,8 +57608,9 @@
                           "type": "frame",
                           "id": "ycaEE",
                           "name": "Frame 667",
+                          "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 12,
+                          "gap": 6,
                           "children": [
                             {
                               "type": "text",
@@ -57492,7 +57626,7 @@
                               "id": "I3weci",
                               "fill": "#FFFFFFD9",
                               "textGrowth": "fixed-width",
-                              "width": 250,
+                              "width": "fill_container",
                               "content": "Proponuję Ci 2-3 podejścia do osiągnięcia celu. Wskazuję różnice, przewagi i wady każdego z wariantu.",
                               "lineHeight": 1.47,
                               "fontFamily": "$font.body",
@@ -57507,14 +57641,7 @@
                       "type": "frame",
                       "id": "s5Kr0",
                       "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 14,
-                      "padding": [
-                        20,
-                        0,
-                        0,
-                        0
-                      ],
+                      "gap": 20,
                       "children": [
                         {
                           "type": "frame",
@@ -57585,13 +57712,16 @@
                           "type": "frame",
                           "id": "U4ShZ",
                           "name": "Frame 668",
+                          "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 12,
+                          "gap": 6,
                           "children": [
                             {
                               "type": "text",
                               "id": "YlZRb",
                               "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
                               "content": "Realizacja",
                               "fontFamily": "$font.display",
                               "fontSize": 28,
@@ -57602,7 +57732,7 @@
                               "id": "G8b5Bk",
                               "fill": "#FFFFFFD9",
                               "textGrowth": "fixed-width",
-                              "width": 250,
+                              "width": "fill_container",
                               "content": "Wspólnie przechodzimy przez wybrany proces. Zdobywasz unikalne dane i moje rekomendacje.",
                               "lineHeight": 1.47,
                               "fontFamily": "$font.body",
@@ -57618,14 +57748,7 @@
                       "id": "d5P8L",
                       "opacity": 0.65,
                       "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 14,
-                      "padding": [
-                        130,
-                        0,
-                        0,
-                        0
-                      ],
+                      "gap": 20,
                       "children": [
                         {
                           "type": "frame",
@@ -57692,8 +57815,9 @@
                         {
                           "type": "frame",
                           "id": "b1ty9",
+                          "width": "fill_container",
                           "layout": "vertical",
-                          "gap": 12,
+                          "gap": 6,
                           "children": [
                             {
                               "type": "text",
@@ -57709,7 +57833,7 @@
                               "id": "XUVmF",
                               "fill": "#FFFFFFD9",
                               "textGrowth": "fixed-width",
-                              "width": 250,
+                              "width": "fill_container",
                               "content": "Zostaję na wdrożenie i mierzę wpływ na konwersję. Dla mnie badanie kończy się decyzją, nie raportem.",
                               "lineHeight": 1.47,
                               "fontFamily": "$font.body",
@@ -57821,12 +57945,13 @@
         {
           "type": "frame",
           "id": "U49QMj",
+          "clip": true,
           "width": "fill_container",
           "fill": "#FFFFFF",
           "layout": "vertical",
-          "gap": 64,
+          "gap": 40,
           "padding": [
-            100,
+            40,
             20
           ],
           "children": [
@@ -57837,7 +57962,7 @@
               "content": "Co mówią klienci",
               "lineHeight": 0.9,
               "fontFamily": "$font.display",
-              "fontSize": 40,
+              "fontSize": 32,
               "fontWeight": "normal"
             },
             {
@@ -57858,14 +57983,12 @@
                       "type": "frame",
                       "id": "S4KY3b",
                       "name": "Frame 663",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 64,
+                      "gap": 24,
                       "children": [
                         {
                           "type": "frame",
                           "id": "Eaa6v",
-                          "width": "fill_container",
+                          "width": "fit_content(280)",
                           "gap": 20,
                           "children": [
                             {
@@ -57880,11 +58003,11 @@
                                   "id": "gQqcf",
                                   "fill": "$neutral.600",
                                   "textGrowth": "fixed-width",
-                                  "width": 390,
+                                  "width": "fill_container",
                                   "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"",
                                   "lineHeight": 1.5,
                                   "fontFamily": "$font.body",
-                                  "fontSize": 20,
+                                  "fontSize": 16,
                                   "fontWeight": "normal",
                                   "fontStyle": "italic"
                                 },
@@ -57893,21 +58016,22 @@
                                   "id": "B9E0lW",
                                   "name": "Frame 722",
                                   "width": "fill_container",
-                                  "gap": 20,
+                                  "gap": 12,
+                                  "alignItems": "end",
                                   "children": [
                                     {
                                       "type": "rectangle",
                                       "id": "P9hA4",
                                       "fill": "#DCDCE1",
-                                      "width": 80,
-                                      "height": 80
+                                      "width": 48,
+                                      "height": 48
                                     },
                                     {
                                       "type": "text",
                                       "id": "tigMu",
                                       "fill": "$color.ink",
                                       "textGrowth": "fixed-width",
-                                      "width": 290,
+                                      "width": "fill_container",
                                       "content": "Jarek Piotrowski ·\nProduct Manager @Traffit",
                                       "lineHeight": 1.6,
                                       "fontFamily": "$font.mono",
@@ -57923,7 +58047,7 @@
                         {
                           "type": "frame",
                           "id": "GwdSo",
-                          "width": "fill_container",
+                          "width": "fit_content(280)",
                           "gap": 20,
                           "children": [
                             {
@@ -57938,11 +58062,11 @@
                                   "id": "UrvVH",
                                   "fill": "$neutral.600",
                                   "textGrowth": "fixed-width",
-                                  "width": 390,
+                                  "width": "fill_container",
                                   "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"",
                                   "lineHeight": 1.5,
                                   "fontFamily": "$font.body",
-                                  "fontSize": 20,
+                                  "fontSize": 16,
                                   "fontWeight": "normal",
                                   "fontStyle": "italic"
                                 },
@@ -57951,21 +58075,22 @@
                                   "id": "M0r1Jt",
                                   "name": "Frame 722",
                                   "width": "fill_container",
-                                  "gap": 20,
+                                  "gap": 12,
+                                  "alignItems": "end",
                                   "children": [
                                     {
                                       "type": "rectangle",
                                       "id": "WSuuY",
                                       "fill": "#DCDCE1",
-                                      "width": 80,
-                                      "height": 80
+                                      "width": 48,
+                                      "height": 48
                                     },
                                     {
                                       "type": "text",
                                       "id": "zmBk6",
                                       "fill": "$color.ink",
                                       "textGrowth": "fixed-width",
-                                      "width": 290,
+                                      "width": "fill_container",
                                       "content": "Jarek Piotrowski ·\nProduct Manager @Traffit",
                                       "lineHeight": 1.6,
                                       "fontFamily": "$font.mono",
@@ -57980,47 +58105,48 @@
                         },
                         {
                           "type": "frame",
-                          "id": "T72g9",
-                          "width": "fill_container",
+                          "id": "v3YMn",
+                          "width": "fit_content(280)",
                           "gap": 20,
                           "children": [
                             {
                               "type": "frame",
-                              "id": "stuT0",
+                              "id": "weN2x",
                               "width": "fill_container",
                               "layout": "vertical",
                               "gap": 20,
                               "children": [
                                 {
                                   "type": "text",
-                                  "id": "BBmuP",
+                                  "id": "J9Lwu8",
                                   "fill": "$neutral.600",
                                   "textGrowth": "fixed-width",
-                                  "width": 390,
+                                  "width": "fill_container",
                                   "content": "„Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.\"",
                                   "lineHeight": 1.5,
                                   "fontFamily": "$font.body",
-                                  "fontSize": 20,
+                                  "fontSize": 16,
                                   "fontWeight": "normal",
                                   "fontStyle": "italic"
                                 },
                                 {
                                   "type": "frame",
-                                  "id": "uNaVw",
+                                  "id": "s0V6VF",
                                   "name": "Frame 722",
                                   "width": "fill_container",
-                                  "gap": 20,
+                                  "gap": 12,
+                                  "alignItems": "end",
                                   "children": [
                                     {
                                       "type": "rectangle",
-                                      "id": "j5ywf",
+                                      "id": "iUHMs",
                                       "fill": "#DCDCE1",
-                                      "width": 80,
-                                      "height": 80
+                                      "width": 48,
+                                      "height": 48
                                     },
                                     {
                                       "type": "text",
-                                      "id": "IFKng",
+                                      "id": "JEqaE",
                                       "fill": "$color.ink",
                                       "textGrowth": "fixed-width",
                                       "width": 290,
@@ -58045,7 +58171,7 @@
                   "id": "kNmVu",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 32,
+                  "gap": 20,
                   "padding": [
                     40,
                     0,
@@ -58061,7 +58187,7 @@
                       "content": "Potrzebujesz referencji?",
                       "lineHeight": 0.9,
                       "fontFamily": "$font.display",
-                      "fontSize": 32,
+                      "fontSize": 24,
                       "fontWeight": "normal"
                     },
                     {
@@ -58132,9 +58258,9 @@
           "width": "fill_container",
           "fill": "#f2f2f780",
           "layout": "vertical",
-          "gap": 80,
+          "gap": 40,
           "padding": [
-            90,
+            64,
             20
           ],
           "children": [
@@ -58143,7 +58269,7 @@
               "id": "jEIRv",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 64,
+              "gap": 40,
               "children": [
                 {
                   "type": "frame",
@@ -58151,7 +58277,7 @@
                   "name": "Frame 709",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 40,
+                  "gap": 20,
                   "children": [
                     {
                       "type": "frame",
@@ -58170,7 +58296,7 @@
                           "content": "Zobacz demo raportu!",
                           "lineHeight": 0.9,
                           "fontFamily": "$font.display",
-                          "fontSize": 40,
+                          "fontSize": 32,
                           "fontWeight": "normal"
                         },
                         {
@@ -58182,7 +58308,7 @@
                           "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.",
                           "lineHeight": 1.5,
                           "fontFamily": "$font.body",
-                          "fontSize": 20,
+                          "fontSize": 16,
                           "fontWeight": "normal"
                         }
                       ]
@@ -58192,7 +58318,7 @@
                       "id": "OT3p5",
                       "name": "Frame 665",
                       "layout": "vertical",
-                      "gap": 16,
+                      "gap": 12,
                       "children": [
                         {
                           "type": "text",
@@ -58268,37 +58394,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Ua0ZZ",
-                  "fill": "$brand.violet-700",
-                  "gap": 14,
-                  "padding": [
-                    18,
-                    28
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "eRaMQ",
-                      "fill": "#FFFFFF",
-                      "content": "Pobierz Demo Raportu",
-                      "fontFamily": "$font.body",
-                      "fontSize": 20,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "icon",
-                      "id": "kGV8g",
-                      "width": 22,
-                      "height": 22,
-                      "icon": "download",
-                      "library": "lucide",
-                      "fill": "#FFFFFF"
-                    }
-                  ]
                 }
               ]
             },
@@ -58308,21 +58403,21 @@
               "name": "Frame 703",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 8,
+              "gap": 16,
               "children": [
                 {
                   "type": "frame",
                   "id": "fdm4q",
                   "name": "animation",
                   "width": "fill_container",
-                  "height": 424,
+                  "height": 300,
                   "layout": "none",
                   "children": [
                     {
                       "type": "rectangle",
                       "id": "dkZzT",
-                      "x": 52,
-                      "y": 10,
+                      "x": 38.26415094339609,
+                      "y": 2.358490566038199,
                       "fill": [
                         {
                           "type": "image",
@@ -58332,8 +58427,8 @@
                         },
                         "#ffffff99"
                       ],
-                      "width": 426,
-                      "height": 238,
+                      "width": 313,
+                      "height": 175,
                       "effect": {
                         "type": "blur",
                         "radius": 2
@@ -58342,8 +58437,8 @@
                     {
                       "type": "rectangle",
                       "id": "Z1W13h",
-                      "x": 25,
-                      "y": 64,
+                      "x": 18.396226415094134,
+                      "y": 42.0943396226412,
                       "fill": [
                         {
                           "type": "image",
@@ -58353,8 +58448,8 @@
                         },
                         "#ffffff66"
                       ],
-                      "width": 480,
-                      "height": 268,
+                      "width": 353,
+                      "height": 197,
                       "effect": {
                         "type": "blur",
                         "radius": 1
@@ -58364,15 +58459,15 @@
                       "type": "rectangle",
                       "id": "fnxw7",
                       "x": 0,
-                      "y": 118,
+                      "y": 81.83018867924511,
                       "fill": {
                         "type": "image",
                         "enabled": true,
                         "url": "image-3.png",
                         "mode": "fill"
                       },
-                      "width": 530,
-                      "height": 296
+                      "width": 390,
+                      "height": 218
                     }
                   ]
                 },
@@ -58406,6 +58501,37 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "Ua0ZZ",
+              "fill": "$brand.violet-700",
+              "gap": 14,
+              "padding": [
+                18,
+                28
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eRaMQ",
+                  "fill": "#FFFFFF",
+                  "content": "Pobierz Demo Raportu",
+                  "fontFamily": "$font.body",
+                  "fontSize": 20,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon",
+                  "id": "kGV8g",
+                  "width": 22,
+                  "height": 22,
+                  "icon": "download",
+                  "library": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
             }
           ]
         },
@@ -58415,10 +58541,6 @@
           "width": "fill_container",
           "fill": "#FFFFFF",
           "layout": "vertical",
-          "padding": [
-            120,
-            20
-          ],
           "children": [
             {
               "type": "frame",
@@ -58444,8 +58566,8 @@
                 ]
               },
               "layout": "vertical",
-              "gap": 80,
-              "padding": 40,
+              "gap": 40,
+              "padding": 20,
               "children": [
                 {
                   "type": "frame",
@@ -58453,6 +58575,12 @@
                   "width": "fill_container",
                   "layout": "vertical",
                   "gap": 12,
+                  "padding": [
+                    24,
+                    0,
+                    0,
+                    0
+                  ],
                   "children": [
                     {
                       "type": "text",
@@ -58460,7 +58588,7 @@
                       "fill": "#FFFFFF",
                       "content": "Raporty i artykuły",
                       "fontFamily": "$font.display",
-                      "fontSize": 40,
+                      "fontSize": 32,
                       "fontWeight": "700"
                     },
                     {
@@ -58468,7 +58596,7 @@
                       "id": "Hl3ya",
                       "fill": "#FFFFFF",
                       "textGrowth": "fixed-width",
-                      "width": 310,
+                      "width": "fill_container",
                       "content": "Tylko treści merytoryczne. Zero spamu. Możesz wypisać się w każdej chwili. Zapisując się, otrzymasz darmowy e-book o strukturach zespołów produktowych.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
@@ -58483,6 +58611,12 @@
                   "width": "fill_container",
                   "layout": "vertical",
                   "gap": 10,
+                  "padding": [
+                    0,
+                    0,
+                    20,
+                    0
+                  ],
                   "children": [
                     {
                       "type": "text",
@@ -58576,9 +58710,9 @@
           "width": "fill_container",
           "fill": "#f2f2f780",
           "layout": "vertical",
-          "gap": 24,
+          "gap": 12,
           "padding": [
-            90,
+            40,
             20
           ],
           "children": [
@@ -58591,7 +58725,7 @@
               "content": "Kilka historii moich klientów",
               "lineHeight": 0.9,
               "fontFamily": "$font.display",
-              "fontSize": 40,
+              "fontSize": 32,
               "fontWeight": "normal"
             },
             {
@@ -58603,7 +58737,7 @@
               "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.",
               "lineHeight": 1.5,
               "fontFamily": "$font.body",
-              "fontSize": 20,
+              "fontSize": 16,
               "fontWeight": "normal"
             },
             {
@@ -58612,7 +58746,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                46,
+                20,
                 0,
                 0,
                 0
@@ -58644,33 +58778,10 @@
                   "layout": "vertical",
                   "gap": 12,
                   "padding": [
-                    48,
-                    40
+                    32,
+                    24
                   ],
                   "children": [
-                    {
-                      "type": "text",
-                      "id": "mDIR8",
-                      "fill": "$brand.violet-50",
-                      "content": "7 KONCEPCJI\n14 DNI.",
-                      "lineHeight": 0.9,
-                      "fontFamily": "$font.display",
-                      "fontSize": 40,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "s6Kuh",
-                      "opacity": 0.9,
-                      "fill": "$brand.violet-200",
-                      "textGrowth": "fixed-width",
-                      "width": 310,
-                      "content": "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.",
-                      "lineHeight": 1.5,
-                      "fontFamily": "$font.body",
-                      "fontSize": 20,
-                      "fontWeight": "normal"
-                    },
                     {
                       "type": "text",
                       "id": "f540kr",
@@ -58680,6 +58791,29 @@
                       "fontSize": 16,
                       "fontWeight": "500",
                       "letterSpacing": 1.8
+                    },
+                    {
+                      "type": "text",
+                      "id": "mDIR8",
+                      "fill": "$brand.violet-50",
+                      "content": "7 KONCEPCJI\n14 DNI.",
+                      "lineHeight": 0.9,
+                      "fontFamily": "$font.display",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "s6Kuh",
+                      "opacity": 0.9,
+                      "fill": "$brand.violet-200",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Badania RITE: szybka walidacja siedmiu koncepcji procesu. Efekty nie wymagają zmian od kilku lat.",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font.body",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -58691,8 +58825,8 @@
                   "layout": "vertical",
                   "gap": 40,
                   "padding": [
-                    48,
-                    56
+                    32,
+                    24
                   ],
                   "justifyContent": "space_between",
                   "children": [
@@ -58701,11 +58835,11 @@
                       "id": "EoHwP",
                       "fill": "$neutral.700",
                       "textGrowth": "fixed-width",
-                      "width": 278,
+                      "width": "fill_container",
                       "content": "Dlatego nie dostarczam raportów do szuflady: pokazuję, gdzie tracisz pieniądze w doświadczeniu klienta i co zrobić, żeby je odzyskać.",
                       "lineHeight": 1.5,
                       "fontFamily": "$font.body",
-                      "fontSize": 20,
+                      "fontSize": 16,
                       "fontWeight": "normal"
                     },
                     {
@@ -58742,87 +58876,38 @@
             },
             {
               "type": "frame",
-              "id": "c1Fuo",
+              "id": "cQaDW",
+              "name": "Strzałki karuzeli",
               "width": "fill_container",
-              "layout": "vertical",
-              "gap": 32,
+              "gap": 72,
               "padding": [
                 24,
                 0,
                 0,
                 0
               ],
+              "justifyContent": "center",
+              "alignItems": "center",
               "children": [
                 {
-                  "type": "rectangle",
-                  "id": "g4P8f",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
+                  "type": "icon",
+                  "id": "HyEOM",
+                  "name": "arrow-left",
+                  "width": 26,
+                  "height": 26,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "#3C00AB"
                 },
                 {
-                  "type": "frame",
-                  "id": "fxhva",
-                  "name": "Frame 701",
-                  "width": 136,
-                  "height": 24,
-                  "layout": "none",
-                  "children": [
-                    {
-                      "type": "rectangle",
-                      "id": "Nh1Hg",
-                      "x": 0,
-                      "y": 0,
-                      "fill": "$brand.violet-100",
-                      "width": 390,
-                      "height": "fill_container(24)"
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "gEu6N",
-                      "layoutPosition": "absolute",
-                      "x": 0,
-                      "y": 0,
-                      "fill": "$brand.violet-500",
-                      "width": 80,
-                      "height": 24
-                    }
-                  ]
-                },
-                {
-                  "type": "rectangle",
-                  "id": "inUUP",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "EFasg",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "K0vsRz",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "cqUXs",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
-                },
-                {
-                  "type": "rectangle",
-                  "id": "ueHiz",
-                  "fill": "#FFFFFF",
-                  "width": "fill_container",
-                  "height": 24
+                  "type": "icon",
+                  "id": "pZS2J",
+                  "name": "arrow-right",
+                  "width": 26,
+                  "height": 26,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "#3C00AB"
                 }
               ]
             }
@@ -58834,9 +58919,9 @@
           "width": "fill_container",
           "fill": "#FFFFFF",
           "layout": "vertical",
-          "gap": 80,
+          "gap": 20,
           "padding": [
-            90,
+            40,
             20
           ],
           "children": [
@@ -58864,7 +58949,7 @@
                       "padding": [
                         0,
                         0,
-                        40,
+                        24,
                         0
                       ],
                       "children": [
@@ -58874,225 +58959,161 @@
                           "fill": "$brand.violet-900",
                           "textGrowth": "fixed-width",
                           "width": 390,
-                          "content": "Co warto wziąć pod uwagę\nprzed współpracą",
+                          "content": "Co warto wziąć pod uwagę przed współpracą",
                           "lineHeight": 0.9,
                           "fontFamily": "$font.display",
-                          "fontSize": 40,
+                          "fontSize": 32,
                           "fontWeight": "normal"
                         }
                       ]
-                    },
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "B8Zvk",
+              "width": "fill_container",
+              "gap": 20,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gDyeC",
+                  "name": "Frame 679",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
                     {
                       "type": "frame",
-                      "id": "jSVtK",
+                      "id": "SspSY",
+                      "name": "FAQ Item 1",
                       "width": "fill_container",
-                      "gap": 20,
+                      "layout": "vertical",
+                      "gap": 8,
                       "padding": [
                         0,
-                        40,
                         0,
+                        12,
                         0
                       ],
-                      "alignItems": "end",
                       "children": [
                         {
                           "type": "frame",
-                          "id": "v7EoKv",
-                          "name": "Frame 679",
+                          "id": "FbXoP",
+                          "name": "FAQ Item 1",
                           "width": "fill_container",
-                          "layout": "vertical",
-                          "gap": 12,
+                          "gap": 8,
                           "padding": [
-                            20,
                             0,
                             0,
+                            8,
                             0
                           ],
                           "children": [
                             {
-                              "type": "frame",
-                              "id": "E7jrG",
-                              "name": "FAQ Item 1",
+                              "type": "text",
+                              "id": "F9UfvG",
+                              "fill": "$brand.violet-500",
+                              "textGrowth": "fixed-width",
+                              "width": 56,
+                              "content": "#1",
+                              "fontFamily": "$font.display",
+                              "fontSize": 32,
+                              "fontWeight": "bold"
+                            },
+                            {
+                              "type": "text",
+                              "id": "BhwrY",
+                              "fill": "$neutral.700",
+                              "textGrowth": "fixed-width",
                               "width": "fill_container",
-                              "layout": "vertical",
-                              "gap": 12,
-                              "padding": [
-                                0,
-                                0,
-                                12,
-                                16
-                              ],
-                              "children": [
-                                {
-                                  "type": "frame",
-                                  "id": "eGJUW",
-                                  "name": "FAQ Item 1",
-                                  "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
-                                  "padding": [
-                                    0,
-                                    0,
-                                    24,
-                                    0
-                                  ],
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "VypNB",
-                                      "fill": "$neutral.700",
-                                      "textGrowth": "fixed-width",
-                                      "width": 306,
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
-                                      "lineHeight": 0.9,
-                                      "fontFamily": "Inter",
-                                      "fontSize": 20,
-                                      "fontWeight": "normal",
-                                      "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "bKYp6",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "Ieir0",
-                                  "name": "FAQ Item 1",
-                                  "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
-                                  "padding": [
-                                    0,
-                                    0,
-                                    24,
-                                    0
-                                  ],
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "GEpdv",
-                                      "fill": "$neutral.700",
-                                      "textGrowth": "fixed-width",
-                                      "width": 306,
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
-                                      "lineHeight": 0.9,
-                                      "fontFamily": "Inter",
-                                      "fontSize": 20,
-                                      "fontWeight": "normal",
-                                      "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "gGYig",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "m29ML",
-                                  "name": "FAQ Item 1",
-                                  "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
-                                  "padding": [
-                                    0,
-                                    0,
-                                    24,
-                                    0
-                                  ],
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "DSt0K",
-                                      "fill": "$neutral.700",
-                                      "textGrowth": "fixed-width",
-                                      "width": 306,
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
-                                      "lineHeight": 0.9,
-                                      "fontFamily": "Inter",
-                                      "fontSize": 20,
-                                      "fontWeight": "normal",
-                                      "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "HCuPz",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "Jv4YZ",
-                                  "name": "FAQ Item 1",
-                                  "width": "fill_container",
-                                  "layout": "vertical",
-                                  "gap": 24,
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "Dw97a",
-                                      "fill": "$neutral.700",
-                                      "textGrowth": "fixed-width",
-                                      "width": 306,
-                                      "content": "Temat o tym w jaki sposób ukradłem księżyć",
-                                      "lineHeight": 0.9,
-                                      "fontFamily": "Inter",
-                                      "fontSize": 20,
-                                      "fontWeight": "normal",
-                                      "letterSpacing": 1
-                                    },
-                                    {
-                                      "type": "rectangle",
-                                      "id": "NdTyX",
-                                      "name": "FAQ Divider 1",
-                                      "fill": "#E2E2EA",
-                                      "width": "fill_container",
-                                      "height": 1
-                                    }
-                                  ]
-                                }
-                              ]
+                              "content": "Moim głównym zadaniem jest zmniejszanie Twojego ryzyka. Potrafię nie tylko wykonać każde badanie biznesowe na świecie, ale również podjąć na podstawie niego decyzje.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
                             }
                           ]
                         },
                         {
                           "type": "frame",
-                          "id": "n0PSrQ",
-                          "name": "Frame 681",
-                          "alignItems": "end",
+                          "id": "v3L7K1",
+                          "name": "FAQ Item 1",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "padding": [
+                            0,
+                            0,
+                            8,
+                            0
+                          ],
                           "children": [
                             {
-                              "type": "frame",
-                              "id": "t4NfH",
-                              "name": "Frame 680",
-                              "fill": "$brand.violet-100",
-                              "padding": [
-                                40,
-                                0
-                              ],
-                              "children": [
-                                {
-                                  "type": "rectangle",
-                                  "id": "ER0uK",
-                                  "fill": "$brand.violet-200",
-                                  "width": 8,
-                                  "height": 200
-                                }
-                              ]
+                              "type": "text",
+                              "id": "u6zDV",
+                              "fill": "$brand.violet-500",
+                              "textGrowth": "fixed-width",
+                              "width": 56,
+                              "content": "#2",
+                              "fontFamily": "$font.display",
+                              "fontSize": 32,
+                              "fontWeight": "bold"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ZM91g",
+                              "fill": "$neutral.700",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Jestem sparing-partnerem. Nie będę pomagał Ci malować trawy na zielono, tylko wypracujemy sposób na to, aby mieć trawnik lepszy niż sąsiad.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "rWCqH",
+                          "name": "FAQ Item 1",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "padding": [
+                            0,
+                            0,
+                            8,
+                            0
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "p2cM9v",
+                              "fill": "$brand.violet-500",
+                              "textGrowth": "fixed-width",
+                              "width": 56,
+                              "content": "#3",
+                              "fontFamily": "$font.display",
+                              "fontSize": 32,
+                              "fontWeight": "bold"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ysV8N",
+                              "fill": "$neutral.700",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Mam chęci do pracy, ale tego samego wymagam od drugiej strony. Dzięki temu zajdziemy dalej.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "normal",
+                              "letterSpacing": 1
                             }
                           ]
                         }
@@ -59108,12 +59129,6 @@
               "width": "fill_container",
               "layout": "vertical",
               "gap": 20,
-              "padding": [
-                40,
-                0,
-                0,
-                0
-              ],
               "justifyContent": "end",
               "alignItems": "end",
               "children": [
@@ -59383,7 +59398,7 @@
               "content": "O czym ostatnio pisałem?",
               "lineHeight": 0.9,
               "fontFamily": "$font.display",
-              "fontSize": 40,
+              "fontSize": 32,
               "fontWeight": "normal"
             },
             {
@@ -59576,9 +59591,9 @@
           "id": "G2GnO",
           "width": "fill_container",
           "layout": "vertical",
-          "gap": 40,
+          "gap": 20,
           "padding": [
-            80,
+            40,
             20
           ],
           "children": [
@@ -59591,7 +59606,7 @@
               "padding": [
                 0,
                 0,
-                40,
+                20,
                 0
               ],
               "children": [
@@ -59604,7 +59619,7 @@
                   "content": "Wybierz termin w kalendarzu i pogadajmy!",
                   "lineHeight": 0.9,
                   "fontFamily": "$font.display",
-                  "fontSize": 40,
+                  "fontSize": 32,
                   "fontWeight": "normal"
                 }
               ]
@@ -59619,111 +59634,6 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "e3401n",
-                  "width": "fill_container",
-                  "height": "fit_content(0)",
-                  "layout": "vertical",
-                  "gap": 40,
-                  "padding": 32,
-                  "justifyContent": "end",
-                  "children": [
-                    {
-                      "type": "rectangle",
-                      "id": "t6M7Po",
-                      "layoutPosition": "absolute",
-                      "x": -10,
-                      "y": -38,
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "image-6.png",
-                        "mode": "fill"
-                      },
-                      "width": 523,
-                      "height": 453
-                    },
-                    {
-                      "id": "h08zX",
-                      "type": "ref",
-                      "ref": "ElWT1",
-                      "x": 351,
-                      "y": 366,
-                      "width": 168,
-                      "height": 48,
-                      "flipX": false,
-                      "flipY": false,
-                      "layoutPosition": "absolute",
-                      "descendants": {
-                        "wQkbC": {
-                          "x": 0.4655609130859375,
-                          "y": 0.3295249938964844,
-                          "width": "fill_container(168)",
-                          "height": "fill_container(48)",
-                          "flipX": false,
-                          "flipY": false
-                        },
-                        "biNPe": {
-                          "width": 208,
-                          "height": 64,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": -25.27725611731603,
-                          "y": -10
-                        },
-                        "pH6fF": {
-                          "width": 32,
-                          "height": 31,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": 26.008932515169363,
-                          "y": 5.5930512216318675
-                        },
-                        "NdNl3": {
-                          "width": 5,
-                          "height": 22,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": 63.33473933163168,
-                          "y": 15.178920298556477
-                        },
-                        "gXlY2": {
-                          "width": 23,
-                          "height": 25,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": 72.49751336179088,
-                          "y": 12.74843815641907
-                        },
-                        "HkRNm": {
-                          "width": 14,
-                          "height": 31,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": 99.22164757201335,
-                          "y": 6.215583114934816
-                        },
-                        "w7UIfJ": {
-                          "width": 5,
-                          "height": 5,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": 63.33473933163168,
-                          "y": 7.758865714300555
-                        },
-                        "lGoaC": {
-                          "width": 23,
-                          "height": 35,
-                          "flipX": false,
-                          "flipY": false,
-                          "x": 117.41671734126612,
-                          "y": 2.4953041557137112
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
                   "id": "doAJO",
                   "width": "fill_container",
                   "effect": {
@@ -59731,8 +59641,7 @@
                     "radius": 8
                   },
                   "layout": "vertical",
-                  "gap": 40,
-                  "padding": 40,
+                  "gap": 20,
                   "justifyContent": "end",
                   "children": [
                     {
@@ -59772,10 +59681,9 @@
                       "id": "pyV5t",
                       "fill": "$brand.violet-900",
                       "textGrowth": "fixed-width",
-                      "width": 310,
+                      "width": "fill_container",
                       "content": "Wystarczy kliknąć w kalendarz :)",
                       "lineHeight": 0.9,
-                      "textAlign": "right",
                       "fontFamily": "$font.display",
                       "fontSize": 24,
                       "fontWeight": "normal"
@@ -59813,7 +59721,6 @@
               "name": "Frame 682",
               "width": "fill_container",
               "padding": 16,
-              "justifyContent": "center",
               "children": [
                 {
                   "type": "text",
@@ -59832,7 +59739,6 @@
               "name": "Frame 682",
               "width": "fill_container",
               "padding": 16,
-              "justifyContent": "center",
               "children": [
                 {
                   "type": "text",
@@ -59852,7 +59758,19 @@
           "type": "ref",
           "ref": "Kk61L",
           "name": "Footer mobile",
-          "width": "fill_container"
+          "width": "fill_container",
+          "descendants": {
+            "RHBh7": {
+              "justifyContent": "start",
+              "gap": 20
+            },
+            "Usxv2": {
+              "width": "fill_container",
+              "height": "fit_content(14)",
+              "textGrowth": "fixed-width",
+              "content": "© 2026 KRZYSZTOF MIOTK \nPOLITYKA PRYWATNOŚCI QUALE.AGENCY ↗"
+            }
+          }
         }
       ]
     },
@@ -60069,7 +59987,7 @@
               "padding": [
                 40,
                 20,
-                120,
+                56,
                 20
               ],
               "alignItems": "center",
@@ -60199,7 +60117,7 @@
                                   "content": "Badania UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -60389,7 +60307,7 @@
                                   "content": "Segmentacja klientów",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -60591,7 +60509,7 @@
                                   "content": "Strategia Marki",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -60803,7 +60721,7 @@
                                   "content": "Audyt UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -61006,7 +60924,7 @@
                                   "content": "Zewnętrzny Dyrektor UX",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -61197,7 +61115,7 @@
                                   "content": "Wystąpienia i szkolenia",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -61421,7 +61339,7 @@
                                   "content": "Konsultacje i mentoring",
                                   "lineHeight": 0.95,
                                   "fontFamily": "Nexa",
-                                  "fontSize": 27.2,
+                                  "fontSize": 24,
                                   "fontWeight": "500",
                                   "letterSpacing": -0.82
                                 },
@@ -61537,7 +61455,7 @@
           "layout": "vertical",
           "gap": 40,
           "padding": [
-            64,
+            40,
             20
           ],
           "children": [
@@ -61785,7 +61703,7 @@
           "layout": "vertical",
           "gap": 24,
           "padding": [
-            90,
+            56,
             20
           ],
           "children": [
@@ -62065,7 +61983,7 @@
           "layout": "vertical",
           "gap": 80,
           "padding": [
-            80,
+            56,
             20
           ],
           "children": [
@@ -63993,7 +63911,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20,
                 0,
                 20
@@ -64072,7 +63990,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20
               ],
               "alignItems": "center",
@@ -65763,7 +65681,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -65941,7 +65859,7 @@
               "fill": "#f2f2f780",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20,
                 20,
                 20
@@ -66042,7 +65960,7 @@
               "padding": [
                 20,
                 20,
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -66573,7 +66491,7 @@
               "fill": "#FFFFFF",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 20
               ],
               "children": [
@@ -66725,7 +66643,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -67008,7 +66926,7 @@
               "layout": "vertical",
               "gap": 64,
               "padding": [
-                100,
+                56,
                 20
               ],
               "children": [
@@ -67511,7 +67429,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 0
               ],
               "alignItems": "center",
@@ -68564,9 +68482,9 @@
               "layout": "vertical",
               "gap": 46,
               "padding": [
-                80,
+                56,
                 20,
-                64,
+                40,
                 20
               ],
               "children": [
@@ -68993,7 +68911,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -69107,7 +69025,7 @@
               "fill": "#f2f2f780",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20,
                 20,
                 20
@@ -69206,7 +69124,7 @@
               "padding": [
                 20,
                 20,
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -69749,7 +69667,7 @@
               "fill": "#FFFFFF",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 20
               ],
               "children": [
@@ -69901,7 +69819,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -70182,7 +70100,7 @@
               "layout": "vertical",
               "gap": 64,
               "padding": [
-                100,
+                56,
                 20
               ],
               "children": [
@@ -70685,7 +70603,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 0
               ],
               "alignItems": "center",
@@ -71739,9 +71657,9 @@
               "layout": "vertical",
               "gap": 46,
               "padding": [
-                80,
+                56,
                 20,
-                64,
+                40,
                 20
               ],
               "children": [
@@ -72188,7 +72106,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -72286,7 +72204,7 @@
               "fill": "#f2f2f780",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20,
                 20,
                 20
@@ -72387,7 +72305,7 @@
               "padding": [
                 20,
                 20,
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -72930,7 +72848,7 @@
               "fill": "#FFFFFF",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 20
               ],
               "children": [
@@ -73082,7 +73000,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -73361,7 +73279,7 @@
               "layout": "vertical",
               "gap": 64,
               "padding": [
-                100,
+                56,
                 20
               ],
               "children": [
@@ -73864,7 +73782,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 0
               ],
               "alignItems": "center",
@@ -74917,9 +74835,9 @@
               "layout": "vertical",
               "gap": 46,
               "padding": [
-                80,
+                56,
                 20,
-                64,
+                40,
                 20
               ],
               "children": [
@@ -75346,7 +75264,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -75444,7 +75362,7 @@
               "fill": "#f2f2f780",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20,
                 20,
                 20
@@ -75543,7 +75461,7 @@
               "padding": [
                 20,
                 20,
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -76086,7 +76004,7 @@
               "fill": "#FFFFFF",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 20
               ],
               "children": [
@@ -76238,7 +76156,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -76513,7 +76431,7 @@
               "layout": "vertical",
               "gap": 64,
               "padding": [
-                100,
+                56,
                 20
               ],
               "children": [
@@ -77016,7 +76934,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 0
               ],
               "alignItems": "center",
@@ -78069,9 +77987,9 @@
               "layout": "vertical",
               "gap": 46,
               "padding": [
-                80,
+                56,
                 20,
-                64,
+                40,
                 20
               ],
               "children": [
@@ -78498,7 +78416,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -78596,7 +78514,7 @@
               "fill": "#f2f2f780",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20,
                 20,
                 20
@@ -78697,7 +78615,7 @@
               "padding": [
                 20,
                 20,
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -79240,7 +79158,7 @@
               "fill": "#FFFFFF",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 20
               ],
               "children": [
@@ -79392,7 +79310,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -79667,7 +79585,7 @@
               "layout": "vertical",
               "gap": 64,
               "padding": [
-                100,
+                56,
                 20
               ],
               "children": [
@@ -80170,7 +80088,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 0
               ],
               "alignItems": "center",
@@ -81223,9 +81141,9 @@
               "layout": "vertical",
               "gap": 46,
               "padding": [
-                80,
+                56,
                 20,
-                64,
+                40,
                 20
               ],
               "children": [
@@ -81653,7 +81571,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "children": [
@@ -81786,7 +81704,7 @@
               "fill": "#f2f2f780",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20,
                 20,
                 20
@@ -81885,7 +81803,7 @@
               "padding": [
                 20,
                 20,
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -82428,7 +82346,7 @@
               "fill": "#FFFFFF",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 20
               ],
               "children": [
@@ -82580,7 +82498,7 @@
               "layout": "vertical",
               "gap": 80,
               "padding": [
-                80,
+                56,
                 20
               ],
               "justifyContent": "center",
@@ -82857,7 +82775,7 @@
               "layout": "vertical",
               "gap": 64,
               "padding": [
-                100,
+                56,
                 20
               ],
               "children": [
@@ -83360,7 +83278,7 @@
               "width": "fill_container",
               "layout": "vertical",
               "padding": [
-                120,
+                56,
                 0
               ],
               "alignItems": "center",
@@ -84413,9 +84331,9 @@
               "layout": "vertical",
               "gap": 46,
               "padding": [
-                80,
+                56,
                 20,
-                64,
+                40,
                 20
               ],
               "children": [
@@ -84653,8 +84571,6 @@
           "layout": "vertical",
           "gap": 16,
           "padding": [
-            56,
-            20,
             40,
             20
           ],
@@ -85429,7 +85345,7 @@
           "padding": [
             24,
             20,
-            48,
+            40,
             20
           ],
           "justifyContent": "center",
@@ -85542,7 +85458,7 @@
           "padding": [
             8,
             20,
-            64,
+            40,
             20
           ],
           "children": [
@@ -85704,7 +85620,7 @@
           "layout": "vertical",
           "gap": 18,
           "padding": [
-            56,
+            40,
             20,
             24,
             20
@@ -85816,7 +85732,7 @@
           "padding": [
             16,
             20,
-            56,
+            40,
             20
           ],
           "children": [
@@ -86001,7 +85917,7 @@
           "layout": "vertical",
           "gap": 80,
           "padding": [
-            64,
+            40,
             20
           ],
           "children": [
@@ -86377,8 +86293,6 @@
           "layout": "vertical",
           "gap": 16,
           "padding": [
-            56,
-            20,
             40,
             20
           ],
@@ -86901,7 +86815,7 @@
           "padding": [
             8,
             20,
-            64,
+            40,
             20
           ],
           "children": [
@@ -87063,7 +86977,7 @@
           "layout": "vertical",
           "gap": 18,
           "padding": [
-            56,
+            40,
             20,
             24,
             20
@@ -87175,7 +87089,7 @@
           "padding": [
             16,
             20,
-            56,
+            40,
             20
           ],
           "children": [
@@ -87358,7 +87272,7 @@
           "layout": "vertical",
           "gap": 80,
           "padding": [
-            64,
+            40,
             20
           ],
           "children": [
@@ -87707,6 +87621,24 @@
           ]
         }
       ]
+    },
+    {
+      "type": "context",
+      "id": "iUveI",
+      "x": 8424,
+      "y": 4729,
+      "width": 385,
+      "height": 219,
+      "content": "Tu musi zadziałać input"
+    },
+    {
+      "type": "note",
+      "id": "PzbzP",
+      "x": -16000,
+      "y": 11740,
+      "width": 720,
+      "height": 0,
+      "content": "ARCHIWUM — szkice robocze (stare warianty sekcji, stany hover, propozycje). Bezpieczne do usunięcia; wersje stron i komponenty są poza tą strefą."
     }
   ],
   "variables": {
