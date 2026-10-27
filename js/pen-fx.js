@@ -521,6 +521,88 @@
       link.addEventListener("click", function () { window.location.href = "uslugi.html"; });
       sec.appendChild(link);
     })();
+    /* podstrony usług: zdjęcie INFOSHARE nad kartą „Wystąpienia i szkolenia" (wg TxBlS) */
+    (function () {
+      if (/uslugi\.html/.test(location.pathname)) return;
+      var N4 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      var wcard = Array.prototype.find.call(document.querySelectorAll("div"), function (d) {
+        var t = N4(d.textContent);
+        return d.offsetHeight > 150 && d.offsetHeight < 650 && /Wystąpienia i szkolenia/.test(t) && /Zobacz usługę/.test(t) && !/Zobacz usługę[\s\S]*Zobacz usługę/.test(t);
+      });
+      if (!wcard || wcard._kmFoto) return;
+      wcard._kmFoto = 1;
+      var wrap4 = document.createElement("div");
+      wrap4.style.cssText = "display:flex;flex-direction:column;width:100%;";
+      wcard.parentNode.insertBefore(wrap4, wcard);
+      var foto = document.createElement("div");
+      foto.style.cssText = "width:100%;height:190px;background-image:url('assets/img/krzysztof-prelekcja.jpg');background-size:cover;background-position:center 28%;position:relative;";
+      var chip = document.createElement("div");
+      chip.textContent = "INFOSHARE";
+      chip.style.cssText = "position:absolute;left:16px;bottom:14px;background:rgba(13,0,51,0.85);color:#ffffff;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:2px;padding:5px 10px;";
+      foto.appendChild(chip);
+      wrap4.appendChild(foto);
+      wrap4.appendChild(wcard);
+    })();
+    /* podstrony usług: strzałki pod panelem case — rotacja historii klientów (wg TxBlS) */
+    (function () {
+      if (/uslugi\.html/.test(location.pathname)) return;
+      var N5 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      var csLeaf = null;
+      document.querySelectorAll("div").forEach(function (d) {
+        if (!csLeaf && d.children.length === 0 && /^Zobacz Case Study$/i.test(N5(d.textContent))) csLeaf = d;
+      });
+      if (!csLeaf) return;
+      var panel = csLeaf.parentElement;
+      while (panel && panel !== document.body && !/gradient/.test(panel.getAttribute("style") || "")) panel = panel.parentElement;
+      if (!panel || panel === document.body || panel._kmRot) return;
+      panel._kmRot = 1;
+      var title = panel.querySelector("h2");
+      var desc = null;
+      panel.querySelectorAll("div").forEach(function (d) {
+        if (desc || d.children.length) return;
+        var t = N5(d.textContent);
+        if (t.length > 60 && parseFloat(getComputedStyle(d).fontSize) >= 16) desc = d;
+      });
+      var CS = [
+        { t: "Apteka Gemini — Badania RITE", d: "Czyli szybka walidacja 7 koncepcji procesu, aby połączyć ograniczenia prawne, wymogi biznesowe i trendy UX-owe. W 2 tygodnie zbadałem 7 koncepcji designu. Efekty nie wymagają zmian już od kilku lat.", slug: "gemini-badania-rite" },
+        { t: "XTB — Milisekundy = pieniądze", d: "Optymalizacja krytycznych ścieżek na podstawie badań i twardych danych analitycznych. Szybkość interfejsu przełożona wprost na wynik finansowy.", slug: "xtb-optymalizacja-sciezek" },
+        { t: "OLX — Segmentacja behawioralna", d: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów, która uporządkowała roadmapę zespołu.", slug: "olx-segmentacja-klientow" }
+      ];
+      var idx = 0;
+      var btnWrap = csLeaf.parentElement;
+      btnWrap.style.cursor = "pointer";
+      btnWrap.addEventListener("click", function (e) {
+        e.stopPropagation();
+        window.location.href = "case-study.html?slug=" + encodeURIComponent(CS[idx].slug);
+      }, true);
+      function rotate(dir) {
+        idx = (idx + dir + CS.length) % CS.length;
+        panel.style.transition = "opacity .18s ease";
+        panel.style.opacity = "0";
+        setTimeout(function () {
+          if (title) title.textContent = CS[idx].t;
+          if (desc) desc.textContent = kmNbsp(CS[idx].d);
+          panel.style.opacity = "1";
+        }, 180);
+      }
+      var row5 = document.createElement("div");
+      row5.style.cssText = "display:flex;flex-direction:row;justify-content:center;align-items:center;gap:72px;width:100%;padding:24px 0 0;";
+      var mk = function (dir) {
+        var s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        s.setAttribute("viewBox", "0 0 24 24");
+        s.setAttribute("width", "26");
+        s.setAttribute("height", "26");
+        s.style.cursor = "pointer";
+        s.innerHTML = dir < 0
+          ? '<path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+          : '<path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        s.addEventListener("click", function () { rotate(dir); });
+        return s;
+      };
+      row5.appendChild(mk(-1));
+      row5.appendChild(mk(1));
+      panel.parentNode.insertBefore(row5, panel.nextSibling);
+    })();
     /* uslugi.html: sekcja kart usług jak na stronie głównej (gradient + ciemne karty) */
     (function () {
       if (!/uslugi\.html/.test(location.pathname)) return;
