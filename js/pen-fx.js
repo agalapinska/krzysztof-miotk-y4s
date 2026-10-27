@@ -1641,7 +1641,10 @@
       c.style.height = "auto";
       c.style.justifyContent = "space-between";
       Array.prototype.forEach.call(c.children, function (k) {
-        if (k.children.length === 0 && /font-size:\s*18px/.test(k.getAttribute("style") || "")) k.style.flex = "1 1 0";
+        if (k.children.length === 0 && /font-size:\s*18px/.test(k.getAttribute("style") || "")) {
+          k.style.flex = "1 1 0";
+          k.style.fontWeight = "500";
+        }
       });
       var row = c.parentElement;
       if (row && /Articles Row/.test(row.getAttribute("data-pencil-name") || "")) row.style.alignItems = "stretch";
