@@ -685,6 +685,58 @@
             col3.appendChild(title);
             if (desc) col3.appendChild(desc);
             wrap.style.gap = "16px";
+            /* wg projektu aLb03: większy tytuł, klienci, ↗ zamiast buttona, karta klikalna */
+            title.style.fontSize = "28px";
+            title.style.lineHeight = "32px";
+            title.style.whiteSpace = "normal";
+            var t7 = N2(title.textContent);
+            var KLIENCI = {
+              "Badania UX": "mObywatel, Apteka Gemini",
+              "Strategia w biznesie": "Reserved, ERLI",
+              "Strategia Marki": "Reserved, ERLI",
+              "Dyrektor UX": "Traffit, ERLI",
+              "Zewnętrzny Dyrektor UX": "Traffit, ERLI",
+              "Segmentacja klientów": "OLX, Pilot GO",
+              "Audyt UX": "OtoMoto, mBank",
+              "Wystąpienia i szkolenia": "Infoshare, I love marketing, mBank"
+            };
+            if (KLIENCI[t7]) {
+              var kl7 = document.createElement("div");
+              kl7.textContent = "Przykładowi klienci: " + KLIENCI[t7];
+              kl7.style.cssText = "font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:20px;color:#D4D0F8;padding-left:12px;margin-top:4px;";
+              col3.appendChild(kl7);
+            }
+            Array.prototype.forEach.call(card.querySelectorAll("div"), function (zb) {
+              if (/^Zobacz usługę$/.test(N2(zb.textContent)) && zb.offsetHeight < 95 && zb.offsetHeight > 20) {
+                var hideEl = zb;
+                while (hideEl.parentElement && hideEl.parentElement !== card && N2(hideEl.parentElement.textContent) === N2(zb.textContent)) hideEl = hideEl.parentElement;
+                hideEl.style.display = "none";
+              }
+            });
+            var arRow = document.createElement("div");
+            arRow.style.cssText = "display:flex;justify-content:flex-end;width:100%;";
+            var ar7 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            ar7.setAttribute("viewBox", "0 0 24 24");
+            ar7.setAttribute("width", "22");
+            ar7.setAttribute("height", "22");
+            ar7.innerHTML = '<path d="M7 17L17 7M7 7h10v10" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+            arRow.appendChild(ar7);
+            card.appendChild(arRow);
+            var LINKS7 = {
+              "Badania UX": "badania-ux.html",
+              "Dyrektor UX": "dyrektor-ux.html",
+              "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
+              "Segmentacja klientów": "segmentacja-klientow.html",
+              "Audyt UX": "audyt-ux.html",
+              "Wystąpienia i szkolenia": "wystapienia-i-szkolenia.html",
+              "Konsultacje i mentoring": "konsultacje-i-mentoring.html",
+              "Konsultacje i Mentoring": "konsultacje-i-mentoring.html"
+            };
+            if (LINKS7[t7] && !card._kmNav7) {
+              card._kmNav7 = 1;
+              card.style.cursor = "pointer";
+              card.addEventListener("click", function () { window.location.href = LINKS7[t7]; });
+            }
           }
         }
         card.querySelectorAll("div").forEach(function (d) {
