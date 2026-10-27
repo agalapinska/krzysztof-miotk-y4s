@@ -5,7 +5,7 @@
 
   /* --- 0. Pełna szerokość ekranu: skala proporcjonalna + marginesy 140px ≥1480px.
          Poniżej 768px: tryb mobilny — baza 430px + linearyzacja layoutu (0b). --- */
-  var MOBILE_BP = 768, MBASE = 430;
+  var MOBILE_BP = 900, MBASE = 430;
   var isMob = document.documentElement.clientWidth < MOBILE_BP;
   (function () {
     var root = document.body.firstElementChild;
@@ -41,7 +41,7 @@
     function fit() {
       var w = document.documentElement.clientWidth;
       if ((w < MOBILE_BP) !== isMob) { location.reload(); return; }
-      if (isMob) { document.body.style.zoom = w / MBASE; return; }
+      if (isMob) { document.body.style.zoom = Math.min(w / MBASE, 1.3); return; }
       if (padEls === null) collectPads();
       var wide = w >= 1480;
       padEls.forEach(function (el) {
@@ -228,7 +228,7 @@
 
   /* --- 0c. Mobilny nav wg komponentu Pen „Nav-mobile": logo + hamburger, sticky --- */
   function kmMobileNav() {
-    var nav = document.querySelector('[data-pencil-name="Nav-top"]');
+    var nav = document.querySelector('[data-pencil-name="Nav-top"], [data-pencil-name="Nav"]');
     if (!nav || nav._kmMob) return;
     nav._kmMob = 1;
     var logo = nav.querySelector('[data-pencil-name*="Logo"], [data-pencil-name="Layer_1"]');
@@ -843,7 +843,7 @@
   /* --- 4b. Mega-menu „Usługi" (stan otwarty z projektu Pen) --- */
   (function () {
     if (isMob) return;
-    var nav = document.querySelector('[data-pencil-name="Nav-top"]');
+    var nav = document.querySelector('[data-pencil-name="Nav-top"], [data-pencil-name="Nav"]');
     if (!nav) return;
     var wrap = document.createElement("div");
     wrap.className = "km-nav-wrap";
