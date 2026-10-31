@@ -7,6 +7,39 @@
          Poniżej 768px: tryb mobilny — baza 430px + linearyzacja layoutu (0b). --- */
   var MOBILE_BP = 900, MBASE = 430;
   var isMob = document.documentElement.clientWidth < MOBILE_BP;
+
+  /* --- Formularze → arkusz „Formularze_KMiotk" ---------------------------
+     Strona jest statyczna, więc zapis idzie przez Apps Script Web App
+     działający na koncie właściciela arkusza. Instrukcja wdrożenia i kod:
+     apps-script/formularze.gs. Dopóki KM_FORMS_URL jest puste, formularze
+     działają po staremu, czyli otwierają program pocztowy. */
+  var KM_FORMS_URL = "";
+
+  function kmPole(label) {
+    var t = (label || "").toLowerCase();
+    if (/imi|nazwisko/.test(t)) return "imie";
+    if (/mail/.test(t)) return "email";
+    if (/telefon|tel\./.test(t)) return "telefon";
+    if (/firma|organizacj/.test(t)) return "firma";
+    if (/usług|uslug|temat|zakres/.test(t)) return "temat";
+    if (/bud[żz]et/.test(t)) return "budzet";
+    if (/wiadomo|opis|pytanie/.test(t)) return "wiadomosc";
+    return null;
+  }
+
+  function kmSendForm(nazwa, dane) {
+    if (!KM_FORMS_URL) return Promise.reject(new Error("brak endpointu"));
+    var body = new URLSearchParams();
+    body.append("formularz", nazwa);
+    body.append("strona", location.pathname.split("/").pop() || "index.html");
+    Object.keys(dane).forEach(function (k) { if (dane[k]) body.append(k, dane[k]); });
+    return fetch(KM_FORMS_URL, { method: "POST", body: body })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error((j && j.error) || "błąd zapisu");
+        return j;
+      });
+  }
   (function () {
     var root = document.body.firstElementChild;
     if (!root) return;
@@ -2929,7 +2962,6 @@
           return;
         }
         var body = fields.map(function (f) { return f.label + ": " + (f.ctl.value || "").trim(); }).join("\n");
-        window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject) + "&body=" + encodeURIComponent(body);
         var ok = form.querySelector(".km-form-ok");
         if (!ok) {
           ok = document.createElement("div");
@@ -2937,7 +2969,27 @@
           ok.setAttribute("role", "status");
           form.appendChild(ok);
         }
-        ok.textContent = "Otwieram Twój program pocztowy — jeśli nic się nie wydarzyło, napisz na " + MAIL + ".";
+        function mailFallback() {
+          window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject) + "&body=" + encodeURIComponent(body);
+          ok.textContent = "Otwieram Twój program pocztowy — jeśli nic się nie wydarzyło, napisz na " + MAIL + ".";
+        }
+        var dane = {};
+        fields.forEach(function (f) {
+          var v = (f.ctl.value || "").trim();
+          if (!v) return;
+          var key = kmPole(f.label);
+          dane[key || f.label] = v;
+        });
+        if (btn) btn.style.pointerEvents = "none";
+        ok.textContent = "Wysyłam…";
+        kmSendForm(subject, dane).then(function () {
+          ok.textContent = "Dzięki! Zgłoszenie dotarło. Odezwę się w ciągu 24 godzin.";
+          fields.forEach(function (f) { f.ctl.value = ""; });
+          if (btn) btn.style.pointerEvents = "";
+        }).catch(function () {
+          if (btn) btn.style.pointerEvents = "";
+          mailFallback();
+        });
       }
       if (btn) {
         btn.style.cursor = "pointer";
@@ -3051,9 +3103,6 @@
           if (firstBad) firstBad._kmField.focus();
           return;
         }
-        var subject = encodeURIComponent("Pytanie ze strony krzysztof-miotk");
-        var body = encodeURIComponent(msg + "\n\n—\nOdpowiedz na: " + email);
-        window.location.href = "mailto:" + MAILTO + "?subject=" + subject + "&body=" + body;
         var okMsg = panel.querySelector(".km-form-ok");
         if (!okMsg) {
           okMsg = document.createElement("div");
@@ -3062,7 +3111,20 @@
           var last = pBoxes[pBoxes.length - 1];
           (last._kmErr || last).parentNode.appendChild(okMsg);
         }
-        okMsg.textContent = "Otwieram Twój program pocztowy z gotową wiadomością — wystarczy kliknąć „Wyślij”.";
+        function mailFallback2() {
+          var subject = encodeURIComponent("Pytanie ze strony krzysztof-miotk");
+          var body = encodeURIComponent(msg + "\n\n—\nOdpowiedz na: " + email);
+          window.location.href = "mailto:" + MAILTO + "?subject=" + subject + "&body=" + body;
+          okMsg.textContent = "Otwieram Twój program pocztowy z gotową wiadomością — wystarczy kliknąć „Wyślij”.";
+        }
+        okMsg.textContent = "Wysyłam…";
+        kmSendForm(btnLeaf ? (btnLeaf.textContent || "").trim() : "Zadaj mi pytanie",
+                   { email: email, wiadomosc: msg })
+          .then(function () {
+            okMsg.textContent = "Dzięki! Pytanie dotarło. Odpowiem na " + email + ".";
+            pBoxes.forEach(function (b) { b._kmField.value = ""; });
+          })
+          .catch(mailFallback2);
       }
       pBoxes.forEach(function (box) {
         box._kmField.addEventListener("keydown", function (e) {
