@@ -2705,13 +2705,22 @@
       document.head.appendChild(sc);
     }
     var NT = function (el) { return (el.textContent || "").replace(/\u00A0/g, " ").trim(); };
+    /* Szukamy opakowania przycisku wokół etykiety. Poprzednio pętla zwracała przodka
+       nawet wtedy, gdy test nigdy nie trafił, więc w stopce handler lądował na całej
+       kolumnie i przechwytywał kliknięcia we wszystkie linki w środku (capture).
+       Teraz nie wychodzimy poza element wielkości przycisku, a bez trafienia
+       zostajemy na samej etykiecie. */
     function climb(d, test) {
+      var r0 = d.getBoundingClientRect();
       var b = d;
       for (var i = 0; i < 3 && b.parentElement; i++) {
-        if (test(b)) break;
-        b = b.parentElement;
+        if (test(b)) return b;
+        var p = b.parentElement;
+        var rp = p.getBoundingClientRect();
+        if (rp.width > r0.width + 160 || rp.height > r0.height + 80) break;
+        b = p;
       }
-      return b;
+      return test(b) ? b : d;
     }
     function kmScrollWycena() {
       var h = null;
