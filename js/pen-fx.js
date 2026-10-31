@@ -2560,6 +2560,29 @@
       } else {
         ctaP.appendChild(mail9);
       }
+      /* Desktop: panel jest ułożony w kolumnę (poprawka z widoku mobile), przez co
+         przyciski rozciągały się na całą szerokość. Projekt daje im 320px. */
+      if (!isMob) {
+        [mail9, btnRow9].forEach(function (el9) {
+          if (!el9) return;
+          el9.style.maxWidth = "320px";
+          el9.style.alignSelf = "flex-start";
+        });
+        /* Etykieta + ikona kalendarza + kwadrat ze strzałką mają naturalnie 376px.
+           Zaciskamy odstępy, a gdy nadal nie mieści się w 320px, chowamy ikonę
+           kalendarza — strzałka i tak niesie akcję, a tekst zostaje w całości. */
+        if (btnRow9) {
+          var seg1 = btnRow9.children[0];
+          if (seg1) {
+            seg1.style.padding = "14px 12px";
+            seg1.style.gap = "8px";
+            seg1.style.minWidth = "0";
+            seg1.style.justifyContent = "center";
+            var ic9 = seg1.querySelector("svg");
+            if (ic9) ic9.style.display = "none";
+          }
+        }
+      }
     }
   })();
 
@@ -2734,6 +2757,14 @@
       setTimeout(kmScrollWycena, 1800);
     }
     var RXCAL = /^(Umów się na rozmowę( online!?)?|Umów videorozmowę|Umów darmową rozmowę|Porozmawiajmy( o projekcie)?)$/;
+    /* Przycisk CTA w artykule/case study: klikalna ma być cała jego powierzchnia,
+       razem z ikoną, paddingiem i kwadratem ze strzałką, nie sama etykieta. */
+    document.querySelectorAll('[data-pencil-name="CTA Btn"]').forEach(function (cb) {
+      if (cb._kmCal) return;
+      cb._kmCal = 1;
+      cb.style.cursor = "pointer";
+      cb.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); openCal(); }, true);
+    });
     document.querySelectorAll("div, span, a").forEach(function (d) {
       if (d.children.length) return;
       if (/^H[1-6]$/.test(d.tagName) || parseFloat(getComputedStyle(d).fontSize) > 26) return;
