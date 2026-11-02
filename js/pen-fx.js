@@ -1114,6 +1114,8 @@
 
   /* --- 3. Przyciski — ripple + lift + nawigacja --- */
   var CONTACT = "kontakt.html", SERVICES = "uslugi.html", HOME = "index.html", ARTICLES = "artykuly.html", CASESTUDIES = "case-studies.html";
+  /* URL aplikacji internetowej Apps Script (narzedzia/google-sheet-webhook.gs) — wspólny dla wszystkich formularzy. */
+  var KM_FORMS_WEBHOOK = "https://script.google.com/macros/s/AKfycbyaLTAImbAVU8t_alB7832lxvfyyHyWY7ec-jVk94cI54ocN2x7XpyJCHm0JguSYRSYag/exec";
   var PAGES = {
     "Badania UX": "badania-ux.html",
     "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
@@ -2897,7 +2899,7 @@
   (function () {
     var MAIL = "krzysiek@quale.agency";
     /* URL aplikacji internetowej Apps Script (narzedzia/google-sheet-webhook.gs). Pusty = fallback mailto. */
-    var FORMS_WEBHOOK = "https://script.google.com/macros/s/AKfycbyaLTAImbAVU8t_alB7832lxvfyyHyWY7ec-jVk94cI54ocN2x7XpyJCHm0JguSYRSYag/exec";
+    var FORMS_WEBHOOK = KM_FORMS_WEBHOOK;
     var USLUGI_OPT = ["Badania UX", "Strategia w biznesie", "Zewnętrzny Dyrektor UX", "Segmentacja klientów", "Audyt UX", "Konsultacje i mentoring", "Wystąpienia i szkolenia", "Jeszcze nie wiem"];
     document.querySelectorAll('[data-pencil-name="form"]').forEach(function (form) {
       if (form._km) return;
@@ -3013,7 +3015,7 @@
             })
             .catch(function () {
               window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject);
-              ok.textContent = "Otwieram Twój program pocztowy — jeśli nic się nie wydarzyło, napisz na " + MAIL + ".";
+              ok.textContent = "Nie udało się zapisać — otwieram Twój program pocztowy. Możesz też napisać na " + MAIL + ".";
             });
           return;
         }
@@ -3133,9 +3135,6 @@
           if (firstBad) firstBad._kmField.focus();
           return;
         }
-        var subject = encodeURIComponent("Pytanie ze strony krzysztof-miotk");
-        var body = encodeURIComponent(msg + "\n\n—\nOdpowiedz na: " + email);
-        window.location.href = "mailto:" + MAILTO + "?subject=" + subject + "&body=" + body;
         var okMsg = panel.querySelector(".km-form-ok");
         if (!okMsg) {
           okMsg = document.createElement("div");
@@ -3144,6 +3143,24 @@
           var last = pBoxes[pBoxes.length - 1];
           (last._kmErr || last).parentNode.appendChild(okMsg);
         }
+        if (KM_FORMS_WEBHOOK) {
+          var data = new URLSearchParams();
+          data.set("form", "kontakt");
+          data.set("email", email);
+          data.set("wiadomosc", msg);
+          data.set("zrodlo", location.pathname.split("/").pop() + " — Zadaj mi pytanie");
+          fetch(KM_FORMS_WEBHOOK, { method: "POST", mode: "no-cors", body: data })
+            .then(function () {
+              okMsg.textContent = "Dzięki! Pytanie zapisane — odpowiem na podany adres.";
+              pBoxes.forEach(function (box) { box._kmField.value = ""; });
+            })
+            .catch(function () {
+              window.location.href = "mailto:" + MAILTO + "?subject=" + encodeURIComponent("Pytanie ze strony krzysztofmiotk.pl") + "&body=" + encodeURIComponent(msg + "\n\n—\nOdpowiedz na: " + email);
+              okMsg.textContent = "Nie udało się zapisać — otwieram Twój program pocztowy. Możesz też napisać na " + MAILTO + ".";
+            });
+          return;
+        }
+        window.location.href = "mailto:" + MAILTO + "?subject=" + encodeURIComponent("Pytanie ze strony krzysztofmiotk.pl") + "&body=" + encodeURIComponent(msg + "\n\n—\nOdpowiedz na: " + email);
         okMsg.textContent = "Otwieram Twój program pocztowy z gotową wiadomością — wystarczy kliknąć „Wyślij”.";
       }
       pBoxes.forEach(function (box) {
