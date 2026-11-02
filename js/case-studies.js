@@ -160,12 +160,12 @@
         render();
       });
     });
-    var allItems = [featured].concat(rest);
     function paintChips() {
       Object.keys(chipEls).forEach(function (name) {
         var chip = chipEls[name];
         if (name !== "Wszystkie") {
-          var cnt = allItems.filter(function (a) {
+          /* licz po liście (bez wyróżnionego) — chip bez wyników na liście jest ukryty */
+          var cnt = rest.filter(function (a) {
             var k = (a.branza || "").toLowerCase();
             var w = name.toLowerCase();
             return k === w || k.indexOf(w) !== -1 || (k && w.indexOf(k) !== -1);

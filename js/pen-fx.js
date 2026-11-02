@@ -3142,8 +3142,8 @@
               /strona www|aplikacji/.test(l) ? "strona_www" :
               /stanowisko/.test(l) ? "stanowisko" :
               /produkt|usług/.test(l) ? "usluga" :
-              /cel/.test(l) ? "cel_biznesowy" :
               /grup/.test(l) ? "grupa_docelowa" :
+              /cel/.test(l) ? "cel_biznesowy" :
               isWycena ? "opis" : "wiadomosc";
             data.set(key, v);
           });

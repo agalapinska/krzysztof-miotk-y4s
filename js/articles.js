@@ -102,6 +102,9 @@
       r.style.height = "auto";
     });
     var lastRow = rowSet[rowSet.length - 1];
+    /* statyczna paginacja z eksportu (1 2 3 →) — zastępuje ją dynamiczna poniżej */
+    var statPag = document.querySelector('[data-pencil-name="Paginacja"]');
+    if (statPag) statPag.style.display = "none";
     var pagRow = document.createElement("div");
     pagRow.style.cssText = "display:flex;flex-direction:row;gap:12px;justify-content:center;align-items:center;width:100%;padding:28px 0 0;";
     lastRow.parentNode.insertBefore(pagRow, lastRow.nextSibling);
@@ -161,12 +164,12 @@
         render();
       });
     });
-    var allItems = [featured].concat(rest);
     function paintChips() {
       Object.keys(chipEls).forEach(function (name) {
         var chip = chipEls[name];
         if (name !== "Wszystkie") {
-          var cnt = allItems.filter(function (a) {
+          /* licz po liście (bez wyróżnionego) — chip bez wyników na liście jest ukryty */
+          var cnt = rest.filter(function (a) {
             var k = (a.kategoria || "").toLowerCase();
             var w = name.toLowerCase();
             return k === w || k.indexOf(w) !== -1 || (k && w.indexOf(k) !== -1);
