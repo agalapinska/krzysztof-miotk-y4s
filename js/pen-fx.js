@@ -1330,38 +1330,115 @@
       ["Wystąpienia i szkolenia", "Zaproś mnie na konferencję lub podnieś kompetencje swojego zespołu."]
     ];
     var rows = [ITEMS.slice(0, 3), ITEMS.slice(3)];
-    var mega = document.createElement("div");
-    mega.className = "km-mega";
-    mega.innerHTML =
-      '<div class="km-mega__inner">' +
-        '<div class="km-mega__left">' +
-          '<div class="km-mega__label">USŁUGI</div>' +
-          '<div class="km-mega__title">Wsparcie UX dopasowane do etapu Twojego produktu</div>' +
-          '<a class="km-mega__all" href="uslugi.html">Wszystkie usługi ' +
-            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>' +
-        '</div>' +
-        '<div class="km-mega__grid">' +
-          rows.map(function (row) {
-            return '<div class="km-mega__row">' + row.map(function (it) {
-              return '<a class="km-mega__item" href="' + (PAGES[it[0]] || "uslugi.html") + '"><strong>' + it[0] + '</strong><p>' + it[1] + '</p></a>';
-            }).join("") + '</div>';
-          }).join("") +
-        '</div>' +
-      '</div>';
-    wrap.appendChild(mega);
+    var ARROW9 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+    function mkMega(label, title, allTxt, allHref) {
+      var m = document.createElement("div");
+      m.className = "km-mega";
+      m.innerHTML =
+        '<div class="km-mega__inner">' +
+          '<div class="km-mega__left">' +
+            '<div class="km-mega__label">' + label + '</div>' +
+            '<div class="km-mega__title">' + title + '</div>' +
+            '<a class="km-mega__all" href="' + allHref + '">' + allTxt + ' ' + ARROW9 + '</a>' +
+          '</div>' +
+          '<div class="km-mega__grid"></div>' +
+        '</div>';
+      wrap.appendChild(m);
+      return m;
+    }
+    var megaS = mkMega("USŁUGI", "Wsparcie UX dopasowane do etapu Twojego produktu", "Wszystkie usługi", "uslugi.html");
+    megaS.querySelector(".km-mega__grid").innerHTML = rows.map(function (row) {
+      return '<div class="km-mega__row">' + row.map(function (it) {
+        return '<a class="km-mega__item" href="' + (PAGES[it[0]] || "uslugi.html") + '"><strong>' + it[0] + '</strong><p>' + it[1] + '</p></a>';
+      }).join("") + '</div>';
+    }).join("");
+    var megaC = mkMega("CASE STUDY", "Zobacz, jak badania zmieniają produkty i decyzje", "Wszystkie case studies", "case-studies.html");
+    var megaA = mkMega("ARTYKUŁY", "Praktyczna wiedza z 2500+ sesji badawczych", "Wszystkie artykuły", "artykuly.html");
+    /* 3 najnowsze case studies / artykuły z arkusza (dociągane przy pierwszym najechaniu na nav) */
+    var SHEET9 = "https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv";
+    function esc9b(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+    function parse9(text) {
+      var rws = [], row = [], cell = "", q = false;
+      for (var i = 0; i < text.length; i++) {
+        var ch = text[i];
+        if (q) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += ch; }
+        else if (ch === '"') q = true;
+        else if (ch === ",") { row.push(cell); cell = ""; }
+        else if (ch === "\n") { row.push(cell.replace(/\r$/, "")); rws.push(row); row = []; cell = ""; }
+        else cell += ch;
+      }
+      if (cell.length || row.length) { row.push(cell.replace(/\r$/, "")); rws.push(row); }
+      var head = rws[0].map(function (h) { return h.trim().toLowerCase(); });
+      return rws.slice(1).filter(function (r) { return r.join("").trim(); }).map(function (r) {
+        var o = {};
+        head.forEach(function (h, j) { o[h] = (r[j] || "").trim(); });
+        return o;
+      });
+    }
+    function href9(a, page) {
+      var raw = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+      var full = raw && !/\.(docx?|pdf|pages|md|txt)\s*$/i.test(raw) && (raw.length >= 120 || raw.indexOf("\n") !== -1);
+      return full && a.slug ? page + "?slug=" + encodeURIComponent(a.slug) : (a.url || "");
+    }
+    function fillMega(m, list, page) {
+      var its = list
+        .filter(function (a) { return a.tytul && href9(a, page); })
+        .sort(function (a, b) { return (b.data || "").localeCompare(a.data || ""); })
+        .slice(0, 3);
+      if (!its.length) return;
+      m.querySelector(".km-mega__grid").innerHTML = '<div class="km-mega__row">' + its.map(function (a) {
+        return '<a class="km-mega__item" href="' + esc9b(href9(a, page)) + '"><strong>' + esc9b(a.tytul) + '</strong><p>' + esc9b(a.zajawka || "") + '</p></a>';
+      }).join("") + '</div>';
+    }
+    var megaLoading = false;
+    function loadMegas() {
+      if (megaLoading) return;
+      megaLoading = true;
+      Promise.all([
+        fetch(SHEET9 + "&gid=770001").then(function (r) { return r.text(); }),
+        fetch(SHEET9 + "&gid=0").then(function (r) { return r.text(); })
+      ]).then(function (res) {
+        fillMega(megaC, parse9(res[0]), "case-study.html");
+        fillMega(megaA, parse9(res[1]), "artykul.html");
+      }).catch(function () { megaLoading = false; });
+    }
+    var MEGAS = [megaS, megaC, megaA];
+    var LBL2MEGA = { "Moja Oferta": megaS, "Case Study": megaC, "Artykuły": megaA };
     var hideT;
-    function open() { clearTimeout(hideT); wrap.classList.add("is-open"); }
-    function close() { hideT = setTimeout(function () { wrap.classList.remove("is-open"); }, 160); }
+    function open(m) {
+      clearTimeout(hideT);
+      MEGAS.forEach(function (x) { x.classList.toggle("is-on", x === m); });
+      wrap.classList.add("is-open");
+    }
+    function close() {
+      hideT = setTimeout(function () {
+        MEGAS.forEach(function (x) { x.classList.remove("is-on"); });
+        wrap.classList.remove("is-open");
+      }, 160);
+    }
     function overButton(t) {
       return !!(t && t.closest && t.closest('.km-btn-fx, [data-pencil-name="Frame 710"]'));
     }
+    function megaFor(t) {
+      var el = t;
+      for (var i = 0; i < 5 && el && el !== nav && el.textContent; i++) {
+        var txt = (el.textContent || "").replace(/ /g, " ").trim();
+        if (LBL2MEGA[txt]) return LBL2MEGA[txt];
+        el = el.parentElement;
+      }
+      return null;
+    }
     nav.addEventListener("mouseover", function (e) {
+      loadMegas();
       if (overButton(e.target)) { close(); return; }
-      open();
+      var m = megaFor(e.target);
+      if (m) open(m); else close();
     });
     nav.addEventListener("mouseleave", close);
-    mega.addEventListener("mouseenter", open);
-    mega.addEventListener("mouseleave", close);
+    MEGAS.forEach(function (m) {
+      m.addEventListener("mouseenter", function () { open(m); });
+      m.addEventListener("mouseleave", close);
+    });
     /* cień pod przyklejoną nawigacją po przewinięciu */
     var stuck = false;
     function kmStuck() {

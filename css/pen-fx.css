@@ -81,7 +81,7 @@ html { overflow-x: hidden; }
   opacity: 0; visibility: hidden; transform: translateY(-8px);
   transition: opacity .22s ease, transform .22s ease, visibility .22s;
 }
-.km-nav-wrap.is-open .km-mega { opacity: 1; visibility: visible; transform: none; }
+.km-mega.is-on { opacity: 1; visibility: visible; transform: none; }
 .km-mega__inner { width: 1180px; margin: 0 auto; display: flex; }
 .km-mega__left { width: 300px; padding: 40px 32px 0 0; box-sizing: border-box; }
 .km-mega__label { display: flex; align-items: center; gap: 6px; font-family: "Geist Mono", ui-monospace, monospace; font-weight: 500; font-size: 12.5px; letter-spacing: .08em; color: #665eee; }
