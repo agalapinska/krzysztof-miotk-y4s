@@ -70,6 +70,9 @@ html { overflow-x: hidden; }
 /* Mega-menu „Usługi" — stan otwarty z projektu Pen (Frame 684) */
 .km-nav-wrap { position: sticky; top: 0; z-index: 90; background: rgba(255, 255, 255, .72); -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5); }
 .km-nav-wrap.is-stuck { box-shadow: 0 10px 30px -18px rgba(13, 0, 51, .12); }
+/* buttony w nav (Kontakt, Umów darmową rozmowę): po przewinięciu transparentne tło na szkle, hover przywraca kolor */
+.km-nav-wrap .km-btn-fx { transition: background-color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.km-nav-wrap.is-stuck .km-btn-fx:not(:hover) { background-color: transparent !important; }
 @supports not (backdrop-filter: blur(1px)) { .km-nav-wrap { background: rgba(255, 255, 255, .96); } }
 .km-mega {
   position: absolute; left: 0; right: 0; top: 100%;
