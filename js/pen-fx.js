@@ -1359,6 +1359,14 @@
     nav.addEventListener("mouseleave", close);
     mega.addEventListener("mouseenter", open);
     mega.addEventListener("mouseleave", close);
+    /* cień pod przyklejoną nawigacją po przewinięciu */
+    var stuck = false;
+    function kmStuck() {
+      var s = window.scrollY > 4;
+      if (s !== stuck) { stuck = s; wrap.classList.toggle("is-stuck", s); }
+    }
+    window.addEventListener("scroll", kmStuck, { passive: true });
+    kmStuck();
   })();
 
   /* --- 4d. Animacje talii zdjęć (hero i demo raportu) wg klatek z Pen --- */
