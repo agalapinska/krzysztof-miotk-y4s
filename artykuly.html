@@ -28,10 +28,12 @@
 </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" as="font" type="font/woff2" href="Nexa-Book.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="Nexa-Bold.woff2" crossorigin />
     <style>
       @font-face {
         font-family: Nexa;
-        src: url("Nexa-Book.ttf") format("truetype");
+        src: url("Nexa-Book.woff2") format("woff2"), url("Nexa-Book.ttf") format("truetype");
         font-display: swap;
         font-weight: 400;
       }
