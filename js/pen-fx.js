@@ -245,7 +245,9 @@
     nav.style.position = "sticky";
     nav.style.top = "0";
     nav.style.zIndex = "80";
-    nav.style.background = "#ffffff";
+    nav.style.background = "rgba(255, 255, 255, .72)";
+    nav.style.webkitBackdropFilter = "blur(14px) saturate(1.5)";
+    nav.style.backdropFilter = "blur(14px) saturate(1.5)";
     var ICO_BURGER = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15172C" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>';
     var ICO_CLOSE = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15172C" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>';
     var btn = document.createElement("button");
@@ -1318,6 +1320,7 @@
     wrap.style.flexShrink = "0";
     nav.parentNode.insertBefore(wrap, nav);
     wrap.appendChild(nav);
+    nav.style.backgroundColor = "transparent"; /* szkło daje .km-nav-wrap (backdrop-filter) */
     var ITEMS = [
       ["Badania UX", "Pozyskaj wiedzę o użytkownikach i przekuj je w biznes z moją pomocą."],
       ["Zewnętrzny Dyrektor UX", "Oddeleguj zarządzanie doświadczeniami Twoich klientów bez kosztów etatu."],

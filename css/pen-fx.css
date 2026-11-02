@@ -68,8 +68,9 @@ html { overflow-x: hidden; }
 @keyframes km-arrow-roll { 0% { transform: translateX(-260%); } 100% { transform: translateX(260%); } }
 
 /* Mega-menu „Usługi" — stan otwarty z projektu Pen (Frame 684) */
-.km-nav-wrap { position: sticky; top: 0; z-index: 90; background: #FFFFFF; }
-.km-nav-wrap.is-stuck { box-shadow: 0 10px 30px -18px rgba(13, 0, 51, .35); }
+.km-nav-wrap { position: sticky; top: 0; z-index: 90; background: rgba(255, 255, 255, .72); -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5); }
+.km-nav-wrap.is-stuck { box-shadow: 0 10px 30px -18px rgba(13, 0, 51, .12); }
+@supports not (backdrop-filter: blur(1px)) { .km-nav-wrap { background: rgba(255, 255, 255, .96); } }
 .km-mega {
   position: absolute; left: 0; right: 0; top: 100%;
   background: #ffffff; padding: 20px 0;
