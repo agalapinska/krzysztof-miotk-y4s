@@ -32,6 +32,14 @@
     });
   }
 
+  function kmValidBody(raw) {
+    raw = (raw || "").trim();
+    if (!raw) return "";
+    if (/\.(docx?|pdf|pages|md|txt)\s*$/i.test(raw)) return "";
+    if (raw.length < 120 && raw.indexOf("\n") === -1) return "";
+    return raw;
+  }
+
   function fmtDate(d) {
     var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d);
     return m ? m[3] + "." + m[2] + "." + m[1] : d;
@@ -197,9 +205,10 @@
       }
       var cases = toObjects(rows).filter(function (a) { return a.tytul; });
       cases.forEach(function (a) {
-        var full = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+                var full = kmValidBody(/^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim());
         a._href = full ? "case-study.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
       });
+      cases = cases.filter(function (a) { return a._href; });
       if (cases.length) init(cases);
     })
     .catch(function (e) { console.warn("Case studies: zostają karty statyczne —", e.message || e); });

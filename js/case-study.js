@@ -38,7 +38,15 @@
   }
   function pickTresc(t) {
     if (!t) return "";
-    return docLink(t.tresc) ? (t.tresc_md || "").trim() : (t.tresc || "").trim();
+    var raw = docLink(t.tresc) ? (t.tresc_md || "").trim() : (t.tresc || "").trim();
+    return kmValidBody(raw);
+  }
+  function kmValidBody(raw) {
+    raw = (raw || "").trim();
+    if (!raw) return "";
+    if (/\.(docx?|pdf|pages|md|txt)\s*$/i.test(raw)) return "";
+    if (raw.length < 120 && raw.indexOf("\n") === -1) return "";
+    return raw;
   }
   function esc(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

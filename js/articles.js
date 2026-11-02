@@ -34,6 +34,14 @@
     });
   }
 
+  function kmValidBody(raw) {
+    raw = (raw || "").trim();
+    if (!raw) return "";
+    if (/\.(docx?|pdf|pages|md|txt)\s*$/i.test(raw)) return "";
+    if (raw.length < 120 && raw.indexOf("\n") === -1) return "";
+    return raw;
+  }
+
   function fmtDate(d) {
     var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d);
     return m ? m[3] + "." + m[2] + "." + m[1] : d;
@@ -198,9 +206,10 @@
       }
       var arts = toObjects(rows).filter(function (a) { return a.tytul; });
       arts.forEach(function (a) {
-        var full = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+                var full = kmValidBody(/^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim());
         a._href = full ? "artykul.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
       });
+      arts = arts.filter(function (a) { return a._href; });
       if (arts.length) init(arts);
     })
     .catch(function (e) { console.warn("Artykuły: zostają karty statyczne —", e.message || e); });

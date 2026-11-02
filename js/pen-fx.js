@@ -386,6 +386,26 @@
         sec.style.gap = sp[2];
       }
     });
+    /* sekcja „Od pytania biznesowego…" wg HOOxu: teksty 18/27, ikony 34 */
+    (function () {
+      var h8 = null;
+      document.querySelectorAll("div, h1, h2").forEach(function (d) {
+        if (!h8 && /^Od pytania biznesowego/.test((d.textContent || "").replace(/\u00A0/g, " ").trim()) && !d.querySelector("div")) h8 = d;
+      });
+      if (!h8) return;
+      var sec8 = h8.parentElement;
+      while (sec8 && sec8 !== document.body && sec8.offsetWidth < document.body.offsetWidth - 8) sec8 = sec8.parentElement;
+      if (!sec8 || sec8 === document.body) return;
+      sec8.querySelectorAll("div").forEach(function (d) {
+        if (d.children.length) return;
+        var fs = parseFloat(getComputedStyle(d).fontSize);
+        if (fs === 20) { d.style.fontSize = "18px"; d.style.lineHeight = "27px"; }
+      });
+      sec8.querySelectorAll("svg").forEach(function (sv) {
+        var w = sv.getBoundingClientRect().width;
+        if (w > 20 && w < 40) { sv.style.width = "34px"; sv.style.height = "34px"; }
+      });
+    })();
     /* demo raportu: button „Pobierz Demo Raportu" pod kolażem (wg projektu mobile) */
     (function () {
       var dl = null;
@@ -769,35 +789,7 @@
             });
           }
         }
-        /* strzałki karuzeli case (sekcja „Kilka historii moich klientów") */
-        var advSec = null;
-        document.querySelectorAll("div").forEach(function (d) { if (!advSec && d._kmAdvance) advSec = d; });
-        if (advSec && !advSec._kmArrows && advSec._kmCardRow) {
-          advSec._kmArrows = 1;
-          var wrapEl = advSec._kmCardRow.parentElement;
-          wrapEl.style.height = "auto";
-          wrapEl.style.paddingBottom = "0";
-          Array.prototype.forEach.call(wrapEl.children, function (k9) {
-            if (k9 !== advSec._kmCardRow && !NB(k9.textContent) && !k9.querySelector("svg,img") && k9.offsetHeight > 40) k9.style.display = "none";
-          });
-          var rowA = document.createElement("div");
-          rowA.style.cssText = "display:flex;flex-direction:row;justify-content:center;align-items:center;gap:72px;width:100%;padding:24px 0 0;";
-          var mkA = function (dir) {
-            var s6 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            s6.setAttribute("viewBox", "0 0 24 24");
-            s6.setAttribute("width", "26");
-            s6.setAttribute("height", "26");
-            s6.style.cursor = "pointer";
-            s6.innerHTML = dir < 0
-              ? '<path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
-              : '<path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-            s6.addEventListener("click", function () { advSec._kmAdvance(dir); });
-            return s6;
-          };
-          rowA.appendChild(mkA(-1));
-          rowA.appendChild(mkA(1));
-          if (wrapEl && wrapEl.parentNode) wrapEl.parentNode.insertBefore(rowA, wrapEl.nextSibling);
-        }
+        /* (strzałki karuzeli na uslugi: obsługiwane przez zsyntetyzowany Frame 701 w 4i) */
       }
       /* demo: logosy „PRACOWAŁEM MIĘDZY INNYMI Z:" w jednej przyciętej linii */
       var dLbl = null;
@@ -1074,7 +1066,9 @@
   var cardSel = [
     '[data-pencil-name*="Card"]', '[data-pencil-name*="card"]',
     '[data-pencil-name*="Services Row"]',
-    '[data-pencil-name*="Frame 707"]'
+    '[data-pencil-name*="Frame 707"]',
+    '[data-pencil-name^="Artykuł:"]', '[data-pencil-name^="Case:"]',
+    '[data-pencil-name="Article Col"]'
   ].join(",");
   function kmColoredBg(el) {
     var n = el.parentElement;
@@ -1640,7 +1634,7 @@
     function calcTarget() {
       var r = section.getBoundingClientRect();
       var vh = window.innerHeight;
-      var start = vh * 0.92, end = vh * 0.10;
+      var start = vh * 0.70, end = vh * 0.08;
       var t = (start - r.top) / (start - end);
       return Math.max(0, Math.min(1, t));
     }
@@ -1720,7 +1714,7 @@
       return layers.map(function (L) {
         var r = L.ring.getBoundingClientRect();
         var c = r.top + r.height / 2;
-        return ease((vh * 0.72 - c) / 200 + 0.5);
+        return ease((vh * 0.60 - c) / 200 + 0.5);
       });
     }
     function apply(vals) {
@@ -1762,6 +1756,59 @@
     sync();
     setTimeout(sync, 800);
     window.addEventListener("load", sync);
+  })();
+
+  /* --- 4ef. Opinie: pełny zestaw 7 referencji + awatary z inicjałami --- */
+  (function () {
+    var OPS = [
+      { q: "Współpraca z Krzyśkiem to comiesięczna oszczędność na designie i wdrożeniach, a także gwarancja zawsze trafionych decyzji UX-owych. Krzysiek nie przytakuje — konfrontuje się z nami, pozostając partnerem w dyskusji, i przenosi doświadczenie z różnych branż na nasz produkt.", name: "Jarek Piotrowski", role: "Product Manager @Traffit" },
+      { q: "Kris has been a long-term partner at OLX. He delivered high-quality research work for multiple teams, on a range of topics, and collaborated well with our research and product teams. I'd recommend him, especially if you're looking for someone who gets up to speed quickly, and delivers results quick.", name: "Hailey Griffiths", role: "Product Research Manager @OLX" },
+      { q: "Krzysztof wraz ze swoją agencją zbadał dla nas 7 koncepcji projektowych w 2 tygodnie. Rekomendacje były złotym środkiem między trendami na rynku światowym a regulacjami prawnymi nałożonymi na e-commerce z branży farmaceutycznej.", name: "Michał Bączek", role: "UX/UI Department Manager @Apteka Gemini" },
+      { q: "Pod przewodnictwem Krzysztofa Miotka zespół Quale UX zadbał nie tylko o metodologiczną poprawność badań, ale również o efektywną komunikację z interesariuszami, w tym naszym partnerem biznesowym, firmą Uniqa. Z pełnym przekonaniem polecamy współpracę z agencją Quale UX oraz Krzysztofem jako kierownikiem badań.", name: "Karolina Kozłowska", role: "Menedżer Wydziału Centrum Klienta, mBank" },
+      { q: "Naszym największym wyzwaniem w Kosmopedii było zwiększenie użyteczności aplikacji przy ograniczeniach technologicznych. Badania w pełni nadzorował Krzysztof — w szybkim tempie mieliśmy wyniki testów i rekomendacje. Quale na każdym etapie szukało kompromisu między użytecznością, potrzebami użytkowniczek i technologią, dzięki czemu dostarczyło projekt, z którego jesteśmy dumne.", name: "Justyna Żerańska", role: "Dyrektorka Generalna @Polski Związek Przemysłu Kosmetycznego" },
+      { q: "Krzysztof pomógł nam zaplanować cały proces badawczy dla naszego produktu AI. Dzięki temu wyniki nie były zbiorem luźnych obserwacji, tylko materiałem, na którym mogliśmy realnie oprzeć decyzje produktowe i pozycjonowanie marki. Polecam każdemu produktowi AI, który potrzebuje profesjonalizmu badawczego bez zwalniania tempa pracy zespołu.", name: "Jan Wyrwiński", role: "CEO @PilotGo" },
+      { q: "Zespół Quale UX pod kierownictwem Krzysztofa Miotka przeprowadził kompleksowy proces badawczy, którego celem było zmniejszenie wskaźnika nietrafności i porzuceń formularzy w ekosystemie ERGO Hestii. Na moderowanych przez Krzysztofa warsztatach wypracowaliśmy konkretne usprawnienia formularzy oraz koncepcję asystenta AI odciążającego obsługę i likwidację szkód.", name: "Sylwia Polańska", role: "ERGO Hestia" }
+    ];
+    var head = null;
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
+      if (!head && el.children.length === 0 && (el.textContent || "").trim() === "Co mówią klienci") head = el;
+    });
+    if (!head) return;
+    var scope = head.parentElement;
+    var f663 = scope && scope.querySelector('[data-pencil-name="Frame 663"]');
+    if (!f663 || !f663.children.length) return;
+    /* karty budowane od zera w układzie ze strony głównej — jednolicie na każdej stronie,
+       bo taśma 4f zakłada card > kolumna > [cytat, Frame 722] */
+    f663.innerHTML = "";
+    f663.style.flexDirection = "row";
+    f663.style.width = "100%";
+    f663.style.gap = "80px";
+    OPS.forEach(function (op) {
+      var card = document.createElement("div");
+      card.style.cssText = "align-items:flex-start;box-sizing:border-box;display:flex;flex-direction:row;flex:1 1 0;gap:20px;height:fit-content;justify-content:flex-start";
+      var col = document.createElement("div");
+      col.style.cssText = "align-items:flex-start;box-sizing:border-box;display:flex;flex-direction:column;flex:1 1 0;gap:20px;height:fit-content;justify-content:flex-start";
+      var q = document.createElement("div");
+      q.style.cssText = "box-sizing:border-box;color:#63637C;font-family:Inter,system-ui,sans-serif;font-size:20px;font-style:italic;font-weight:400;letter-spacing:0px;line-height:30px;text-align:left;width:100%";
+      q.textContent = "„" + op.q + "”";
+      var au = document.createElement("div");
+      au.setAttribute("data-pencil-name", "Frame 722");
+      au.style.cssText = "align-items:flex-start;box-sizing:border-box;display:flex;flex-direction:row;flex-shrink:0;gap:20px;height:fit-content;justify-content:flex-start;width:100%";
+      var av = document.createElement("div");
+      av.style.cssText = "background-color:#E7E1FA;box-sizing:border-box;flex-shrink:0;height:80px;width:80px;display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',system-ui,sans-serif;font-size:24px;color:#5205E7;letter-spacing:1px";
+      av.textContent = op.name.split(/\s+/).map(function (w) { return w.charAt(0); }).slice(0, 2).join("");
+      var nm = document.createElement("div");
+      nm.style.cssText = "box-sizing:border-box;color:#15172C;flex:1 1 0;font-family:'Geist Mono',system-ui,sans-serif;font-size:15px;font-style:normal;font-weight:400;letter-spacing:0px;line-height:24px;text-align:left";
+      nm.appendChild(document.createTextNode(op.name + " ·"));
+      nm.appendChild(document.createElement("br"));
+      nm.appendChild(document.createTextNode(op.role));
+      au.appendChild(av);
+      au.appendChild(nm);
+      col.appendChild(q);
+      col.appendChild(au);
+      card.appendChild(col);
+      f663.appendChild(card);
+    });
   })();
 
   /* --- 4f. Opinie: pozioma taśma (prawo→lewo, hover pauza) --- */
@@ -1956,6 +2003,28 @@
       if (!tag && el.children.length === 0 && (t.indexOf("CASE /") === 0 || /\/ CASE STUDY$/.test(t))) tag = el;
       if (el.children.length === 0 && /Dlatego nie dostarczam raportów/.test(t)) paras.push(el);
     });
+    /* na stronach usług karta startowa to inny case (OLX/XTB) — wyznacz title/desc z panelu gradientowego */
+    if (tag && (!title || !desc)) {
+      var lp2 = tag.parentElement;
+      while (lp2 && lp2 !== sec && !/linear-gradient/.test(lp2.getAttribute("style") || "")) lp2 = lp2.parentElement;
+      if (lp2 && lp2 !== sec) {
+        var best = null, bestSz = 0;
+        lp2.querySelectorAll("div, h1, h2").forEach(function (el) {
+          if (el === tag || el.querySelector("div")) return;
+          var t = (el.textContent || "").trim();
+          if (!t) return;
+          var sz = parseFloat(getComputedStyle(el).fontSize) || 0;
+          if (sz > bestSz) { best = el; bestSz = sz; }
+        });
+        if (!title && best && bestSz >= 28) title = best;
+        if (!desc && title) {
+          lp2.querySelectorAll("div, h1, h2").forEach(function (el) {
+            if (desc || el === tag || el === title || el.querySelector("div")) return;
+            if (((el.textContent || "").trim()).length > 40) desc = el;
+          });
+        }
+      }
+    }
     if (!title || !desc || !tag) return;
     var leftPanel = title;
     while (leftPanel && !/linear-gradient/.test(leftPanel.getAttribute("style") || "")) leftPanel = leftPanel.parentElement;
@@ -1991,6 +2060,39 @@
     var state = { hover: false };
     var fill = null;
     var f701 = sec.querySelector('[data-pencil-name="Frame 701"]');
+    /* pusty Frame 701 z eksportu (bez pasków i strzałek) — usuń i zsyntetyzuj pełny */
+    if (f701 && !f701.querySelector('[data-pencil-name^="Case bar"]') && !f701.querySelector("svg")) {
+      f701.remove();
+      f701 = null;
+    }
+    if (!f701 && cardRow) {
+      f701 = document.createElement("div");
+      f701.setAttribute("data-pencil-name", "Frame 701");
+      f701.style.cssText = "display:flex;flex-direction:row;align-items:center;justify-content:center;gap:24px;width:100%;padding:28px 0 0 0;";
+      var mkAr = function (dir) {
+        var sv = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        sv.setAttribute("viewBox", "0 0 24 24");
+        sv.setAttribute("width", "26");
+        sv.setAttribute("height", "26");
+        sv.innerHTML = dir < 0
+          ? '<path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+          : '<path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="#3C00AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        return sv;
+      };
+      var bars733 = document.createElement("div");
+      bars733.setAttribute("data-pencil-name", "Frame 733");
+      bars733.style.cssText = "display:flex;flex-direction:row;gap:10px;align-items:center;";
+      for (var bi = 0; bi < 3; bi++) {
+        var bar1 = document.createElement("div");
+        bar1.setAttribute("data-pencil-name", "Case bar " + (bi + 1));
+        bar1.style.cssText = "width:72px;height:4px;";
+        bars733.appendChild(bar1);
+      }
+      f701.appendChild(mkAr(-1));
+      f701.appendChild(bars733);
+      f701.appendChild(mkAr(1));
+      cardRow.parentElement.insertBefore(f701, cardRow.nextSibling);
+    }
     var slots = [], arrows = [];
     if (f701) {
       slots = Array.prototype.slice.call(f701.querySelectorAll('[data-pencil-name^="Case bar"]'));
@@ -2033,6 +2135,8 @@
       { title: "SEGMENTACJA\nBEHAWIORALNA.", desc: "Połączenie danych behawioralnych z wywiadami pogłębionymi w jedną mapę segmentów.", tag: "OLX / CASE STUDY", slug: "olx-segmentacja-klientow", right: "Segmentacja, która uporządkowała roadmapę: zespół skupił się na segmentach o największym potencjale wzrostu." }
     ];
     var idx = 0;
+    var tag0 = (tag.textContent || "").trim().toUpperCase();
+    CASES.forEach(function (c, ci) { if (c.tag.toUpperCase() === tag0) idx = ci; });
     if (reduced) return;
     var SLIDE = 700, EASECR = "cubic-bezier(.45,.05,.2,1)";
     function setCase(c) {
@@ -2077,7 +2181,7 @@
         fill.classList.add("is-run");
       }
       clearTimeout(timer);
-      timer = setTimeout(advance, 3500);
+      timer = setTimeout(advance, 5000);
     }
     function goTo(target) {
       if (target === idx) return;
@@ -2133,10 +2237,10 @@
     });
   })();
 
-  /* --- 4j2. Moja Oferta (uslugi.html): karty usług wg projektu aLb03 — desktop i mobile --- */
+  /* --- 4j2. Moja Oferta: karty jak na stronie głównej + ↗ w rogu (bounce na hover), klik całą kartą --- */
     (function () {
       if (!/uslugi\.html/.test(location.pathname)) return;
-      var N2 = function (s) { return (s || "").replace(/ /g, " ").trim(); };
+      var N2 = function (s) { return (s || "").replace(/\u00A0/g, " ").trim(); };
       var cards = Array.prototype.filter.call(document.querySelectorAll("div"), function (d) {
         var st = d.getAttribute("style") || "";
         if (!/border: 1px solid/.test(st) || !/background-color/.test(st)) return false;
@@ -2145,115 +2249,65 @@
         return /Zobacz usługę/.test(t) && !/Zobacz usługę[\s\S]*Zobacz usługę/.test(t);
       });
       if (cards.length < 4) return;
-      var sec = cards[0];
-      while (sec && sec !== document.body && sec.offsetWidth < document.body.offsetWidth - 8) sec = sec.parentElement;
-      if (sec && sec !== document.body) {
-        sec.style.background = "linear-gradient(160deg, #16023d 0%, #370896 48%, #240361 100%)";
-        sec.style.padding = "64px 20px";
-      }
+      var LINKS7 = {
+        "Badania UX": "badania-ux.html",
+        "Dyrektor UX": "dyrektor-ux.html",
+        "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
+        "Segmentacja klientów": "segmentacja-klientow.html",
+        "Audyt UX": "audyt-ux.html",
+        "Wystąpienia i szkolenia": "wystapienia-i-szkolenia.html",
+        "Konsultacje i mentoring": "konsultacje-i-mentoring.html",
+        "Konsultacje i Mentoring": "konsultacje-i-mentoring.html"
+      };
       cards.forEach(function (card) {
-        card.style.backgroundColor = "rgba(28, 0, 84, 0.3)";
-        card.style.border = "0";
-        card.style.backdropFilter = "blur(4px)";
-        /* ikona w wierszu z treścią (jak w projekcie aLb03) */
-        var wrap = card.firstElementChild;
-        if (wrap && getComputedStyle(wrap).flexDirection === "column") {
-          var wkids = Array.prototype.slice.call(wrap.children);
-          var badge = null, title = null, desc = null;
-          wkids.forEach(function (k) {
-            var ks = k.getAttribute("style") || "";
-            if (!badge && k.offsetWidth <= 72 && /background-color/.test(ks)) badge = k;
-            else if ((k.textContent || "").trim() && k.getAttribute("data-pencil-name") !== "spacer") {
-              if (!title && parseFloat(getComputedStyle(k).fontSize) >= 20) title = k;
-              else if (title && !desc) desc = k;
-            }
-            if (k.getAttribute("data-pencil-name") === "spacer") k.style.display = "none";
-          });
-          if (badge && title) {
-            badge.style.backgroundColor = "transparent";
-            var row3 = document.createElement("div");
-            row3.style.cssText = "display:flex;flex-direction:row;gap:16px;align-items:flex-start;width:100%;";
-            var col3 = document.createElement("div");
-            col3.style.cssText = "display:flex;flex-direction:column;gap:10px;flex:1 1 0;min-width:0;";
-            wrap.insertBefore(row3, wrap.firstChild);
-            row3.appendChild(badge);
-            row3.appendChild(col3);
-            col3.appendChild(title);
-            if (desc) col3.appendChild(desc);
-            wrap.style.gap = "16px";
-            /* wg projektu aLb03: większy tytuł, klienci, ↗ zamiast buttona, karta klikalna */
-            title.style.fontSize = isMob ? "28px" : "32px";
-            title.style.lineHeight = isMob ? "32px" : "38px";
-            title.style.whiteSpace = "normal";
-            var t7 = N2(title.textContent);
-            var KLIENCI = {
-              "Badania UX": "mObywatel, Apteka Gemini",
-              "Strategia w biznesie": "Reserved, ERLI",
-              "Strategia Marki": "Reserved, ERLI",
-              "Dyrektor UX": "Traffit, ERLI",
-              "Zewnętrzny Dyrektor UX": "Traffit, ERLI",
-              "Segmentacja klientów": "OLX, Pilot GO",
-              "Audyt UX": "OtoMoto, mBank",
-              "Wystąpienia i szkolenia": "Infoshare, I love marketing, mBank"
-            };
-            if (KLIENCI[t7]) {
-              var kl7 = document.createElement("div");
-              kl7.textContent = "Przykładowi klienci: " + KLIENCI[t7];
-              kl7.style.cssText = "font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:20px;color:#D4D0F8;padding-left:12px;margin-top:4px;";
-              col3.appendChild(kl7);
-            }
-            Array.prototype.forEach.call(card.querySelectorAll("div"), function (zb) {
-              if (/^Zobacz usługę$/.test(N2(zb.textContent)) && zb.offsetHeight < 95 && zb.offsetHeight > 20) {
-                var hideEl = zb;
-                while (hideEl.parentElement && hideEl.parentElement !== card && N2(hideEl.parentElement.textContent) === N2(zb.textContent)) hideEl = hideEl.parentElement;
-                hideEl.style.display = "none";
-              }
+        card.classList.add("km-tile");
+        card.style.position = "relative";
+        var t7 = null;
+        card.querySelectorAll("div").forEach(function (d) {
+          if (!t7 && d.children.length === 0 && LINKS7[N2(d.textContent)]) t7 = N2(d.textContent);
+        });
+        /* mobile: ikona po lewej, treść w kolumnie (jak karty na stronie głównej) */
+        if (isMob) {
+          var wrap = card.firstElementChild;
+          if (wrap && getComputedStyle(wrap).flexDirection === "column" && !wrap._kmTileRow) {
+            var wkids = Array.prototype.slice.call(wrap.children);
+            var badge = null;
+            wkids.forEach(function (k) {
+              var ks = k.getAttribute("style") || "";
+              if (!badge && k.offsetWidth <= 72 && /background-color|position: relative/.test(ks) && k.querySelector && k.querySelector("svg")) badge = k;
+              if (k.getAttribute("data-pencil-name") === "spacer") k.style.display = "none";
             });
-            var arRow = document.createElement("div");
-            arRow.style.cssText = "display:flex;justify-content:flex-end;width:100%;";
-            var ar7 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            ar7.setAttribute("viewBox", "0 0 24 24");
-            ar7.setAttribute("width", "22");
-            ar7.setAttribute("height", "22");
-            ar7.innerHTML = '<path d="M7 17L17 7M7 7h10v10" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-            arRow.appendChild(ar7);
-            card.appendChild(arRow);
-            var LINKS7 = {
-              "Badania UX": "badania-ux.html",
-              "Dyrektor UX": "dyrektor-ux.html",
-              "Zewnętrzny Dyrektor UX": "dyrektor-ux.html",
-              "Segmentacja klientów": "segmentacja-klientow.html",
-              "Audyt UX": "audyt-ux.html",
-              "Wystąpienia i szkolenia": "wystapienia-i-szkolenia.html",
-              "Konsultacje i mentoring": "konsultacje-i-mentoring.html",
-              "Konsultacje i Mentoring": "konsultacje-i-mentoring.html"
-            };
-            if (LINKS7[t7] && !card._kmNav7) {
-              card._kmNav7 = 1;
-              card.style.cursor = "pointer";
-              card.addEventListener("click", function () { window.location.href = LINKS7[t7]; });
+            if (badge) {
+              wrap._kmTileRow = 1;
+              var row3 = document.createElement("div");
+              row3.style.cssText = "display:flex;flex-direction:row;gap:16px;align-items:flex-start;width:100%;";
+              var col3 = document.createElement("div");
+              col3.style.cssText = "display:flex;flex-direction:column;gap:10px;flex:1 1 0;min-width:0;";
+              wrap.insertBefore(row3, wrap.firstChild);
+              row3.appendChild(badge);
+              row3.appendChild(col3);
+              Array.prototype.slice.call(wrap.children).forEach(function (k) {
+                if (k !== row3) col3.appendChild(k);
+              });
+              wrap.style.gap = "16px";
             }
           }
         }
-        card.querySelectorAll("div").forEach(function (d) {
-          var ds = d.getAttribute("style") || "";
-          if (d.children.length === 0 && (d.textContent || "").trim()) {
-            d.style.color = parseFloat(getComputedStyle(d).fontSize) >= 22 ? "#FFFFFF" : "#E9E9F7";
-          }
-          if (/background-color/.test(ds) && /Zobacz usługę/.test(N2(d.textContent)) && d.offsetHeight < 90) {
-            d.style.backgroundColor = "transparent";
-            d.style.border = "1px solid rgba(255, 255, 255, 0.45)";
-          }
-        });
-        card.querySelectorAll("svg [stroke]").forEach(function (p) {
-          if (p.getAttribute("stroke") !== "none") p.setAttribute("stroke", "#FFFFFF");
-        });
-        card.querySelectorAll("svg [fill]").forEach(function (p) {
-          if (p.getAttribute("fill") !== "none") p.setAttribute("fill", "#FFFFFF");
-        });
-        card.querySelectorAll("div").forEach(function (d9) {
-          if (/outline:/.test(d9.getAttribute("style") || "")) d9.style.outlineColor = "#FFFFFF";
-        });
+        /* ↗ w prawym dolnym rogu */
+        if (!card.querySelector(".km-tile-arrow")) {
+          var ar7 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          ar7.setAttribute("viewBox", "0 0 24 24");
+          ar7.setAttribute("width", "22");
+          ar7.setAttribute("height", "22");
+          ar7.setAttribute("class", "km-tile-arrow");
+          ar7.innerHTML = '<path d="M7 17L17 7M7 7h10v10" fill="none" stroke="#5205E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+          card.appendChild(ar7);
+        }
+        if (LINKS7[t7] && !card._kmNav7) {
+          card._kmNav7 = 1;
+          card.style.cursor = "pointer";
+          card.addEventListener("click", function () { window.location.href = LINKS7[t7]; });
+        }
       });
     })();
 
@@ -2554,6 +2608,7 @@
         ctaP.insertBefore(mail9, btnRow9);
         btnRow9.style.width = "100%";
         btnRow9.style.flexWrap = "nowrap";
+        if (!isMob) { mail9.style.maxWidth = "320px"; btnRow9.style.maxWidth = "320px"; }
         var sgA = btnRow9.children[0], sgB = btnRow9.children[1];
         if (sgA) { sgA.style.flex = "1 1 auto"; sgA.style.height = "100%"; sgA.style.flexWrap = "nowrap"; sgA.style.flexDirection = "row"; }
         if (sgB) { sgB.style.flex = "0 0 auto"; sgB.style.height = "100%"; }
@@ -2589,6 +2644,25 @@
         var in9 = btn9.children[0];
         if (in9) { in9.style.width = "100%"; in9.style.justifyContent = "center"; }
       }
+    });
+  })();
+
+  /* --- 4j4b. Karty Oferta/CEO: buttony mail i link zawsze na tej samej wysokości --- */
+  (function () {
+    var brief = null;
+    document.querySelectorAll("div").forEach(function (d) {
+      if (!brief && d.children.length === 0 && /^Wycena briefu w ciągu 48h$/.test((d.textContent || "").replace(/\u00A0/g, " ").trim())) brief = d;
+    });
+    if (!brief) return;
+    var aside = brief.closest('[data-pencil-name="aside"]');
+    if (!aside) return;
+    aside.style.alignItems = "stretch";
+    Array.prototype.forEach.call(aside.children, function (card) {
+      card.style.height = "auto";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      var btnRow = card.querySelector('[data-pencil-name="Frame 707"]');
+      if (btnRow) btnRow.style.marginTop = "auto";
     });
   })();
 
@@ -2655,9 +2729,11 @@
         arts.sort(function (a, b) { return (b.data || "").localeCompare(a.data || ""); });
         var fmt = function (d) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ""); return m ? m[3] + "." + m[2] + "." + m[1] : (d || ""); };
         var hrefOf = function (a) {
-          var full = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+          var raw = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+          var full = raw && !/\.(docx?|pdf|pages|md|txt)\s*$/i.test(raw) && (raw.length >= 120 || raw.indexOf("\n") !== -1) ? raw : "";
           return full && a.slug ? "artykul.html?slug=" + encodeURIComponent(a.slug) : (a.url || "");
         };
+        arts = arts.filter(function (a) { return hrefOf(a); });
         cards.forEach(function (card, i) {
           var a = arts[i];
           if (!a) { card.style.display = "none"; return; }
@@ -2711,6 +2787,8 @@
         if (test(b)) break;
         b = b.parentElement;
       }
+      /* nie bindujemy wielkich kontenerów (np. kolumn stopki) — wtedy klikalny jest sam tekst */
+      if (b !== d && (b.offsetHeight > 90 || !test(b))) return d;
       return b;
     }
     function kmScrollWycena() {
@@ -2720,9 +2798,20 @@
       });
       if (h) h.scrollIntoView({ block: "start" });
     }
+    function kmScrollKalendarz() {
+      var h = null;
+      document.querySelectorAll("h1, h2, div").forEach(function (x) {
+        if (!h && x.children.length === 0 && /^Wrzuć spotkanie w mój kalendarz/.test((x.textContent || "").replace(/\u00A0/g, " ").trim())) h = x;
+      });
+      if (h) h.scrollIntoView({ block: "start" });
+    }
     if (/kontakt\.html/.test(location.pathname) && location.hash === "#wycena") {
       setTimeout(kmScrollWycena, 400);
       setTimeout(kmScrollWycena, 1800);
+    }
+    if (/kontakt\.html/.test(location.pathname) && location.hash === "#kalendarz") {
+      setTimeout(kmScrollKalendarz, 400);
+      setTimeout(kmScrollKalendarz, 1800);
     }
     var RXCAL = /^(Umów się na rozmowę( online!?)?|Umów videorozmowę|Umów darmową rozmowę|Porozmawiajmy( o projekcie)?)$/;
     document.querySelectorAll("div, span, a").forEach(function (d) {
@@ -2804,9 +2893,11 @@
     });
   })();
 
-  /* --- 4m0. Formularze na stronie Kontakt (atrapy z Pen → prawdziwe pola + walidacja + mailto) --- */
+  /* --- 4m0. Formularze na stronie Kontakt (prawdziwe pola + walidacja; zapis do Google Sheet przez webhook, fallback mailto) --- */
   (function () {
     var MAIL = "krzysiek@quale.agency";
+    /* URL aplikacji internetowej Apps Script (narzedzia/google-sheet-webhook.gs). Pusty = fallback mailto. */
+    var FORMS_WEBHOOK = "";
     var USLUGI_OPT = ["Badania UX", "Strategia w biznesie", "Zewnętrzny Dyrektor UX", "Segmentacja klientów", "Audyt UX", "Konsultacje i mentoring", "Wystąpienia i szkolenia", "Jeszcze nie wiem"];
     document.querySelectorAll('[data-pencil-name="form"]').forEach(function (form) {
       if (form._km) return;
@@ -2888,8 +2979,6 @@
           if (fb) { fb.scrollIntoView({ block: "center", behavior: "smooth" }); var ff = fb.querySelector(".km-field"); if (ff) ff.focus(); }
           return;
         }
-        var body = fields.map(function (f) { return f.label + ": " + (f.ctl.value || "").trim(); }).join("\n");
-        window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject) + "&body=" + encodeURIComponent(body);
         var ok = form.querySelector(".km-form-ok");
         if (!ok) {
           ok = document.createElement("div");
@@ -2897,6 +2986,39 @@
           ok.setAttribute("role", "status");
           form.appendChild(ok);
         }
+        if (FORMS_WEBHOOK) {
+          var isWycena = /wycen/i.test(subject);
+          var data = new URLSearchParams();
+          data.set("form", isWycena ? "wycena" : "kontakt");
+          data.set("zrodlo", location.pathname.split("/").pop() + " — " + subject);
+          fields.forEach(function (f) {
+            var l = (f.label || "").toLowerCase();
+            var v = (f.ctl.value || "").trim();
+            var key =
+              /imię i nazwisko/.test(l) ? "imie_nazwisko" :
+              /^imię/.test(l) ? "imie" :
+              /e-mail|mail/.test(l) ? "email" :
+              /strona www|aplikacji/.test(l) ? "strona_www" :
+              /stanowisko/.test(l) ? "stanowisko" :
+              /produkt|usług/.test(l) ? "usluga" :
+              /cel/.test(l) ? "cel_biznesowy" :
+              /grup/.test(l) ? "grupa_docelowa" :
+              isWycena ? "opis" : "wiadomosc";
+            data.set(key, v);
+          });
+          fetch(FORMS_WEBHOOK, { method: "POST", mode: "no-cors", body: data })
+            .then(function () {
+              ok.textContent = "Dzięki! Wiadomość zapisana — odezwę się najszybciej, jak się da.";
+              fields.forEach(function (f) { f.ctl.value = ""; });
+            })
+            .catch(function () {
+              window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject);
+              ok.textContent = "Otwieram Twój program pocztowy — jeśli nic się nie wydarzyło, napisz na " + MAIL + ".";
+            });
+          return;
+        }
+        var body = fields.map(function (f) { return f.label + ": " + (f.ctl.value || "").trim(); }).join("\n");
+        window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Strona — " + subject) + "&body=" + encodeURIComponent(body);
         ok.textContent = "Otwieram Twój program pocztowy — jeśli nic się nie wydarzyło, napisz na " + MAIL + ".";
       }
       if (btn) {
@@ -3040,31 +3162,18 @@
     });
   })();
 
-  /* --- 4c. Pływający widżet kalendarza — stały do sekcji „Co mówią klienci" --- */
+  /* --- 4c. Dryfujący akcent na stronach usług: button „Umów się na rozmowę" → kontakt #kalendarz --- */
   (function () {
     var OFFER_PAGE = /(badania-ux|segmentacja-klientow|audyt-ux|konsultacje-i-mentoring|dyrektor-ux|wystapienia-i-szkolenia)\.html$/;
     var existing = document.querySelector('[data-pencil-name="div - float"]');
-    if (isMob) { if (existing) existing.style.display = "none"; return; }
-    if (!OFFER_PAGE.test(location.pathname)) {
-      if (existing) existing.style.display = "none";
-      return;
-    }
-    var float = existing;
-    if (!float) {
-      float = document.createElement("div");
-      float.setAttribute("data-pencil-name", "div - float");
-      float.style.cssText = "align-items:flex-start;backdrop-filter:blur(6px);background-color:#ffffff80;border:1px solid #E9E9F7;box-sizing:border-box;display:flex;flex-direction:column;gap:0;height:fit-content;padding:20px;width:fit-content;";
-      float.innerHTML =
-        '<div style="align-items:flex-start;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;height:fit-content;justify-content:flex-end;width:358px">' +
-          '<div style="align-items:center;background-color:#fafafa;box-sizing:border-box;display:flex;flex-direction:column;gap:22.4px;height:fit-content;padding:80px 24px;width:100%">' +
-            '<div style="box-sizing:border-box;color:#3a3d52;font-family:Inter,system-ui,sans-serif;font-size:17px;font-weight:400;line-height:27px;text-align:center;width:100%">Tu pojawi się widżet rezerwacji terminu. Wklej swój link Calendly lub Cal.com w pliku js/main.js (CONFIG.calendarUrl).</div>' +
-          '</div>' +
-          '<div style="box-sizing:border-box;color:#3a3d52;font-family:Nexa,system-ui,sans-serif;font-size:16px;font-weight:400;line-height:1.3;text-align:right;width:100%">Wystarczy kliknąć<br>w kalendarz :)</div>' +
-        '</div>';
-    }
+    if (existing) existing.style.display = "none";
+    if (isMob || !OFFER_PAGE.test(location.pathname)) return;
+    var float = document.createElement("div");
+    float.className = "km-cal-cta is-hidden";
+    float.setAttribute("role", "link");
+    float.textContent = "Umów się na rozmowę";
     document.body.appendChild(float);
-    float.classList.add("km-cal-float");
-    float.addEventListener("click", function () { window.location.href = CONTACT; });
+    float.addEventListener("click", function () { window.location.href = CONTACT + "#kalendarz"; });
 
     var target = null;
     document.querySelectorAll("div, h1, h2").forEach(function (el) {
@@ -3078,12 +3187,7 @@
       }
       target = sec;
     }
-    if (!target) {
-      var pool = document.querySelector('[data-pencil-name="main"]') || document.body.firstElementChild;
-      target = pool ? pool.lastElementChild : null;
-    }
     var hero = document.querySelector('[data-pencil-name="section"]');
-    float.classList.add("is-hidden");
     function syncFloat() {
       var f = float.getBoundingClientRect();
       var afterHero = true;
