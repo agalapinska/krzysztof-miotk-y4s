@@ -1432,13 +1432,12 @@
       loadMegas();
       if (overButton(e.target)) { close(); return; }
       var m = megaFor(e.target);
-      if (m) open(m); else close();
+      /* neutralne obszary nav nie zamykają menu — inaczej kursor nie zdąży
+         dojechać do pozycji w panelu; zamyka dopiero wyjście poza wrap */
+      if (m) open(m);
     });
-    nav.addEventListener("mouseleave", close);
-    MEGAS.forEach(function (m) {
-      m.addEventListener("mouseenter", function () { open(m); });
-      m.addEventListener("mouseleave", close);
-    });
+    wrap.addEventListener("mouseenter", function () { clearTimeout(hideT); });
+    wrap.addEventListener("mouseleave", close);
     /* cień pod przyklejoną nawigacją po przewinięciu */
     var stuck = false;
     function kmStuck() {
