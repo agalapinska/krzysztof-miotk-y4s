@@ -132,6 +132,25 @@
       });
     });
 
+    /* Podgląd wideo na końcu treści — na sztywno dla wybranych case studies */
+    var KM_VIDEO = {
+      "archetypy-behawioralne-olx-segmentacja-klienta": "-c_febSOoNk",
+      "zarzadzanie-ux-case-study-start-upu-finansowego": "YdD2xazGUQw"
+    };
+    if (KM_VIDEO[slug]) {
+      var vw = document.createElement("div");
+      vw.style.cssText = "position:relative;width:100%;padding-top:56.25%;margin-top:32px;background:#0D0033;";
+      var ifr = document.createElement("iframe");
+      ifr.src = "https://www.youtube-nocookie.com/embed/" + KM_VIDEO[slug];
+      ifr.title = "Wideo: " + meta.tytul;
+      ifr.loading = "lazy";
+      ifr.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      ifr.setAttribute("allowfullscreen", "");
+      ifr.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0;";
+      vw.appendChild(ifr);
+      bodyC.appendChild(vw);
+    }
+
     /* „Kolejne" (wg XMAtc): następne pozycje po bieżącej, zapętlone, karty klikalne */
     var seq = all.slice().sort(function (a, b) { return (b.data || "").localeCompare(a.data || ""); });
     var ci = -1;

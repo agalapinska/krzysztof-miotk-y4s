@@ -2798,6 +2798,111 @@
       .catch(function (e) { console.warn("Artykuły (sekcja): zostają statyczne —", e.message || e); });
   })();
 
+  /* --- 4k4. Wyszukiwarka w stopce (wg projektu: Footer / NL Input) — podpowiada artykuły i case studies --- */
+  (function () {
+    var SHEET = "https://docs.google.com/spreadsheets/d/1sxqitjESZckLXDduOcaM3FIkbyvKlIe5VNhwG-dSYdw/export?format=csv";
+    var scope = document.querySelector('[data-pencil-name="Footer"]') || document.body;
+    var kont = null;
+    scope.querySelectorAll("div").forEach(function (d) {
+      if (!kont && d.children.length === 0 && (d.textContent || "").trim() === "KONTAKT") kont = d;
+    });
+    if (!kont) return;
+    var col = kont.parentElement;
+    if (!col || col._kmFs) return;
+    col._kmFs = 1;
+    var wrap = document.createElement("div");
+    wrap.className = "km-fsearch";
+    wrap.innerHTML = '<div class="km-fsearch-list" role="listbox" aria-label="Wyniki wyszukiwania"></div>' +
+      '<div class="km-fsearch-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="#D4D0F8" stroke-width="2"/><path d="m21 21-4.3-4.3" stroke="#D4D0F8" stroke-width="2" stroke-linecap="round"/></svg>' +
+      '<input class="km-fsearch-input" type="search" placeholder="Szukaj" aria-label="Szukaj artykułów i case studies" /></div>';
+    col.appendChild(wrap);
+    var input = wrap.querySelector(".km-fsearch-input");
+    var list = wrap.querySelector(".km-fsearch-list");
+    var ITEMS = null, loading = false;
+    function parse(text) {
+      var rows = [], row = [], cell = "", q = false;
+      for (var i = 0; i < text.length; i++) {
+        var ch = text[i];
+        if (q) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += ch; }
+        else if (ch === '"') q = true;
+        else if (ch === ",") { row.push(cell); cell = ""; }
+        else if (ch === "\n") { row.push(cell.replace(/\r$/, "")); rows.push(row); row = []; cell = ""; }
+        else cell += ch;
+      }
+      if (cell.length || row.length) { row.push(cell.replace(/\r$/, "")); rows.push(row); }
+      var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+      return rows.slice(1).filter(function (r) { return r.join("").trim(); }).map(function (r) {
+        var o = {};
+        head.forEach(function (h, j) { o[h] = (r[j] || "").trim(); });
+        return o;
+      });
+    }
+    function hrefOf(a, page) {
+      var raw = /^https:\/\/docs\.google\.com\/document\//.test((a.tresc || "").trim()) ? (a.tresc_md || "").trim() : (a.tresc || "").trim();
+      var full = raw && !/\.(docx?|pdf|pages|md|txt)\s*$/i.test(raw) && (raw.length >= 120 || raw.indexOf("\n") !== -1);
+      return full && a.slug ? page + "?slug=" + encodeURIComponent(a.slug) : (a.url || "");
+    }
+    function load() {
+      if (ITEMS || loading) return;
+      loading = true;
+      Promise.all([
+        fetch(SHEET + "&gid=0").then(function (r) { return r.text(); }),
+        fetch(SHEET + "&gid=770001").then(function (r) { return r.text(); })
+      ]).then(function (res) {
+        ITEMS = [];
+        parse(res[0]).forEach(function (a) {
+          var href = a.tytul && hrefOf(a, "artykul.html");
+          if (href) ITEMS.push({ type: "ARTYKUŁ", t: a.tytul, href: href, hay: (a.tytul + " " + (a.kategoria || "") + " " + (a.zajawka || "")).toLowerCase() });
+        });
+        parse(res[1]).forEach(function (a) {
+          var href = a.tytul && hrefOf(a, "case-study.html");
+          if (href) ITEMS.push({ type: "CASE STUDY", t: a.tytul, href: href, hay: (a.tytul + " " + (a.branza || "") + " " + (a.klient || "") + " " + (a.zajawka || "")).toLowerCase() });
+        });
+        render();
+      }).catch(function () { loading = false; });
+    }
+    function render() {
+      var q = (input.value || "").trim().toLowerCase();
+      if (!q || !ITEMS) { list.style.display = "none"; list.innerHTML = ""; return; }
+      var hits = ITEMS.filter(function (it) { return it.hay.indexOf(q) !== -1; }).slice(0, 7);
+      list.innerHTML = "";
+      if (!hits.length) {
+        var e = document.createElement("div");
+        e.className = "km-fsearch-empty";
+        e.textContent = "Brak wyników dla „" + input.value.trim() + "”.";
+        list.appendChild(e);
+      }
+      hits.forEach(function (it) {
+        var row = document.createElement("div");
+        row.className = "km-fsearch-item";
+        row.setAttribute("role", "option");
+        var ty = document.createElement("div");
+        ty.className = "km-fsearch-type";
+        ty.textContent = it.type;
+        var tt = document.createElement("div");
+        tt.className = "km-fsearch-title";
+        tt.textContent = it.t;
+        row.appendChild(ty);
+        row.appendChild(tt);
+        row._kmHref = it.href;
+        row.addEventListener("mousedown", function (ev) { ev.preventDefault(); window.location.href = it.href; });
+        list.appendChild(row);
+      });
+      list.style.display = "block";
+    }
+    input.addEventListener("focus", load);
+    input.addEventListener("input", function () { load(); render(); });
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        var first = list.querySelector(".km-fsearch-item");
+        if (first && first._kmHref) window.location.href = first._kmHref;
+      } else if (e.key === "Escape") {
+        list.style.display = "none";
+      }
+    });
+    input.addEventListener("blur", function () { setTimeout(function () { list.style.display = "none"; }, 150); });
+  })();
+
   /* --- 4p. Calendly popup dla buttonów „Umów…", mailto dla krzysiek@quale.agency, link quale.agency --- */
   (function () {
     var CAL = "https://calendly.com/krzysiek-quale/30min";

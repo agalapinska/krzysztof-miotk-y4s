@@ -378,3 +378,17 @@ body.km-mob img[alt="UX w Lesie"] { height: 40px !important; }
   80% { transform: translate(3px, -3px); }
   100% { transform: translate(0, 0); }
 }
+
+/* 20. Wyszukiwarka w stopce (wg projektu: Footer / NL Input) */
+.km-fsearch { position: relative; width: 100%; margin-top: 4px; }
+.km-fsearch-box { display: flex; align-items: center; gap: 8px; border: 1px solid #D4D0F8; padding: 15px 20px; }
+.km-fsearch-box svg { opacity: .6; flex: 0 0 auto; }
+.km-fsearch-input { flex: 1 1 auto; min-width: 0; background: transparent; border: 0; outline: 0; font-family: Inter, system-ui, sans-serif; font-size: 15px; color: #FFFFFF; }
+.km-fsearch-input::placeholder { color: #D4D0F8; opacity: .6; }
+.km-fsearch-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.km-fsearch-list { position: absolute; left: 0; right: 0; bottom: calc(100% + 8px); background: #FFFFFF; box-shadow: 0 18px 50px -20px rgba(13, 0, 51, .55); z-index: 80; max-height: 330px; overflow: auto; display: none; }
+.km-fsearch-item { padding: 12px 16px; cursor: pointer; display: flex; flex-direction: column; gap: 3px; }
+.km-fsearch-item:hover { background: #F2F2F7; }
+.km-fsearch-type { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 2px; color: #5205E7; }
+.km-fsearch-title { font-family: Inter, system-ui, sans-serif; font-size: 14px; color: #15172C; line-height: 1.35; }
+.km-fsearch-empty { padding: 12px 16px; font-family: Inter, system-ui, sans-serif; font-size: 13px; color: #585B6E; }
