@@ -2897,7 +2897,7 @@
   (function () {
     var MAIL = "krzysiek@quale.agency";
     /* URL aplikacji internetowej Apps Script (narzedzia/google-sheet-webhook.gs). Pusty = fallback mailto. */
-    var FORMS_WEBHOOK = "";
+    var FORMS_WEBHOOK = "https://script.google.com/macros/s/AKfycbyaLTAImbAVU8t_alB7832lxvfyyHyWY7ec-jVk94cI54ocN2x7XpyJCHm0JguSYRSYag/exec";
     var USLUGI_OPT = ["Badania UX", "Strategia w biznesie", "Zewnętrzny Dyrektor UX", "Segmentacja klientów", "Audyt UX", "Konsultacje i mentoring", "Wystąpienia i szkolenia", "Jeszcze nie wiem"];
     document.querySelectorAll('[data-pencil-name="form"]').forEach(function (form) {
       if (form._km) return;
