@@ -73,6 +73,7 @@ html { overflow-x: hidden; }
 /* buttony w nav (Kontakt, Umów darmową rozmowę): po przewinięciu transparentne tło na szkle, hover przywraca kolor */
 .km-nav-wrap .km-btn-fx { transition: background-color .25s ease, transform .25s ease, box-shadow .25s ease; }
 .km-nav-wrap.is-stuck .km-btn-fx:not(:hover) { background-color: transparent !important; }
+.km-nav-wrap.is-stuck .km-linkbtn:hover { background-color: transparent !important; }
 @supports not (backdrop-filter: blur(1px)) { .km-nav-wrap { background: rgba(255, 255, 255, .96); } }
 .km-mega {
   position: absolute; left: 0; right: 0; top: 100%;
