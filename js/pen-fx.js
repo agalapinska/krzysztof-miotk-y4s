@@ -2040,6 +2040,18 @@
     var rightPanel = Array.prototype.find.call(cardRow.children, function (el) {
       return /background-color:\s*#FFFFFF/i.test(el.getAttribute("style") || "");
     });
+    /* mobile: po linearyzacji biały panel nie jest dzieckiem cardRow — znajdź go od buttona w górę */
+    if (!rightPanel) {
+      var phLeaf = null;
+      sec.querySelectorAll("div").forEach(function (el) {
+        if (!phLeaf && el.children.length === 0 && /Przeczytaj historię projektu/.test(el.textContent || "")) phLeaf = el;
+      });
+      if (phLeaf) {
+        var wp = phLeaf.parentElement;
+        while (wp && wp !== sec && !/background-color:\s*(#FFFFFF|rgb\(255,\s*255,\s*255\))/i.test(wp.getAttribute("style") || "")) wp = wp.parentElement;
+        if (wp && wp !== sec) rightPanel = wp;
+      }
+    }
     cardRow.style.alignItems = "stretch";
     if (rightPanel) {
       rightPanel.style.height = "auto";
@@ -2739,10 +2751,32 @@
         cards.forEach(function (card, i) {
           var a = arts[i];
           if (!a) { card.style.display = "none"; return; }
-          var leaves = Array.prototype.filter.call(card.querySelectorAll("div"), function (d) { return d.children.length === 0; });
-          if (leaves[0]) leaves[0].textContent = (a.czas_czytania || "5") + " min";
-          if (leaves[1]) leaves[1].textContent = fmt(a.data);
-          if (leaves[2]) { leaves[2].textContent = a.tytul; leaves[2].style.letterSpacing = "0"; }
+          /* karta 1:1 wg projektu (node yDQgI): meta mono · tytuł · zajawka · „Czytaj więcej →" */
+          card.innerHTML = "";
+          card.style.display = "flex";
+          card.style.flexDirection = "column";
+          card.style.alignItems = "stretch";
+          card.style.gap = "12px";
+          card.style.padding = "28px 26px";
+          card.style.height = "auto";
+          card.style.backgroundColor = "#FFFFFF";
+          card.style.border = "1px solid #D4D0F8";
+          var glow = document.createElement("div");
+          glow.className = "card-glow";
+          card.appendChild(glow);
+          var meta = document.createElement("div");
+          meta.textContent = (a.kategoria || "").toUpperCase() + "  ·  " + fmt(a.data) + "  ·  " + (a.czas_czytania || "5") + " MIN";
+          meta.setAttribute("style", "font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:1px;color:#9094A6;");
+          var tt = document.createElement("div");
+          tt.textContent = a.tytul || "";
+          tt.setAttribute("style", "font-family:Nexa,system-ui,sans-serif;font-size:19px;line-height:1.3;color:#15172C;");
+          var zaj = document.createElement("div");
+          zaj.textContent = kmNbsp(a.zajawka || "");
+          zaj.setAttribute("style", "font-family:Inter,system-ui,sans-serif;font-size:14.5px;line-height:1.45;color:#585B6E;");
+          var cta = document.createElement("div");
+          cta.textContent = "Czytaj więcej →";
+          cta.setAttribute("style", "font-family:Inter,system-ui,sans-serif;font-size:14.5px;font-weight:600;color:#5205E7;");
+          card.appendChild(meta); card.appendChild(tt); card.appendChild(zaj); card.appendChild(cta);
           var href = hrefOf(a);
           if (href && !card._kmArt3) {
             card._kmArt3 = 1;
