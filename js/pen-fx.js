@@ -345,7 +345,7 @@
       }
     });
     /* hero bez kolażu zdjęć + kalendarz bez zdjęcia i logo (wg projektu mobile) */
-    var colPhoto = document.querySelector('div[style*="image-2.jpg"], div[style*="image-2.png"]');
+    var colPhoto = document.querySelector('div[style*="krzysztof-portret"], div[style*="image-2.jpg"], div[style*="image-2.png"]');
     if (colPhoto && colPhoto.parentElement) colPhoto.parentElement.style.display = "none";
     var calPhoto = document.querySelector('div[style*="image-6.webp"], div[style*="image-6.png"]');
     if (calPhoto) {
