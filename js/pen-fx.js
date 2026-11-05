@@ -1943,21 +1943,53 @@
       track.appendChild(k);
     });
     f663.remove();
-    var pos = 0, hovered = false, last = performance.now(), SPEED = 26;
+    var pos = 0, hovered = false, down = false, pauseUntil = 0, last = performance.now(), SPEED = 26;
+    function wrapPos() {
+      var half = track.scrollWidth / 2 + 24;
+      if (-pos >= half) pos += half;
+      if (pos > 0) pos -= half;
+    }
+    function paint() { track.style.transform = "translateX(" + pos + "px)"; }
     function frame(now) {
       var dt = Math.min(0.1, (now - last) / 1000);
       last = now;
-      if (!hovered) {
+      if (!hovered && !down && now > pauseUntil) {
         pos -= SPEED * dt;
-        var half = track.scrollWidth / 2 + 24;
-        if (-pos >= half) pos += half;
-        track.style.transform = "translateX(" + pos + "px)";
+        wrapPos();
+        paint();
       }
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
     vp.addEventListener("mouseenter", function () { hovered = true; });
     vp.addEventListener("mouseleave", function () { hovered = false; });
+    /* przesuwanie taśmy palcem/myszą; w trakcie (i chwilę po) taśma stoi */
+    vp.style.touchAction = "pan-y";
+    vp.style.cursor = "grab";
+    var dragX = 0, dragPos = 0;
+    function zoom9f() { return parseFloat(document.body.style.zoom) || 1; }
+    vp.addEventListener("pointerdown", function (e) {
+      down = true;
+      dragX = e.clientX;
+      dragPos = pos;
+      vp.style.cursor = "grabbing";
+      if (e.pointerType === "mouse") e.preventDefault();
+      try { vp.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    vp.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      pos = dragPos + (e.clientX - dragX) / zoom9f();
+      wrapPos();
+      paint();
+    });
+    function dragEnd() {
+      if (!down) return;
+      down = false;
+      vp.style.cursor = "grab";
+      pauseUntil = performance.now() + 4000;
+    }
+    vp.addEventListener("pointerup", dragEnd);
+    vp.addEventListener("pointercancel", dragEnd);
   })();
 
   /* --- 4g. Tooltip przy kursorze na „Pobierz Demo Raportu" --- */
