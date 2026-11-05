@@ -2022,6 +2022,36 @@
     });
   })();
 
+  /* --- 4g2. Tooltip przy kursorze nad sekcją „Wybierz termin w kalendarzu i pogadajmy!" --- */
+  (function () {
+    if (isMob) return;
+    var head = null;
+    document.querySelectorAll("div, h1, h2").forEach(function (el) {
+      if (!head && el.children.length === 0 && /^Wybierz termin w kalendarzu/.test((el.textContent || "").replace(/ /g, " ").trim())) head = el;
+    });
+    if (!head) return;
+    var sec = head.parentElement;
+    while (sec && sec !== document.body && !sec.querySelector('[data-pencil-name="Frame 676"]')) sec = sec.parentElement;
+    if (!sec || sec === document.body) return;
+    var tip = document.createElement("div");
+    tip.className = "km-dl-tip";
+    tip.textContent = "Wystarczy kliknąć w kalendarz 🙂";
+    document.body.appendChild(tip);
+    function zoom() { return parseFloat(document.body.style.zoom) || 1; }
+    sec.addEventListener("mousemove", function (e) {
+      var z = zoom();
+      tip.style.left = (e.clientX / z) + "px";
+      tip.style.top = (e.clientY / z - 34) + "px";
+      tip.classList.add("is-on");
+    });
+    /* nad samym kalendarzem (iframe Calendly) dymek znika — tam user już klika */
+    sec.addEventListener("mouseout", function (e) {
+      var rt = e.relatedTarget;
+      if (!rt || !sec.contains(rt) || (rt.closest && rt.closest(".calendly-inline-widget"))) tip.classList.remove("is-on");
+    });
+    sec.addEventListener("mouseleave", function () { tip.classList.remove("is-on"); });
+  })();
+
   /* --- 4h. Newsletter: działający input + zapis --- */
   (function () {
     document.querySelectorAll("div, h1, h2").forEach(function (el) {
