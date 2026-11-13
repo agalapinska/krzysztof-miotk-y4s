@@ -2400,7 +2400,7 @@
     });
   })();
 
-  /* --- 4j2. Moja Oferta: karty jak na stronie głównej + ↗ w rogu (bounce na hover), klik całą kartą --- */
+  /* --- 4j2. Moja Oferta: karty jak na stronie głównej + metaliczny obrys na hover, klik całą kartą --- */
     (function () {
       if (!/uslugi\.html/.test(location.pathname)) return;
       var N2 = function (s) { return (s || "").replace(/\u00A0/g, " ").trim(); };
@@ -2423,7 +2423,7 @@
         "Konsultacje i Mentoring": "konsultacje-i-mentoring.html"
       };
       cards.forEach(function (card) {
-        card.classList.add("km-tile");
+        card.classList.add("km-tile", "km-metal-fx", "km-metal-violet");
         card.style.position = "relative";
         var t7 = null;
         card.querySelectorAll("div").forEach(function (d) {
@@ -2455,16 +2455,6 @@
               wrap.style.gap = "16px";
             }
           }
-        }
-        /* ↗ w prawym dolnym rogu */
-        if (!card.querySelector(".km-tile-arrow")) {
-          var ar7 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-          ar7.setAttribute("viewBox", "0 0 24 24");
-          ar7.setAttribute("width", "22");
-          ar7.setAttribute("height", "22");
-          ar7.setAttribute("class", "km-tile-arrow");
-          ar7.innerHTML = '<path d="M7 17L17 7M7 7h10v10" fill="none" stroke="#5205E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-          card.appendChild(ar7);
         }
         if (LINKS7[t7] && !card._kmNav7) {
           card._kmNav7 = 1;
